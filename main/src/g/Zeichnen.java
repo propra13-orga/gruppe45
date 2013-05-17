@@ -1,6 +1,8 @@
 package g;
 
 import o.*;
+import main.menu;
+
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
@@ -106,6 +108,7 @@ public class Zeichnen extends JComponent{
        frame.setVisible(true);
        Tastatur eingabe = new Tastatur();       // EventListener für Keyboard
        frame.addKeyListener(eingabe);
+       //frame.add(spielmenu.start);
        
     }
     
