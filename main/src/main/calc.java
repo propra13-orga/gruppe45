@@ -1,8 +1,15 @@
 package main;
 
-import o.*;
 
 import java.awt.Rectangle;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
+import lokal.fs;
+
+import spielobjekte.*;
 
 public class calc {
 	
@@ -16,10 +23,12 @@ public class calc {
     public int wand_hoehe;
     public int killer_breite;
     public int killer_hoehe;
+    public int ziel_breite;
+    public int ziel_hoehe;
     Rectangle w;
     Rectangle h;
     Rectangle k;
-    
+    Rectangle z;
 	public calc(spielfeld board) {
 		this.board = board;
 	}
@@ -29,7 +38,7 @@ public class calc {
 		int pos_x_alt;
 		int pos_y_alt;
 		int schaden;
-		
+		board.nachricht = "";
 		for (spielfeld.hero hase: board.heros){
 			pos_x_alt = hase.pos_x;
 			pos_y_alt = hase.pos_y;
@@ -60,6 +69,7 @@ public class calc {
 	        	if (h.intersects(k)) {
 	        		collision = true;
 	        		schaden = 1000;
+	        		board.nachricht = "...von Killerhasen zerfetzt.";
 	        	}
 	        }
 	        for (spielfeld.todesbaum plant: board.plants){
@@ -69,6 +79,56 @@ public class calc {
 	        	if (h.intersects(k)) {
 	        		collision = true;
 	        		schaden = 1;
+	        		board.nachricht = "...am Baum vergiftet.";
+	        	}
+	        }
+	        for (spielfeld.ziel ziel: board.ziele){
+	        	ziel_breite = ziel.image.getWidth(null);
+	        	ziel_hoehe = ziel.image.getWidth(null);
+	        	z = new Rectangle(ziel.pos_x+5, ziel.pos_y-ziel_hoehe,ziel_breite-5, ziel_hoehe);
+//	        	System.out.println(ziel.pos_x);
+//	        	System.out.println(ziel.pos_y-ziel_hoehe);
+//	        	System.out.println(ziel_breite);
+//	        	System.out.println(ziel.pos_y);
+	        	if (h.intersects(z)) {
+	        		//collision = true;
+	        		if (board.fdatei.exists()) {
+	        			String imgdat ="";
+	        			switch(board.naechster_raum%6){
+	        				case 1:
+	        					imgdat=fs.img_pfad+"Su_s BG.png";
+	        					break;
+	        				case 2:
+	        					imgdat=fs.img_pfad+"bg kurve l.png";
+	        					break;
+	        				case 3:
+	        					imgdat=fs.img_pfad+"bg kurve u l.png";
+	        					break;
+	        				case 4:
+	        					imgdat=fs.img_pfad+"Su_s BG.png";
+	        					break;
+	        				case 5:
+	        					imgdat=fs.img_pfad+"bg kurve r.png";
+	        					break;
+	        				case 0:
+	        					imgdat=fs.img_pfad+"bg kurve u r.";
+	        					break;
+	        				default:
+	        					imgdat=fs.img_pfad+"Su_s BG.png";
+	        			}
+	        			try {
+							board.bg_image=ImageIO.read(new File(imgdat));
+						} catch (IOException e) {
+							e.printStackTrace();
+						};
+	        			board.create_room(Integer.toString(board.naechster_raum), "");
+	        			board.naechster_raum++;
+	        			board.datei = Integer.toString(board.naechster_raum);
+	        			board.fdatei =new File(fs.data_pfad+board.datei);
+	        		} else {
+	        			hase.leben_punkte=0;
+	        			board.nachricht = "GEWONNEN! ";
+	        		}
 	        	}
 	        }
 			if (collision==true){
@@ -78,6 +138,7 @@ public class calc {
 			}
 			if (hase.leben_punkte<=0) {
 				calc.ingame = false;
+				board.nachricht = board.nachricht+"Spielende";
 			}
 		}		
 	}

@@ -6,7 +6,8 @@ package main;
  * @author ProgPra
  */
 
-import g.*;
+import grafik.*;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Scanner;

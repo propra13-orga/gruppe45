@@ -4,11 +4,12 @@
  */
 package main;
 
-import g.*;
-import l.*;
-import o.*;
+import grafik.*;
+import lokal.*;
 import java.io.IOException;
 import javax.swing.JFrame;
+
+import spielobjekte.*;
 
 public class Main{
     
