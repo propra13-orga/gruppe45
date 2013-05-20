@@ -2,6 +2,7 @@ package grafik;
 
 import javax.swing.JFrame;
 
+import main.calc;
 import spielobjekte.*;
 
 /**
@@ -10,7 +11,7 @@ import spielobjekte.*;
 public class Renderer extends Thread{
     
 	private spielfeld board = new spielfeld("1");
-	main.calc calc = new main.calc(board);
+	calc logik = new main.calc(board);
     private Zeichnen display = new Zeichnen(board);
     
     long next_game_tick = System.currentTimeMillis();
@@ -20,8 +21,8 @@ public class Renderer extends Thread{
     
     public void run(){
          
-        while(main.calc.ingame){
-        	calc.updateData();
+        while(calc.ingame){
+        	logik.updateData();
             display.renderScreen(); // rendern
             display.updateScreen(); // backBuffer auf den Bildschirm            
             next_game_tick += SKIP_TICKS;               //Begrenzung der Framerate
