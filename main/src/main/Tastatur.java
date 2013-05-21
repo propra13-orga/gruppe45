@@ -18,7 +18,8 @@ public class Tastatur implements KeyListener {
 	
 	public void keyPressed (KeyEvent e){
 		key = e.getKeyCode();
-		if (calc.ingame) {
+		System.out.println(key);
+		if (calc.ingame) { // Spiel läuft
 			switch(key) {
 				case KeyEvent.VK_LEFT:// int 37
 					calc.P1_richtung_x -= 1;
@@ -32,12 +33,24 @@ public class Tastatur implements KeyListener {
 				case KeyEvent.VK_DOWN: // int 40
 					calc.P1_richtung_y += 1;
 					break;
+				case KeyEvent.VK_S:
+				case KeyEvent.VK_ESCAPE:
+					calc.ingame = false;
+					break;					
 				default:
 					// nix			
 			}
-		}
-		if (key== KeyEvent.VK_ESCAPE) {
-			calc.ingame = false;
+		} else { // Menu wird angezeigt
+			switch(key) {
+			case KeyEvent.VK_S: // int 83
+				calc.neues_spiel = true;
+				break;
+			case KeyEvent.VK_B: // 
+				System.exit(0);
+				break;
+			default:
+				// nix
+			}
 		}
 	}
 	

@@ -32,23 +32,14 @@ public class spielfeld {
 	public ArrayList<todesbaum> plants = new ArrayList();
 	public ArrayList<hero> heros = new ArrayList();
 	public ArrayList<ziel> ziele = new ArrayList();
-	public spielfeld(String file){
-		this(file, "");
-	}
 	
-	public spielfeld(String file, String center){
+	public spielfeld(String file){
 		this.init();
 		this.naechster_raum=Integer.parseInt(file)+1;
-		this.datei = file;
-		this.create_room(this.datei, center);
+		this.datei = file+".txt";
+		this.create_room(this.datei);
 	}
-	
-	public spielfeld(int anz_blocks_breite, int anz_blocks_hoehe) {
-		this.init();
-		this.anz_x_blocks = anz_blocks_breite;
-		this.anz_y_blocks = anz_blocks_hoehe;
-	}
-	
+		
 	private void init(){
 		try {
 			this.bg_image =ImageIO.read(new File(fs.img_pfad+"Su_s BG.png"));
@@ -73,17 +64,9 @@ public class spielfeld {
 		this.create_room(0,0, anz_x_blocks, anz_y_blocks);
 	}
 	
-	public void create_room(int x_blocks, int y_blocks, String center) {
+	public void create_room(int x_blocks, int y_blocks) {
 		int start_block_x=0;
 		int start_block_y=0;
-		if (center=="center"){
-			if (this.anz_x_blocks<max_x_blocks){
-				start_block_x = (int)(this.max_x_blocks-this.anz_x_blocks)/2;		
-			}
-			if (this.anz_y_blocks<max_y_blocks){
-				start_block_y = (int)(this.max_y_blocks-this.anz_y_blocks)/2;	
-			}
-		}
 		this.create_room(start_block_x,start_block_y, start_block_x+this.anz_x_blocks, start_block_y+this.anz_y_blocks);
 	}
 	
@@ -101,7 +84,7 @@ public class spielfeld {
 		}
 	}
 	
-	public int create_room(String datei, String center) {
+	public int create_room(String datei) {
 		walls.clear();
 		killers.clear();
 		plants.clear();
@@ -112,23 +95,19 @@ public class spielfeld {
 		int zeile;
 		boolean feld= false;
 		try {
-			try {
-				this.fdatei = new File(fs.data_pfad+this.datei);
-				//if (this.fdatei.exists()) {
-					FileReader fr = new FileReader(fs.data_pfad+datei);
-					BufferedReader br = new BufferedReader(fr);
-				    zeile=0;
-				    do {
-					    zeileninhalt = br.readLine();
+			this.fdatei = new File(fs.data_pfad+this.datei);
+			//if (this.fdatei.exists()) {
+				FileReader fr = new FileReader(fs.data_pfad+this.datei);
+				BufferedReader br = new BufferedReader(fr);
+			    zeile=0;
+			    do {
+				    zeileninhalt = br.readLine();
+				    if (zeileninhalt != null) {
 					    zeilenlaenge=zeileninhalt.length();
 					    if (zeileninhalt.charAt(0)=='#') {
 					    	feld=true;
 					    }
 					    if (feld) {
-						    if (center=="center" && zeile == 0) {
-						    	offset_x = (int)(this.max_x_blocks-zeilenlaenge)/2;
-						    }
-						    
 						    for(int spalte=0; spalte<zeilenlaenge;spalte++){
 						    	switch(zeileninhalt.charAt(spalte)) {
 						    		case 'w':
@@ -154,14 +133,12 @@ public class spielfeld {
 					    } else {
 		
 					    }
-				    } while (zeileninhalt != null);
-				    br.close();
-				//}
-			} catch (IOException e) {
-				this.create_room(12,10, "center");
-			}
+				    }
+			    } while (zeileninhalt != null);
+			    br.close();
+			//}
 		} catch (Exception e) {
-			status =1;
+			System.out.println("Was? " + e.getMessage());
 		}
 		return status;
 	}

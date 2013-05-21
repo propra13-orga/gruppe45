@@ -14,11 +14,13 @@ public class fs {
 		fs.pfad = System.getProperty("user.dir");
 		fs.os = System.getProperty("os.name").toLowerCase();
 		os_slash="/";
-		if (fs.os.indexOf("win")>0) {
+		if (fs.os.indexOf("win")>=0) {
 			os_slash="\\";
 		}
 		fs.img_pfad=fs.pfad+fs.os_slash+"img"+fs.os_slash;
 		fs.data_pfad=fs.pfad+fs.os_slash+"data"+fs.os_slash;
+		//System.out.println("Bilder in: " + fs.img_pfad);
+		//System.out.println("Level in: " + fs.data_pfad);
 	}
 	
 }

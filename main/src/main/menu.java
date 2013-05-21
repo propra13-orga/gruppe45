@@ -5,6 +5,7 @@ import javax.swing.JButton;
 public class menu {
 		public JButton start;
 		public JButton ende;
+		public boolean visible = false;
 		
 	public menu() {
 		start = new JButton("Start");
