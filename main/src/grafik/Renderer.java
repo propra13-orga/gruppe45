@@ -3,6 +3,7 @@ package grafik;
 import main.calc;
 import javax.swing.JFrame;
 
+import main.calc;
 import spielobjekte.*;
 
 /**
