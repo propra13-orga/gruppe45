@@ -136,6 +136,7 @@ public class calc {
 	        			this.naechster_Raum();
 	        		} else { // Es gibt keinen nächsten Raum. Gewonnen!!
 	        			hase.leben_punkte=0;
+	        			hase.anz_leben=0;
 	        			board.nachricht = "GEWONNEN! ";
 	        		}
 	        	}
