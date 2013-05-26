@@ -1,5 +1,9 @@
 package spielobjekte;
 
+/*
+ * for later use for items like weapons, medipacks...
+ */
+
 public class item {
 
 	public String itemname;

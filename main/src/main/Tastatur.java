@@ -14,7 +14,6 @@ public class Tastatur implements KeyListener {
 	
 	public void keyPressed (KeyEvent e){
 		key = e.getKeyCode();
-		System.out.println(key);
 		if (calc.ingame) { // Spiel läuft
 			switch(key) {
 				case KeyEvent.VK_LEFT:// int 37

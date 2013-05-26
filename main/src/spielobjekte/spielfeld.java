@@ -1,5 +1,15 @@
 package spielobjekte;
 
+/*
+ *  class creates the board with background image and all objects on the board with their positions
+ *  hero, killerbunny, wall and todesbaum inherit from the objekt 
+ *  class in this package
+ *  
+ *  created in Renderer class
+ *  reset for a new game in Renderer class
+ *  collision detection in calc class
+ *
+ */
 
 import java.awt.Image;
 import javax.imageio.ImageIO;
@@ -16,22 +26,18 @@ public class spielfeld {
 	public Image bg_image;
 	public String datei;
 	public File fdatei;
-	private int status = 0;
-	public int anz_x_blocks;
-	public int anz_y_blocks;	
-	public int max_x_blocks;
-	public int max_y_blocks;
-	public int offset_x;
-	public int offset_y;
+	private int status = 0;	
+	public int max_x_blocks = 0;
+	public int max_y_blocks = 0;
 	public int rand_x = 40;
 	public int rand_y = 70;
 	public int naechster_raum;
 	public String nachricht ="";
-	public ArrayList<wall> walls = new ArrayList();
-	public ArrayList<killerbunny> killers = new ArrayList();
-	public ArrayList<todesbaum> plants = new ArrayList();
-	public ArrayList<hero> heros = new ArrayList();
-	public ArrayList<ziel> ziele = new ArrayList();
+	public ArrayList<wall> walls = new ArrayList<wall>();
+	public ArrayList<killerbunny> killers = new ArrayList<killerbunny>();
+	public ArrayList<todesbaum> plants = new ArrayList<todesbaum>();
+	public ArrayList<hero> heros = new ArrayList<hero>();
+	public ArrayList<ziel> ziele = new ArrayList<ziel>();
 	
 	public spielfeld(String file){
 		this.init();
@@ -40,57 +46,26 @@ public class spielfeld {
 		this.create_room(this.datei);
 	}
 		
-	private void init(){
+	private void init(){ // called by all class constructors to set start values
 		try {
 			this.bg_image =ImageIO.read(new File(fs.img_pfad+"Su_s BG.png"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		max_x_blocks=14;
-		max_y_blocks=15;
-		if (anz_x_blocks == 0 || anz_x_blocks>max_x_blocks) {
-			anz_x_blocks = max_x_blocks;
-		}
-		if (anz_y_blocks == 0 || anz_y_blocks>max_y_blocks) {
-			anz_y_blocks = max_y_blocks;
-		}
-		this.max_blocks_berechnen();
-		offset_x=0;
-		offset_y=0;
+		int h = 768;
+		int b = 1024;
+		this.max_x_blocks = b/this.block_groesse;
+		this.max_y_blocks = h/this.block_groesse; 
 	}
 	
-	public void create_room() {
-		this.create_room(0,0, anz_x_blocks, anz_y_blocks);
-	}
-	
-	public void create_room(int x_blocks, int y_blocks) {
-		int start_block_x=0;
-		int start_block_y=0;
-		this.create_room(start_block_x,start_block_y, start_block_x+this.anz_x_blocks, start_block_y+this.anz_y_blocks);
-	}
-	
-	public void create_room(int start_block_x, int start_block_y, int end_block_x, int end_block_y) {
-		try {
-			create_wall(start_block_x, start_block_y, end_block_x, start_block_y);
-			create_wall(start_block_x, end_block_y, end_block_x, end_block_y);
-			create_wall(start_block_x, start_block_y, start_block_x, end_block_y);
-			create_wall(end_block_x, start_block_y, end_block_x, end_block_y);
-			
-		} catch (Exception e) {
-			System.out.println("Fehler:");
-			System.out.println(e.getCause());
-			System.out.println(e.getMessage());
-		}
-	}
-	
-	public int create_room(String datei) {
+	public int create_room(String datei) { // reads level file and creates game objects
+		// clears lists with game objects (needed for restarted games)
 		walls.clear();
 		killers.clear();
 		plants.clear();
 		heros.clear();
 		ziele.clear();
-		String zeileninhalt ="";
+		String zeileninhalt =""; // line content of a level file
 		int zeilenlaenge =0;
 		int zeile;
 		boolean feld= false;
@@ -100,41 +75,41 @@ public class spielfeld {
 				FileReader fr = new FileReader(fs.data_pfad+this.datei);
 				BufferedReader br = new BufferedReader(fr);
 			    zeile=0;
-			    do {
-				    zeileninhalt = br.readLine();
-				    if (zeileninhalt != null) {
+			    do { // reading levelfile line by line
+				    zeileninhalt = br.readLine(); 
+				    if (zeileninhalt != null) { // empty line
 					    zeilenlaenge=zeileninhalt.length();
-					    if (zeileninhalt.charAt(0)=='#') {
+					    if (zeileninhalt.charAt(0)=='#') { // reading chars of line
 					    	feld=true;
 					    }
-					    if (feld) {
+					    if (feld) { // depending on char create objects on board
 						    for(int spalte=0; spalte<zeilenlaenge;spalte++){
 						    	switch(zeileninhalt.charAt(spalte)) {
 						    		case 'w':
-						    			create_wall (this.offset_x+spalte, zeile);
+						    			create_wall (spalte, zeile);
 						    			break;
 						    		case 'k':
-						    			create_killer(this.offset_x+spalte, zeile, "hase");
+						    			create_killer(spalte, zeile, "hase");
 						    			break;
 						    		case 't':
-						    			create_killer(this.offset_x+spalte, zeile, "baum");
+						    			create_killer(spalte, zeile, "baum");
 						    			break;
 						    		case 'h':
-						    			create_hero(this.offset_x+spalte, zeile);
+						    			create_hero(spalte, zeile);
 						    			break;
 						    		case 'z':
-						    			create_ziel(this.offset_x+spalte, zeile);
+						    			create_ziel(spalte, zeile);
 						    			break;
 						    		default:
 						    			// nix
 						    	}
 						    }
-						    zeile++;
+						    zeile++; // next line
 					    } else {
 		
 					    }
 				    }
-			    } while (zeileninhalt != null);
+			    } while (zeileninhalt != null); // empty line -> EOF (end of file)
 			    br.close();
 			//}
 		} catch (Exception e) {
@@ -143,12 +118,13 @@ public class spielfeld {
 		return status;
 	}
 
-		// 1 Wand-Block a Position x / y
+	// 1 wall  at position x / y
 	public void create_wall(int start_x, int start_y){
 			create_wall(start_x, start_y, start_x, start_y);
 	}
 	
-		// Wand
+	// creates walls from start to end with the distance block_groesse
+	// used by the method above and slow, much room for improvement
 	public void create_wall (int start_x, int start_y, int end_x, int end_y){
 		int start;
 		int end;
@@ -175,16 +151,8 @@ public class spielfeld {
 			walls.add(wand);
 		}
 	}
-	
-	public void max_blocks_berechnen() {
-		int h = 768;
-		int b = 1024;
-		this.max_x_blocks = b/this.block_groesse; 
-		if (this.max_y_blocks>(h/this.block_groesse)) {
-			this.max_y_blocks=h/this.block_groesse;
-		}
-	}
-	
+
+	// wall class
 	public class wall extends objekt {
 		public int pos_x;
 		public int pos_y;
@@ -198,7 +166,7 @@ public class spielfeld {
 			this.image = Toolkit.getDefaultToolkit().getImage(fs.img_pfad+"baum_eng.png");
 		}
 	}
-	
+	// killerbunny class
 	public class killerbunny extends objekt {
 		public int pos_x;
 		public int pos_y;
@@ -216,7 +184,7 @@ public class spielfeld {
 			this.image = Toolkit.getDefaultToolkit().getImage(fs.img_pfad+"killerhase_links.png");
 		}
 	}
-
+	// todesbaum class
 	public class todesbaum extends objekt {
 		public int pos_x;
 		public int pos_y;
@@ -234,7 +202,7 @@ public class spielfeld {
 			this.image = Toolkit.getDefaultToolkit().getImage(fs.img_pfad+"todesbaum.png");
 		}
 	}
-	
+	// hero class
 	public class hero extends objekt {
 		public int pos_x;
 		public int pos_y;
@@ -255,7 +223,7 @@ public class spielfeld {
 		}
 	
 	}
-	
+	// destination class (exit of a level)
 	public class ziel extends objekt {
 		public int pos_x;
 		public int pos_y;
@@ -272,6 +240,8 @@ public class spielfeld {
 		}
 	}
 	
+	//  creates objects of killerbunny / todesbaum class and adds to the lists 
+	// of killers / plants  in this level
 	public void create_killer (int start_x, int start_y, String killertyp){
 		if (killertyp =="hase") {
 			killerbunny hase;
@@ -284,13 +254,13 @@ public class spielfeld {
 			plants.add(baum);
 		}
 	}
-	
+	// creates object of the hero class and adds to the list of heros in this level
 	public void create_hero (int start_x, int start_y){
 		hero hase;
 		hase = new hero(start_x*this.block_groesse, start_y*this.block_groesse);
 		heros.add(hase);
 	}
-	
+	// creates object of the ziel class and adds to the list of destinations in this level
 	public void create_ziel (int start_x, int start_y){
 		ziel ziel;
 		ziel = new ziel(start_x*this.block_groesse, start_y*this.block_groesse);

@@ -1,5 +1,11 @@
 package spielobjekte;
 
+
+/*
+ * parent class for the game objects hero, killerbunny, wall, todesbaum,...
+ * subclass description and creation in the spielfeld class 
+ */
+
 import java.awt.Image;
 
 public class objekt {

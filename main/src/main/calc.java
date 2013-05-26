@@ -7,7 +7,6 @@ import javax.imageio.ImageIO;
 
 import lokal.fs;
 import spielobjekte.*;
-import main.menu;
 
 /*
  * 
@@ -38,6 +37,7 @@ public class calc {
 		this.board = board;
 	}
 	
+	// adjusting values for new level (bg image, level file, ...)
 	public void naechster_Raum(){
 		String imgdat ="";
 		switch(board.naechster_raum%6){
@@ -74,12 +74,15 @@ public class calc {
 		board.fdatei = new File(fs.data_pfad+board.datei);
 	}
 	
+	
 	public void updateData () { // Berechnungen, Kollisionen
 		boolean collision = false;
 		int pos_x_alt;
 		int pos_y_alt;
 		int schaden;
 		board.nachricht = "";
+		// für jeden Held Kollisionen berechnen
+		// Kollision wird gegen jedes Objekt einzeln geprüft. Geht bestimmt schöner
 		for (spielfeld.hero hase: board.heros){
 			pos_x_alt = hase.pos_x;
 			pos_y_alt = hase.pos_y;
@@ -145,13 +148,7 @@ public class calc {
 			if (hase.leben_punkte<=0) {
 				calc.ingame = false;
 				board.nachricht = board.nachricht+"Spielende";
-				hase.leben_punkte = 100;
-//				java.awt.EventQueue.invokeLater(new Runnable() {
-//                    public void run() {
-//                    	new Main().setVisible(true);
-//                    }
-//                }); 
-				
+				hase.leben_punkte = 100;		
 			}
 		}		
 	}
