@@ -146,9 +146,15 @@ public class calc {
 				hase.leben_punkte = hase.leben_punkte-schaden;
 			}
 			if (hase.leben_punkte<=0) {
-				calc.ingame = false;
-				board.nachricht = board.nachricht+"Spielende";
-				hase.leben_punkte = 100;		
+				if (hase.anz_leben>0) {
+					hase.pos_x = hase.start_pos_x;
+					hase.pos_y = hase.start_pos_y;
+					hase.anz_leben--;
+				} else {
+					calc.ingame = false;
+					board.nachricht = board.nachricht+"Spielende";
+				}
+				hase.leben_punkte = hase.start_leben_punkte;
 			}
 		}		
 	}

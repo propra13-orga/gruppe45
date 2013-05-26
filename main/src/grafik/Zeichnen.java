@@ -101,7 +101,7 @@ public class Zeichnen extends JComponent{
 				        	g.drawImage(hase.image, hase.pos_x, hase.pos_y, this);
 				        	g.setColor(Color.white);
 				        	// paints hero name + life points
-				        	g.drawString(held[held_index] + " - Lebenspunkte: "+ Integer.toString(hase.leben_punkte), 30, 60+held_index*30);
+				        	g.drawString(held[held_index] + " - " + hase.anz_leben + " Leben - Lebenspunkte: "+ Integer.toString(hase.leben_punkte), 30, 60+held_index*30);
 		        	
 		        		}
 		        	}

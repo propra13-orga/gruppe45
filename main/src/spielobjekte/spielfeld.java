@@ -205,13 +205,19 @@ public class spielfeld {
 	// hero class
 	public class hero extends objekt {
 		public int pos_x;
+		public int start_pos_x;
 		public int pos_y;
+		public int start_pos_y;
+		public int anz_leben=2;
+		public int start_leben_punkte =100;
 		public hero (int x, int y) {
 			super("objekt");
 			this.pos_x = x;
 			this.pos_y = y;
+			this.start_pos_x=x;
+			this.start_pos_y=y;
 			this.dichte = 10;
-			this.leben_punkte = 100;
+			this.leben_punkte = this.start_leben_punkte;
 			this.geschwindigkeit = 5;
 			this.schaden_punkte = 100;
 			this.schaden_reichweite = 0;
