@@ -1,16 +1,12 @@
 package main;
 
-
 /**
  * implements KeyListener and returns Position
  * @author ProgPra
  */
 
-import grafik.*;
-
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.Scanner;
 
 public class Tastatur implements KeyListener {
 
@@ -36,7 +32,7 @@ public class Tastatur implements KeyListener {
 				case KeyEvent.VK_S:
 				case KeyEvent.VK_ESCAPE:
 					calc.ingame = false;
-					break;					
+					break;
 				default:
 					// nix			
 			}

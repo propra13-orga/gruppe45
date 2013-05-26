@@ -1,32 +1,30 @@
 package grafik;
 
-import main.calc;
 import javax.swing.JFrame;
 
 import main.calc;
-import spielobjekte.*;
-
+import spielobjekte.*; //package with board, game objects 
 /**
  * @author ProgPra
  */
 public class Renderer extends Thread{
     
-	private spielfeld board = new spielfeld("1");
-	private calc spiellogik = new calc(board);
-    private Zeichnen display = new Zeichnen(board);
+	private spielfeld board = new spielfeld("1"); // creates board, game objects and sets their position, life points...
+	private calc spiellogik = new calc(board);// collision detection, creates layout without objects
+    private Zeichnen display = new Zeichnen(board);//paints objects on board, sets frame size,add keylistener
     
     long next_game_tick = System.currentTimeMillis();
     int FRAMES_PER_SECOND = 25;
     int SKIP_TICKS = 1000 / FRAMES_PER_SECOND;
     long sleepTime = 1;
     
-    public void run(){
+    public void run(){ // update data, update screen
          
         while(true){ 
-	        	spiellogik.updateData(); // Kollisionen berechnen
-	            display.renderScreen(); // rendern
-	            display.updateScreen(); // backBuffer auf den Bildschirm            
-	            next_game_tick += SKIP_TICKS;               //Begrenzung der Framerate
+	        	spiellogik.updateData(); // calculates collisions
+	            display.renderScreen(); // render
+	            display.updateScreen(); // backBuffer on screen            
+	            next_game_tick += SKIP_TICKS; //limits frame rate
 	            sleepTime = next_game_tick - System.currentTimeMillis();
 	            if(sleepTime>=0) {
 	            
@@ -35,15 +33,16 @@ public class Renderer extends Thread{
 	                }
 	                catch (InterruptedException ex) {}
 	            }
-	        while (calc.neues_spiel){
-	        	calc.ingame = true;
-	        	calc.neues_spiel = false;
+	        if (calc.neues_spiel){ // start new game (after winning/loosing)
+	        	// resets game to level 1
+	        	calc.ingame = true; // true =  playing, false = menu/GUI
+	        	calc.neues_spiel = false; // sets boolean to avoid resetting
 	    		board.naechster_raum=1;
-	    		spiellogik.naechster_Raum();
+	    		spiellogik.naechster_Raum(); // resets background image
 	        }
         }
     }
-    public void setFrame(JFrame mainFrame) {
+    public void setFrame(JFrame mainFrame) { //creates window and size
          display.setFrame(mainFrame);
     }
 }
