@@ -12,6 +12,8 @@ public class objekt {
 	
 	public String name;
 	public Image image;
+	public int pos_x;
+	public int pos_y;
 	public int dichte;
 	public int leben_punkte;
 	public int geschwindigkeit;

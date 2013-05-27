@@ -154,8 +154,6 @@ public class spielfeld {
 
 	// wall class
 	public class wall extends objekt {
-		public int pos_x;
-		public int pos_y;
 		public wall (int x, int y) {
 			super("objekt");
 			this.pos_x = x;
@@ -168,8 +166,6 @@ public class spielfeld {
 	}
 	// killerbunny class
 	public class killerbunny extends objekt {
-		public int pos_x;
-		public int pos_y;
 		public killerbunny (int x, int y) {
 			super("objekt");
 			this.pos_x = x;
@@ -186,8 +182,6 @@ public class spielfeld {
 	}
 	// todesbaum class
 	public class todesbaum extends objekt {
-		public int pos_x;
-		public int pos_y;
 		public todesbaum (int x, int y) {
 			super("objekt");
 			this.pos_x = x;
@@ -204,9 +198,7 @@ public class spielfeld {
 	}
 	// hero class
 	public class hero extends objekt {
-		public int pos_x;
 		public int start_pos_x;
-		public int pos_y;
 		public int start_pos_y;
 		public int anz_leben=2;
 		public int start_leben_punkte =100;
@@ -231,8 +223,6 @@ public class spielfeld {
 	}
 	// destination class (exit of a level)
 	public class ziel extends objekt {
-		public int pos_x;
-		public int pos_y;
 		public ziel (int x, int y) {
 			super("objekt");
 			this.pos_x = x;
