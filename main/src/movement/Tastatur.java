@@ -12,6 +12,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Scanner;
 
+import spielobjekte.*;
+
 import main.calc;
 
 public class Tastatur implements KeyListener {
@@ -24,7 +26,7 @@ public class Tastatur implements KeyListener {
 		if (calc.ingame) { // Spiel läuft
 			switch(key) {
 				case KeyEvent.VK_LEFT:// int 37
-					calc.P1_richtung_x -= 1;
+					Move.left(hase);
 					break;
 				case KeyEvent.VK_RIGHT: // int 18
 					calc.P1_richtung_x += 1;
