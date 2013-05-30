@@ -99,11 +99,15 @@ public class Zeichnen extends JComponent{
 		        for (spielfeld.hero hase: board.heros){ // individual list of objects
 		        	if (hase.pos_y>=block_start && hase.pos_y<= block_ende) { // if hero in actual block -> paint
 		        		if (hase.leben_punkte>0) {
-				        	g.drawImage(hase.image, hase.pos_x, hase.pos_y, this);
+				        	g.drawImage(hase.get_hero_image(), hase.pos_x, hase.pos_y, this);
 				        	g.setColor(Color.white);
 				        	// paints hero name + life points
-				        	g.drawString(held[held_index] + " - " + hase.anz_leben + " Leben - Lebenspunkte: "+ Integer.toString(hase.leben_punkte), 30, 60+held_index*30);
-		        	
+				        	g.drawImage(hase.get_lebensbalken_image(), 25, 90, hase.leben_punkte, 15, this);
+				        	g.draw3DRect(25, 90, hase.start_leben_punkte, 15, true);
+				        	for (int i=0;i<hase.anz_leben; i++) {
+				        		g.drawImage(hase.leben_img, 30+ i*30, 52, this);
+				        	}
+				        	g.drawString(held[held_index], 30, 102+held_index*30);
 		        		}
 		        	}
 			        held_index++;        	

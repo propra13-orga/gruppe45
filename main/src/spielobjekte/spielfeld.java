@@ -205,8 +205,12 @@ public class spielfeld {
 	public class hero extends objekt {
 		public int start_pos_x;
 		public int start_pos_y;
+		private int letzte_x_bewegung=0;
+		private int ani_bewegung =1;
 		public int anz_leben=2;
 		public int start_leben_punkte =100;
+		public Image leben_img = Toolkit.getDefaultToolkit().getImage(fs.img_pfad+"leben_kopf.png");
+		public Image lebensbalken_img = Toolkit.getDefaultToolkit().getImage(fs.img_pfad+"lebensbalken_gruen.png");
 		public hero (int x, int y) {
 			super("objekt");
 			this.pos_x = x;
@@ -222,7 +226,48 @@ public class spielfeld {
 			this.schaden_anzahl_gegner = 0;
 			this.sichtbar = true;
 			this.zerstoerbar=true;
-			this.image = Toolkit.getDefaultToolkit().getImage(fs.img_pfad+"held.png");
+			this.image = Toolkit.getDefaultToolkit().getImage(fs.img_pfad+"held_rechts.png");
+		}
+		
+		public Image get_lebensbalken_image() {
+			lebensbalken_img = Toolkit.getDefaultToolkit().getImage(fs.img_pfad+"lebensbalken_gruen.png");
+			if (this.leben_punkte<50) {
+				lebensbalken_img = Toolkit.getDefaultToolkit().getImage(fs.img_pfad+"lebensbalken_gelb.png");
+			} 
+			if (this.leben_punkte<20) {
+				lebensbalken_img = Toolkit.getDefaultToolkit().getImage(fs.img_pfad+"lebensbalken_rot.png");
+			}
+			return this.lebensbalken_img;
+		}
+		
+		public Image get_hero_image() {
+				switch(calc.P1_richtung_x) {
+				case -1: // Held bewegt sich nach links (auch kombiniert mit oben/unten)
+					this.image = Toolkit.getDefaultToolkit().getImage(fs.img_pfad+"held_links_gebeugt_ohren_hinten.png");		
+					letzte_x_bewegung = -1;
+					break;
+				case 1: // Held bewegt sich nach links (auch kombiniert mit oben/unten)
+					this.image = Toolkit.getDefaultToolkit().getImage(fs.img_pfad+"held_rechts_gebeugt_ohren_hinten.png");
+					letzte_x_bewegung = 1;
+					break;
+				default:
+					// Hase bewegt sich nur nach oben oder unten (ohne links/rechts)
+					if (calc.P1_richtung_y ==1 || calc.P1_richtung_y==-1) {
+						if (letzte_x_bewegung ==1){
+							this.image = Toolkit.getDefaultToolkit().getImage(fs.img_pfad+"held_rechts_gebeugt_ohren_hinten.png");
+						}
+						if (letzte_x_bewegung==-1){
+							this.image = Toolkit.getDefaultToolkit().getImage(fs.img_pfad+"held_links_gebeugt_ohren_hinten.png");
+						}
+					} else { // Hase steht 
+						if (letzte_x_bewegung==1){
+							this.image = Toolkit.getDefaultToolkit().getImage(fs.img_pfad+"held_rechts.png");
+						} else if (letzte_x_bewegung==-1) {
+							this.image = Toolkit.getDefaultToolkit().getImage(fs.img_pfad+"held_links.png");	
+						}
+					}
+				}
+			return this.image;
 		}
 	
 	}
