@@ -38,13 +38,17 @@ import lokal.fs;
  * @author Admin
  */
 public class Main extends javax.swing.JFrame {
+	
+	public static int FRAMESIZE_X =1024;
+	public static int FRAMESIZE_Y =768;
+	
 
     /**
      * Creates new form Peter
      */
     public Main() {
         initComponents();
-        setSize(1024, 728);
+        setSize(Main.FRAMESIZE_X, Main.FRAMESIZE_Y);
         setResizable(false);      
     }
 

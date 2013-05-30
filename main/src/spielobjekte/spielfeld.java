@@ -18,6 +18,8 @@ import java.io.*;
 import java.util.ArrayList;
 
 import lokal.*;
+import main.Main;
+import main.calc;
 
 public class spielfeld {
 	
@@ -52,10 +54,39 @@ public class spielfeld {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		int h = 768;
-		int b = 1024;
-		this.max_x_blocks = b/this.block_groesse;
-		this.max_y_blocks = h/this.block_groesse; 
+		this.max_x_blocks = Main.FRAMESIZE_X/this.block_groesse;
+		this.max_y_blocks = Main.FRAMESIZE_Y/this.block_groesse; 
+	}
+	
+	public void set_board_bg_image(int level_number) {
+		String imgdat ="";
+		switch(this.naechster_raum%6){
+			case 1:
+				imgdat=fs.img_pfad+"Su_s BG.png";
+				break;
+			case 2:
+				imgdat=fs.img_pfad+"bg kurve l.png";
+				break;
+			case 3:
+				imgdat=fs.img_pfad+"bg kurve u l.png";
+				break;
+			case 4:
+				imgdat=fs.img_pfad+"Su_s BG.png";
+				break;
+			case 5:
+				imgdat=fs.img_pfad+"bg kurve r.png";
+				break;
+			case 0:
+				imgdat=fs.img_pfad+"bg kurve u r.";
+				break;
+			default:
+				imgdat=fs.img_pfad+"Su_s BG.png";
+		}
+		try {
+			this.bg_image=ImageIO.read(new File(imgdat));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public int create_room(String datei) { // reads level file and creates game objects
@@ -118,44 +149,15 @@ public class spielfeld {
 		return status;
 	}
 
-	// 1 wall  at position x / y
-	public void create_wall(int start_x, int start_y){
-			create_wall(start_x, start_y, start_x, start_y);
-	}
-	
-	// creates walls from start to end with the distance block_groesse
-	// used by the method above and slow, much room for improvement
-	public void create_wall (int start_x, int start_y, int end_x, int end_y){
-		int start;
-		int end;
-		int on_line;
-		wall wand;
-		boolean direction = true; // direction: true = horizontal, false = vertikal
-		
-		if (start_x==end_x){ // horizontal
-			start  = start_y;
-			end = end_y;
-			on_line = start_x*this.block_groesse;
-		} else { // vertikale
-			start  = start_x;
-			end = end_x;
-			on_line = start_y*this.block_groesse;
-			direction = false;
-		}
-		for (int i=start; i<=end; i++) {
-			if (direction) {
-				wand = new wall(on_line,i*this.block_groesse);
-			} else {
-				wand = new wall(i*this.block_groesse,on_line);
-			}
+	// 1 wall  at position x * block_groesse / y * block_groesse
+	public void create_wall (int start_x, int start_y){
+			wall wand;
+			wand = new wall(start_x*this.block_groesse,start_y*this.block_groesse);
 			walls.add(wand);
-		}
 	}
 
 	// wall class
 	public class wall extends objekt {
-		public int pos_x;
-		public int pos_y;
 		public wall (int x, int y) {
 			super("objekt");
 			this.pos_x = x;
@@ -168,8 +170,7 @@ public class spielfeld {
 	}
 	// killerbunny class
 	public class killerbunny extends objekt {
-		public int pos_x;
-		public int pos_y;
+
 		public killerbunny (int x, int y) {
 			super("objekt");
 			this.pos_x = x;
@@ -186,8 +187,6 @@ public class spielfeld {
 	}
 	// todesbaum class
 	public class todesbaum extends objekt {
-		public int pos_x;
-		public int pos_y;
 		public todesbaum (int x, int y) {
 			super("objekt");
 			this.pos_x = x;
@@ -204,9 +203,7 @@ public class spielfeld {
 	}
 	// hero class
 	public class hero extends objekt {
-		public int pos_x;
 		public int start_pos_x;
-		public int pos_y;
 		public int start_pos_y;
 		public int anz_leben=2;
 		public int start_leben_punkte =100;
@@ -231,8 +228,7 @@ public class spielfeld {
 	}
 	// destination class (exit of a level)
 	public class ziel extends objekt {
-		public int pos_x;
-		public int pos_y;
+
 		public ziel (int x, int y) {
 			super("objekt");
 			this.pos_x = x;

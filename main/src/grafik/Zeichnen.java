@@ -8,6 +8,7 @@ import javax.swing.WindowConstants;
 
 import spielobjekte.*;
 import lokal.fs;
+import main.Main;
 import main.Tastatur;
 import main.calc;
 
@@ -44,7 +45,7 @@ public class Zeichnen extends JComponent{
     }
     
     private void createBackBuffer(){
-    	backBuffer = frame.createImage(1024,768);
+    	backBuffer = frame.createImage(Main.FRAMESIZE_X,Main.FRAMESIZE_Y);
     }
     
     public void paintComponent(Graphics g){
@@ -144,7 +145,7 @@ public class Zeichnen extends JComponent{
 
     void setFrame(JFrame mainFrame) { //inits window 
        frame = mainFrame;
-       frame.setSize(1024, 728);
+       frame.setSize(Main.FRAMESIZE_X, Main.FRAMESIZE_Y);
        frame.setLayout(new BorderLayout());
        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
        frame.setVisible(true);

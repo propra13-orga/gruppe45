@@ -36,9 +36,9 @@ public class Renderer extends Thread{
 	        if (calc.neues_spiel){ // start new game (after winning/loosing)
 	        	// resets game to level 1
 	        	calc.ingame = true; // true =  playing, false = menu/GUI
-	        	calc.neues_spiel = false; // sets boolean to avoid resetting
 	    		board.naechster_raum=1;
-	    		spiellogik.naechster_Raum(); // resets background image
+	    		spiellogik.go_to_next_room(); // resets background image
+	    		calc.neues_spiel = false; // sets boolean to avoid resetting
 	        }
         }
     }

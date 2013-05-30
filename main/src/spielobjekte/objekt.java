@@ -22,6 +22,8 @@ public class objekt {
 	public boolean sichtbar;
 	public boolean zerstoerbar;
 	public int ebene;
+	public int pos_x;
+	public int pos_y;
 	
 	public objekt(String name) {
 		this.name = "irgendwas";
