@@ -9,7 +9,7 @@ import spielobjekte.*; //package with board, game objects
  */
 public class Renderer extends Thread{
     
-	private spielfeld board = new spielfeld("1"); // creates board, game objects and sets their position, life points...
+	private Spielfeld board = new Spielfeld("1"); // creates board, game objects and sets their position, life points...
 	private calc spiellogik = new calc(board);// collision detection, creates layout without objects
     private Zeichnen display = new Zeichnen(board);//paints objects on board, sets frame size,add keylistener
     

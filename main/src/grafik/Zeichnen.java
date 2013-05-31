@@ -29,10 +29,10 @@ public class Zeichnen extends JComponent{
     // int bf = 0;
     Font schrift_klein;
     Font schrift_gross;
-    public spielfeld board;
+    public Spielfeld board;
     String[] held = { "Meister Lampe", "Peter Hase"};
     
-    Zeichnen(spielfeld board){  // constructor pointer to board, settings for board messages
+    Zeichnen(Spielfeld board){  // constructor pointer to board, settings for board messages
     	this.board = board;
     	try {
 			this.menu = ImageIO.read(new File(fs.img_pfad+"start.png")); //loads board menu
@@ -68,26 +68,26 @@ public class Zeichnen extends JComponent{
         	block_ende = (block+1)*board.block_groesse-1;
         	
         	// paints walls and trees
-	        for (spielfeld.wall wand: board.walls){
+	        for (Spielfeld.wall wand: board.walls){
 	        	if (wand.pos_y>=block_start && wand.pos_y<= block_ende) {
 	        		g.drawImage(wand.image, wand.pos_x, wand.pos_y, this);
 	        	}
 	        }
 
 	        // paints killerbunnies (evil bunny)
-	        for (spielfeld.killerbunny hase: board.killers){
+	        for (Spielfeld.killerbunny hase: board.killers){
 	        	if (hase.pos_y>=block_start && hase.pos_y<= block_ende) {
 	        		g.drawImage(hase.image, hase.pos_x, hase.pos_y, this);
 	        	}
 	        }
 	        // paints malicious trees
-	        for (spielfeld.todesbaum plant: board.plants){
+	        for (Spielfeld.todesbaum plant: board.plants){
 	        	if (plant.pos_y>=block_start && plant.pos_y<= block_ende) {
 	        		g.drawImage(plant.image, plant.pos_x, plant.pos_y, this);
 	        	}
 	        }
 	        // paints finish line
-	        for (spielfeld.ziel ziel: board.ziele){
+	        for (Spielfeld.ziel ziel: board.ziele){
 	        	if (ziel.pos_y>=block_start && ziel.pos_y<= block_ende) {
 	        		g.drawImage(ziel.image, ziel.pos_x, ziel.pos_y, this);
 	        	}
@@ -95,7 +95,7 @@ public class Zeichnen extends JComponent{
 	        int held_index = 0;
 	        // paints heros (when playing)
 	        if (calc.ingame){  // boolean for active game
-		        for (spielfeld.hero hase: board.heros){ // individual list of objects
+		        for (Spielfeld.hero hase: board.heros){ // individual list of objects
 		        	if (hase.pos_y>=block_start && hase.pos_y<= block_ende) { // if hero in actual block -> paint
 		        		if (hase.leben_punkte>0) {
 				        	g.drawImage(hase.image, hase.pos_x, hase.pos_y, this);

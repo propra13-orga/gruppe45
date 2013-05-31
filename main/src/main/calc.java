@@ -20,7 +20,7 @@ public class calc {
     public static int P1_richtung_y = 0;            //Startposition Y-Achse
     public static boolean ingame=true;
     public static boolean neues_spiel = false;
-    public spielfeld board;
+    public Spielfeld board;
     public int held_breite;
     public int held_hoehe;
     public int wand_breite;
@@ -33,7 +33,7 @@ public class calc {
     Rectangle h;
     Rectangle k;
     Rectangle z;
-	public calc(spielfeld board) {
+	public calc(Spielfeld board) {
 		this.board = board;
 	}
 	
@@ -83,7 +83,7 @@ public class calc {
 		board.nachricht = "";
 		// für jeden Held Kollisionen berechnen
 		// Kollision wird gegen jedes Objekt einzeln geprüft. Geht bestimmt schöner
-		for (spielfeld.hero hase: board.heros){
+		for (Spielfeld.hero hase: board.heros){
 			pos_x_alt = hase.pos_x;
 			pos_y_alt = hase.pos_y;
 			schaden=0;
@@ -98,7 +98,7 @@ public class calc {
 				collision = true;
 			}
 			h = new Rectangle(hase.pos_x+40, hase.pos_y-50, held_breite-40, held_hoehe-50);
-	        for (spielfeld.wall wand: board.walls){
+	        for (Spielfeld.wall wand: board.walls){
 	        	wand_breite = wand.image.getWidth(null);
 	        	wand_hoehe = wand.image.getHeight(null);
 	        	w = new Rectangle(wand.pos_x+40, wand.pos_y-50, wand_breite-40, wand_hoehe-50);
@@ -106,7 +106,7 @@ public class calc {
 	        		collision = true;
 	        	}
 	        }
-	        for (spielfeld.killerbunny killerhase: board.killers){
+	        for (Spielfeld.killerbunny killerhase: board.killers){
 	        	killer_breite = killerhase.image.getWidth(null);
 	        	killer_hoehe = killerhase.image.getWidth(null);
 	        	k = new Rectangle(killerhase.pos_x+20, killerhase.pos_y-50, killer_breite+5, killer_hoehe);
@@ -116,7 +116,7 @@ public class calc {
 	        		board.nachricht = "...von Killerhasen zerfetzt.";
 	        	}
 	        }
-	        for (spielfeld.todesbaum plant: board.plants){
+	        for (Spielfeld.todesbaum plant: board.plants){
 	        	killer_breite = plant.image.getWidth(null);
 	        	killer_hoehe = plant.image.getWidth(null);
 	        	k = new Rectangle(plant.pos_x+40, plant.pos_y-50, killer_breite-40, killer_hoehe-50);
@@ -126,7 +126,7 @@ public class calc {
 	        		board.nachricht = "...am Baum vergiftet.";
 	        	}
 	        }
-	        for (spielfeld.ziel ziel: board.ziele){
+	        for (Spielfeld.ziel ziel: board.ziele){
 	        	ziel_breite = ziel.image.getWidth(null);
 	        	ziel_hoehe = ziel.image.getWidth(null);
 	        	z = new Rectangle(ziel.pos_x+5, ziel.pos_y-ziel_hoehe,ziel_breite-5, ziel_hoehe);
