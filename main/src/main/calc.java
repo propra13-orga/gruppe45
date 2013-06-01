@@ -38,37 +38,10 @@ public class calc {
 	}
 	
 	// adjusting values for new level (bg image, level file, ...)
-	public void naechster_Raum(){
-		String imgdat ="";
-		switch(board.naechster_raum%6){
-			case 1:
-				imgdat=fs.img_pfad+"Su_s BG.png";
-				break;
-			case 2:
-				imgdat=fs.img_pfad+"bg kurve l.png";
-				break;
-			case 3:
-				imgdat=fs.img_pfad+"bg kurve u l.png";
-				break;
-			case 4:
-				imgdat=fs.img_pfad+"Su_s BG.png";
-				break;
-			case 5:
-				imgdat=fs.img_pfad+"bg kurve r.png";
-				break;
-			case 0:
-				imgdat=fs.img_pfad+"bg kurve u r.";
-				break;
-			default:
-				imgdat=fs.img_pfad+"Su_s BG.png";
-		}
-		try {
-			board.bg_image=ImageIO.read(new File(imgdat));
-		} catch (IOException e) {
-			e.printStackTrace();
-		};
+	public void go_to_next_room(){
 		board.datei = Integer.toString(board.naechster_raum)+".txt";
 		board.create_room(Integer.toString(board.naechster_raum));
+		board.set_board_bg_image(board.naechster_raum);
 		board.naechster_raum++;
 		board.datei = Integer.toString(board.naechster_raum)+".txt";
 		board.fdatei = new File(fs.data_pfad+board.datei);
@@ -91,10 +64,10 @@ public class calc {
 			hase.pos_y = hase.pos_y + calc.P1_richtung_y * hase.geschwindigkeit;
 			held_breite = hase.image.getWidth(null);
 			held_hoehe = hase.image.getHeight(null);
-			if (hase.pos_y>768-board.rand_x-held_hoehe || hase.pos_y<board.rand_x) {
+			if (hase.pos_y>Main.FRAMESIZE_Y-board.rand_x-held_hoehe || hase.pos_y<board.rand_x) {
 				collision = true;
 			}
-			if (hase.pos_x>1024-board.rand_y-held_breite || hase.pos_x<board.rand_y) {
+			if (hase.pos_x>Main.FRAMESIZE_X-board.rand_y-held_breite || hase.pos_x<board.rand_y) {
 				collision = true;
 			}
 			h = new Rectangle(hase.pos_x+40, hase.pos_y-50, held_breite-40, held_hoehe-50);
@@ -131,9 +104,8 @@ public class calc {
 	        	ziel_hoehe = ziel.image.getWidth(null);
 	        	z = new Rectangle(ziel.pos_x+5, ziel.pos_y-ziel_hoehe,ziel_breite-5, ziel_hoehe);
 	        	if (h.intersects(z)) {
-	        		//System.out.println(fs.data_pfad+board.datei);
 	        		if (board.fdatei.exists()) {
-	        			this.naechster_Raum();
+	        			this.go_to_next_room();
 	        		} else { // Es gibt keinen nächsten Raum. Gewonnen!!
 	        			hase.leben_punkte=0;
 	        			hase.anz_leben=0;
