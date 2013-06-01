@@ -11,6 +11,7 @@ package spielobjekte;
  *
  */
 
+import java.math.*;
 import java.awt.Image;
 import javax.imageio.ImageIO;
 import java.awt.Toolkit;
@@ -170,11 +171,16 @@ public class spielfeld {
 	}
 	// killerbunny class
 	public class killerbunny extends objekt {
-
+		public int move_x;
+		public int move_y;
+		public int start_pos_x;
+		public int start_pos_y;
 		public killerbunny (int x, int y) {
 			super("objekt");
 			this.pos_x = x;
 			this.pos_y = y;
+			this.start_pos_x = x;
+			this.start_pos_y = y;
 			this.dichte = 10;
 			this.geschwindigkeit = 1;
 			this.schaden_punkte = 100;
@@ -183,6 +189,27 @@ public class spielfeld {
 			this.schaden_anzahl_gegner = 0;
 			this.sichtbar = true;
 			this.image = Toolkit.getDefaultToolkit().getImage(fs.img_pfad+"killerhase_links.png");
+			this.set_movement_direction();
+		}
+		
+		public void set_movement_direction() {
+			this.move_x = (int) (Math.random() * 3)-1;
+			this.move_y = (int) (Math.random() * 3)-1;
+			this.set_image();
+		}
+		
+		public void set_image() {
+        	if (this.move_x>=0) {
+        		this.image =  Toolkit.getDefaultToolkit().getImage(fs.img_pfad+"killerhase_rechts.png");
+        	} else {
+        		this.image =  Toolkit.getDefaultToolkit().getImage(fs.img_pfad+"killerhase_links.png");
+        	}
+		}
+		
+		public void move() {
+			this.pos_x = this.pos_x + this.move_x*this.geschwindigkeit;
+			this.pos_y = this.pos_y + this.move_y*this.geschwindigkeit;
+			
 		}
 	}
 	// todesbaum class
