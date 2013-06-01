@@ -1,6 +1,5 @@
 package movement;
 
-
 /**
  * implements KeyListener and returns Position
  * @author ProgPra
@@ -19,23 +18,22 @@ import main.calc;
 public class Tastatur implements KeyListener {
 
 	int key;
-	
+	//Move: vorrausschauende Randkollision + Bewegung (allg.Kollision wird noch eingebaut)
 	public void keyPressed (KeyEvent e){
 		key = e.getKeyCode();
-		System.out.println(key);
 		if (calc.ingame) { // Spiel läuft
 			switch(key) {
 				case KeyEvent.VK_LEFT:// int 37
-					Move.left(hase);
+					Move.left("hase");
 					break;
 				case KeyEvent.VK_RIGHT: // int 18
-					calc.P1_richtung_x += 1;
+					Move.right("hase");
 					break;
 				case KeyEvent.VK_UP: // int 38
-					calc.P1_richtung_y -= 1;
+					Move.up("hase");
 					break;
 				case KeyEvent.VK_DOWN: // int 40
-					calc.P1_richtung_y += 1;
+					Move.down("hase");
 					break;
 				case KeyEvent.VK_S:
 				case KeyEvent.VK_ESCAPE:
@@ -58,6 +56,7 @@ public class Tastatur implements KeyListener {
 		}
 	}
 	
+	//Angleichen, je nach endgültigem Bewegungssystem
 	public void keyReleased(KeyEvent e){
 		key = e.getKeyCode();
 	    if (key == KeyEvent.VK_LEFT) calc.P1_richtung_x = 0;
