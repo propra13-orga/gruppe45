@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
 import spielobjekte.*;
-import lokal.fs;
+import lokal.Fs;
 import main.Main;
 import main.Tastatur;
 import main.calc;
@@ -36,7 +36,7 @@ public class Zeichnen extends JComponent{
     Zeichnen(Spielfeld board){ // constructor pointer to board, settings for board messages
      this.board = board;
      try {
-this.menu = ImageIO.read(new File(fs.img_pfad+"bg_menue.png")); //loads board menu
+this.menu = ImageIO.read(new File(Fs.img_pfad+"bg_menue.png")); //loads board menu
 } catch (IOException e) {
 System.out.println("Message Fenster kann nicht geladen werden");
 }

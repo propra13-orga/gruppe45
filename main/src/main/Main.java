@@ -31,8 +31,7 @@ package main;
 import grafik.Renderer;
 import java.io.IOException;
 import javax.swing.JFrame;
-import lokal.fs;
-
+import lokal.Fs;
 /**
  *
  * @author Admin
@@ -106,7 +105,7 @@ public class Main extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.setVisible(false);
-        fs.init();
+        Fs.init();
         JFrame mainFrame = new JFrame();
         Renderer rendern = new Renderer();
         rendern.setFrame(mainFrame);

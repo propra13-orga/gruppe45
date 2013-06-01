@@ -48,7 +48,7 @@ public class Spielfeld {
 		
 	private void init(){ // called by all class constructors to set start values
 		try {
-			this.bg_image =ImageIO.read(new File(fs.img_pfad+"Su_s BG.png"));
+			this.bg_image =ImageIO.read(new File(Fs.img_pfad+"Su_s BG.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -70,9 +70,9 @@ public class Spielfeld {
 		int zeile;
 		boolean feld= false;
 		try {
-			this.fdatei = new File(fs.data_pfad+this.datei);
+			this.fdatei = new File(Fs.data_pfad+this.datei);
 			//if (this.fdatei.exists()) {
-				FileReader fr = new FileReader(fs.data_pfad+this.datei);
+				FileReader fr = new FileReader(Fs.data_pfad+this.datei);
 				BufferedReader br = new BufferedReader(fr);
 			    zeile=0;
 			    do { // reading levelfile line by line
@@ -158,7 +158,7 @@ public class Spielfeld {
 			super(1);
 			this.pos_x = x;
 			this.pos_y = y;
-			this.image = Toolkit.getDefaultToolkit().getImage(fs.img_pfad+"baum_eng.png");
+			this.image = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"baum_eng.png");
 		}
 	}
 	// killerbunny class
@@ -169,7 +169,7 @@ public class Spielfeld {
 			this.pos_y = y;
 			this.geschwindigkeit = 1;
 			this.schaden_punkte = 100;
-			this.image = Toolkit.getDefaultToolkit().getImage(fs.img_pfad+"killerhase_links.png");
+			this.image = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"killerhase_links.png");
 		}
 	}
 	// todesbaum class
@@ -179,7 +179,7 @@ public class Spielfeld {
 			this.pos_x = x;
 			this.pos_y = y;
 			this.schaden_punkte = 1;
-			this.image = Toolkit.getDefaultToolkit().getImage(fs.img_pfad+"todesbaum.png");
+			this.image = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"todesbaum.png");
 		}
 	}
 	// hero class
@@ -188,7 +188,7 @@ public class Spielfeld {
 		public int start_pos_y;
 		public int anz_leben=2;
 		public int start_leben_punkte =100;
-		public Image leben_img=Toolkit.getDefaultToolkit().getImage(fs.img_pfad+"leben_kopf.png");
+		public Image leben_img=Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"leben_kopf.png");
 		public hero (int x, int y) {
 			super(4);
 			this.pos_x = x;
@@ -199,15 +199,15 @@ public class Spielfeld {
 			this.geschwindigkeit = 5;
 			this.schaden_punkte = 100;
 			this.zerstoerbar=true;
-			this.image = Toolkit.getDefaultToolkit().getImage(fs.img_pfad+"held.png");
+			this.image = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"held.png");
 		}
 		public Image get_hero_image() {
 			return this.image;
 		}
 		public Image get_lebensbalken_image() {
-			if(this.leben_punkte>66) return Toolkit.getDefaultToolkit().getImage(fs.img_pfad+"lebensbalken_gruen.png");
-			if(this.leben_punkte>33) return Toolkit.getDefaultToolkit().getImage(fs.img_pfad+"lebensbalken_gelb.png");
-			else return Toolkit.getDefaultToolkit().getImage(fs.img_pfad+"lebensbalken_rot.png");
+			if(this.leben_punkte>66) return Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"lebensbalken_gruen.png");
+			if(this.leben_punkte>33) return Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"lebensbalken_gelb.png");
+			else return Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"lebensbalken_rot.png");
 		}
 	
 	}
@@ -217,7 +217,7 @@ public class Spielfeld {
 			super(0);
 			this.pos_x = x;
 			this.pos_y = y;
-			this.image = Toolkit.getDefaultToolkit().getImage(fs.img_pfad+"ziel.png");
+			this.image = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"ziel.png");
 		}
 	}
 	

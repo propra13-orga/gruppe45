@@ -1,13 +1,9 @@
 package main;
 
 import java.awt.Rectangle;
-import java.awt.Toolkit;
 import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
-
-import lokal.fs;
-import spielobjekte.*;
+import lokal.Fs;
+import spielobjekte.Spielfeld;
 
 /*
  * 
@@ -55,7 +51,6 @@ public class calc {
 		int pos_x_alt;
 		int pos_y_alt;
 		int schaden;
-<<<<<<< HEAD
 		board.nachricht = "";
 		// für jeden Held Kollisionen berechnen
 		// Kollision wird gegen jedes Objekt einzeln geprüft. Geht bestimmt schöner
@@ -129,7 +124,7 @@ public class calc {
 				} else {
 					calc.ingame = false;
 					board.nachricht = board.nachricht+"Spielende";
-=======
+				}
 		if (calc.ingame) {
 			board.nachricht = "";
 			// für jeden Held Kollisionen berechnen
@@ -144,7 +139,6 @@ public class calc {
 				held_hoehe = hase.image.getHeight(null);
 				if (hase.pos_y>Main.FRAMESIZE_Y-board.rand_x-held_hoehe || hase.pos_y<board.rand_x) {
 					collision = true;
->>>>>>> 7733d10df79362791ca644c6de169dc009f68a68
 				}
 				if (hase.pos_x>Main.FRAMESIZE_X-board.rand_y-held_breite || hase.pos_x<board.rand_y) {
 					collision = true;
