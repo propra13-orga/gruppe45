@@ -155,18 +155,14 @@ public class Spielfeld {
 	// wall class
 	public class wall extends Objekt {
 		public wall (int x, int y) {
-			super(1);
-			this.pos_x = x;
-			this.pos_y = y;
+			super(1,x,y);
 			this.image = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"baum_eng.png");
 		}
 	}
 	// killerbunny class
 	public class killerbunny extends Objekt {
 		public killerbunny (int x, int y) {
-			super(3);
-			this.pos_x = x;
-			this.pos_y = y;
+			super(3,x,y);
 			this.geschwindigkeit = 1;
 			this.schaden_punkte = 100;
 			this.image = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"killerhase_links.png");
@@ -175,9 +171,7 @@ public class Spielfeld {
 	// todesbaum class
 	public class todesbaum extends Objekt {
 		public todesbaum (int x, int y) {
-			super(2);
-			this.pos_x = x;
-			this.pos_y = y;
+			super(2,x,y);
 			this.schaden_punkte = 1;
 			this.image = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"todesbaum.png");
 		}
@@ -190,9 +184,7 @@ public class Spielfeld {
 		public int start_leben_punkte =100;
 		public Image leben_img=Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"leben_kopf.png");
 		public hero (int x, int y) {
-			super(4);
-			this.pos_x = x;
-			this.pos_y = y;
+			super(4,x,y);
 			this.start_pos_x=x;
 			this.start_pos_y=y;
 			this.leben_punkte = this.start_leben_punkte;
@@ -214,15 +206,13 @@ public class Spielfeld {
 	// destination class (exit of a level)
 	public class ziel extends Objekt {
 		public ziel (int x, int y) {
-			super(0);
-			this.pos_x = x;
-			this.pos_y = y;
+			super(0,x,y);
 			this.image = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"ziel.png");
 		}
 	}
 	
 	//  creates objects of killerbunny / todesbaum class and adds to the lists 
-	// of killers / plants  in this level
+	// o	f 	killers / plants  in this level
 	public void create_killer (int start_x, int start_y, String killertyp){
 		if (killertyp =="hase") {
 			killerbunny hase;
@@ -246,5 +236,33 @@ public class Spielfeld {
 		ziel ziel;
 		ziel = new ziel(start_x*this.block_groesse, start_y*this.block_groesse);
 		ziele.add(ziel);
+	}
+
+	public void set_board_bg_image(int naechster_raum) {
+		switch (naechster_raum % 6) {
+			case 1:
+				this.bg_image = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"Su_s BG.png");;
+				break;
+			case 2:
+				this.bg_image = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"bg kurve l.png");;
+				break;
+			case 3:
+				this.bg_image = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"bg kurve u l.png");;
+				break;
+			case 4:
+				this.bg_image = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"Su_s BG.png");;
+				break;
+			case 5:
+				this.bg_image = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"bg kurve r.png");;
+				break;
+			case 6:
+				this.bg_image = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"bg kurve u r.png");;
+				break;
+			default:
+				break;
+				
+		}
+		// TODO Auto-generated method stub
+		
 	}
 }

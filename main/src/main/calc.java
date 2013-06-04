@@ -42,7 +42,7 @@ public class calc {
 		board.set_board_bg_image(board.naechster_raum);
 		board.naechster_raum++;
 		board.datei = Integer.toString(board.naechster_raum)+".txt";
-		board.fdatei = new File(fs.data_pfad+board.datei);
+		board.fdatei = new File(Fs.data_pfad+board.datei);
 	}
 	
 	
