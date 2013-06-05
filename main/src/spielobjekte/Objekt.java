@@ -21,6 +21,7 @@ public class Objekt {
 	public boolean sichtbar = true;
 	public boolean zerstoerbar = false;
 	public int type;			//gibt Kollisionsmethode Informationen zum weiteren Vorgehen
+	public int nr;				//Nr. im Array
 	public int ebene = 0;
 	public int pos_x;
 	public int pos_y;

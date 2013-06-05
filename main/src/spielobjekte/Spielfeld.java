@@ -33,11 +33,7 @@ public class Spielfeld {
 	public int rand_y = 70;
 	public int naechster_raum;
 	public String nachricht ="";
-	public ArrayList<wall> walls = new ArrayList<wall>();
-	public ArrayList<killerbunny> killers = new ArrayList<killerbunny>();
-	public ArrayList<todesbaum> plants = new ArrayList<todesbaum>();
-	public ArrayList<hero> heros = new ArrayList<hero>();
-	public ArrayList<ziel> ziele = new ArrayList<ziel>();
+	public static ArrayList<Objekt> obj_list = new ArrayList<Objekt>();
 	
 	public Spielfeld(String file){
 		this.init();
@@ -60,11 +56,7 @@ public class Spielfeld {
 	
 	public int create_room(String datei) { // reads level file and creates game objects
 		// clears lists with game objects (needed for restarted games)
-		walls.clear();
-		killers.clear();
-		plants.clear();
-		heros.clear();
-		ziele.clear();
+		obj_list.clear();
 		String zeileninhalt =""; // line content of a level file
 		int zeilenlaenge =0;
 		int zeile;
@@ -148,7 +140,7 @@ public class Spielfeld {
 			} else {
 				wand = new wall(i*this.block_groesse,on_line);
 			}
-			walls.add(wand);
+			obj_list.add(wand);
 		}
 	}
 
@@ -217,25 +209,25 @@ public class Spielfeld {
 		if (killertyp =="hase") {
 			killerbunny hase;
 			hase = new killerbunny(start_x*this.block_groesse, start_y*this.block_groesse);
-			killers.add(hase);
+			obj_list.add(hase);
 		} 
 	    if (killertyp=="baum") {
 	    	todesbaum baum;
 			baum = new todesbaum(start_x*this.block_groesse, start_y*this.block_groesse);
-			plants.add(baum);
+			obj_list.add(baum);
 		}
 	}
 	// creates object of the hero class and adds to the list of heros in this level
 	public void create_hero (int start_x, int start_y){
 		hero hase;
 		hase = new hero(start_x*this.block_groesse, start_y*this.block_groesse);
-		heros.add(hase);
+		obj_list.add(1,hase);
 	}
-	// creates object of the ziel class and adds to the list of destinations in this level
+	// creates object of the destination class and adds to the list of destinations in this level
 	public void create_ziel (int start_x, int start_y){
 		ziel ziel;
 		ziel = new ziel(start_x*this.block_groesse, start_y*this.block_groesse);
-		ziele.add(ziel);
+		obj_list.add(0,ziel);
 	}
 
 	public void set_board_bg_image(int naechster_raum) {

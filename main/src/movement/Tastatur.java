@@ -5,12 +5,8 @@ package movement;
  * @author ProgPra
  */
 
-import grafik.*;
-
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.Scanner;
-
 import spielobjekte.*;
 
 import main.calc;
@@ -19,21 +15,22 @@ public class Tastatur implements KeyListener {
 
 	int key;
 	//Move: vorrausschauende Randkollision + Bewegung (allg.Kollision wird noch eingebaut)
+	//Spielfeld.obj_list.get(1) = hase
 	public void keyPressed (KeyEvent e){
 		key = e.getKeyCode();
 		if (calc.ingame) { // Spiel läuft
 			switch(key) {
 				case KeyEvent.VK_LEFT:// int 37
-					Move.left("hase");
+					Move.left(Spielfeld.obj_list.get(1));
 					break;
 				case KeyEvent.VK_RIGHT: // int 18
-					Move.right("hase");
+					Move.right(Spielfeld.obj_list.get(1));
 					break;
 				case KeyEvent.VK_UP: // int 38
-					Move.up("hase");
+					Move.up(Spielfeld.obj_list.get(1));
 					break;
 				case KeyEvent.VK_DOWN: // int 40
-					Move.down("hase");
+					Move.down(Spielfeld.obj_list.get(1));
 					break;
 				case KeyEvent.VK_S:
 				case KeyEvent.VK_ESCAPE:
