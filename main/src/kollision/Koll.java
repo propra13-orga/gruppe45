@@ -22,7 +22,7 @@ public class Koll {
 	
 	//returns true for no collision, if false, invokes event if tester = killer / poisontree
 	//1 for wall/tree, 2 for poisontree, 3 for killerbunny, 4 for player
-	public boolean koll(Objekt tester){
+	public static boolean koll(Objekt tester){
 		switch (tester.type) { //Kollision je nach Tester varierend
 			case 3:
 				for(int i=3; i < Spielfeld.obj_list.size(); i++){
