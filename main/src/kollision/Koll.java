@@ -9,7 +9,7 @@ import spielobjekte.*;
 public class Koll {
 	
 	//returns false if player hits exit, easy to run in while-loop
-	public boolean ziel(){
+	public boolean goal(){
 		if (   (Spielfeld.obj_list.get(1).pos_x < Spielfeld.obj_list.get(0).pos_x + Spielfeld.obj_list.get(0).image.getWidth(null))
 			&& (Spielfeld.obj_list.get(1).pos_x + Spielfeld.obj_list.get(1).image.getWidth(null) > Spielfeld.obj_list.get(0).pos_x)
 			&& (Spielfeld.obj_list.get(1).pos_y < Spielfeld.obj_list.get(0).pos_y + Spielfeld.obj_list.get(0).image.getHeight(null))
@@ -22,7 +22,7 @@ public class Koll {
 	
 	//returns true for no collision, if false, invokes event if tester = killer / poisontree
 	//1 for wall/tree, 2 for poisontree, 3 for killerbunny, 4 for player
-	public Boolean koll(Objekt tester){
+	public boolean koll(Objekt tester){
 		switch (tester.type) { //Kollision je nach Tester varierend
 			case 3:
 				for(int i=3; i < Spielfeld.obj_list.size(); i++){
@@ -60,5 +60,15 @@ public class Koll {
 		}
 			
 	}
-	
+
+	//löst eigenständig Vergiftung aus, daher void
+	public void poison(Spielfeld.todesbaum tree){
+		if (   (Spielfeld.obj_list.get(1).pos_x < tree.pos_x + tree.image.getWidth(null) + tree.fog)
+			&& (Spielfeld.obj_list.get(1).pos_x + Spielfeld.obj_list.get(1).image.getWidth(null) > tree.pos_x - tree.fog)
+			&& (Spielfeld.obj_list.get(1).pos_y < tree.pos_y + tree.image.getHeight(null) + tree.fog)
+			&& (Spielfeld.obj_list.get(1).pos_y + Spielfeld.obj_list.get(1).image.getHeight(null) > tree.pos_y - tree.fog) )
+		{
+			//Event Vergiftung
+		}
+	}
 }

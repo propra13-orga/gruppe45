@@ -162,6 +162,7 @@ public class Spielfeld {
 	}
 	// todesbaum class
 	public class todesbaum extends Objekt {
+		public int fog = 10;
 		public todesbaum (int x, int y) {
 			super(2,x,y);
 			this.schaden_punkte = 1;
