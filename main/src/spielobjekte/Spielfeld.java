@@ -262,7 +262,5 @@ public class Spielfeld {
 				break;
 				
 		}
-		// TODO Auto-generated method stub
-		
 	}
 }

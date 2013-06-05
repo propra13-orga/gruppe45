@@ -8,7 +8,7 @@ import javax.swing.WindowConstants;
 
 import spielobjekte.*;
 import lokal.Fs;
-import main.Main;
+import main.GUI_Main;
 import main.Tastatur;
 import main.calc;
 
@@ -45,7 +45,7 @@ System.out.println("Message Fenster kann nicht geladen werden");
     }
     
     private void createBackBuffer(){
-     backBuffer = frame.createImage(Main.FRAMESIZE_X,Main.FRAMESIZE_Y);
+     backBuffer = frame.createImage(GUI_Main.FRAMESIZE_X,GUI_Main.FRAMESIZE_Y);
     }
     
     public void paintComponent(Graphics g){
@@ -125,7 +125,7 @@ held_index++;
 */
         if (calc.ingame == false) { // Male Menu
          int rand = 50;
-         g.drawImage(menu, rand, rand, Main.FRAMESIZE_X-(2*rand), Main.FRAMESIZE_Y-(2*rand), this);
+         g.drawImage(menu, rand, rand, GUI_Main.FRAMESIZE_X-(2*rand), GUI_Main.FRAMESIZE_Y-(2*rand), this);
          g.setColor(Color.black);
          g.setFont(this.schrift_gross);
          g.drawString("[S] für ein neues Spiel", 250, 250);
@@ -160,7 +160,7 @@ held_index++;
 
     void setFrame(JFrame mainFrame) { //inits window
        frame = mainFrame;
-       frame.setSize(Main.FRAMESIZE_X, Main.FRAMESIZE_Y);
+       frame.setSize(GUI_Main.FRAMESIZE_X, GUI_Main.FRAMESIZE_Y);
        frame.setLayout(new BorderLayout());
        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
        frame.setVisible(true);
