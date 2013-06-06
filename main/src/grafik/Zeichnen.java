@@ -53,8 +53,8 @@ System.out.println("Message Fenster kann nicht geladen werden");
     }
         
     public void renderScreen(){ //paints back buffer
-     int block_start;// x start position of active block
-     int block_ende; // x end position of active block
+    	int block_start;// x start position of active block
+    	int block_ende; // x end position of active block
         if (backBuffer == null)
             this.createBackBuffer();
         Graphics g = backBuffer.getGraphics();
@@ -74,50 +74,53 @@ block_start = block*board.block_groesse;
 block_ende = (block+1)*board.block_groesse-1;
 
 // paints walls and trees
-for (Spielfeld.wall wand: board.walls){
+for (Spielfeld.Wall wand: board.walls){
 if (wand.pos_y>=block_start && wand.pos_y<= block_ende) {
 g.drawImage(wand.image, wand.pos_x, wand.pos_y, this);
 }
 }
 
-// paints killerbunnies (evil bunny)
-for (Spielfeld.killerbunny hase: board.killers){
-if (hase.pos_y>=block_start && hase.pos_y<= block_ende) {
-g.drawImage(hase.image, hase.pos_x, hase.pos_y, this);
-}
-}
 // paints malicious trees
-for (Spielfeld.todesbaum plant: board.plants){
+for (Spielfeld.Todesbaum plant: board.plants){
 if (plant.pos_y>=block_start && plant.pos_y<= block_ende) {
 g.drawImage(plant.image, plant.pos_x, plant.pos_y, this);
 }
 }
+
+// paints killerbunnies (evil bunny)
+for (Spielfeld.Killerbunny hase: board.killers){
+	if (hase.pos_y>=block_start && hase.pos_y<= block_ende) {
+		g.drawImage(hase.image, hase.pos_x, hase.pos_y, this);
+	}
+}
+
 // paints finish line
-for (Spielfeld.ziel ziel: board.ziele){
-if (ziel.pos_y>=block_start && ziel.pos_y<= block_ende) {
-g.drawImage(ziel.image, ziel.pos_x, ziel.pos_y, this);
+for (Spielfeld.Ziel ziel: board.ziele){
+	if (ziel.pos_y>=block_start && ziel.pos_y<= block_ende) {
+		g.drawImage(ziel.image, ziel.pos_x, ziel.pos_y, this);
+	}
 }
-}
+
 int held_index = 0;
 // paints heros (when playing)
 if (calc.ingame){ // boolean for active game
-for (Spielfeld.hero hase: board.heros){ // individual list of objects
-if (hase.pos_y>=block_start && hase.pos_y<= block_ende) { // if hero in actual block -> paint
-if (hase.leben_punkte>0) {
-g.drawImage(hase.get_hero_image(), hase.pos_x, hase.pos_y, this);
-g.setColor(Color.white);
-// paints hero name + life points
-g.drawImage(hase.get_lebensbalken_image(), 25, 90, hase.leben_punkte, 15, this);
-g.draw3DRect(25, 90, hase.start_leben_punkte, 15, true);
-for (int i=0;i<hase.anz_leben; i++) {
-g.drawImage(hase.leben_img, 30+ i*30, 52, this);
-}
-g.drawString(held[held_index], 30, 102+held_index*30);
-}
-}
-held_index++;
-}
-}
+	for (Spielfeld.Hero hase: board.heros){ // individual list of objects
+		if (hase.pos_y>=block_start && hase.pos_y<= block_ende) { // if hero in actual block -> paint
+			if (hase.leben_punkte>0) {
+				g.drawImage(hase.get_hero_image(), hase.pos_x, hase.pos_y, this);
+				g.setColor(Color.white);
+				// paints hero name + life points
+				g.drawImage(hase.get_lebensbalken_image(), 25, 90, hase.leben_punkte, 15, this);
+				g.draw3DRect(25, 90, hase.start_leben_punkte, 15, true);
+				for (int i=0;i<hase.anz_leben; i++) {
+					g.drawImage(hase.leben_img, 30+ i*30, 52, this);
+				}
+				g.drawString(held[held_index], 30, 102+held_index*30);
+			}
+		}
+		held_index++;
+	}
+	}
 }
         }
         /*

@@ -35,7 +35,10 @@ public class Koll {
 							 && (tester.pos_y < Spielfeld.obj_list.get(i).pos_y + Spielfeld.obj_list.get(i).image.getHeight(null))
 							 && (tester.pos_y + tester.image.getHeight(null) > Spielfeld.obj_list.get(i).pos_y) )
 					{
-						//Event auslösen,
+						if(tester.type == 3){
+							//Event auslösen	
+						}
+						
 						return false;
 					}
 				}
@@ -62,7 +65,7 @@ public class Koll {
 	}
 
 	//löst eigenständig Vergiftung aus, daher void
-	public void poison(Spielfeld.todesbaum tree){
+	public void poison(Todesbaum tree){
 		if (   (Spielfeld.obj_list.get(1).pos_x < tree.pos_x + tree.image.getWidth(null) + tree.fog)
 			&& (Spielfeld.obj_list.get(1).pos_x + Spielfeld.obj_list.get(1).image.getWidth(null) > tree.pos_x - tree.fog)
 			&& (Spielfeld.obj_list.get(1).pos_y < tree.pos_y + tree.image.getHeight(null) + tree.fog)
