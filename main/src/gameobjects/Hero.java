@@ -7,26 +7,26 @@ import local.Fs;
 
 // hero class
 public class Hero extends Figure {
-	public int start_health_points =100;
-	public Image leben_img=Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"leben_kopf.png");
+	public int start_hp =100;
+	public Image lives_img=Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"lives_rabbit.png");
 	public Hero (int x, int y) {
 		super(4,x,y);
 		this.start_x=x;
 		this.start_y=y;
-		this.hp = this.start_health_points;
+		this.hp = this.start_hp;
 		this.lives=2;
 		this.speed = 5;
 		this.dmg = 100;
 		this.destroyable = true;
 		this.image = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"held.png");
 	}
-	public Image get_hero_image() {
+	public Image getImage_hero() {
 		return this.image;
 	}
-	public Image get_lebensbalken_image() {
-		if(this.hp>66) return Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"lebensbalken_gruen.png");
-		if(this.hp>33) return Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"lebensbalken_gelb.png");
-		else return Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"lebensbalken_rot.png");
+	public Image getImage_healthbar() {
+		if(this.hp>66) return Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"healthbar_green.png");
+		if(this.hp>33) return Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"healthbar_yellow.png");
+		else return Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"healthbar_red.png");
 	}
 
 }
