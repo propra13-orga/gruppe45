@@ -1,4 +1,4 @@
-package spielobjekte;
+package gameobjects;
 
 /*
  *  class creates the board with background image and all objects on the board with their positions
@@ -15,11 +15,11 @@ import java.awt.Image;
 import javax.imageio.ImageIO;
 import java.awt.Toolkit;
 import java.io.*;
-import java.util.ArrayList;
 
-import lokal.*;
+import local.*;
+import main.*;
 
-public class Spielfeld {
+public class Board {
 	
 	public int block_groesse=50;
 	
@@ -33,9 +33,8 @@ public class Spielfeld {
 	public int rand_y = 70;
 	public int naechster_raum;
 	public String nachricht ="";
-	public static ArrayList<Objekt> obj_list = new ArrayList<Objekt>();
 	
-	public Spielfeld(String file){
+	public Board(String file){
 		this.init();
 		this.naechster_raum=Integer.parseInt(file)+1;
 		this.datei = file+".txt";
@@ -56,7 +55,7 @@ public class Spielfeld {
 	
 	public int create_room(String datei) { // reads level file and creates game objects
 		// clears lists with game objects (needed for restarted games)
-		obj_list.clear();
+		Main.obj_list.clear();
 		String zeileninhalt =""; // line content of a level file
 		int zeilenlaenge =0;
 		int zeile;
@@ -140,7 +139,7 @@ public class Spielfeld {
 			} else {
 				wand = new Wall(i*this.block_groesse,on_line);
 			}
-			obj_list.add(wand);
+			Main.obj_list.add(wand);
 		}
 	}
 	
@@ -148,27 +147,27 @@ public class Spielfeld {
 	// o	f 	killers / plants  in this level
 	public void create_killer (int start_x, int start_y, String killertyp){
 		if (killertyp =="hase") {
-			Killerbunny hase;
-			hase = new Killerbunny(start_x*this.block_groesse, start_y*this.block_groesse);
-			obj_list.add(hase);
+			Fox hase;
+			hase = new Fox(start_x*this.block_groesse, start_y*this.block_groesse);
+			Main.obj_list.add(hase);
 		} 
 	    if (killertyp=="baum") {
-	    	Todesbaum baum;
-			baum = new Todesbaum(start_x*this.block_groesse, start_y*this.block_groesse);
-			obj_list.add(baum);
+	    	Poisonous_Tree baum;
+			baum = new Poisonous_Tree(start_x*this.block_groesse, start_y*this.block_groesse);
+			Main.obj_list.add(baum);
 		}
 	}
 	// creates object of the hero class and adds to the list of heros in this level
 	public void create_hero (int start_x, int start_y){
 		Hero hase;
 		hase = new Hero(start_x*this.block_groesse, start_y*this.block_groesse);
-		obj_list.add(1,hase);
+		Main.obj_list.add(1,hase);
 	}
 	// creates object of the destination class and adds to the list of destinations in this level
 	public void create_ziel (int start_x, int start_y){
 		Ziel ziel;
 		ziel = new Ziel(start_x*this.block_groesse, start_y*this.block_groesse);
-		obj_list.add(0,ziel);
+		Main.obj_list.add(0,ziel);
 	}
 
 	public void set_board_bg_image(int naechster_raum) {

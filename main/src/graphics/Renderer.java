@@ -1,16 +1,10 @@
-package main;
+package graphics;
 
 import javax.swing.JFrame;
 
-/**
- *
- * @author ProgPra
- */
 public class Renderer extends Thread{
     
-    
-    
-    private Zeichnen display = new Zeichnen();
+    private Paint display = new Paint();
     
     long next_game_tick = System.currentTimeMillis();
     int FRAMES_PER_SECOND = 25;
@@ -38,7 +32,7 @@ public class Renderer extends Thread{
             }
         }
     }
-    void setFrame(JFrame mainFrame) {
+    public void setFrame(JFrame mainFrame) {
          display.setFrame(mainFrame);
     }
 }

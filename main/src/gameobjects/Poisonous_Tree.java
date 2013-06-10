@@ -1,13 +1,13 @@
-package spielobjekte;
+package gameobjects;
 
 import java.awt.Toolkit;
 
-import lokal.Fs;
+import local.Fs;
 
 // todesbaum class
-public class Todesbaum extends Objekt {
+public class Poisonous_Tree extends Figure {
 	public int fog = 10;
-	public Todesbaum (int x, int y) {
+	public Poisonous_Tree (int x, int y) {
 		super(2,x,y);
 		this.schaden_punkte = 1;
 		this.image = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"todesbaum.png");

@@ -1,12 +1,12 @@
-package spielobjekte;
+package gameobjects;
 
 import java.awt.Toolkit;
 
-import lokal.Fs;
+import local.Fs;
 
 // killerbunny class
-public class Killerbunny extends Objekt {
-	public Killerbunny (int x, int y) {
+public class Fox extends Figure {
+	public Fox (int x, int y) {
 		super(3,x,y);
 		this.geschwindigkeit = 1;
 		this.schaden_punkte = 100;

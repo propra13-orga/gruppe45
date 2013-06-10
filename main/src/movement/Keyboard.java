@@ -1,68 +1,65 @@
 package movement;
 
-/**
- * implements KeyListener and returns Position
- * @author ProgPra
- */
+import main.*;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import spielobjekte.*;
 
-import main.calc;
-
-public class Tastatur implements KeyListener {
+public class Keyboard implements KeyListener {
 
 	int key;
-	//Move: vorrausschauende Randkollision + Bewegung (allg.Kollision wird noch eingebaut)
+	//Move: moving figure and testing collisions
 	//Spielfeld.obj_list.get(1) = hase
 	public void keyPressed (KeyEvent e){
 		key = e.getKeyCode();
-		if (calc.ingame) { // Spiel läuft
+		if (Game.ingame) { // game is running
 			switch(key) {
 				case KeyEvent.VK_LEFT:// int 37
-					Move.left(Spielfeld.obj_list.get(1));
+					Move.left(Main.obj_list.get(1));
 					break;
 				case KeyEvent.VK_RIGHT: // int 18
-					Move.right(Spielfeld.obj_list.get(1));
+					Move.right(Main.obj_list.get(1));
 					break;
 				case KeyEvent.VK_UP: // int 38
-					Move.up(Spielfeld.obj_list.get(1));
+					Move.up(Main.obj_list.get(1));
 					break;
 				case KeyEvent.VK_DOWN: // int 40
-					Move.down(Spielfeld.obj_list.get(1));
+					Move.down(Main.obj_list.get(1));
 					break;
-				case KeyEvent.VK_S:
 				case KeyEvent.VK_ESCAPE:
-					calc.ingame = false;
+					Game.ingame = false;
 					break;					
 				default:
 					// nix			
 			}
-		} else { // Menu wird angezeigt
+		} else { // in menu
 			switch(key) {
 			case KeyEvent.VK_S: // int 83
-				calc.neues_spiel = true;
+				//calc.neues_spiel = true;
 				break;
 			case KeyEvent.VK_B: // 
 				System.exit(0);
 				break;
+			case KeyEvent.VK_ESCAPE:
+				Game.ingame = true;
+				break;
 			default:
-				// nix
+				// nothing
 			}
 		}
 	}
 	
 	//Angleichen, je nach endgültigem Bewegungssystem
 	public void keyReleased(KeyEvent e){
-		key = e.getKeyCode();
+		/*key = e.getKeyCode();
 	    if (key == KeyEvent.VK_LEFT) calc.P1_richtung_x = 0;
 	    if (key == KeyEvent.VK_RIGHT) calc.P1_richtung_x = 0;
 	    if (key == KeyEvent.VK_UP) calc.P1_richtung_y = 0;
-	    if (key == KeyEvent.VK_DOWN) calc.P1_richtung_y = 0;
+	    if (key == KeyEvent.VK_DOWN) calc.P1_richtung_y = 0;*/
 	}
-	
+
 	  public void keyTyped(java.awt.event.KeyEvent e) {
 		        // notwendig, da abstract inherited
 	  }
+
 }

@@ -1,8 +1,7 @@
 package main;
 
-import grafik.*;
-import lokal.*;
-import spielobjekte.*;
+import graphics.*;
+import local.*;
 import java.io.IOException;
 import javax.swing.JFrame;
 
@@ -22,15 +21,15 @@ import javax.swing.JFrame;
     }
 }
 */
-public class GUI_Main extends javax.swing.JFrame {
+public class GUI extends javax.swing.JFrame {
 	
 	public static int FRAMESIZE_X =1024;
 	public static int FRAMESIZE_Y =768;
 	
 
-    public GUI_Main() {
+    public GUI() {
         initComponents();
-        setSize(GUI_Main.FRAMESIZE_X, GUI_Main.FRAMESIZE_Y);
+        setSize(GUI.FRAMESIZE_X, GUI.FRAMESIZE_Y);
         setResizable(false);      
     }
 
@@ -110,20 +109,20 @@ public class GUI_Main extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GUI_Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GUI_Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GUI_Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GUI_Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GUI_Main().setVisible(true);
+                new GUI().setVisible(true);
             }
         });
     }

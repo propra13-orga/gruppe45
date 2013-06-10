@@ -1,5 +1,6 @@
+package graphics;
 
-package main;
+import movement.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
@@ -10,12 +11,7 @@ import javax.swing.WindowConstants;
 import java.awt.event.KeyEvent;
 import java.util.Scanner;
 
-/**
- *
- * @author ProgPra
- */
-
-public class Zeichnen extends JComponent{
+public class Paint extends JComponent{
 
     public JFrame frame;
     private Image backBuffer;           
@@ -36,7 +32,7 @@ public class Zeichnen extends JComponent{
     static int figurx = 0;              //Startposition X-Achse
     static int figury = 330;            //Startposition Y-Achse
     
-    Zeichnen(){
+    Paint(){
         this.loadTextures();
     }
     
@@ -115,7 +111,7 @@ public class Zeichnen extends JComponent{
        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
        frame.setVisible(true);
        
-       Tastatur eingabe = new Tastatur();       // EventListener für Keyboard
+       Keyboard eingabe = new Keyboard();       // EventListener für Keyboard
        frame.addKeyListener(eingabe);           
       
     }

@@ -1,4 +1,4 @@
-package spielobjekte;
+package gameobjects;
 
 /*
  * for later use for items like weapons, medipacks...

@@ -1,4 +1,4 @@
-package lokal;
+package local;
 
 /*
  *  offers static information like fs.pfad (working dir), fs.os (operating system)

@@ -1,12 +1,12 @@
-package spielobjekte;
+package gameobjects;
 
 import java.awt.Image;
 import java.awt.Toolkit;
 
-import lokal.Fs;
+import local.Fs;
 
 // hero class
-public class Hero extends Objekt {
+public class Hero extends Figure {
 	public int start_leben_punkte =100;
 	public Image leben_img=Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"leben_kopf.png");
 	public Hero (int x, int y) {

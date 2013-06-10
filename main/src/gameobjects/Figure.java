@@ -1,4 +1,4 @@
-package spielobjekte;
+package gameobjects;
 
 
 /*
@@ -8,7 +8,7 @@ package spielobjekte;
 import java.awt.Image;
 
 
-public class Objekt {
+public class Figure {
 	
 	public Image image;
 	public int dichte = 10;
@@ -29,7 +29,7 @@ public class Objekt {
 	public int pos_y;
 	public int start_y;
 	
-	public Objekt(int type, int x, int y) {
+	public Figure(int type, int x, int y) {
 		this.type = type;
 		this.pos_x = x;
 		this.pos_y = y;
