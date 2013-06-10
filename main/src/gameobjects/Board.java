@@ -165,8 +165,8 @@ public class Board {
 	}
 	// creates object of the destination class and adds to the list of destinations in this level
 	public void create_ziel (int start_x, int start_y){
-		Ziel ziel;
-		ziel = new Ziel(start_x*this.block_groesse, start_y*this.block_groesse);
+		Goal ziel;
+		ziel = new Goal(start_x*this.block_groesse, start_y*this.block_groesse);
 		Main.obj_list.add(0,ziel);
 	}
 

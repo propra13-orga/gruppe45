@@ -1,9 +1,6 @@
 package gameobjects;
 
-
-/*
- * parent class for the game objects hero, killerbunny, wall, todesbaum,...
- */
+//parent class of Fox, Hero, Goal, Poisonous_Tree, Wall
 
 import java.awt.Image;
 
@@ -11,19 +8,20 @@ import java.awt.Image;
 public class Figure {
 	
 	public Image image;
-	public int dichte = 10;
-	public int leben_punkte;
-	public int anz_leben = 0;
-	public int geschwindigkeit = 1;
-	public int schaden_punkte;
-	public int schaden_reichweite;
-	public int schaden_wiederholung;
-	public int schaden_anzahl_gegner;
-	public boolean sichtbar = true;
-	public boolean zerstoerbar = false;
-	public int type;			//gibt Kollisionsmethode Informationen zum weiteren Vorgehen
-	public int nr;				//Nr. im Array
-	public int ebene = 0;
+	public int denseness = 10;			//can objects pass through?
+	public int hp;						//health points
+	public int mp;						//mana points
+	public int lives = 0;
+	public int speed = 1;
+	public int dmg;						//damage
+	public int aoe;						//area of effect (range of dmg)
+	public int dps;						//damage per second
+	public int dmg_opp_nr;				//nr. of opponents hit
+	public boolean visible = true;
+	public boolean destroyable = false;
+	public int type;					//describes what type of figure this is
+	public int nr;						//index in obj_list
+	public int layer = 0;
 	public int pos_x;
 	public int start_x;
 	public int pos_y;
