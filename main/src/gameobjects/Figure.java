@@ -26,6 +26,8 @@ public class Figure {
 	public int start_x;
 	public int pos_y;
 	public int start_y;
+	public int height;
+	public int width;
 	
 	public Figure(int type, int x, int y) {
 		this.type = type;

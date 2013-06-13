@@ -75,4 +75,8 @@ public class Coll {
 			//Event Vergiftung
 		}
 	}
+	
+	void deal_dmg(Figure dealer , Figure reciever){
+		reciever.hp-=dealer.dmg;
+	}
 }

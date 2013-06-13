@@ -21,27 +21,45 @@ public class AI {
 		
 		if(closest_player == 0)										//no players in range
 		{
-			int rand = Game.rand.nextInt(4);
+			int rand = Game.rand.nextInt(8);
 			
 			switch(rand){											//random movement
-			case 0:	Move.up(figure);
+			case 0:	Move.up(figure);								//up
 					break;
 			
-			case 1:	Move.down(figure);
+			case 1:	Move.up(figure);								//up + right
+					Move.right(figure);
 					break;
 			
-			case 2:	Move.left(figure);
+			case 2:	Move.right(figure);								//right
 					break;
 			
-			case 3:	Move.right(figure);
+			case 3:	Move.right(figure);								//right + down
+					Move.down(figure);
+					break;
+			
+			case 4:	Move.down(figure);								//down
+					break;
+			
+			case 5:	Move.down(figure);								//down + left
+					Move.left(figure);
+					break;
+			
+			case 6:	Move.left(figure);								//left
+					break;
+			
+			case 7:	Move.left(figure);								//left + up
+					Move.up(figure);
 					break;
 			
 			}
 		}
+		
 		else if(closest_player == 1)								//player 1 is closest in range
 		{							
 			
 		}
+		
 		else														//player 2 is closest in range
 		{
 			
