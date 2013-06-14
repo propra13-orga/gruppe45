@@ -1,10 +1,10 @@
 # Spielfeld
 n    w  
-n    w   k 
+n s  w   k 
 nw   w     w w t
 n         k
 n         ww   
-n h        w      
+n 1        w      
 n          w       z
 n    t          
 n            

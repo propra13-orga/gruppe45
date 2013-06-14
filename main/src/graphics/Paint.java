@@ -1,5 +1,6 @@
 package graphics;
 
+import local.Fs;
 import movement.*;
 import java.awt.*;
 import java.io.File;
@@ -42,10 +43,10 @@ public class Paint extends JComponent{
     
     public void loadTextures(){             //Bilder einlesen
         try{
-            background =ImageIO.read(new File("C:/Users/Becky/Desktop/Dungeon Crawler/Texturen/Su_s BG.png"));          //Pfad der Texturen, muss noch in allgemeinen Ordner verschoben werden!!!
-            baum = ImageIO.read(new File("C:/Users/Becky/Desktop/Dungeon Crawler/Texturen/baum_k.png"));
-            baumD = ImageIO.read(new File("C:/Users/Becky/Desktop/Dungeon Crawler/Texturen/baum_k2.png"));
-            player = ImageIO.read(new File("C:/Users/Becky/Desktop/Dungeon Crawler/Texturen/Held.png"));
+            background =ImageIO.read(new File(Fs.img_pfad+"Su_s BG.png"));          //Pfad der Texturen, muss noch in allgemeinen Ordner verschoben werden!!!
+            baum = ImageIO.read(new File(Fs.img_pfad+"baum_k.png"));
+            baumD = ImageIO.read(new File(Fs.img_pfad+"baum_k2.png"));
+            player = ImageIO.read(new File(Fs.img_pfad+"held_rechts.png"));
         }
         catch (IOException e){              //für den Fall, dass der Pfad falsch ist
             //TODO Auto-generated catch block 
