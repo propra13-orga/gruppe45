@@ -40,7 +40,7 @@ public class Board extends Figure{
 	static ArrayList<Figure> gameobjects = new ArrayList<Figure>();
 	
 	public Board(String file){
-		super(0,0,0);
+		super(0,0,0,Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"bg kurve.png")); //Überarbeiten....aktuelles bild einfügen
 		this.initBoard();
 		this.pos_x = 0;
 		this.pos_y = 0;

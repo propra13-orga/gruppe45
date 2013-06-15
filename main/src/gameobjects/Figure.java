@@ -35,10 +35,13 @@ public class Figure {
 	public int height;
 	public int width;
 	
-	public Figure(int type, int x, int y) {
+	public Figure(int type, int x, int y, Image img) {
 		this.type = type;
 		this.pos_x = x;
 		this.pos_y = y;
+		this.image = img;
+		this.height = this.image.getHeight(null);
+		this.width = this.image.getWidth(null);
 		
 	}
 }
