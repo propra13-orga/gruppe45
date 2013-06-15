@@ -19,7 +19,13 @@ public class Figure {
 	public int dmg_opp_nr;				//nr. of opponents hit
 	public boolean visible = true;
 	public boolean destroyable = false;
-	public int type;					//describes what type of figure this is
+	public int type;					//describes what type of figure this is:
+										//0 == goal, shop
+										//1 == wall
+										//2 == poisonous tree
+										//3 == fox
+										//4 == player
+										
 	public int nr;						//index in obj_list
 	public int layer = 0;
 	public int pos_x;

@@ -4,7 +4,7 @@ import java.awt.Toolkit;
 
 import local.Fs;
 
-// killerbunny class
+// fox class
 public class Fox extends Figure {
 	public Fox (int x, int y) {
 		super(3,x,y);

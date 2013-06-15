@@ -50,12 +50,12 @@ public class Board extends Figure{
 	
 	public static ArrayList<Figure> init() {		
 		Board board = new Board("1");
-		gameobjects.add(board);
+		gameobjects.add(0,board);
 		board.create_room("1");
-		gameobjects.add(1,board.hero2);
-		gameobjects.add(1,board.hero1);
-		gameobjects.add(1,board.shop);
 		gameobjects.add(1,board.goal);
+		gameobjects.add(2,board.hero1);
+		gameobjects.add(3,board.hero2);
+		gameobjects.add(4,board.shop);
 		//return gameobjects_wo_board;
 		return gameobjects;	
 	}

@@ -4,8 +4,8 @@ import gameobjects.*;
 import main.Main;
 
 //Spielfeld.obj_list.get(0) = goal;
-//Spielfeld.obj_list.get(1) = rabbit;
-//Spielfeld.obj_list.get(2) = hedgehog;
+//Spielfeld.obj_list.get(2) = bunny;
+//Spielfeld.obj_list.get(3) = hedgehog;
 
 public class Coll {
 	
@@ -25,7 +25,9 @@ public class Coll {
 	//1 for wall/tree, 2 for poisontree, 3 for fox, 4 for player
 	public static boolean coll(Figure tester , int x , int y){
 		switch (tester.type) {				//coll varies according to testers type
-			case 3:							//
+			
+			//tester == fox
+			case 3:
 				for(int i=3; i < Main.obj_list.size(); i++){
 					if (Main.obj_list.get(i).nr == tester.nr)
 					{
@@ -45,7 +47,9 @@ public class Coll {
 				}
 				return true;
 
-			default:
+			
+			//tester == player
+			case 4:
 				for(int i=1; i < Main.obj_list.size(); i++){
 					if (Main.obj_list.get(i).nr == tester.nr)
 					{
@@ -56,7 +60,6 @@ public class Coll {
 							 && (tester.pos_y + y < Main.obj_list.get(i).pos_y + Main.obj_list.get(i).image.getHeight(null))
 							 && (tester.pos_y + y + tester.image.getHeight(null) > Main.obj_list.get(i).pos_y) )
 					{
-						//invoke event: poisoned
 						return false;
 					}
 				}

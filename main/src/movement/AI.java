@@ -57,12 +57,16 @@ public class AI {
 		
 		else if(closest_player == 1)								//player 1 is closest in range
 		{							
-			
+			intel_move(figure , Main.obj_list.get(1));
 		}
 		
 		else														//player 2 is closest in range
 		{
 			
 		}
+	}
+	
+	void intel_move(Figure opp , Figure player){
+		
 	}
 }
