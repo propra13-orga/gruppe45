@@ -4,6 +4,8 @@ package gameobjects;
 
 import java.awt.Image;
 
+import main.Main;
+
 
 public class Figure {
 	
@@ -40,8 +42,8 @@ public class Figure {
 		this.pos_x = x;
 		this.pos_y = y;
 		this.image = img;
-		this.height = this.image.getHeight(null);
-		this.width = this.image.getWidth(null);
+		this.height = (int) (this.image.getHeight(null) * Main.scale * 0.3);
+		this.width = (int) (this.image.getWidth(null) * Main.scale);
 		
 	}
 }

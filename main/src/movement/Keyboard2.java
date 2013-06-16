@@ -5,7 +5,7 @@ import main.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class Keyboard implements KeyListener {
+public class Keyboard2 implements KeyListener {
 
 	int key;
 	//Move: moving figure and testing collisions
@@ -14,16 +14,16 @@ public class Keyboard implements KeyListener {
 		key = e.getKeyCode();
 		if (Game.ingame) { // game is running
 			switch(key) {
-				case KeyEvent.VK_LEFT:// int 37
+				case KeyEvent.VK_A:	// left
 					Move.left(Main.obj_list.get(1));
 					break;
-				case KeyEvent.VK_RIGHT: // int 18
+				case KeyEvent.VK_D: // right
 					Move.right(Main.obj_list.get(1));
 					break;
-				case KeyEvent.VK_UP: // int 38
+				case KeyEvent.VK_W: // up
 					Move.up(Main.obj_list.get(1));
 					break;
-				case KeyEvent.VK_DOWN: // int 40
+				case KeyEvent.VK_S: // down
 					Move.down(Main.obj_list.get(1));
 					break;
 				case KeyEvent.VK_ESCAPE:

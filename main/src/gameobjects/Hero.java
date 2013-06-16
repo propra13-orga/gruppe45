@@ -9,6 +9,7 @@ import local.Fs;
 public class Hero extends Figure {
 	public int start_hp =100;
 	public Image lives_img=Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"lives_rabbit.png");
+	
 	public Hero (int x, int y) {
 		super(4,x,y,Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"held.png"));
 		this.start_x=x;
@@ -19,9 +20,11 @@ public class Hero extends Figure {
 		this.dmg = 100;
 		this.destroyable = true;
 	}
+	
 	public Image getImage_hero() {
 		return this.image;
 	}
+	
 	public Image getImage_healthbar() {
 		if(this.hp>66) return Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"healthbar_green.png");
 		if(this.hp>33) return Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"healthbar_yellow.png");

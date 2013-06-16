@@ -109,7 +109,7 @@ public class Coll {
 
 	}
 
-	//löst eigenständig Vergiftung aus, daher void
+	//invokes poisoning
 	public void poison(Poisonous_Tree tree){
 		if (   (Main.obj_list.get(2).pos_x < tree.pos_x + tree.width + tree.fog)
 			&& (Main.obj_list.get(2).pos_x + Main.obj_list.get(2).width > tree.pos_x - tree.fog)
@@ -130,7 +130,25 @@ public class Coll {
 		}
 	}
 
+	//deals dmg to players
 	static void deal_dmg(Figure dealer , Figure reciever){
 		reciever.hp-=dealer.dmg;
+	}
+
+	//returns true if fox or player behind tree
+	public static boolean wall_opaque(int x , int y , int width , int height){
+		for(int i=2 ; i < Main.obj_list.size() ; i++){
+			if(Main.obj_list.get(i).type < 2)
+			{
+				if(		(Main.obj_list.get(i).pos_x < x + width)
+					&&	(Main.obj_list.get(i).pos_x + Main.obj_list.get(i).width > x)
+					&&	(Main.obj_list.get(i).pos_y < y + height)
+					&&	(Main.obj_list.get(i).pos_y + Main.obj_list.get(i).height > y))
+				{
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 }
