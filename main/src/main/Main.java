@@ -20,8 +20,22 @@ public class Main{
 																			//3 reserved for player 2
 																			//4 reserved for shop
 	public static void main(String[] args) throws IOException{
+		int i=0;
        Fs.init();
 	   obj_list = Board.init();
+	   for (Figure figur: obj_list) {
+		   System.out.print("Position ");
+		   System.out.println(i);
+		   if (figur == null) {
+			   System.out.println("Objekt ist null.");
+			   System.out.println("------------");
+		   } else {
+			   System.out.println(figur.getClass().getSimpleName());
+			   System.out.println(figur.image);
+			   System.out.println("------------");
+		   }
+		   i++;
+	   }
        JFrame mainFrame = new JFrame();
        Renderer rendern = new Renderer();
        rendern.setFrame(mainFrame);
