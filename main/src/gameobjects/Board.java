@@ -52,6 +52,10 @@ public class Board extends Figure{
 		Board board = new Board("1");
 		gameobjects.add(0,board);
 		board.create_room("1");
+		if (Game.Nr_of_Players==1) {
+			board.hero2= new Hero(0, 0);
+			board.hero2.image = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"bg menue.png");
+		}
 		gameobjects.add(1,board.goal);
 		gameobjects.add(2,board.hero1);
 		gameobjects.add(3,board.hero2);
