@@ -8,14 +8,14 @@ import gameobjects.Figure;
 public class AI {
 
 	//uses move on all opponents
-	public void move_all_opp(){
+	public static void move_all_opp(){
 		for(int i = 3 ; i < Main.obj_list.size() ; i++){
 			move(Main.obj_list.get(i));
 		}
 	}
 
 	//moves an opponent
-	public void move(Figure figure){
+	public static void move(Figure figure){
 		
 		int closest_player = Range.range(figure);					//index(obj_list) of closest player
 		
@@ -36,7 +36,7 @@ public class AI {
 	}
 
 	//random movement
-	void rand_move(Figure figure){
+	static void rand_move(Figure figure){
 		
 		int rand = Game.rand.nextInt(8);						//get random number between 0 and 7
 		
@@ -73,7 +73,7 @@ public class AI {
 	}
 	
 	//intelligent movement towards player
-	void intel_move(Figure opp , Figure player){
+	static void intel_move(Figure opp , Figure player){
 		
 	}
 

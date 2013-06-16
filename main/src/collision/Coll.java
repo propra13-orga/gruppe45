@@ -11,7 +11,7 @@ import main.Main;
 public class Coll {
 
 	//returns false if player hits exit, easy to run in while-loop
-	public boolean goal(){
+	public static boolean goal(){
 		if (   (Main.obj_list.get(2).pos_x < Main.obj_list.get(1).pos_x + Main.obj_list.get(1).width)
 			&& (Main.obj_list.get(2).pos_x + Main.obj_list.get(2).width > Main.obj_list.get(1).pos_x)
 			&& (Main.obj_list.get(2).pos_y < Main.obj_list.get(1).pos_y + Main.obj_list.get(1).height)
@@ -33,7 +33,7 @@ public class Coll {
 	}
 
 	//changes value of Game.shop if player hits shop
-	public void shop(){
+	public static void shop(){
 		if (   (Main.obj_list.get(2).pos_x < Main.obj_list.get(4).pos_x + Main.obj_list.get(4).width)
 			&& (Main.obj_list.get(2).pos_x + Main.obj_list.get(2).width > Main.obj_list.get(4).pos_x)
 			&& (Main.obj_list.get(2).pos_y < Main.obj_list.get(4).pos_y + Main.obj_list.get(4).height)
