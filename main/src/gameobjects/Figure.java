@@ -36,6 +36,7 @@ public class Figure {
 	public int start_y;
 	public int height;
 	public int width;
+	public int fog = 10;				//only for poisonous trees
 	
 	public Figure(int type, int x, int y, Image img) {
 		this.type = type;

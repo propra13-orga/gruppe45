@@ -28,6 +28,7 @@ public class Game {
 			{
 				AI.move_all_opp();
 				Coll.shop();
+				Coll.poison();
 			}
 		}
 	}
