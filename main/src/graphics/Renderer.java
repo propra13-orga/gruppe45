@@ -1,6 +1,10 @@
 package graphics;
 
+import java.awt.Graphics;
+
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
+import javax.swing.JPanel;
 
 public class Renderer extends Thread{
     
@@ -32,7 +36,13 @@ public class Renderer extends Thread{
             }
         }
     }
-    public void setFrame(JFrame mainFrame) {
-         display.setFrame(mainFrame);
+    /*
+    public void setPanel(JPanel mainPanel) {
+        display.setPanel(mainPanel);
+   }
+   */
+    public void setFrame(JInternalFrame renderFrame) {
+         display.setFrame(renderFrame);
     }
+    
 }

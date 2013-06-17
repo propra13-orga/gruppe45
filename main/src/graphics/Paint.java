@@ -1,19 +1,28 @@
 package graphics;
 
+import local.Fs;
+import main.GUI;
+import main.Main;
 import movement.*;
+import gameobjects.Figure;
+
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
+import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 import java.awt.event.KeyEvent;
 import java.util.Scanner;
 
 public class Paint extends JComponent{
 
-    public JFrame frame;
+    //public JFrame frame;
+    //  public JPanel pframe;
+	//JInternalFrame renderFrame;
     private Image backBuffer;           
     private Image myImage;
     // more code to write here ...
@@ -21,6 +30,7 @@ public class Paint extends JComponent{
     long last;
     long fps;
     
+    Figure temp;
     Image background;
     Image baum;
     Image baumD;
@@ -33,26 +43,15 @@ public class Paint extends JComponent{
     static int figury = 330;            //Startposition Y-Achse
     
     Paint(){
-        this.loadTextures();
+    	Keyboard eingabe = new Keyboard();       // EventListener for Keyboard
+        Main.renderFrame.addKeyListener(eingabe); 
     }
     
     private void createBackBuffer(){
-        backBuffer = frame.createImage(1024,768);
-    }
-    
-    public void loadTextures(){             //Bilder einlesen
-        try{
-            background =ImageIO.read(new File("C:/Users/Becky/Desktop/Dungeon Crawler/Texturen/Su_s BG.png"));          //Pfad der Texturen, muss noch in allgemeinen Ordner verschoben werden!!!
-            baum = ImageIO.read(new File("C:/Users/Becky/Desktop/Dungeon Crawler/Texturen/baum_k.png"));
-            baumD = ImageIO.read(new File("C:/Users/Becky/Desktop/Dungeon Crawler/Texturen/baum_k2.png"));
-            player = ImageIO.read(new File("C:/Users/Becky/Desktop/Dungeon Crawler/Texturen/Held.png"));
-        }
-        catch (IOException e){              //für den Fall, dass der Pfad falsch ist
-            //TODO Auto-generated catch block 
-            e.printStackTrace();
-        }
+        backBuffer = Main.renderFrame.createImage(1024,768);
         
     }
+    
     
     public void paintComponent(Graphics g){
         updateScreen();
@@ -60,18 +59,29 @@ public class Paint extends JComponent{
         
     public void renderScreen(){
         // if backBuffer doesn't exist, create one
-        if (backBuffer == null) 
-            this.createBackBuffer();
-        // get Graphics object from backBuffer
+        if (backBuffer == null){
+        	this.createBackBuffer();
+        }
+        
         Graphics g = backBuffer.getGraphics();
-    //    Graphics g = frame.getGraphics();
-     
-        // render screen on backBuffer
-        g.drawImage(background,0,0,this);                      //fügt Hintergrund ein
-        g.drawImage(player,figurx,figury,this);               //fügt Spielfigur ein       
+        
+        
+        
+        
+        //g.drawImage(player,figurx,figury,this);               //faengt Spielfigur ein       
+        
+        // Wenn der Hintergrund gerendert wird hat Martin seine Klasse zum Laufen gebracht
+        
+    	for(int i=0; i<Main.obj_list.size();i++){
+    		
+    		if((temp = Main.obj_list.get(i)) != null)
+    			g.drawImage(temp.image,temp.pos_x,temp.pos_y,this);
+    			
+    			//System.out.println("Hase"+temp.pos_x+temp.pos_y);
+    	}
             
         
-        if(figurx>610 && figurx<810 && figury>310 && figury<482){              //Wenn Player auf der Baumkrone ist wird dieser durchsichtig
+        /*if(figurx>610 && figurx<810 && figury>310 && figury<482){              //Wenn Player auf der Baumkrone ist wird dieser durchsichtig
         g.drawImage(baumD,650,350,this);    
         }
         else{
@@ -83,18 +93,16 @@ public class Paint extends JComponent{
              y+=2;
         }*/
     
-        g.setColor(Color.white);
+        //g.setColor(Color.white);
         this.frameRate();
-        g.drawString("FPS: "+ Long.toString(fps), 50, 50);
+        //g.drawString("FPS: "+ Long.toString(fps), 50, 50);
         
-          //g.drawLine(0,0,100,200);*/ 
-        // ...
     }
     
     public void updateScreen(){
-        Graphics g = frame.getGraphics();
+        Graphics g = Main.renderFrame.getGraphics();
         
-        if (g != null) /* component already visible?*/{
+		if (g != null){
             // is there a backBuffer to draw?
             if (backBuffer != null) g.drawImage(backBuffer, 0, 0, null);
             else{
@@ -105,16 +113,29 @@ public class Paint extends JComponent{
         }
     }
 
-    void setFrame(JFrame mainFrame) {                           //Fenster starten, Größe setzen, 
-       frame = mainFrame;
-       frame.setSize(1024, 768);
-       frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-       frame.setVisible(true);
-       
-       Keyboard eingabe = new Keyboard();       // EventListener für Keyboard
-       frame.addKeyListener(eingabe);           
-      
+    void setFrame(JInternalFrame renderFrame) {  
+       //frame = subFrame;
+       //frame.setVisible(false);
+       //frame.setSize(1024, 768);
+       //frame.setSize(200,100);
+       //frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+       //frame.setVisible(true);
+       //Keyboard eingabe = new Keyboard();       // EventListener for Keyboard
+       //frame.addKeyListener(eingabe);           
     }
+    /*
+    void setPanel(JPanel mainPanel){
+       pframe = mainPanel;
+       pframe.setSize(1024, 768);
+       pframe.
+       pframe.setVisible(true);
+       
+       Keyboard eingabe = new Keyboard();       // EventListener for Keyboard
+    }
+    */
+    
+       
+    
     
     private void frameRate(){
         delta = System.nanoTime() - last;

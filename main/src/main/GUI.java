@@ -4,6 +4,8 @@ import graphics.*;
 import local.*;
 import java.io.IOException;
 import javax.swing.JFrame;
+import javax.swing.JLayeredPane;
+
 
 /*public class Main{
     
@@ -25,7 +27,8 @@ public class GUI extends javax.swing.JFrame {
 	
 	public static int FRAMESIZE_X =1024;
 	public static int FRAMESIZE_Y =768;
-	
+	JLayeredPane cont;
+	graphics.PlayerLeft left;
 
     public GUI() {
         initComponents();
@@ -79,14 +82,43 @@ public class GUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.setVisible(false);
-        Fs.init();
-        JFrame mainFrame = new JFrame();
-        Renderer rendern = new Renderer();
-        rendern.setFrame(mainFrame);
-        rendern.start();
+    	this.setVisible(true);
+    	
+        //JInternalFrame renderFrame = new JInternalFrame();
+        Main.renderFrame.setSize(1024, 768);
+	   	Main.renderFrame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+	   	
+	   	//ab hier Änderungen
+	  	StatusBar sbar = new StatusBar();
+	 
+	  	
+	 
+	   		   	
+	   	//hier neuer Container
+	   	cont = getLayeredPane();
+	   	cont.add(Main.renderFrame, new Integer(100));
+	  	 
+	   	
+
+	   	
+       // this.add(Main.renderFrame);auskommentiert Jessica
+        Main.renderFrame.setVisible(true); 
+        //Main.renderFrame.toFront();
+        
+        Main.ini();
+    	Main.dauerhaft();
+        
+	    /*javax.swing.SwingUtilities.invokeLater(new Runnable() {
+	        public void run() {
+	        	Main.ini();
+	        	Main.dauerhaft(renderFrame);
+	        }
+	        
+	    });*/
  	
     }//GEN-LAST:event_jButton1ActionPerformed
+
+ 	
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         System.exit(0);

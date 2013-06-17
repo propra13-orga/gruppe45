@@ -4,6 +4,8 @@ package gameobjects;
 
 import java.awt.Image;
 
+import main.Main;
+
 
 public class Figure {
 	
@@ -19,7 +21,13 @@ public class Figure {
 	public int dmg_opp_nr;				//nr. of opponents hit
 	public boolean visible = true;
 	public boolean destroyable = false;
-	public int type;					//describes what type of figure this is
+	public int type;					//describes what type of figure this is:
+										//0 == goal, shop
+										//1 == wall
+										//2 == poisonous tree
+										//3 == fox
+										//4 == player
+										
 	public int nr;						//index in obj_list
 	public int layer = 0;
 	public int pos_x;
@@ -28,11 +36,15 @@ public class Figure {
 	public int start_y;
 	public int height;
 	public int width;
+	public int fog = 10;				//only for poisonous trees
 	
-	public Figure(int type, int x, int y) {
+	public Figure(int type, int x, int y, Image img) {
 		this.type = type;
 		this.pos_x = x;
 		this.pos_y = y;
+		this.image = img;
+		this.height = (int) (this.image.getHeight(null) * Main.scale * 0.3);
+		this.width = (int) (this.image.getWidth(null) * Main.scale);
 		
 	}
 }
