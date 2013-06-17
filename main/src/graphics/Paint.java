@@ -1,8 +1,11 @@
 package graphics;
 
 import local.Fs;
+<<<<<<< HEAD
 import main.GUI;
 import main.Main;
+=======
+>>>>>>> 27ac273bccb8f6631ba15695ee7c897493fa6b69
 import movement.*;
 import gameobjects.Figure;
 
@@ -48,7 +51,24 @@ public class Paint extends JComponent{
     }
     
     private void createBackBuffer(){
+<<<<<<< HEAD
         backBuffer = Main.renderFrame.createImage(1024,768);
+=======
+        backBuffer = frame.createImage(1024,768);
+    }
+    
+    public void loadTextures(){             //Bilder einlesen
+        try{
+            background =ImageIO.read(new File(Fs.img_pfad+"Su_s BG.png"));          //Pfad der Texturen, muss noch in allgemeinen Ordner verschoben werden!!!
+            baum = ImageIO.read(new File(Fs.img_pfad+"baum_k.png"));
+            baumD = ImageIO.read(new File(Fs.img_pfad+"baum_k2.png"));
+            player = ImageIO.read(new File(Fs.img_pfad+"held_rechts.png"));
+        }
+        catch (IOException e){              //für den Fall, dass der Pfad falsch ist
+            //TODO Auto-generated catch block 
+            e.printStackTrace();
+        }
+>>>>>>> 27ac273bccb8f6631ba15695ee7c897493fa6b69
         
     }
     
