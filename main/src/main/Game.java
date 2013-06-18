@@ -14,7 +14,7 @@ public class Game {
 	
 	public static Random rand = new Random();
 
-	public static void manageGame(){
+	public void manageGame(){
 		
 		Keyboard KPlayer1 = new Keyboard();
 		if(Game.Nr_of_Players == 2)

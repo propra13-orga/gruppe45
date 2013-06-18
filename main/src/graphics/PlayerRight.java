@@ -30,7 +30,7 @@ class PlayerRight extends Panel{
 				
 		button1 = new JButton("Shop");							//Button for shop created
 		button1.setBackground(Color.green);
-		button1.setBounds(830,690,100,30);						//Size init
+		button1.setBounds(830,20,100,30);						//Size init
 		
 		//ShopButton klick-event
         button1.addActionListener(new java.awt.event.ActionListener() {
@@ -45,16 +45,18 @@ class PlayerRight extends Panel{
 		labelBack.setOpaque(true);
 		labelBack.setBackground(Color.black);
 		labelBack.setForeground(Color.yellow);
-		labelBack.setBounds(590,670,440,85);
+		labelBack.setBounds(590,0,440,85);
 		
 		//3 Descripton Label
 		text1 = new JLabel("Player 2");
 		text2 = new JLabel("Defense");
 		text3 = new JLabel("Armor");
 		
-		text1.setBounds(615, 653, 100, 50);
-		text2.setBounds(680, 653, 100, 50);
-		text3.setBounds(750, 653, 100, 50);
+		text1.setBounds(615, -10, 100, 50);
+		text2.setBounds(680, 0, 100, 50);
+		text3.setBounds(750, 0, 100, 50);
+
+		
 		
 		//3 Status Label
 		labelHP = new JLabel (("HPs: ")+(String.valueOf(new Integer(getPoints(1)))));							//label fpr HP's
@@ -79,19 +81,19 @@ class PlayerRight extends Panel{
 		life5 = new JLabel(new ImageIcon(lives));
 		
 		
-		life1.setBounds(600,729,12,12);							//live image 15pix+15pix needed
-		life2.setBounds(620,729,12,12);	
-		life3.setBounds(640,729,12,12);	
-		life4.setBounds(660,729,12,12);
-		life5.setBounds(680,729,12,12);
+		life1.setBounds(600,59,12,12);							//live image 15pix+15pix needed
+		life2.setBounds(620,59,12,12);	
+		life3.setBounds(640,59,12,12);	
+		life4.setBounds(660,59,12,12);
+		life5.setBounds(680,59,12,12);
 		
-		labelHP.setBounds(950, 660, 100, 50);					
-		labelMP.setBounds(950, 680, 100, 50);
-		labelEP.setBounds(950, 700, 100, 50);
+		labelHP.setBounds(950, 0, 100, 50);					
+		labelMP.setBounds(950, 15, 100, 50);
+		labelEP.setBounds(950, 30, 100, 50);
 		
-		icon.setBounds(595,655,100,100);							//Icon 1st Player
-		iconDef.setBounds(655, 655, 100, 100);					//Icon for defense
-		iconArm.setBounds(715,655,100,100);						//Icon for armor
+		icon.setBounds(595,-20,100,100);							//Icon 1st Player
+		iconDef.setBounds(655, -20, 100, 100);					//Icon for defense
+		iconArm.setBounds(715,-20,100,100);						//Icon for armor
 		
 	
 		

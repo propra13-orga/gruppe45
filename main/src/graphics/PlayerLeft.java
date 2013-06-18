@@ -30,7 +30,7 @@ public class PlayerLeft extends Panel{
 				
 		button1 = new JButton("Shop");							//Button for shop created
 		button1.setBackground(Color.green);
-		button1.setBounds(240,690,100,30);						//Size init
+		button1.setBounds(240,20,100,30);						//Size init
 		
 		//ShopButton klick-event
         button1.addActionListener(new java.awt.event.ActionListener() {
@@ -45,7 +45,7 @@ public class PlayerLeft extends Panel{
 		labelBack.setOpaque(true);
 		labelBack.setBackground(Color.black);
 		labelBack.setForeground(Color.yellow);
-		labelBack.setBounds(0,670,440,85);
+		labelBack.setBounds(0,0,440,85);
 		
 		//3 Descripton Label
 		text1 = new JLabel("Player 1");
@@ -79,19 +79,19 @@ public class PlayerLeft extends Panel{
 		life5 = new JLabel(new ImageIcon(lives));
 		
 		
-		life1.setBounds(10,729,12,12);							//live image 15pix+15pix needed
-		life2.setBounds(30,729,12,12);	
-		life3.setBounds(50,729,12,12);	
-		life4.setBounds(70,729,12,12);
-		life5.setBounds(90,729,12,12);
+		life1.setBounds(10,59,12,12);							//live image 15pix+15pix needed
+		life2.setBounds(30,59,12,12);	
+		life3.setBounds(50,59,12,12);	
+		life4.setBounds(70,59,12,12);
+		life5.setBounds(90,59,12,12);
 		
-		labelHP.setBounds(360, 660, 100, 50);					
-		labelMP.setBounds(360, 680, 100, 50);
-		labelEP.setBounds(360, 700, 100, 50);
+		labelHP.setBounds(360, 0, 100, 50);					
+		labelMP.setBounds(360, 15, 100, 50);
+		labelEP.setBounds(360, 30, 100, 50);
 		
-		icon.setBounds(5,655,100,100);							//Icon 1st Player
-		iconDef.setBounds(65, 655, 100, 100);					//Icon for defense
-		iconArm.setBounds(125,655,100,100);						//Icon for armor
+		icon.setBounds(5,-20,100,100);							//Icon 1st Player
+		iconDef.setBounds(65, -20, 100, 100);					//Icon for defense
+		iconArm.setBounds(125,-20,100,100);						//Icon for armor
 		
 	
 		

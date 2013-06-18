@@ -173,7 +173,7 @@ PlayerLeft.count =0; //resets counter for open shop windows
 });
 //Eventlistener Ende
 
-setSize(512,768);
+setSize(512,500);
 setResizable(false);
 setLayout(null);
 setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

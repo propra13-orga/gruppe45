@@ -17,14 +17,23 @@ public class StatusBar extends JFrame
 	Image icon1; 
 	StatusBar sbar;
 	PlayerLeft left; PlayerRight right; 
+	private float i = 0.1f;
 						
+	
 	
 	public StatusBar()
 	{
 		super("Dungeon Crawler");								//super constructor call with parameter of Windows Title
 		
 		local.Fs.init();												//check OS 
-		setSize(1024,768);										//set Window Size
+		setSize(1024,80);										//set Window Size
+		this.setUndecorated(true);
+		this.setLocation(0,683 );
+		this.setAlwaysOnTop(true);
+		this.setBackground(new Color(0, 0, 0, 0));
+		
+//		this.setOpaque(true);}
+	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 								
 		layeredPane = getLayeredPane();							//create a layered Pane Container

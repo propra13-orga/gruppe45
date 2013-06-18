@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 
+import main.Game;
+
 public class Renderer extends Thread{
     
     private Paint display = new Paint();
@@ -23,6 +25,8 @@ public class Renderer extends Thread{
             display.renderScreen(); // render component
             display.updateScreen(); // draw backBuffer to screen
             // rest a bit and give time to other Threads
+            
+            Game.ingame = true;
             
             next_game_tick += SKIP_TICKS;               //Begrenzung der Framerate
             sleepTime = next_game_tick - System.currentTimeMillis();

@@ -15,16 +15,16 @@ public class Keyboard2 implements KeyListener {
 		if (Game.ingame) { // game is running
 			switch(key) {
 				case KeyEvent.VK_A:	// left
-					Move.left(Main.obj_list.get(1));
+					Move.left(Main.obj_list.get(3));
 					break;
 				case KeyEvent.VK_D: // right
-					Move.right(Main.obj_list.get(1));
+					Move.right(Main.obj_list.get(3));
 					break;
 				case KeyEvent.VK_W: // up
-					Move.up(Main.obj_list.get(1));
+					Move.up(Main.obj_list.get(3));
 					break;
 				case KeyEvent.VK_S: // down
-					Move.down(Main.obj_list.get(1));
+					Move.down(Main.obj_list.get(3));
 					break;
 				case KeyEvent.VK_ESCAPE:
 					Game.ingame = false;

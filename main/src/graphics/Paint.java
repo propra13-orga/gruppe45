@@ -3,7 +3,7 @@ package graphics;
 import local.Fs;
 import main.GUI;
 import main.Main;
-import movement.*;
+import movement.Keyboard;
 import gameobjects.Figure;
 
 import java.awt.*;
@@ -42,16 +42,12 @@ public class Paint extends JComponent{
     static int figurx = 0;              //Startposition X-Achse
     static int figury = 330;            //Startposition Y-Achse
     
-    Paint(){
-    	Keyboard eingabe = new Keyboard();       // EventListener for Keyboard
-        Main.renderFrame.addKeyListener(eingabe); 
-    }
     
     private void createBackBuffer(){
         backBuffer = Main.renderFrame.createImage(1024,768);
         
     }
-    
+
     
     public void paintComponent(Graphics g){
         updateScreen();
@@ -121,7 +117,7 @@ public class Paint extends JComponent{
        //frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
        //frame.setVisible(true);
        //Keyboard eingabe = new Keyboard();       // EventListener for Keyboard
-       //frame.addKeyListener(eingabe);           
+//       frame.addKeyListener(eingabe);           
     }
     /*
     void setPanel(JPanel mainPanel){

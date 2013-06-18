@@ -22,9 +22,9 @@ public class Move{ //moves any figure
 	
 	//move 1 pxl right
 	public static void right(Figure figure){
-		if((figure.pos_x + 1 < Main.board_height) && Coll.coll(figure , 1 , 0)){
-			figure.pos_x += 1;
-		}
+//		if((figure.pos_x + 1 < Main.board_height) && Coll.coll(figure , 1 , 0)){
+			figure.pos_x += 10;
+//		}
 	}
 	
 	//move 1 pxl left

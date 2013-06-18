@@ -2,6 +2,9 @@ package main;
 
 import graphics.*;
 import local.*;
+import movement.Keyboard;
+import main.Main;
+
 import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
@@ -90,7 +93,8 @@ public class GUI extends javax.swing.JFrame {
 	   	
 	   	//ab hier Änderungen
 	  	StatusBar sbar = new StatusBar();
-	 
+	  	Keyboard KPlayer1 = new Keyboard();
+	  	Main.renderFrame.addKeyListener(KPlayer1);
 	  	
 	 
 	   		   	
@@ -107,7 +111,7 @@ public class GUI extends javax.swing.JFrame {
         
         Main.ini();
     	Main.dauerhaft();
-        
+    	
 	    /*javax.swing.SwingUtilities.invokeLater(new Runnable() {
 	        public void run() {
 	        	Main.ini();

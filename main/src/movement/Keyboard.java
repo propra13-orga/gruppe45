@@ -7,7 +7,15 @@ import java.awt.event.KeyListener;
 
 public class Keyboard implements KeyListener {
 
+	
+	public Keyboard()
+	{
+		Main.renderFrame.addKeyListener(this);
+	}
+	
 	int key;
+	
+	
 	//Move: moving figure and testing collisions
 	//Spielfeld.obj_list.get(1) = hase
 	public void keyPressed (KeyEvent e){
@@ -15,16 +23,17 @@ public class Keyboard implements KeyListener {
 		if (Game.ingame) { // game is running
 			switch(key) {
 				case KeyEvent.VK_LEFT:// int 37
-					Move.left(Main.obj_list.get(1));
+					Move.left(Main.obj_list.get(2));
 					break;
 				case KeyEvent.VK_RIGHT: // int 18
-					Move.right(Main.obj_list.get(1));
+					Move.right(Main.obj_list.get(2));
+					System.out.println("right");
 					break;
 				case KeyEvent.VK_UP: // int 38
-					Move.up(Main.obj_list.get(1));
+					Move.up(Main.obj_list.get(2));
 					break;
 				case KeyEvent.VK_DOWN: // int 40
-					Move.down(Main.obj_list.get(1));
+					Move.down(Main.obj_list.get(2));
 					break;
 				case KeyEvent.VK_ESCAPE:
 					Game.ingame = false;

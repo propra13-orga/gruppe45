@@ -1,11 +1,15 @@
 package main;
 
 import gameobjects.Figure;
-import gameobjects.Board;
+import gameobjects.Create;
 import graphics.*;
 import local.Fs;
+import main.GUI;
+import movement.Keyboard;
 
+import java.awt.Component;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JFrame;
@@ -25,34 +29,22 @@ public class Main{
 																			//4 reserved for shop
 	public static void dauerhaft(){
 		 
-		 Renderer rendern = new Renderer();
-	     rendern.start();
-	     
+		Renderer rendern = new Renderer();
+		rendern.start();
+//		Game manage = new Game();
+//		manage.manageGame();
+
 	}
 	
 	public static void ini(){
-		int i=0;
 	       Fs.init();
-		   obj_list = Board.init();
-		   for (Figure figur: obj_list) {
-			   System.out.print("Position ");
-			   System.out.println(i);
-			   if (figur == null) {
-				   System.out.println("Objekt ist null.");
-				   System.out.println("------------");
-			   } else {
-				   System.out.println(figur.getClass().getSimpleName());
-				   System.out.println(figur.image);
-				   System.out.println("------------");
-			   }
-			   i++;
-		   }
+		   obj_list = Create.init();
 	}
 	
 	
 	public static void main(String[] args) throws IOException{
 
-       
+       ini();
     }
 
 }
