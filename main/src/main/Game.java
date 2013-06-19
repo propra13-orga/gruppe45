@@ -6,7 +6,7 @@ import movement.*;
 
 public class Game {
 
-	public static boolean ingame = false;				//ingame == false while in menu
+	public static boolean ingame = true;				//ingame == false while in menu
 	public static boolean run = false;					//movements are made when run == true, then run ist set to false until painted
 
 	public static int Nr_of_Players = 1;				//1 == Singleplayer , 2 == Multiplayer
@@ -17,9 +17,13 @@ public class Game {
 	public void manageGame(){
 		
 		Keyboard KPlayer1 = new Keyboard();
+		Main.renderFrame.setFocusable(true);
+		Main.renderFrame.addKeyListener(KPlayer1);
+		
 		if(Game.Nr_of_Players == 2)
 		{
 			Keyboard2 KPlayer2 = new Keyboard2();
+			Main.renderFrame.addKeyListener(KPlayer2);
 		}
 		
 		while(Coll.goal())

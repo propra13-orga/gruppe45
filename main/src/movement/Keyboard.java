@@ -17,7 +17,7 @@ public class Keyboard implements KeyListener {
 	
 	
 	//Move: moving figure and testing collisions
-	//Spielfeld.obj_list.get(1) = hase
+	//Spielfeld.obj_list.get(2) = hase
 	public void keyPressed (KeyEvent e){
 		key = e.getKeyCode();
 		if (Game.ingame) { // game is running
@@ -27,7 +27,6 @@ public class Keyboard implements KeyListener {
 					break;
 				case KeyEvent.VK_RIGHT: // int 18
 					Move.right(Main.obj_list.get(2));
-					System.out.println("right");
 					break;
 				case KeyEvent.VK_UP: // int 38
 					Move.up(Main.obj_list.get(2));

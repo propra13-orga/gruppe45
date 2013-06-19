@@ -28,8 +28,8 @@ import javax.swing.JLayeredPane;
 */
 public class GUI extends javax.swing.JFrame {
 	
-	public static int FRAMESIZE_X =1024;
-	public static int FRAMESIZE_Y =768;
+	public static int FRAMESIZE_X = Main.board_width;
+	public static int FRAMESIZE_Y = Main.board_height;
 	JLayeredPane cont;
 	graphics.PlayerLeft left;
 
@@ -88,14 +88,16 @@ public class GUI extends javax.swing.JFrame {
     	this.setVisible(true);
     	
         //JInternalFrame renderFrame = new JInternalFrame();
-        Main.renderFrame.setSize(1024, 768);
+        Main.renderFrame.setSize(Main.board_width, Main.board_height);
 	   	Main.renderFrame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 	   	
 	   	//ab hier Änderungen
 	  	StatusBar sbar = new StatusBar();
-	  	Keyboard KPlayer1 = new Keyboard();
-	  	Main.renderFrame.addKeyListener(KPlayer1);
 	  	
+	  	Keyboard KPlayer1 = new Keyboard();
+    	Main.renderFrame.setFocusable(true);
+    	Main.renderFrame.addKeyListener(KPlayer1);
+    	 	
 	 
 	   		   	
 	   	//hier neuer Container
@@ -111,6 +113,11 @@ public class GUI extends javax.swing.JFrame {
         
         Main.ini();
     	Main.dauerhaft();
+    	
+    	System.out.println(Main.obj_list.get(0).height);
+    	System.out.println(Main.obj_list.get(0).width);
+   
+    	
     	
 	    /*javax.swing.SwingUtilities.invokeLater(new Runnable() {
 	        public void run() {
