@@ -32,13 +32,19 @@ public class Create {
 		gameobjects.add(0,board);
 		create_room(String.valueOf(datei));
 		if (Game.Nr_of_Players==1) {
-			Hero hero2 = new Hero(0, 0, "hedgehog");
+			hero2 = new Hero(0, 0, "hedgehog");
 			hero2.image = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"bg menue.png");
 		}
 		gameobjects.add(1,goal);
 		gameobjects.add(2,hero1);
 		gameobjects.add(3,hero2);
 		gameobjects.add(4,shop);
+		
+		//set nr = index in ArrayList
+		for(int i = 0 ; i < gameobjects.size() ; i++)
+		{
+			gameobjects.get(i).nr = i;
+		}
 		//return gameobjects_wo_board;
 		return gameobjects;	
 	}
