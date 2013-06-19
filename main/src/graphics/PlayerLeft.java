@@ -124,8 +124,8 @@ public void loadIcon(){
 		
 		try
 		{
-			icon1 = ImageIO.read(new File(local.Fs.img_pfad+"lives_rabbit.png"));		
-			icon2 = ImageIO.read(new File(local.Fs.img_pfad+"killerhase_links.png"));
+			icon1 = ImageIO.read(new File(local.Fs.img_pfad+"lives_bunny.png"));		
+			icon2 = ImageIO.read(new File(local.Fs.img_pfad+"bunny_l.png"));
 			lives = ImageIO.read(new File (local.Fs.img_pfad+"heart.jpg"));}
 			
 		catch(IOException e){	//TODO Auto-generated block		}

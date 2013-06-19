@@ -47,22 +47,22 @@ public class Create {
 		Image bg;
 		switch (next_room % 6) {
 			case 1:
-				bg = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"Su_s BG.png");
+				bg = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"bg_1_1.png");
 				break;
 			case 2:
-				bg = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"bg kurve l.png");;
+				bg = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"bg_1_2.png");;
 				break;
 			case 3:
-				bg = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"bg kurve u l.png");;
+				bg = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"bg_1_3.png");;
 				break;
 			case 4:
-				bg = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"Su_s BG.png");;
+				bg = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"bg_2_1.png");;
 				break;
 			case 5:
-				bg = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"bg kurve r.png");;
+				bg = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"bg_2_2.png");;
 				break;
 			default:
-				bg = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"bg kurve u r.png");;
+				bg = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"bg_2_3.png");;
 				break;
 		}
 		return bg;

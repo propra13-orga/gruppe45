@@ -19,7 +19,7 @@ public class Fs {
 	public Fs () {}
 	
 	public static void init() {
-		Fs.pfad = System.getProperty("user.dir"); // wirking directory
+		Fs.pfad = System.getProperty("user.dir"); // working directory
 		Fs.os = System.getProperty("os.name").toLowerCase(); // os
 		os_slash="/"; // for linux, unix, bsd, mac something ...
 		if (Fs.os.indexOf("win")>=0) { // if windows os, change slash to backslash for path
