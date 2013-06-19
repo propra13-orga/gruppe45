@@ -34,19 +34,13 @@ public class Figure {
 	public int start_x;
 	public int pos_y;
 	public int start_y;
-	public int height;
-	public int width;
 	public int fog = 10;				//only for poisonous trees
 	
-	public Figure(int type, int x, int y, Image img) {
-		this.type = type;
-		this.pos_x = x;
-		this.pos_y = y;
-		this.image = img;
-//		this.height = ( (int) (this.image.getHeight(null) * Main.scale * 0.3) );
-//		this.width = ( (int) (this.image.getWidth(null) * Main.scale) );
-		this.height = this.image.getHeight(null);
-		this.width = this.image.getWidth(null);
-		
+	public Figure(int figure_type, int x, int y, Image img) {
+		type = figure_type;
+		pos_x = x;
+		pos_y = y;
+		image = img;
+
 	}
 }

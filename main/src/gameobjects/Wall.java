@@ -13,7 +13,7 @@ public class Wall extends Figure {
 	}
 	
 	public Image getWallImage(){
-		if(Coll.wall_opaque(this.pos_x , this.pos_y , this.width , this.height * 3))		//*3 to get real height
+		if(Coll.wall_opaque(pos_x , pos_y , image.getWidth(null) , image.getHeight(null)))		//*3 to get real height
 		{
 			return Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"tree"+"_opaque.png");	//change tree to variable according to level
 		}

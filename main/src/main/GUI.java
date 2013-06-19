@@ -114,10 +114,6 @@ public class GUI extends javax.swing.JFrame {
         Main.ini();
     	Main.dauerhaft();
     	
-    	System.out.println(Main.obj_list.get(0).height);
-    	System.out.println(Main.obj_list.get(0).width);
-   
-    	
     	
 	    /*javax.swing.SwingUtilities.invokeLater(new Runnable() {
 	        public void run() {
