@@ -1,0 +1,13 @@
+n
+# Spielfeld
+n    w    12     
+n    w  
+nwwwww           t
+n                t
+n                t
+n         k      w 
+nz               w
+n         k      w
+n            
+n   w  k        t
+n   w   
