@@ -34,9 +34,10 @@ public class GUI extends javax.swing.JFrame {
 	graphics.PlayerLeft left;
 
     public GUI() {
-        initComponents();
+        setUndecorated(true);
+    	initComponents();
         setSize(GUI.FRAMESIZE_X, GUI.FRAMESIZE_Y);
-        setResizable(false);      
+        setResizable(false);
     }
 
     private void initComponents() {
@@ -92,7 +93,7 @@ public class GUI extends javax.swing.JFrame {
 	   	Main.renderFrame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 	   	
 	   	//ab hier Änderungen
-	  	StatusBar sbar = new StatusBar();
+//	  	StatusBar sbar = new StatusBar();
 	  	
 	  	Keyboard KPlayer1 = new Keyboard();
     	Main.renderFrame.setFocusable(true);

@@ -36,6 +36,7 @@ public class Keyboard implements KeyListener {
 					break;
 				case KeyEvent.VK_ESCAPE:
 					Game.ingame = false;
+					System.exit(0);									//change later
 					break;					
 				default:
 					// nix			

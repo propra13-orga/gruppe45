@@ -122,7 +122,7 @@ public class Coll {
 				else if ( 	(tester.pos_x + x < Main.obj_list.get(i).pos_x + Main.obj_list.get(i).image.getWidth(null))
 						 && (tester.pos_x + x + tester.image.getWidth(null) > Main.obj_list.get(i).pos_x)
 						 && (tester.pos_y + y < Main.obj_list.get(i).pos_y + Main.obj_list.get(i).image.getHeight(null))
-						 && (tester.pos_y + y + tester.image.getHeight(null) > Main.obj_list.get(i).pos_y) )
+						 && (tester.pos_y + y + tester.image.getHeight(null) > Main.obj_list.get(i).pos_y + Main.obj_list.get(i).image.getHeight(null) / 3) )
 				{
 					return false;
 				}
