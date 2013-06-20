@@ -25,7 +25,7 @@ public class Range {
 	public static int range(Figure tester){
 		int range_rabbit = pyth_c(tester , Main.obj_list.get(1));
 		
-		if(Game.Nr_of_Players == 1){							//checks if single- or multiplayer game
+		if(Main.game.Nr_of_Players == 1){							//checks if single- or multiplayer game
 			
 			if(range_rabbit < RANGE*RANGE) return 1;			//returns 1 if player in range, 0 else
 			else return 0;

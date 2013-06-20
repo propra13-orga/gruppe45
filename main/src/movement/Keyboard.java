@@ -20,7 +20,7 @@ public class Keyboard implements KeyListener {
 	//Spielfeld.obj_list.get(2) = hase
 	public void keyPressed (KeyEvent e){
 		key = e.getKeyCode();
-		if (Game.ingame) { // game is running
+		if (Main.game.ingame) { // game is running
 			switch(key) {
 				case KeyEvent.VK_LEFT:// int 37
 					Move.left(Main.obj_list.get(2));
@@ -35,7 +35,7 @@ public class Keyboard implements KeyListener {
 					Move.down(Main.obj_list.get(2));
 					break;
 				case KeyEvent.VK_ESCAPE:
-					Game.ingame = false;
+					Main.game.ingame = false;
 					System.exit(0);									//change later
 					break;					
 				default:
@@ -50,7 +50,7 @@ public class Keyboard implements KeyListener {
 				System.exit(0);
 				break;
 			case KeyEvent.VK_ESCAPE:
-				Game.ingame = true;
+				Main.game.ingame = true;
 				break;
 			default:
 				// nothing

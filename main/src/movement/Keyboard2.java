@@ -12,7 +12,7 @@ public class Keyboard2 implements KeyListener {
 	//Spielfeld.obj_list.get(1) = hase
 	public void keyPressed (KeyEvent e){
 		key = e.getKeyCode();
-		if (Game.ingame) { // game is running
+		if (Main.game.ingame) { // game is running
 			switch(key) {
 				case KeyEvent.VK_A:	// left
 					Move.left(Main.obj_list.get(3));
@@ -27,7 +27,7 @@ public class Keyboard2 implements KeyListener {
 					Move.down(Main.obj_list.get(3));
 					break;
 				case KeyEvent.VK_ESCAPE:
-					Game.ingame = false;
+					Main.game.ingame = false;
 					break;					
 				default:
 					// nix			
@@ -41,7 +41,7 @@ public class Keyboard2 implements KeyListener {
 				System.exit(0);
 				break;
 			case KeyEvent.VK_ESCAPE:
-				Game.ingame = true;
+				Main.game.ingame = true;
 				break;
 			default:
 				// nothing

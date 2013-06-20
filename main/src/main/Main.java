@@ -27,12 +27,13 @@ public class Main{
 																			//2 reserved for player 1
 																			//3 reserved for player 2
 																			//4 reserved for shop
+	public static Game game;
+	
 	public static void dauerhaft(){
 		 
 		Renderer rendern = new Renderer();
 		rendern.start();
-//		Game manage = new Game();
-//		manage.manageGame();
+		game = new Game();
 
 	}
 	

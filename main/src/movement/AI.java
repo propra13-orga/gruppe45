@@ -38,7 +38,7 @@ public class AI {
 	//random movement
 	static void rand_move(Figure figure){
 		
-		int rand = Game.rand.nextInt(8);						//get random number between 0 and 7
+		int rand = Main.game.rand.nextInt(8);						//get random number between 0 and 7
 		
 		switch(rand){											//random movement
 		case 0:	Move.up(figure);								//up

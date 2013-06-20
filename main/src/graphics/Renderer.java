@@ -26,8 +26,7 @@ public class Renderer extends Thread{
             display.updateScreen(); // draw backBuffer to screen
             // rest a bit and give time to other Threads
             
-            Game.run = true;
-            
+           
             next_game_tick += SKIP_TICKS;               //Begrenzung der Framerate
             sleepTime = next_game_tick - System.currentTimeMillis();
             if(sleepTime>=0) {
