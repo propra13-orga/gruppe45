@@ -47,7 +47,7 @@ public class Game {
 				}
 			}
 			
-			if((room += 1) > 3)
+/*			if((room += 1) > 3)
 			{
 				room = 1;
 				if((level += 1) > 3)
@@ -55,7 +55,10 @@ public class Game {
 					System.exit(0);
 				}
 				
-			}
+			}*/
+			
+			System.exit(0);
+			
 		}
 	}
 }

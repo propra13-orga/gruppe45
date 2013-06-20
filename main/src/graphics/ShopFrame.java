@@ -6,12 +6,14 @@ import javax.swing.JLayeredPane;
 import javax.swing.JLabel;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowAdapter;
+import main.*;
+import graphics.*;
 
 
 public class ShopFrame extends JFrame {
 
     JLayeredPane layeredPane;
-
+    
     //testvalues
     int iKäfer1 = 100;
     int iKäfer2 = 100;
@@ -27,12 +29,12 @@ public class ShopFrame extends JFrame {
         //Bugs Player 1
         final JLabel kLabel1 = new JLabel();
         kLabel1.setText("Käfer Player 1 = "+ iKäfer1);
-        kLabel1.setBounds(0,100,512,50);
+        kLabel1.setBounds(50,100,200,50);
 
         //Bugs Player 2
         final JLabel kLabel2 = new JLabel();
         kLabel2.setText("Käfer Player 2 = "+ iKäfer2);
-        kLabel2.setBounds(0,150,512,50);
+        kLabel2.setBounds(200,100,200,50);
 
         //ShopLabel
         JLabel sLabel = new JLabel();
@@ -48,12 +50,12 @@ public class ShopFrame extends JFrame {
         //ManaLabel
         JLabel mLabel = new JLabel();
         mLabel.setText("1 x Manatrank");
-        mLabel.setBounds(400,300,200,50);
+        mLabel.setBounds(400,250,200,50);
 
         //CloseButton
         JButton cButton = new JButton();
         cButton.setText("Close");
-        cButton.setBounds(156,650,200,50);
+        cButton.setBounds(156,412,200,50);
         cButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dispose();                        //close only ShopFrame
@@ -75,8 +77,9 @@ public class ShopFrame extends JFrame {
                 }
                 else{
                     kLabel1.setText("Käfer Player 1 = "+ iKäfer1);        //missing Healevent!!!
-                    System.out.println("HP auffÃ¼llen");
-                    System.out.println("KÃ¤fer abziehn");
+                    main.Main.obj_list.get(2).hp+=10;
+                    System.out.println("Neue HP Player 1 = "+main.Main.obj_list.get(2).hp);
+                    System.out.println("Kaeferzahl Player 1 = "+iKäfer1);
                    }
             }
 
@@ -85,7 +88,7 @@ public class ShopFrame extends JFrame {
         //Mana Player 1
         JButton mButton1 = new JButton();
         mButton1.setText("Manatrank Player 1");
-        mButton1.setBounds(50,300,150,50);
+        mButton1.setBounds(50,250,150,50);
         mButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 iKäfer1 = iKäfer1 - iManatrank;
@@ -95,8 +98,9 @@ public class ShopFrame extends JFrame {
                 }
                 else{
                     kLabel1.setText("Käfer Player 1 = "+ iKäfer1);        //missing Manaevent!!!
-                    System.out.println("Mana auffÃ¼llen");
-                    System.out.println("KÃ¤fer abziehn");
+                    main.Main.obj_list.get(2).mp+=10;
+                    System.out.println("Neue MP Player 1 = "+main.Main.obj_list.get(2).mp);
+                    System.out.println("Kaeferzahl Player 1 = "+iKäfer1);
                    }
             }
         });
@@ -104,7 +108,7 @@ public class ShopFrame extends JFrame {
         //Bugtransfer Button Player 1
         JButton tButton1 = new JButton();
         tButton1.setText("Give Bugs to Player2");
-        tButton1.setBounds(50,400,150,50);
+        tButton1.setBounds(50,300,150,50);
         tButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 iKäfer1--;
@@ -116,8 +120,8 @@ public class ShopFrame extends JFrame {
                     iKäfer2++;
                     kLabel2.setText("Käfer Player 2 = "+ iKäfer2);
                     kLabel1.setText("Käfer Player 1 = "+ iKäfer1);
-                    System.out.println("Käfer gegeben");
-                    System.out.println("KÃ¤fer abziehn");
+                    System.out.println("Kaeferzahl Player 1 = "+iKäfer1);
+                    System.out.println("Kaeferzahl Player 2 = "+iKäfer2);
                    }
             }
         });
@@ -136,8 +140,9 @@ public class ShopFrame extends JFrame {
                 }
                 else{
                     kLabel2.setText("Käfer Player 2 = "+ iKäfer2);        //missing Healevent!!!
-                    System.out.println("HP auffÃ¼llen");
-                    System.out.println("KÃ¤fer abziehn");
+                    main.Main.obj_list.get(3).hp+=10;
+                    System.out.println("Neue HP Player 2 = "+main.Main.obj_list.get(3).hp);
+                    System.out.println("Kaeferzahl Player 2 = "+iKäfer2);
                    }
             }
 
@@ -146,7 +151,7 @@ public class ShopFrame extends JFrame {
         //Mana Player2
         JButton mButton2 = new JButton();
         mButton2.setText("Manatrank Player 2");
-        mButton2.setBounds(200,300,150,50);
+        mButton2.setBounds(200,250,150,50);
         mButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 iKäfer2 = iKäfer2 - iManatrank;
@@ -156,8 +161,9 @@ public class ShopFrame extends JFrame {
                 }
                 else{
                     kLabel2.setText("Käfer Player 2 = "+ iKäfer2);        //missing Manaevent!!!
-                    System.out.println("Mana auffÃ¼llen");
-                    System.out.println("KÃ¤fer abziehn");
+                    main.Main.obj_list.get(3).mp+=10;
+                    System.out.println("Neue HP Player 2 = "+main.Main.obj_list.get(3).hp);
+                    System.out.println("Kaeferzahl Player 2 = "+iKäfer2);
                    }
             }
         });
@@ -165,7 +171,7 @@ public class ShopFrame extends JFrame {
         //Bugtransfer Button Player 2
         JButton tButton2 = new JButton();
         tButton2.setText("Give Bugs to Player1");
-        tButton2.setBounds(200,400,150,50);
+        tButton2.setBounds(200,300,150,50);
         tButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 iKäfer2--;
@@ -177,8 +183,8 @@ public class ShopFrame extends JFrame {
                     iKäfer1++;
                     kLabel2.setText("Käfer Player 2 = "+ iKäfer2);
                     kLabel1.setText("Käfer Player 1 = "+ iKäfer1);
-                    System.out.println("Käfer gegeben");
-                    System.out.println("KÃ¤fer abziehn");
+                    System.out.println("Kaeferzahl Player 1 = "+iKäfer1);
+                    System.out.println("Kaeferzahl Player 2 = "+iKäfer2);
                    }
             }
         });
@@ -191,7 +197,7 @@ public class ShopFrame extends JFrame {
           });
         //Eventlistener Ende
 
-        setSize(512,768);
+        setSize(512,512);
          setResizable(false);
          setLayout(null);
          setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

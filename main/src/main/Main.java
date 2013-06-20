@@ -34,6 +34,7 @@ public class Main{
 		Renderer rendern = new Renderer();
 		rendern.start();
 		game = new Game();
+//		game.manage();
 
 	}
 	
