@@ -13,6 +13,7 @@ import main.Game;
 this.naechster_raum=Integer.parseInt(file)+1;
 this.datei = file+".txt";
 */
+import main.Main;
 
 public class Create {
 	
@@ -31,7 +32,7 @@ public class Create {
 		Board board = new Board("1");
 		gameobjects.add(0,board);
 		create_room(String.valueOf(datei));
-		if (Game.Nr_of_Players==1) {
+		if (Main.game.Nr_of_Players==1) {
 			hero2 = new Hero(0, 0, "hedgehog");
 			hero2.image = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"bg menue.png");
 		}

@@ -112,8 +112,9 @@ public class GUI extends javax.swing.JFrame {
         Main.renderFrame.setVisible(true); 
         //Main.renderFrame.toFront();
         
+        Main.dauerhaft();
         Main.ini();
-    	Main.dauerhaft();
+    	
     	
     	
 	    /*javax.swing.SwingUtilities.invokeLater(new Runnable() {

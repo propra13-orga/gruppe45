@@ -13,6 +13,7 @@ public class Figure {
 	public int denseness = 10;			//can objects pass through?
 	public int hp;						//health points
 	public int mp;						//mana points
+	public int bugs;
 	public int lives = 0;
 	public int speed = 1;
 	public int dmg;						//damage
