@@ -1,12 +1,9 @@
 package main;
 
-import graphics.*;
-import local.*;
 import movement.Keyboard;
 import main.Main;
 
 import java.io.IOException;
-import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 
 

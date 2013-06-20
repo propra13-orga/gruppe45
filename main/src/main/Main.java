@@ -1,20 +1,15 @@
 package main;
 
-import gameobjects.Figure;
 import gameobjects.Create;
-import graphics.*;
-import local.Fs;
-import main.GUI;
-import movement.Keyboard;
+import gameobjects.Figure;
+import graphics.Renderer;
 
-import java.awt.Component;
-import java.awt.Graphics;
-import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.ArrayList;
-import javax.swing.JFrame;
+
 import javax.swing.JInternalFrame;
-import javax.swing.JPanel;
+
+import local.Fs;
 
 public class Main{
 	public static JInternalFrame renderFrame = new JInternalFrame();
