@@ -110,6 +110,8 @@ public class GUI extends javax.swing.JFrame {
         //Main.renderFrame.toFront();
         
         Main.dauerhaft();
+        System.out.println(Main.game.level);
+        System.out.println(Main.game.level);
         Main.ini();
     	
     	

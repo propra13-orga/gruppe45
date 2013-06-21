@@ -11,6 +11,8 @@ import javax.swing.JInternalFrame;
 
 import local.Fs;
 
+//import local;
+
 public class Main{
 	public static JInternalFrame renderFrame = new JInternalFrame();
 	public static double scale = 0.5;
@@ -36,8 +38,24 @@ public class Main{
 	public static void ini(){
 	       Fs.init();
 		   obj_list = Create.init();
+		   //print_obj_list();
 	}
 	
+	public static void print_obj_list() {
+		int i =0;
+		for (Figure figur: obj_list) {
+			System.out.println(i);
+			System.out.println(figur.getClass().getSimpleName());
+			System.out.println(figur.pos_x);
+			System.out.println(figur.pos_y);
+			System.out.println(figur.image.getWidth(null));
+			System.out.println(figur.image.getHeight(null));
+			System.out.println("-------------------------");
+			i++;
+		}
+		System.out.println("--- Ende der Liste -------");
+		
+	}
 	
 	public static void main(String[] args) throws IOException{
 
