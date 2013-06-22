@@ -15,6 +15,7 @@ public class Hero extends Figure {
 		this.start_x=x;
 		this.start_y=y;
 		this.hp = this.start_hp;
+		this.mp = 100;
 		this.lives=2;
 		this.dmg = 100;
 		this.destroyable = true;

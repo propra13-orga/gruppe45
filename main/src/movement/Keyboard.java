@@ -47,9 +47,12 @@ public class Keyboard implements KeyListener {
 					break;
 				
 				case KeyEvent.VK_SPACE:
-					int[] pos = Methods.getPosition_Spell(Main.obj_list.get(2));
-					@SuppressWarnings("unused")
-					Spell fireball = new Spell(pos[0], pos[1], Toolkit.getDefaultToolkit().getImage(Fs.img_pfad + "heart.jpg"),Main.obj_list.get(2).direction, 300);
+					if((Main.obj_list.get(2).mp -= 10) >= 0)
+					{
+						int[] pos = Methods.getPosition_Spell(Main.obj_list.get(2));
+						@SuppressWarnings("unused")
+						Spell fireball = new Spell(pos[0], pos[1], Toolkit.getDefaultToolkit().getImage(Fs.img_pfad + "heart.jpg"),Main.obj_list.get(2).direction, 300);
+					}
 					break;
 					
 				case KeyEvent.VK_ESCAPE:
