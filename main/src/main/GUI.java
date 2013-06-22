@@ -1,6 +1,5 @@
 package main;
 
-import movement.Keyboard;
 import main.Main;
 
 import java.io.IOException;
@@ -8,31 +7,29 @@ import javax.swing.JLayeredPane;
 
 
 /*public class Main{
-    
-    public static void main(String[] args) throws IOException{
-       Fs.init(); // fs = filesystem. Wo sind wir (und die Bild- und Leveldateien)?
-       menu spielmenu = new menu(); 
-       spielmenu.zeige_menu();
-       GUI1 run = new GUI1();
-       run.testGUI1();
-       JFrame mainFrame = new JFrame();
-       Renderer rendern = new Renderer();
-       rendern.setFrame(mainFrame);
-       rendern.run();
-       
-    }
+public static void main(String[] args) throws IOException{
+Fs.init(); // fs = filesystem. Wo sind wir (und die Bild- und Leveldateien)?
+menu spielmenu = new menu();
+spielmenu.zeige_menu();
+GUI1 run = new GUI1();
+run.testGUI1();
+JFrame mainFrame = new JFrame();
+Renderer rendern = new Renderer();
+rendern.setFrame(mainFrame);
+rendern.run();
+}
 }
 */
 public class GUI extends javax.swing.JFrame {
-	
-	public static int FRAMESIZE_X = Main.board_width;
-	public static int FRAMESIZE_Y = Main.board_height;
-	JLayeredPane cont;
-	graphics.PlayerLeft left;
+
+public static int FRAMESIZE_X = Main.board_width;
+public static int FRAMESIZE_Y = Main.board_height;
+JLayeredPane cont;
+graphics.PlayerLeft left;
 
     public GUI() {
         setUndecorated(true);
-    	initComponents();
+     initComponents();
         setSize(GUI.FRAMESIZE_X, GUI.FRAMESIZE_Y);
         setResizable(false);
     }
@@ -83,64 +80,39 @@ public class GUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    	this.setVisible(true);
-    	
-        //JInternalFrame renderFrame = new JInternalFrame();
-        Main.renderFrame.setSize(Main.board_width, Main.board_height);
-	   	Main.renderFrame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-	   	
-	   	//ab hier Änderungen
-//	  	StatusBar sbar = new StatusBar();
-	  	
-	  	Keyboard KPlayer1 = new Keyboard();
-    	Main.renderFrame.setFocusable(true);
-    	Main.renderFrame.addKeyListener(KPlayer1);
-    	 	
-	 
-	   		   	
-	   	//hier neuer Container
-	   	cont = getLayeredPane();
-	   	cont.add(Main.renderFrame, new Integer(100));
-	  	 
-	   	
+     this.setVisible(true);
+    
+//ab hier Änderungen
+// StatusBar sbar = new StatusBar();
 
-	   	
-       // this.add(Main.renderFrame);auskommentiert Jessica
-        Main.renderFrame.setVisible(true); 
-        //Main.renderFrame.toFront();
-        
-        Main.dauerhaft();
-        System.out.println(Main.game.level);
-        System.out.println(Main.game.level);
-        Main.ini();
-    	
-    	
-    	
-	    /*javax.swing.SwingUtilities.invokeLater(new Runnable() {
-	        public void run() {
-	        	Main.ini();
-	        	Main.dauerhaft(renderFrame);
-	        }
-	        
-	    });*/
- 	
+//hier neuer Container
+cont = getLayeredPane();
+    
+    
+/*javax.swing.SwingUtilities.invokeLater(new Runnable() {
+public void run() {
+Main.ini();
+Main.dauerhaft(renderFrame);
+}
+});*/
+ 
     }//GEN-LAST:event_jButton1ActionPerformed
 
- 	
+ 
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
-     * @param args the command line arguments
-     */
+* @param args the command line arguments
+*/
     public static void main(String args[])throws IOException {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+* For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+*/
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {

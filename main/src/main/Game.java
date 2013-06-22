@@ -1,20 +1,10 @@
 package main;
 
-import java.util.Random;
+import gameobjects.Create;
 import collision.Coll;
 import movement.*;
 
-public class Game {
-
-	public boolean ingame = true;					//ingame == false while in menu
-	public boolean run = false;						//movements are made when run == true, then run ist set to false until painted
-
-	public int Nr_of_Players = 1;					//1 == Singleplayer , 2 == Multiplayer
-	public int room = 1;
-	public int level =1;
-	public int shop = 0;							//1 for player 1 in range, 2 for player 2, 3 for both, 0 else
-	
-	public Random rand = new Random();				//variable for random movement
+public class Game extends Thread{
 
 	//creates keyboards and adds keylistener
 /*	void setKeyboard(){
@@ -31,33 +21,37 @@ public class Game {
 */	
 	
 	//manages the game
-	void manage(){
+	public void run(){
 		
 		while(true)
 		{
 			//while not hitting goal
 			while(Coll.goal())
 			{
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException e) {}
 				//if game is running
-				if(ingame)
+				if(Main.ingame)
 				{
 					AI.move_all_opp();
-					Coll.shop();
-					Coll.poison();
+//					Coll.shop();
+//					Coll.poison();
 				}
 			}
 			
-/*			if((room += 1) > 3)
+			if((Main.room += 1) > 3)
 			{
-				room = 1;
-				if((level += 1) > 3)
+				Main.room = 1;
+				if((Main.level += 1) > 3)
 				{
 					System.exit(0);
 				}
 				
-			}*/
+			}
 			
-			System.exit(0);
+			Main.obj_list.clear();
+			Main.obj_list = Create.init();
 			
 		}
 	}
