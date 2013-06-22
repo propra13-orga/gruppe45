@@ -1,6 +1,4 @@
-n
-# Spielfeld
-n    w    12     
+#    w    12     
 n    w  
 nwwwww           t
 n                t

@@ -13,13 +13,13 @@ import java.awt.event.KeyListener;
 public class Keyboard implements KeyListener {
 
 	int key;
-
+	
 	int STEP = 10;
-
+	
 	//moves the rabbit
 	//Move: moving figure and testing collisions
 	//Spielfeld.obj_list.get(2) = hase
-	public void keyPressed (KeyEvent e){
+		public void keyPressed (KeyEvent e){
 		key = e.getKeyCode();
 		if (Main.ingame) { // game is running
 			switch(key) {
@@ -47,31 +47,34 @@ public class Keyboard implements KeyListener {
 					break;
 				
 				case KeyEvent.VK_SPACE:
-					int[] pos = Methods.getPosition_Spell(Main.obj_list.get(2));
-					@SuppressWarnings("unused")
-					Spell fireball = new Spell(pos[0], pos[1], Toolkit.getDefaultToolkit().getImage(Fs.img_pfad + "heart.jpg"),Main.obj_list.get(2).direction, 300);
+					if((Main.obj_list.get(2).mp -= 10) >= 0)
+					{
+						int[] pos = Methods.getPosition_Spell(Main.obj_list.get(2));
+						@SuppressWarnings("unused")
+						Spell fireball = new Spell(pos[0], pos[1], Toolkit.getDefaultToolkit().getImage(Fs.img_pfad + "heart.jpg"),Main.obj_list.get(2).direction, 300);
+					}
 					break;
-					
+				
 				case KeyEvent.VK_ESCAPE:
 					Main.ingame = false;
-					System.exit(0);									//change later
-					break;					
+					System.exit(0);	//change later
+					break;	
 				
 				default:
-					// nix			
+				// nix
 			}
 		} else { // in menu
 			switch(key) {
-			case KeyEvent.VK_N: // int 83
-				//calc.neues_spiel = true;
-				break;
-			case KeyEvent.VK_B: // 
-				System.exit(0);
-				break;
-			case KeyEvent.VK_ESCAPE:
-				Main.ingame = true;
-				break;
-			default:
+				case KeyEvent.VK_N: // int 83
+					//calc.neues_spiel = true;
+					break;
+				case KeyEvent.VK_B: //
+					System.exit(0);
+					break;
+				case KeyEvent.VK_ESCAPE:
+					Main.ingame = true;
+					break;
+				default:
 				// nothing
 			}
 		}
@@ -80,14 +83,14 @@ public class Keyboard implements KeyListener {
 	//Angleichen, je nach endgültigem Bewegungssystem
 	public void keyReleased(KeyEvent e){
 		key = e.getKeyCode();
-	    if (key == KeyEvent.VK_LEFT)Main.obj_list.get(2).image = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"bunny_l.png");
-	    if (key == KeyEvent.VK_RIGHT)Main.obj_list.get(2).image = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"bunny_r.png");
-//	    if (key == KeyEvent.VK_UP)
-//	    if (key == KeyEvent.VK_DOWN)
+		if (key == KeyEvent.VK_LEFT)Main.obj_list.get(2).image = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"bunny_l.png");
+		if (key == KeyEvent.VK_RIGHT)Main.obj_list.get(2).image = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"bunny_r.png");
+		// if (key == KeyEvent.VK_UP)
+		// if (key == KeyEvent.VK_DOWN)
 	}
-
-	  public void keyTyped(java.awt.event.KeyEvent e) {
-		        // notwendig, da abstract inherited
-	  }
+	
+	public void keyTyped(java.awt.event.KeyEvent e) {
+		// notwendig, da abstract inherited
+	}
 
 }

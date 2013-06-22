@@ -25,15 +25,15 @@ public int rand_x = 40;
 public int rand_y = 70;
 public String nachricht ="";
 
-public Board(int lvl, int room){
-super(0,0,0,Create.set_board_bg_image(lvl, room)); //Überarbeiten....aktuelles bild einfügen
-this.initBoard();
-}
+	public Board(int lvl, int room){
+		super(0,0,0,Create.get_board_bg_image(lvl, room)); //Überarbeiten....aktuelles bild einfügen
+		this.initBoard();
+	}
 
 
-private void initBoard(){ // called by all class constructors to set start values
-//this.bg_image =Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"Su_s BG.png");
-this.max_x_blocks = Main.board_width/this.block_groesse;
-this.max_y_blocks = Main.board_height/this.block_groesse;
-}
+	private void initBoard(){ // called by all class constructors to set start values
+	//this.bg_image =Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"Su_s BG.png");
+	this.max_x_blocks = Main.board_width/this.block_groesse;
+	this.max_y_blocks = Main.board_height/this.block_groesse;
+	}
 }

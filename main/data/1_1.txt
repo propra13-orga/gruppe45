@@ -1,5 +1,4 @@
-# Spielfeld
-n    w  
+#    w  
 n s  w   k 
 nw   w     w w t
 n         k

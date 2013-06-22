@@ -1,15 +1,12 @@
-n
-# Spielfeld
-n    w  
-n    w 
+#             w  
+n             w 
 nw        w w t
-n         k
-n         ww   
+n       k
+n         w
 n21       w      
 n         w        
 n              
 n            
 n   w  k        t
 n   w   
-n  
 n         z
