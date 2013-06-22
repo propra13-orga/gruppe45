@@ -1,6 +1,5 @@
 package movement;
 
-import main.Game;
 import main.Main;
 import collision.*;
 import gameobjects.Figure;
@@ -9,8 +8,8 @@ public class AI {
 
 	//uses move on all opponents
 	public static void move_all_opp(){
-		for(int i = 3 ; i < Main.obj_list.size() ; i++){
-			move(Main.obj_list.get(i));
+		for(int i = 5 ; i < Main.obj_list.size() ; i++){
+			if(Main.obj_list.get(i).type == 3) move(Main.obj_list.get(i));
 		}
 	}
 
@@ -38,37 +37,38 @@ public class AI {
 	//random movement
 	static void rand_move(Figure figure){
 		
-		int rand = Main.game.rand.nextInt(8);						//get random number between 0 and 7
+		int rand = Main.rand.nextInt(9);						//get random number between 0 and 7
 		
 		switch(rand){											//random movement
-		case 0:	Move.up(figure);								//up
+		case 0:	Move.up(figure , 1);								//up
 				break;
 		
-		case 1:	Move.up(figure);								//up + right
-				Move.right(figure);
+		case 1:	Move.up(figure , 1);								//up + right
+				Move.right(figure , 1);
 				break;
 		
-		case 2:	Move.right(figure);								//right
+		case 2:	Move.right(figure , 1);								//right
 				break;
 		
-		case 3:	Move.right(figure);								//right + down
-				Move.down(figure);
+		case 3:	Move.right(figure , 1);								//right + down
+				Move.down(figure , 1);
 				break;
 		
-		case 4:	Move.down(figure);								//down
+		case 4:	Move.down(figure , 1);								//down
 				break;
 		
-		case 5:	Move.down(figure);								//down + left
-				Move.left(figure);
+		case 5:	Move.down(figure , 1);								//down + left
+				Move.left(figure , 1);
 				break;
 		
-		case 6:	Move.left(figure);								//left
+		case 6:	Move.left(figure , 1);								//left
 				break;
 		
-		case 7:	Move.left(figure);								//left + up
-				Move.up(figure);
+		case 7:	Move.left(figure , 1);								//left + up
+				Move.up(figure , 1);
 				break;
 		
+		case 8:	break;												//too lazy to move
 		}
 	}
 	

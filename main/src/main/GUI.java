@@ -1,6 +1,5 @@
 package main;
 
-import movement.Keyboard;
 import main.Main;
 
 import java.io.IOException;
@@ -84,34 +83,12 @@ public class GUI extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     	this.setVisible(true);
-    	
-        //JInternalFrame renderFrame = new JInternalFrame();
-        Main.renderFrame.setSize(Main.board_width, Main.board_height);
-	   	Main.renderFrame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-	   	
+    		   	
 	   	//ab hier Änderungen
-//	  	StatusBar sbar = new StatusBar();
-	  	
-	  	Keyboard KPlayer1 = new Keyboard();
-    	Main.renderFrame.setFocusable(true);
-    	Main.renderFrame.addKeyListener(KPlayer1);
-    	 	
-	 
+//	  	StatusBar sbar = new StatusBar();  	 	
 	   		   	
 	   	//hier neuer Container
-	   	cont = getLayeredPane();
-	   	cont.add(Main.renderFrame, new Integer(100));
-	  	 
-	   	
-
-	   	
-       // this.add(Main.renderFrame);auskommentiert Jessica
-        Main.renderFrame.setVisible(true); 
-        //Main.renderFrame.toFront();
-        
-        Main.dauerhaft();
-        Main.ini();
-    	
+	   	cont = getLayeredPane();       
     	
     	
 	    /*javax.swing.SwingUtilities.invokeLater(new Runnable() {

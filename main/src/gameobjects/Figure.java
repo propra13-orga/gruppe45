@@ -4,9 +4,6 @@ package gameobjects;
 
 import java.awt.Image;
 
-import main.Main;
-
-
 public class Figure {
 	
 	public Image image;

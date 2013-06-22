@@ -8,26 +8,29 @@ import java.awt.event.KeyListener;
 public class Keyboard2 implements KeyListener {
 
 	int key;
+	
+	int STEP = 10;
+	
 	//Move: moving figure and testing collisions
 	//Spielfeld.obj_list.get(1) = hase
 	public void keyPressed (KeyEvent e){
 		key = e.getKeyCode();
-		if (Main.game.ingame) { // game is running
+		if (Main.ingame) { // game is running
 			switch(key) {
 				case KeyEvent.VK_A:	// left
-					Move.left(Main.obj_list.get(3));
+					Move.left(Main.obj_list.get(3) , STEP);
 					break;
 				case KeyEvent.VK_D: // right
-					Move.right(Main.obj_list.get(3));
+					Move.right(Main.obj_list.get(3) , STEP);
 					break;
 				case KeyEvent.VK_W: // up
-					Move.up(Main.obj_list.get(3));
+					Move.up(Main.obj_list.get(3) , STEP);
 					break;
 				case KeyEvent.VK_S: // down
-					Move.down(Main.obj_list.get(3));
+					Move.down(Main.obj_list.get(3) , STEP);
 					break;
 				case KeyEvent.VK_ESCAPE:
-					Main.game.ingame = false;
+					Main.ingame = false;
 					break;					
 				default:
 					// nix			
@@ -41,7 +44,7 @@ public class Keyboard2 implements KeyListener {
 				System.exit(0);
 				break;
 			case KeyEvent.VK_ESCAPE:
-				Main.game.ingame = true;
+				Main.ingame = true;
 				break;
 			default:
 				// nothing
