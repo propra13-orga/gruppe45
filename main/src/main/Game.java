@@ -26,6 +26,7 @@ Main.renderFrame.addKeyListener(KPlayer2);
 		while(true)
 		{
 			//while not hitting goal
+			Main.obj_list = Create.create_room(Main.level, Main.room);
 			while(Coll.goal())
 			{
 				try {
@@ -52,7 +53,6 @@ Main.renderFrame.addKeyListener(KPlayer2);
 			}
 
 			//Main.obj_list.clear();
-			Main.obj_list = Create.create_room(Main.level, Main.room);
 		}
 	}
 }

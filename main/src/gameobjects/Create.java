@@ -153,17 +153,17 @@ public static ArrayList<Figure> create_room(int lvl, int room) { // reads level 
 	gameobjects.add(3,hero2);
 	gameobjects.add(4,shop);
 
-//		int i = 0;
-//		for (Figure  figur: gameobjects) {
-//			System.out.println(i);
-//			System.out.println(figur.getClass().getSimpleName());
-//			System.out.println(figur.image.getWidth(null));
-//			System.out.println(figur.image.getHeight(null));
-//			System.out.println(figur.pos_x);
-//			System.out.println(figur.pos_y);
-//			System.out.println("-------------------");
-//			i++;
-//		}
+		int i = 0;
+		for (Figure  figur: gameobjects) {
+			System.out.println(i);
+			System.out.println(figur.getClass().getSimpleName());
+			System.out.println(figur.image.getWidth(null));
+			System.out.println(figur.image.getHeight(null));
+			System.out.println(figur.pos_x);
+			System.out.println(figur.pos_y);
+			System.out.println("-------------------");
+			i++;
+		}
 		return gameobjects;
 	}
 }
