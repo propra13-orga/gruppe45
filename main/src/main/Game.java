@@ -39,8 +39,9 @@ public class Game extends Thread{
 				{
 					Fly.fly();
 					AI.move_all_opp();
-//					Coll.shop();
-//					Coll.poison();
+					Coll.shop();
+					Coll.poison();
+					System.out.println(Main.obj_list.get(2).hp);
 				}
 			}
 			

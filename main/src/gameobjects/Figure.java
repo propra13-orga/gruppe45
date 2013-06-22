@@ -27,7 +27,7 @@ public class Figure {
 	public int start_x;
 	public int pos_y;
 	public int start_y;
-	public int fog = 10;				//only for poisonous trees, shop
+	public int fog = 20;				//only for poisonous trees, shop
 	public char direction = 'r';		//used for spells, random movement
 	
 	public Figure(int figure_type, int x, int y, Image img) {

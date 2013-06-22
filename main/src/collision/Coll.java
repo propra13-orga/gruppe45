@@ -61,7 +61,7 @@ public class Coll {
 				if (   (Main.obj_list.get(2).pos_x < Main.obj_list.get(i).pos_x + Main.obj_list.get(i).image.getWidth(null) + Main.obj_list.get(i).fog)
 					&& (Main.obj_list.get(2).pos_x + Main.obj_list.get(2).image.getWidth(null) > Main.obj_list.get(i).pos_x - Main.obj_list.get(i).fog)
 					&& (Main.obj_list.get(2).pos_y < Main.obj_list.get(i).pos_y + Main.obj_list.get(i).image.getHeight(null) + Main.obj_list.get(i).fog)
-					&& (Main.obj_list.get(2).pos_y + Main.obj_list.get(2).image.getHeight(null) > Main.obj_list.get(i).pos_y - Main.obj_list.get(i).fog) )
+					&& (Main.obj_list.get(2).pos_y + Main.obj_list.get(2).image.getHeight(null) > Main.obj_list.get(i).pos_y + Main.obj_list.get(i).image.getHeight(null) / 3 - Main.obj_list.get(i).fog) )
 				{
 					deal_dmg(Main.obj_list.get(i) , Main.obj_list.get(2));
 				}
@@ -176,13 +176,14 @@ public class Coll {
 		{
 			if(Main.obj_list.get(i).destroyable)
 			{
-//				if((Main.obj_list.get(i).hp -= spell.dmg) < 1)				//if targets hp is < 1
+				if((Main.obj_list.get(i).hp -= spell.dmg) < 1)				//if targets hp is < 1
+				{
 					Main.obj_list.remove(i);
 					for(int j = i ; j < Main.obj_list.size() ; j++)			//update index, since 1 figure was removed
 					{
 						Main.obj_list.get(j).nr = j;
 					}
-//				}
+				}
 			}
 		}
 	}
