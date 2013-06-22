@@ -27,7 +27,8 @@ public class Game extends Thread{
 		{
 			//while not hitting goal
 			System.out.println(Main.room);
-			System.out.println(Main.level);
+//			System.out.println(Main.level);
+			Main.obj_list = Create.init();
 			while(Coll.goal())
 			{
 				try {
@@ -36,6 +37,7 @@ public class Game extends Thread{
 				//if game is running
 				if(Main.ingame)
 				{
+					Fly.fly();
 					AI.move_all_opp();
 //					Coll.shop();
 //					Coll.poison();

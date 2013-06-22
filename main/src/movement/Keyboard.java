@@ -3,6 +3,9 @@ package movement;
 import local.Fs;
 import main.*;
 
+import gameobjects.Methods;
+import gameobjects.Spell;
+
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -20,24 +23,40 @@ public class Keyboard implements KeyListener {
 		key = e.getKeyCode();
 		if (Main.ingame) { // game is running
 			switch(key) {
+				
 				case KeyEvent.VK_LEFT:// int 37
+					Main.obj_list.get(2).direction = 'l';
 					Main.obj_list.get(2).image = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"bunny_l_motion.png");
 					Move.left(Main.obj_list.get(2) , STEP);
 					break;
+				
 				case KeyEvent.VK_RIGHT: // int 18
+					Main.obj_list.get(2).direction = 'r';
 					Main.obj_list.get(2).image = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"bunny_r_motion.png");
 					Move.right(Main.obj_list.get(2) , STEP);
 					break;
+				
 				case KeyEvent.VK_UP: // int 38
+					Main.obj_list.get(2).direction = 'u';
 					Move.up(Main.obj_list.get(2) , STEP);
 					break;
+				
 				case KeyEvent.VK_DOWN: // int 40
+					Main.obj_list.get(2).direction = 'd';
 					Move.down(Main.obj_list.get(2) , STEP);
 					break;
+				
+				case KeyEvent.VK_SPACE:
+					int[] pos = Methods.getPosition_Spell(Main.obj_list.get(2));
+					@SuppressWarnings("unused")
+					Spell fireball = new Spell(pos[0], pos[1], Toolkit.getDefaultToolkit().getImage(Fs.img_pfad + "heart.jpg"),Main.obj_list.get(2).direction, 300);
+					break;
+					
 				case KeyEvent.VK_ESCAPE:
 					Main.ingame = false;
 					System.exit(0);									//change later
 					break;					
+				
 				default:
 					// nix			
 			}

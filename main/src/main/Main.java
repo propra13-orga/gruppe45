@@ -31,7 +31,7 @@ public class Main{
 	
 	public static void main(String[] args) throws IOException{
 		Fs.init();
-		obj_list = Create.init();
+//		obj_list = Create.init();
 		Game game = new Game();
 		game.start();
 		graphics.MasterFrame window = new graphics.MasterFrame();	
