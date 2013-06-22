@@ -8,7 +8,8 @@ import local.Fs;
 public class Fox extends Figure {
 	public Fox (int x, int y) {
 		super(3,x,y,Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"fox_l.png"));
-		this.speed = 1;
 		this.dmg = 100;
+		this.hp = 400;
+		this.destroyable = true;
 	}
 }

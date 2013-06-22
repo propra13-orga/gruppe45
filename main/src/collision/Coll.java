@@ -61,7 +61,7 @@ public class Coll {
 				if (   (Main.obj_list.get(2).pos_x < Main.obj_list.get(i).pos_x + Main.obj_list.get(i).image.getWidth(null) + Main.obj_list.get(i).fog)
 					&& (Main.obj_list.get(2).pos_x + Main.obj_list.get(2).image.getWidth(null) > Main.obj_list.get(i).pos_x - Main.obj_list.get(i).fog)
 					&& (Main.obj_list.get(2).pos_y < Main.obj_list.get(i).pos_y + Main.obj_list.get(i).image.getHeight(null) + Main.obj_list.get(i).fog)
-					&& (Main.obj_list.get(2).pos_y + Main.obj_list.get(2).image.getHeight(null) > Main.obj_list.get(i).pos_y - Main.obj_list.get(i).fog) )
+					&& (Main.obj_list.get(2).pos_y + Main.obj_list.get(2).image.getHeight(null) > Main.obj_list.get(i).pos_y + Main.obj_list.get(i).image.getHeight(null) / 3 - Main.obj_list.get(i).fog) )
 				{
 					deal_dmg(Main.obj_list.get(i) , Main.obj_list.get(2));
 				}
@@ -124,6 +124,24 @@ public class Coll {
 			}
 			return true;
 
+		case 9:
+			for(int i=2; i < Main.obj_list.size(); i++){
+				if (Main.obj_list.get(i).nr == tester.nr)		//don't test yourself
+				{
+					continue;
+				}
+				else if ( 	(tester.pos_x + x < Main.obj_list.get(i).pos_x + Main.obj_list.get(i).image.getWidth(null))
+						 && (tester.pos_x + x + tester.image.getWidth(null) > Main.obj_list.get(i).pos_x)
+						 && (tester.pos_y + y < Main.obj_list.get(i).pos_y + Main.obj_list.get(i).image.getHeight(null))
+						 && (tester.pos_y + y +tester.image.getHeight(null) > Main.obj_list.get(i).pos_y) )
+				{
+					hit(tester , i);
+					Main.obj_list.remove(tester.nr);
+					return false;
+				}
+			}
+			return true;
+
 		default:
 			return true;
 	}
@@ -150,6 +168,24 @@ public class Coll {
 	//deals dmg to players
 	static void deal_dmg(Figure dealer , Figure reciever){
 		reciever.hp-=dealer.dmg;
+	}
+	
+	//called upon a spells collision, damages the target and destroyes it if hp <= 0
+	public static void hit(Figure spell, int i){
+		if(Main.obj_list.get(i).type == 3)
+		{
+			if(Main.obj_list.get(i).destroyable)
+			{
+				if((Main.obj_list.get(i).hp -= spell.dmg) < 1)				//if targets hp is < 1
+				{
+					Main.obj_list.remove(i);
+					for(int j = i ; j < Main.obj_list.size() ; j++)			//update index, since 1 figure was removed
+					{
+						Main.obj_list.get(j).nr = j;
+					}
+				}
+			}
+		}
 	}
 
 }

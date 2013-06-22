@@ -16,19 +16,7 @@ public class Hero extends Figure {
 		this.start_y=y;
 		this.hp = this.start_hp;
 		this.lives=2;
-		this.speed = 5;
 		this.dmg = 100;
 		this.destroyable = true;
 	}
-
-	public Image getImage_hero() {
-		return this.image;
-	}
-	
-	public Image getImage_healthbar() {
-		if(this.hp>66) return Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"healthbar_green.png");
-		if(this.hp>33) return Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"healthbar_yellow.png");
-		else return Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"healthbar_red.png");
-	}
-
 }

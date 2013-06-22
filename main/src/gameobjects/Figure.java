@@ -12,12 +12,7 @@ public class Figure {
 	public int mp;						//mana points
 	public int bugs;
 	public int lives = 0;
-	public int speed = 1;
 	public int dmg;						//damage
-	public int aoe;						//area of effect (range of dmg)
-	public int dps;						//damage per second
-	public int dmg_opp_nr;				//nr. of opponents hit
-	public boolean visible = true;
 	public boolean destroyable = false;
 	public int type;					//describes what type of figure this is:
 										//0 == goal, shop
@@ -32,7 +27,8 @@ public class Figure {
 	public int start_x;
 	public int pos_y;
 	public int start_y;
-	public int fog = 10;				//only for poisonous trees
+	public int fog = 20;				//only for poisonous trees, shop
+	public char direction = 'r';		//used for spells, random movement
 	
 	public Figure(int figure_type, int x, int y, Image img) {
 		type = figure_type;
