@@ -65,6 +65,12 @@ public class ShopFrame extends JFrame {
         JLabel labelHP = new JLabel (String.valueOf(new Integer(player1.hp)));
         labelB.setBounds(100,120,50,50);
         
+        JLabel labelMP_a = new JLabel("MP:");
+        labelMP_a.setBounds(50,140,50,50);
+        
+        JLabel labelMP = new JLabel(String.valueOf(new Integer(player1.mp)));
+        labelMP.setBounds(100,140,50,50);
+        
         //PlayerRight Label	
     //    JLabel PlayerRechts = new JLabel();
     //    PlayerRechts.setText("Player 2");
@@ -253,6 +259,8 @@ public class ShopFrame extends JFrame {
          layeredPane.add(labelHP, new Integer(10));
          layeredPane.add(klabel1_b, new Integer(10));
          layeredPane.add(labelB, new Integer(10));
+         layeredPane.add(labelMP, new Integer(10));
+         layeredPane.add(labelMP_a, new Integer(10));
 
          setVisible(true);
          
