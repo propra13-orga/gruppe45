@@ -14,7 +14,7 @@ import javax.swing.*;
 import javax.imageio.ImageIO;
 
 import main.Main;
-import main.Gui;
+
 import movement.Keyboard;
 
 
