@@ -48,6 +48,7 @@ public class MasterFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(width, height);							//Window Size
 		setResizable(false);							//Window frame not resizable
+		this.setUndecorated(true);
 		setVisible(true);	
 		createBufferStrategy(2);						//BufferedStrategy active rendering
 		bs = getBufferStrategy();						//setup buffer
