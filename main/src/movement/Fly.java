@@ -33,10 +33,10 @@ public class Fly {
 				
 				if(i < Main.obj_list.size())
 				{
-					if(	Main.obj_list.get(i).pos_x < Main.off + STEP
-						|| Main.obj_list.get(i).pos_x + Main.obj_list.get(i).image.getWidth(null) > Main.board_width - Main.off-STEP
-						|| Main.obj_list.get(i).pos_y < Main.off + STEP
-						|| Main.obj_list.get(i).pos_y + Main.obj_list.get(i).image.getHeight(null) > Main.board_height - Main.off-STEP )
+					if(	Main.obj_list.get(i).pos_x < Main.off + STEP * 2
+						|| Main.obj_list.get(i).pos_x + Main.obj_list.get(i).image.getWidth(null) > Main.board_width - Main.off-STEP * 2
+						|| Main.obj_list.get(i).pos_y < Main.off + STEP * 2
+						|| Main.obj_list.get(i).pos_y + Main.obj_list.get(i).image.getHeight(null) > Main.board_height - Main.off-STEP * 2 )
 					{
 						Main.obj_list.remove(i);
 						for(int j = i ; j < Main.obj_list.size() ; j++)
