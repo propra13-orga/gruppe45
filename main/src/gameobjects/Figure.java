@@ -14,7 +14,7 @@ public class Figure {
 	public Image off = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad + "icon_fireball.png");
 	public Image def;
 	public String name = "blubb";
-	public int hp = 0;						//health points
+	public int hp = 100;						//health points
 	public int hp_pot = 0;
 	public int mp = 0;						//mana points
 	public int mp_pot = 0;
