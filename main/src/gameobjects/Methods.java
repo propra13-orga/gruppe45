@@ -16,27 +16,28 @@ public class Methods {
 	public static int[] getPosition_Spell(Figure caster){
 		
 		int[] pos = new int[2];
+		int SPELL = 50;
 		
 		switch(caster.direction){
 		
 			case 'u':
-				pos[0] = caster.pos_x + caster.image.getHeight(null) / 2;
-				pos[1] = caster.pos_y;
+				pos[0] = caster.pos_x + caster.image.getWidth(null) / 2 - SPELL / 2;
+				pos[1] = caster.pos_y - SPELL;
 				break;
 				
 			case 'r':
 				pos[0] = caster.pos_x + caster.image.getWidth(null);
-				pos[1] = caster.pos_y + caster.image.getHeight(null) / 2;
+				pos[1] = caster.pos_y + caster.image.getHeight(null) / 2 - SPELL / 2;
 				break;
 				
 			case 'd':
-				pos[0] = caster.pos_x + caster.image.getWidth(null) / 2;
+				pos[0] = caster.pos_x + caster.image.getWidth(null) / 2 - SPELL / 2;
 				pos[1] = caster.pos_y + caster.image.getHeight(null);
 				break;
 				
 			case 'l':
-				pos[0] = caster.pos_x;
-				pos[1] = caster.pos_y + caster.image.getHeight(null) / 2;
+				pos[0] = caster.pos_x - SPELL;
+				pos[1] = caster.pos_y + caster.image.getHeight(null) / 2 - SPELL / 2;
 				break;
 		}
 		
