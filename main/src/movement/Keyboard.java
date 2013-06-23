@@ -5,6 +5,7 @@ import main.*;
 
 import gameobjects.Methods;
 import gameobjects.Spell;
+import graphics.ShopFrame;
 
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
@@ -64,6 +65,9 @@ public class Keyboard implements KeyListener {
 					System.exit(0);	//change later
 					break;	
 				
+				case KeyEvent.VK_S:
+					ShopFrame shop = new ShopFrame();
+					break;
 				default:
 				// nix
 			}
