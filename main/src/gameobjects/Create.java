@@ -19,8 +19,8 @@ public class Create {
 	static ArrayList<Figure> gameobjects = new ArrayList<Figure>();
 	
 	private static Goal goal;
-	private static Hero hero1;
-	private static Hero hero2;
+	public static Hero hero1;
+	public static Hero hero2;
 	private static Shop shop;
 	public static Board board;
 	

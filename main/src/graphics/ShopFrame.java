@@ -6,26 +6,16 @@ import javax.swing.JLayeredPane;
 import javax.swing.JLabel;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowAdapter;
-import main.*;
-import gameobjects.Figure;
-import graphics.*;
 import java.io.IOException;
 import java.io.File;
 import javax.swing.*;
 import javax.imageio.ImageIO;
 import java.awt.*;
-import javax.swing.*;
+
 
 public class ShopFrame extends JFrame {
 
     JLayeredPane layeredPane;
-    Figure player1 = Main.obj_list.get(2);						//local variable Player1
-	Figure player2 = Main.obj_list.get(3);
-    
-	
-    
-    
-    
     Image player1Icon, bugs;
 
    //testvalues
@@ -45,30 +35,28 @@ public class ShopFrame extends JFrame {
         JLabel PlayerLinks = new JLabel();
         PlayerLinks.setText("Player 1");
         PlayerLinks.setBounds(50,50,200,50);
-        
-        
-        
+                        
        //Bugs Player 1
         JLabel kLabel1 = new JLabel();
         kLabel1.setText("Käfer: ");
-        kLabel1.setBounds(50,100,200,50);
+        kLabel1.setBounds(50,100,50,50);
        
         JLabel kLabel1_a = new JLabel(new ImageIcon(bugs));
         kLabel1_a.setBounds(10,100,50,50);
         
-        JLabel labelB = new JLabel (String.valueOf(new Integer(player1.bugs)));
+        JLabel labelB = new JLabel (String.valueOf(new Integer(gameobjects.Create.hero1.getBugs())));
         labelB.setBounds(100,100,50,50);
 
         JLabel klabel1_b = new JLabel ("HP:");
         klabel1_b.setBounds(50, 120, 50, 50);
         
-        JLabel labelHP = new JLabel (String.valueOf(new Integer(player1.hp)));
-        labelB.setBounds(100,120,50,50);
+        JLabel labelHP = new JLabel (String.valueOf(new Integer(gameobjects.Create.hero1.getHp())));
+        labelHP.setBounds(100,120,50,50);
         
         JLabel labelMP_a = new JLabel("MP:");
         labelMP_a.setBounds(50,140,50,50);
         
-        JLabel labelMP = new JLabel(String.valueOf(new Integer(player1.mp)));
+        JLabel labelMP = new JLabel(String.valueOf(new Integer(gameobjects.Create.hero1.getMp())));
         labelMP.setBounds(100,140,50,50);
         
         //PlayerRight Label	
@@ -115,12 +103,14 @@ public class ShopFrame extends JFrame {
         hButton1.setBounds(50,200,150,50);
         hButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                if (player1.bugs< 0){
+                if (gameobjects.Create.hero1.getBugs()< 1){
                        noBugs();
                 }
                 else{
-                	player1.hp +=10;					//1 bug = 10 hps
-                    player1.bugs --;					//minus 1 bug
+                	int hp = gameobjects.Create.hero1.getHp()+10;
+                	gameobjects.Create.hero1.setHp(hp); 					//1 bug = 10 hps
+                	int bug = gameobjects.Create.hero1.getBugs()-1;
+                	gameobjects.Create.hero1.setBugs(bug);					//minus 1 bug
                 }
             }
 
@@ -132,12 +122,14 @@ public class ShopFrame extends JFrame {
         mButton1.setBounds(50,250,150,50);
         mButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                if (player1.bugs< 0){
+            	if (gameobjects.Create.hero1.getBugs()< 1){
                   noBugs();
                 }
                 else{
-                	player1.mp +=8;					//1 bug for 8 mana
-                	player1.bugs --;					//minus 1 bug					
+                	int mp = gameobjects.Create.hero1.getMp()+8;
+                	gameobjects.Create.hero1.setMp(mp);//1 bug for 8 mana
+           			int bug = gameobjects.Create.hero1.getBugs()-1;
+                	gameobjects.Create.hero1.setBugs(bug);					//minus 1 bug					
                  }
             }
         });
@@ -258,7 +250,7 @@ public class ShopFrame extends JFrame {
          layeredPane.add(kLabel1_a, new Integer(10));
          layeredPane.add(labelHP, new Integer(10));
          layeredPane.add(klabel1_b, new Integer(10));
-         layeredPane.add(labelB, new Integer(10));
+         layeredPane.add(labelB, new Integer(11));
          layeredPane.add(labelMP, new Integer(10));
          layeredPane.add(labelMP_a, new Integer(10));
 
