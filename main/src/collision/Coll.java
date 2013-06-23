@@ -1,6 +1,8 @@
 package collision;
 
 import gameobjects.Figure;
+import gameobjects.Hero;
+import gameobjects.Item;
 import main.Main;
 
 public class Coll {
@@ -119,11 +121,23 @@ public class Coll {
 						 && (tester.pos_y + y < Main.obj_list.get(i).pos_y + Main.obj_list.get(i).image.getHeight(null))
 						 && (tester.pos_y + y + tester.image.getHeight(null) > Main.obj_list.get(i).pos_y + Main.obj_list.get(i).image.getHeight(null) / 3) )
 				{
-					return false;
+					if(Main.obj_list.get(i).type == 8)
+					{
+						tester.bag.add((Item) Main.obj_list.get(i));
+						Main.obj_list.remove(i);
+						for(int j = i ; j < Main.obj_list.size() ; j++)
+						{
+							Main.obj_list.get(j).nr = j;
+						}
+						return true;
+					}
+					else return false;
 				}
 			}
 			return true;
 
+
+		//Spells
 		case 9:
 			for(int i=2; i < Main.obj_list.size(); i++){
 				if (Main.obj_list.get(i).nr == tester.nr)		//don't test yourself
