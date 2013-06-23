@@ -1,0 +1,13 @@
+#
+n s w
+n w
+nw i w w t
+n k
+n w
+n21 w
+n w
+n
+n
+n w k t
+n w
+n z
