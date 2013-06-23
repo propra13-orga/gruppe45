@@ -28,6 +28,7 @@ public String nachricht ="";
 	public Board(int lvl, int room){
 		super(0,0,0,Create.get_board_bg_image(lvl, room)); //Überarbeiten....aktuelles bild einfügen
 		this.initBoard();
+                Item.get_item_list();
 	}
 
 

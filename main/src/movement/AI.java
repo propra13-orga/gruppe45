@@ -6,6 +6,8 @@ import gameobjects.Figure;
 
 public class AI {
 
+        static int STEP = 5;
+    
 	//uses move on all opponents
 	public static void move_all_opp(){
 		for(int i = 5 ; i < Main.obj_list.size() ; i++){
@@ -16,7 +18,7 @@ public class AI {
 	//moves an opponent
 	public static void move(Figure figure){
 		
-		int closest_player = Range.range(figure);					//index(obj_list) of closest player
+		int closest_player = 0;//Range.range(figure);					//index(obj_list) of closest player
 		
 		if(closest_player == 0)										//no players in range
 		{
@@ -36,42 +38,76 @@ public class AI {
 
 	//random movement
 	static void rand_move(Figure figure){
-		
-		int rand = Main.rand.nextInt(9);						//get random number between 0 and 7
-		
+            if(rand_check(figure))
+            {
+		int rand = Main.rand.nextInt(5);						//get random number between 0 and 7
+
 		switch(rand){											//random movement
-		case 0:	Move.up(figure , 1);								//up
+		case 0:	figure.direction = 'u';
+                    Move.up(figure , STEP);								//up
 				break;
-		
-		case 1:	Move.up(figure , 1);								//up + right
-				Move.right(figure , 1);
+
+		case 1:		figure.direction = 'r';
+                    Move.right(figure , STEP);								//right
 				break;
-		
-		case 2:	Move.right(figure , 1);								//right
+
+		case 2:		figure.direction = 'd';
+                    Move.down(figure , STEP);								//down
 				break;
-		
-		case 3:	Move.right(figure , 1);								//right + down
-				Move.down(figure , 1);
+
+		case 3:		figure.direction = 'l';
+                    Move.left(figure , STEP);								//left
 				break;
-		
-		case 4:	Move.down(figure , 1);								//down
-				break;
-		
-		case 5:	Move.down(figure , 1);								//down + left
-				Move.left(figure , 1);
-				break;
-		
-		case 6:	Move.left(figure , 1);								//left
-				break;
-		
-		case 7:	Move.left(figure , 1);								//left + up
-				Move.up(figure , 1);
-				break;
-		
-		case 8:	break;												//too lazy to move
+
+		case 4:	break;												//too lazy to move
 		}
+            }
 	}
 	
+        //checkes if movment in "direction" is possible, if not, returns true
+        static boolean rand_check(Figure figure){
+            
+            switch(figure.direction){
+                
+                case 'u':
+                    if(figure.pos_y < 30) return true;
+                    else if(Coll.coll(figure, 0, -STEP))
+                    {
+                        Move.up(figure, STEP);
+                        return false;
+                    }
+                    break;
+                    
+                case 'd':
+                    if((figure.pos_y + figure.image.getHeight(null)) > 700) return true;
+                    else if(Coll.coll(figure, 0, STEP))
+                    {
+                        Move.down(figure, STEP);
+                        return false;
+                    }
+                    break;
+                    
+                case 'l':
+                    if(figure.pos_x < 30) return true;
+                    else if(Coll.coll(figure, -STEP, 0))
+                    {
+                        Move.left(figure, STEP);
+                        return false;
+                    }
+                    break;
+                        
+                case 'r':
+                    if((figure.pos_x + figure.image.getWidth(null)) > 1000) return true;
+                    else if(Coll.coll(figure, STEP, 0))
+                    {
+                        Move.right(figure, STEP);
+                        return false;
+                    }
+                    break;
+            }
+            return true;
+        }
+        
 	//intelligent movement towards player
 	static void intel_move(Figure opp , Figure player){
 		

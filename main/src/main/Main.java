@@ -1,6 +1,5 @@
 package main;
 
-import gameobjects.Create;
 import gameobjects.Figure;
 import local.Fs;
 
@@ -12,8 +11,9 @@ public class Main{
 public static double scale = 0.5;
 public static int board_height = 768;
 public static int board_width = 1024;
+public static int off = 50;
 public static int Nr_of_Players = 1;	//1 == Singleplayer , 2 == Multiplayer
-public static int level =1;
+public static int level = 1;
 public static int room = 1;
 public static Random rand = new Random();	//variable for random movement
 public static boolean run = false;	//movements are made when run == true, then run ist set to false until painted

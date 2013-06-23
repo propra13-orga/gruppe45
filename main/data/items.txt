@@ -6,7 +6,7 @@
   <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# githubog: http://ogp.me/ns/fb/githubog#">
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>gruppe45/main/data/1_1.txt at master · propra13-orga/gruppe45 · GitHub</title>
+        <title>gruppe45/main/data/items.txt at master · propra13-orga/gruppe45 · GitHub</title>
     <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="GitHub" />
     <link rel="fluid-icon" href="https://github.com/fluidicon.png" title="GitHub" />
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-114.png" />
@@ -42,7 +42,7 @@
       
       <meta http-equiv="x-pjax-version" content="8175b543b0cb0f2352085cdc68d7cf88">
 
-        <link data-pjax-transient rel='permalink' href='/propra13-orga/gruppe45/blob/ffb6ffcd14c31199241c63cf44e24e948e20f030/main/data/1_1.txt'>
+        <link data-pjax-transient rel='permalink' href='/propra13-orga/gruppe45/blob/ffb6ffcd14c31199241c63cf44e24e948e20f030/main/data/items.txt'>
     <meta property="og:title" content="gruppe45"/>
     <meta property="og:type" content="githubog:gitrepository"/>
     <meta property="og:url" content="https://github.com/propra13-orga/gruppe45"/>
@@ -77,7 +77,7 @@
 
     <div class="header-actions">
       <a class="button primary" href="/signup">Sign up</a>
-      <a class="button" href="/login?return_to=%2Fpropra13-orga%2Fgruppe45%2Fblob%2Fmaster%2Fmain%2Fdata%2F1_1.txt">Sign in</a>
+      <a class="button" href="/login?return_to=%2Fpropra13-orga%2Fgruppe45%2Fblob%2Fmaster%2Fmain%2Fdata%2Fitems.txt">Sign in</a>
     </div>
 
     <div class="command-bar js-command-bar  in-repository">
@@ -251,7 +251,7 @@
 
                 <div class="select-menu-item js-navigation-item selected">
                   <span class="select-menu-item-icon octicon octicon-check"></span>
-                  <a href="/propra13-orga/gruppe45/blob/master/main/data/1_1.txt" class="js-navigation-open select-menu-item-text js-select-button-text css-truncate-target" data-name="master" rel="nofollow" title="master">master</a>
+                  <a href="/propra13-orga/gruppe45/blob/master/main/data/items.txt" class="js-navigation-open select-menu-item-text js-select-button-text css-truncate-target" data-name="master" rel="nofollow" title="master">master</a>
                 </div> <!-- /.select-menu-item -->
             </div>
 
@@ -295,8 +295,8 @@
           
 
 
-<!-- blob contrib key: blob_contributors:v21:744b6a967bece02df050d0736ba96950 -->
-<!-- blob contrib frag key: views10/v8/blob_contributors:v21:744b6a967bece02df050d0736ba96950 -->
+<!-- blob contrib key: blob_contributors:v21:f11a10b777a0d7664d9ec05522377f2a -->
+<!-- blob contrib frag key: views10/v8/blob_contributors:v21:f11a10b777a0d7664d9ec05522377f2a -->
 
 <div id="slider">
     <div class="frame-meta">
@@ -306,11 +306,11 @@
         <a href="/propra13-orga/gruppe45/find/master" class="js-slide-to" data-hotkey="t" style="display:none">Show File Finder</a>
 
         <div class="breadcrumb">
-          <span class='repo-root js-repo-root'><span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/propra13-orga/gruppe45" class="js-slide-to" data-branch="master" data-direction="back" itemscope="url"><span itemprop="title">gruppe45</span></a></span></span><span class="separator"> / </span><span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/propra13-orga/gruppe45/tree/master/main" class="js-slide-to" data-branch="master" data-direction="back" itemscope="url"><span itemprop="title">main</span></a></span><span class="separator"> / </span><span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/propra13-orga/gruppe45/tree/master/main/data" class="js-slide-to" data-branch="master" data-direction="back" itemscope="url"><span itemprop="title">data</span></a></span><span class="separator"> / </span><strong class="final-path">1_1.txt</strong> <span class="js-zeroclipboard zeroclipboard-button" data-clipboard-text="main/data/1_1.txt" data-copied-hint="copied!" title="copy to clipboard"><span class="octicon octicon-clippy"></span></span>
+          <span class='repo-root js-repo-root'><span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/propra13-orga/gruppe45" class="js-slide-to" data-branch="master" data-direction="back" itemscope="url"><span itemprop="title">gruppe45</span></a></span></span><span class="separator"> / </span><span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/propra13-orga/gruppe45/tree/master/main" class="js-slide-to" data-branch="master" data-direction="back" itemscope="url"><span itemprop="title">main</span></a></span><span class="separator"> / </span><span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/propra13-orga/gruppe45/tree/master/main/data" class="js-slide-to" data-branch="master" data-direction="back" itemscope="url"><span itemprop="title">data</span></a></span><span class="separator"> / </span><strong class="final-path">items.txt</strong> <span class="js-zeroclipboard zeroclipboard-button" data-clipboard-text="main/data/items.txt" data-copied-hint="copied!" title="copy to clipboard"><span class="octicon octicon-clippy"></span></span>
         </div>
 
 
-        <div class="commit commit-loader file-history-tease js-deferred-content" data-url="/propra13-orga/gruppe45/contributors/master/main/data/1_1.txt">
+        <div class="commit commit-loader file-history-tease js-deferred-content" data-url="/propra13-orga/gruppe45/contributors/master/main/data/items.txt">
           Fetching contributors…
 
           <div class="participation">
@@ -322,7 +322,7 @@
     </div><!-- ./.frame-meta -->
 
     <div class="frames">
-      <div class="frame" data-permalink-url="/propra13-orga/gruppe45/blob/ffb6ffcd14c31199241c63cf44e24e948e20f030/main/data/1_1.txt" data-title="gruppe45/main/data/1_1.txt at master · propra13-orga/gruppe45 · GitHub" data-type="blob">
+      <div class="frame" data-permalink-url="/propra13-orga/gruppe45/blob/ffb6ffcd14c31199241c63cf44e24e948e20f030/main/data/items.txt" data-title="gruppe45/main/data/items.txt at master · propra13-orga/gruppe45 · GitHub" data-type="blob">
 
         <div id="files" class="bubble">
           <div class="file">
@@ -330,16 +330,16 @@
               <div class="info">
                 <span class="icon"><b class="octicon octicon-file-text"></b></span>
                 <span class="mode" title="File Mode">file</span>
-                  <span>13 lines (12 sloc)</span>
-                <span>0.177 kb</span>
+                  <span>8 lines (8 sloc)</span>
+                <span>0.939 kb</span>
               </div>
               <div class="actions">
                 <div class="button-group">
                       <a class="minibutton js-entice" href=""
                          data-entice="You must be signed in and on a branch to make or propose changes">Edit</a>
-                  <a href="/propra13-orga/gruppe45/raw/master/main/data/1_1.txt" class="button minibutton " id="raw-url">Raw</a>
-                    <a href="/propra13-orga/gruppe45/blame/master/main/data/1_1.txt" class="button minibutton ">Blame</a>
-                  <a href="/propra13-orga/gruppe45/commits/master/main/data/1_1.txt" class="button minibutton " rel="nofollow">History</a>
+                  <a href="/propra13-orga/gruppe45/raw/master/main/data/items.txt" class="button minibutton " id="raw-url">Raw</a>
+                    <a href="/propra13-orga/gruppe45/blame/master/main/data/items.txt" class="button minibutton ">Blame</a>
+                  <a href="/propra13-orga/gruppe45/commits/master/main/data/items.txt" class="button minibutton " rel="nofollow">History</a>
                 </div><!-- /.button-group -->
               </div><!-- /.actions -->
 
@@ -356,14 +356,10 @@
 <span id="L6" rel="#L6">6</span>
 <span id="L7" rel="#L7">7</span>
 <span id="L8" rel="#L8">8</span>
-<span id="L9" rel="#L9">9</span>
-<span id="L10" rel="#L10">10</span>
-<span id="L11" rel="#L11">11</span>
-<span id="L12" rel="#L12">12</span>
 
           </td>
           <td class="blob-line-code">
-                  <div class="highlight"><pre><div class='line' id='LC1'>#    w</div><div class='line' id='LC2'>n    w  </div><div class='line' id='LC3'>n s  w   k </div><div class='line' id='LC4'>nw   w     w w t</div><div class='line' id='LC5'>n         k</div><div class='line' id='LC6'>n         ww   </div><div class='line' id='LC7'>n          w      </div><div class='line' id='LC8'>n 1        w       z</div><div class='line' id='LC9'>n    t          </div><div class='line' id='LC10'>n            </div><div class='line' id='LC11'>n  k w   i      t</div><div class='line' id='LC12'>n    w        </div></pre></div>
+                  <div class="highlight"><pre><div class='line' id='LC1'># verfügbar ab Level;Preis;Name;Gegner;Schaden%;Schutz%;Speed%;Heilung%;im Shop;Beschreibung für Shop (oder so);bild</div><div class='line' id='LC2'>1;3;Bonbon &#39;Eid des Hippokrates&#39;;hase;0;0;0;0;1;Ausgelegte lila Bonbons lassen verseuchte Hasen gesunden.;candy_purple.png</div><div class='line' id='LC3'>1;3;Bonbon &#39;Honeypot&#39;;hase;0;0;0;0;1;Ausgelegte lila Bonbons lassen verseuchte Hasen gesunden.;candy_red.png</div><div class='line' id='LC4'>1;3;Wurzel;fuchs;0;0;0;0;1;Wurzeln spielen eine wichtige Rolle im Hasenland. Aber welche?;root.png</div><div class='line' id='LC5'>1;5;Medipack;hase;0;0;0;30;1;Man kann nie genug haben.;medipack.png</div><div class='line' id='LC6'>1;10;Knüppel einer toten Ameise;hase;10;0;0;0;1;Eine Nahkampfwaffe, die minimal die eigene Schlagkraft steigert.;stick.png</div><div class='line' id='LC7'>1;10;Blumenrüstung;hase;0;50;0;0;1;Durch ihre desinfizierende Wirkung führen Bisse von infizierten Hasen nicht mehr zum sofortigen Tod.;flower_purple.png</div><div class='line' id='LC8'>3;20;Panzer aus verseuchten Wurzeln;fuchs;0;50;-20;0;1;Der Tragekomfort könnte besser sein, aber er hilft enorm gegen Fuchsangriffe;root.png</div></pre></div>
           </td>
         </tr>
       </table>
@@ -446,7 +442,7 @@
       <hr class="footer-divider">
 
 
-    <p class="right">&copy; 2013 <span title="0.07159s from fe18.rs.github.com">GitHub</span>, Inc. All rights reserved.</p>
+    <p class="right">&copy; 2013 <span title="0.17069s from fe18.rs.github.com">GitHub</span>, Inc. All rights reserved.</p>
     <a class="left" href="/">
       <span class="mega-octicon octicon-mark-github"></span>
     </a>
@@ -492,7 +488,7 @@
     </div>
 
     
-    <span id='server_response_time' data-time='0.07199' data-host='fe18'></span>
+    <span id='server_response_time' data-time='0.17108' data-host='fe18'></span>
     
   </body>
 </html>

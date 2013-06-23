@@ -3,14 +3,24 @@ package gameobjects;
 //parent class of Fox, Hero, Goal, Poisonous_Tree, Wall
 
 import java.awt.Image;
+import java.awt.Toolkit;
+
+import local.Fs;
 
 public class Figure {
 	
 	public Image image;
-	public int denseness = 10;			//can objects pass through?
-	public int hp;						//health points
-	public int mp;						//mana points
-	public int bugs;
+        public Image off = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad + "icon_fireball.png");
+        public Image def;
+        public String name = "blubb";
+	public int hp = 0;						//health points
+	public int hp_pot = 0;
+        public int mp = 0;                                          //mana points
+	public int mp_pot = 0;
+        public int ep = 0;
+        public int level = 0;
+        public int defe;
+        public int bugs = 0;
 	public int lives = 0;
 	public int dmg;						//damage
 	public boolean destroyable = false;
@@ -28,7 +38,7 @@ public class Figure {
 	public int pos_y;
 	public int start_y;
 	public int fog = 20;				//only for poisonous trees, shop
-	public char direction = 'r';		//used for spells, random movement
+	public char direction = 's';		//used for spells, random movement
 	
 	public Figure(int figure_type, int x, int y, Image img) {
 		type = figure_type;

@@ -1,28 +1,16 @@
 package main;
 
 import gameobjects.Create;
-import gameobjects.Figure;
+import gameobjects.Item;
 import collision.Coll;
 import movement.*;
 
 public class Game extends Thread{
 
-//creates keyboards and adds keylistener
-/* void setKeyboard(){
-Keyboard KPlayer1 = new Keyboard();
-Main.renderFrame.setFocusable(true);
-Main.renderFrame.addKeyListener(KPlayer1);
-if(Nr_of_Players == 2)
-{
-Keyboard2 KPlayer2 = new Keyboard2();
-Main.renderFrame.addKeyListener(KPlayer2);
-}
-}
-*/	
-
 //manages the game
 	public void run(){
 		Main.obj_list = Create.init();
+                Item.get_item_list();
 		while(true)
 		{
 			//while not hitting goal
