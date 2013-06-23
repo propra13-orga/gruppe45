@@ -14,11 +14,44 @@ public class Hero extends Figure {
 		this.start_x=x;
 		this.start_y=y;
 		this.level = 1;
-		this.hp = 100;
+		this.hp = 555;
+		this.bugs=2;
 		this.mp = 100;
 		this.lives = 2;
 		this.dmg = 100;
 		this.destroyable = true;
 		this.bag = new Inventory();
+	}
+	public int getHp()
+	{
+		return this.hp;
+	}
+	public void setHp(int hp)
+	{
+		this.hp = hp;
+	}
+	public int getBugs()
+	{
+		return this.bugs;
+	}
+	public void setBugs(int bugs)
+	{
+		this.bugs = bugs;
+	}
+	public int getMp()
+	{
+		return this.mp;
+	}
+	public void setMp(int mp)
+	{
+		this.mp = mp;
+	}
+	public int getLives()
+	{
+		return this.lives;
+	}
+	public void setLives(int lives)
+	{
+		this.lives = lives;
 	}
 }
