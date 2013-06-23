@@ -9,7 +9,7 @@ import java.awt.event.WindowAdapter;
 import main.*;
 import gameobjects.Figure;
 import graphics.*;
-
+//
 
 
 public class ShopFrame extends JFrame {
