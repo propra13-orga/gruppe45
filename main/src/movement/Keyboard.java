@@ -68,6 +68,7 @@ public class Keyboard implements KeyListener {
 				
 				case KeyEvent.VK_S:
 					ShopFrame shop = new ShopFrame();
+					Main.ingame = false;
 					break;
 				default:
 				// nix
