@@ -52,12 +52,13 @@ public class Keyboard implements KeyListener {
 					{
 						int[] pos = Methods.getPosition_Spell(Main.obj_list.get(2));
 						@SuppressWarnings("unused")
-						Spell fireball = new Spell(pos[0],
-                                                                            pos[1],
-                                                                            Toolkit.getDefaultToolkit().getImage(Fs.img_pfad +"fireball_" + Main.obj_list.get(2).direction + ".png"),
-                                                                            Main.obj_list.get(2).direction,
-                                                                            Main.obj_list.get(2).level * Main.obj_list.get(2).dmg);
+						Spell fireball = new Spell(	pos[0],
+													pos[1],
+													Toolkit.getDefaultToolkit().getImage(Fs.img_pfad +"fireball_" + Main.obj_list.get(2).direction + ".png"),
+													Main.obj_list.get(2).direction,
+													Main.obj_list.get(2).level * Main.obj_list.get(2).dmg );
 					}
+					else Main.obj_list.get(2).mp = 0;
 					break;
 				
 				case KeyEvent.VK_ESCAPE:
