@@ -182,6 +182,21 @@ public class Coll {
 	//deals dmg to players
 	static void deal_dmg(Figure dealer , Figure reciever){
 		reciever.hp-=dealer.dmg;
+		if(reciever.hp < 1)
+		{
+			if(reciever.nr == 2 || reciever.nr == 3)
+			{
+				System.exit(0);
+			}
+			else
+			{
+				Main.obj_list.remove(reciever.nr);
+				for(int j = 2 ; j < Main.obj_list.size() ; j++)
+				{
+					Main.obj_list.get(j).nr = j;
+				}
+			}
+		}
 	}
 	
 	//called upon a spells collision, damages the target and destroyes it if hp <= 0

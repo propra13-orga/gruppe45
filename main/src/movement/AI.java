@@ -64,40 +64,40 @@ public class AI {
             }
 	}
 	
-        //checkes if movment in "direction" is possible, if not, returns true
-        static boolean rand_check(Figure figure){
-            
-            switch(figure.direction){
-                
-                case 'u':
-                    if(figure.pos_y < 30) return true;
-                    else if(Coll.coll(figure, 0, -STEP))
-                    {
-                        Move.up(figure, STEP);
-                        return false;
-                    }
-                    break;
-                    
-                case 'd':
-                    if((figure.pos_y + figure.image.getHeight(null)) > 700) return true;
+	//checkes if movment in "direction" is possible, if not, returns true
+	static boolean rand_check(Figure figure){
+
+		switch(figure.direction){
+
+			case 'u':
+				if(figure.pos_y < Main.off + STEP * 2) return true;
+				else if(Coll.coll(figure, 0, -STEP))
+				{
+					Move.up(figure, STEP);
+					return false;
+				}
+				break;
+
+				case 'd':
+                    if((figure.pos_y + figure.image.getHeight(null)) > Main.board_height - Main.off - STEP * 2) return true;
                     else if(Coll.coll(figure, 0, STEP))
                     {
                         Move.down(figure, STEP);
                         return false;
                     }
                     break;
-                    
+
                 case 'l':
-                    if(figure.pos_x < 30) return true;
+                    if(figure.pos_x < Main.off + STEP * 2) return true;
                     else if(Coll.coll(figure, -STEP, 0))
                     {
                         Move.left(figure, STEP);
                         return false;
                     }
                     break;
-                        
+
                 case 'r':
-                    if((figure.pos_x + figure.image.getWidth(null)) > 1000) return true;
+                    if((figure.pos_x + figure.image.getWidth(null)) > Main.board_width - Main.off - STEP * 2) return true;
                     else if(Coll.coll(figure, STEP, 0))
                     {
                         Move.right(figure, STEP);
