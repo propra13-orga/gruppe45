@@ -56,12 +56,18 @@ public class Keyboard implements KeyListener {
 					break;	
 				
 				case KeyEvent.VK_S:									//open shop
-//					if(Main.shop)
-//					{
+					if(Main.shop)
+					{
 						@SuppressWarnings("unused")
 						ShopFrame shop = new ShopFrame();
 						Main.ingame = false;
-//					}
+					}
+					else if(Main.npc)
+					{
+						@SuppressWarnings("unused")
+						ShopFrame shop = new ShopFrame();
+						Main.ingame = false;	
+					}
 					break;
 					
 				case KeyEvent.VK_H:
