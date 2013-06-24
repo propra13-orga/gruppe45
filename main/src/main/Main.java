@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
+
 public class Main{
 public static double scale = 0.5;
 public static int board_height = 768;
@@ -40,8 +41,11 @@ public static void main(String[] args) throws IOException
 		Game game = new Game();										//creates Game logic		
 		game.start();												//starts Game logic
 		graphics.MasterFrame window = new graphics.MasterFrame();	//creates RenderFrame
+		
+		//graphics.NpcLevel1 npc1 = new graphics.NpcLevel1();
+		
 	
-	//	Gui start = new Gui();										//Starts Gui
+		Gui start = new Gui();										//Starts Gui
 		
 		while(onOff)
 		{
