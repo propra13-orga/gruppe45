@@ -28,10 +28,17 @@ public class Game extends Thread{
 					Fly.fly();
 					AI.move_all_opp();
 					Coll.shop();
-					Coll.npc();
+//					Coll.npc();
 					Coll.poison();
 				}
-				if(Main.reset) break;
+				if(Main.reset)
+				{
+					Main.level -= 1;
+					Main.room = 3;
+					if((Create.hero1.lives -= 1) < 0) System.exit(0);
+					Create.hero1.setHp(100 * Create.hero1.level);
+					break;
+				}
 			}
 
 			if((Main.room += 1) > 3)

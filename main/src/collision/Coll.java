@@ -176,7 +176,6 @@ public class Coll {
 						 && (tester.pos_y + y +tester.image.getHeight(null) > Main.obj_list.get(i).pos_y) )
 				{
 					hit(tester , i);
-//					Main.obj_list.remove(tester.nr);
 					return false;
 				}
 			}
@@ -212,10 +211,6 @@ public class Coll {
 		{
 			if(reciever.nr == 2 || reciever.nr == 3)
 			{
-				Main.level -= 1;
-				Main.room = 3;
-				if((Create.hero1.lives -= 1) < 0) System.exit(0);
-				Create.hero1.setHp(100 * Create.hero1.level);
 				Main.reset = true;
 			}
 			else
