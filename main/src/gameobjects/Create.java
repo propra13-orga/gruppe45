@@ -68,6 +68,8 @@ public static ArrayList<Figure> create_room(int lvl, int room) { // reads level 
 	if (shop!=null){
 		shop.pos_x = -1000;
 		shop.pos_y = -1000;
+	} else {
+		shop = new Shop(-1000, -1000);
 	}
 	if (goal!=null){
 		shop.pos_x = -2000;
@@ -113,12 +115,8 @@ public static ArrayList<Figure> create_room(int lvl, int room) { // reads level 
 								hero2 = new Hero(spalte*Board.block_groesse, zeile*Board.block_groesse, "hedgehog");
 								break;
 							case 's':
-								if (shop!=null) {
 									shop.pos_x =spalte*Board.block_groesse;
 									shop.pos_y=zeile*Board.block_groesse;
-								} else {
-									shop = new Shop(spalte*Board.block_groesse, zeile*Board.block_groesse);
-								}
 								break;
 							case 'z':
 								if (goal!=null) {
@@ -198,7 +196,7 @@ public static ArrayList<Figure> create_room(int lvl, int room) { // reads level 
 	gameobjects.add(2,hero1);
 	gameobjects.add(3,hero2);
 	gameobjects.add(4,shop);
-//	gameobjects.add(5,npc);
+	gameobjects.add(5,npc);
 
 		int j = 0;
 		for (Figure  figur: gameobjects) {
