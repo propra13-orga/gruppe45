@@ -35,7 +35,7 @@ public class MasterFrame extends JFrame {
 	 int height = Main.board_height;
 	 
 	 
-	 Image icon1, icon2, life, weapon, bug, blob, fireball;
+	 Image icon1, icon2, life, weapon, bug, blob, fireball, peace;
 
 	 
 	//configuration of main Frame
@@ -77,6 +77,7 @@ public void loadImage(){
 			fireball = ImageIO.read(new File (local.Fs.img_pfad+"icon_fireball.png"));
 			life = ImageIO.read(new File (local.Fs.img_pfad+"heart.png"));
 			blob = ImageIO.read(new File (local.Fs.img_pfad+"blob.png"));
+			peace = ImageIO.read(new File (local.Fs.img_pfad+"peace.jpg"));
 			bug = ImageIO.read(new File (local.Fs.img_pfad+"bug.png"));}
 			
 		catch(IOException e){	//TODO Auto-generated block		}
@@ -158,7 +159,10 @@ public void loadImage(){
 	    				else{
 	    					if (Create.hero1.attack == true ){//draw blob
 	    						g.drawImage(blob,width-935,height-70,this);}//weapon	
-	    					}
+	    					
+	    						else{
+	    							g.drawImage(peace,width-935,height-70,this);}//weapon	
+		    				}
 					g.drawString("Weapon", width-935, height-6);
 					
 					//Armor Icon
