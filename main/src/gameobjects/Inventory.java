@@ -31,24 +31,25 @@ public class Inventory {
 		}
 	}
 
-public void remove (Item item){
-this.inventory.remove(item.copy());
-}
-public void used(Item item) {
-used(item,1);
-}
+	public void remove (Item item){
+		this.inventory.remove(item.copy());
+	}
 
-public int used (Item item, int anzahl){
-int used;
-used=anzahl;
-if (item.anzahl-anzahl>0) {
-item.anzahl -= anzahl;
-} else {
-used=item.anzahl;
-this.remove(item);
-}
-return used;
-}
+	public void used(Item item) {
+		used(item,1);
+	}
+
+	public int used (Item item, int anzahl){
+		int used;
+		used=anzahl;
+		if (item.anzahl-anzahl>0) {
+			item.anzahl -= anzahl;
+		} else {
+			used=item.anzahl;
+			this.remove(item);
+		}
+		return used;
+	}
 
 
 }

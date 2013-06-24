@@ -63,7 +63,7 @@ public class AI {
 			}
 		}
 	}
-	
+
 	//checkes if movment in "direction" is possible, if not, returns true
 	static boolean rand_check(Figure figure){
 

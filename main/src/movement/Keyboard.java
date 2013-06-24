@@ -3,8 +3,7 @@ package movement;
 import local.Fs;
 import main.*;
 
-import gameobjects.Methods;
-import gameobjects.Spell;
+import gameobjects.Create;
 import graphics.ShopFrame;
 
 import java.awt.Toolkit;
@@ -47,29 +46,37 @@ public class Keyboard implements KeyListener {
 					Move.down(Main.obj_list.get(2) , STEP);
 					break;
 				
-				case KeyEvent.VK_SPACE:
-					if((Main.obj_list.get(2).mp -= 10) >= 0)
-					{
-						int[] pos = Methods.getPosition_Spell(Main.obj_list.get(2));
-						@SuppressWarnings("unused")
-						Spell fireball = new Spell(	pos[0],
-													pos[1],
-													Toolkit.getDefaultToolkit().getImage(Fs.img_pfad +"fireball_" + Main.obj_list.get(2).direction + ".png"),
-													Main.obj_list.get(2).direction,
-													Main.obj_list.get(2).level * Main.obj_list.get(2).dmg );
-					}
-					else Main.obj_list.get(2).mp = 0;
+				case KeyEvent.VK_SPACE:								//cast Spell
+					Create.hero1.cast_Spell();
 					break;
 				
-				case KeyEvent.VK_ESCAPE:
+				case KeyEvent.VK_ESCAPE:							//open menu
 					Main.ingame = false;
 					System.exit(0);	//change later
 					break;	
 				
-				case KeyEvent.VK_S:
-					ShopFrame shop = new ShopFrame();
-					Main.ingame = false;
+				case KeyEvent.VK_S:									//open shop
+//					if(Main.shop)
+//					{
+						@SuppressWarnings("unused")
+						ShopFrame shop = new ShopFrame();
+						Main.ingame = false;
+//					}
 					break;
+					
+				case KeyEvent.VK_H:
+					Create.hero1.use_hp_pot();
+					break;
+					
+				case KeyEvent.VK_M:
+					Create.hero1.use_mp_pot();
+					break;
+					
+				case KeyEvent.VK_DELETE:
+					if(Main.music == true) Main.music = false;
+					else Main.music = true;
+					break;
+					
 				default:
 				// nix
 			}
