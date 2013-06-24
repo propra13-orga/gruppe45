@@ -30,7 +30,28 @@ public class Coll {
 		return true;
 	}
 
-	//changes value of Game.shop if player hits shop
+	//changes value of Main.npc if player hits npc
+	public static void npc(){
+		if (   (Main.obj_list.get(2).pos_x < Main.obj_list.get(4).pos_x + Main.obj_list.get(4).image.getWidth(null) + Main.obj_list.get(4).fog)
+			&& (Main.obj_list.get(2).pos_x + Main.obj_list.get(2).image.getWidth(null) > Main.obj_list.get(4).pos_x - Main.obj_list.get(4).fog)
+			&& (Main.obj_list.get(2).pos_y < Main.obj_list.get(4).pos_y + Main.obj_list.get(4).image.getHeight(null) + Main.obj_list.get(4).fog)
+			&& (Main.obj_list.get(2).pos_y + Main.obj_list.get(2).image.getHeight(null) > Main.obj_list.get(4).pos_y - Main.obj_list.get(4).fog) )
+		{
+		Main.npc = true;
+		}
+		
+		else if(Main.Nr_of_Players == 2)
+		{
+			if (   (Main.obj_list.get(3).pos_x < Main.obj_list.get(0).pos_x + Main.obj_list.get(4).image.getWidth(null) + Main.obj_list.get(4).fog)
+						&& (Main.obj_list.get(3).pos_x + Main.obj_list.get(3).image.getWidth(null) > Main.obj_list.get(4).pos_x - Main.obj_list.get(4).fog)
+						&& (Main.obj_list.get(3).pos_y < Main.obj_list.get(0).pos_y + Main.obj_list.get(4).image.getHeight(null) + Main.obj_list.get(4).fog)
+						&& (Main.obj_list.get(3).pos_y + Main.obj_list.get(3).image.getHeight(null) > Main.obj_list.get(4).pos_y - Main.obj_list.get(4).fog) )
+			{
+			Main.npc = true;
+			}
+		}
+		else Main.npc = false;
+	}
 	
 	//sets Main.shop = true if player in range
 	public static void shop(){

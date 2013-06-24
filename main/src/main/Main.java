@@ -23,6 +23,7 @@ public static boolean shop = false;				//can shop be openend?
 public static boolean music = true;				//music on/off
 public static boolean go = true;
 public static boolean onOff = true;
+public static boolean npc = false;
 
 public static ArrayList<Figure> obj_list = new ArrayList<Figure>();	//holds all figures in game
 //0 reserved for board
