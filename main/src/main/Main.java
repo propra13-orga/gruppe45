@@ -44,7 +44,6 @@ public static void main(String[] args) throws IOException
 		game.start();												//starts Game logic
 		graphics.MasterFrame window = new graphics.MasterFrame();	//creates RenderFrame
 		
-	
 		//Gui start = new Gui();										//Starts Gui
 		
 		while(onOff)
