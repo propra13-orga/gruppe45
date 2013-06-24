@@ -4,7 +4,6 @@ import java.awt.Image;
 import java.awt.Toolkit;
 
 import local.Fs;
-import main.Main;
 
 // hero class
 public class Hero extends Figure {
@@ -83,7 +82,7 @@ public class Hero extends Figure {
 			@SuppressWarnings("unused")
 			Spell blob = new Spell(	pos[0],
 										pos[1],
-										Toolkit.getDefaultToolkit().getImage(Fs.img_pfad +"blob_.png"),
+										Toolkit.getDefaultToolkit().getImage(Fs.img_pfad +"blob.png"),
 										this.direction,
 										(int) this.dmg / 2 );
 		}
