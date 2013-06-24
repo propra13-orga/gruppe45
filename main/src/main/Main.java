@@ -42,10 +42,9 @@ public static void main(String[] args) throws IOException
 		game.start();												//starts Game logic
 		graphics.MasterFrame window = new graphics.MasterFrame();	//creates RenderFrame
 		
-		//graphics.NpcLevel1 npc1 = new graphics.NpcLevel1();
 		
 	
-		Gui start = new Gui();										//Starts Gui
+	//	Gui start = new Gui();										//Starts Gui
 		
 		while(onOff)
 		{

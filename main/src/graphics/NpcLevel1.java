@@ -27,6 +27,8 @@ public class NpcLevel1 extends JFrame
 		JLabel background, moleLabel, textLabel;
 		JLayeredPane pane;
 		JButton okButton;
+		private int level = main.Main.level;
+		private String text, text1, text2, text3, textElse;
 		
 		public NpcLevel1()
 			{	
@@ -62,19 +64,32 @@ public class NpcLevel1 extends JFrame
 					background.setOpaque(true);
 					background.setBackground(Color.black);
 					
-					//Label Hedghog
+					//Label mole
 					moleLabel = new JLabel(new ImageIcon(mole));
-			 		moleLabel.setBounds(300, 250, 100, 150);
+			 		moleLabel.setBounds(280, 250, 110, 150);
 			 		
-			 		textLabel = new JLabel ();
-			 	//	textLabel.setText("<html><marquee scrollamount=100 scrolldelay=5> tedsfgdsfsdfs </marquee>  </html>");
-			 		String text ="<html> <FONT COLOR=#FAFAD2> 	Herzlich Willkommen im Lucky Bunny ich bin <I>Mole the Hole</I><p> <p> " +
+			 		//text content for different level
+			 		text1 ="<html> <FONT COLOR=#FAFAD2> 	Herzlich Willkommen im Lucky Bunny ich bin <I>Mole the Hole</I><p> <p> " +
 			 				"Ich werde Dich auf der anstrengenden Reise begleiten und Dich mit wertvollen Tips versorgen."+
 			 				"Ich wohne unter der Erde und mag kein Sonnenlicht. <p><p>" +
 			 				"Am liebsten esse ich K&auml;fer. Wenn Du welche findest komm' einfach mal an meinem H&uuml;gel vorbei " +
 			 				"dann kann ich Dir bestimmt einen guten Tausch anbieten.<p><p> " +
 			 				"H&uuml;te Dich vor den F&uuml;chsen, sie sind sehr hungrig und auf der Suche nach einem leckerem Gaumenschmau&szlig;.<p><p>" +
 			 				"Zu passender Gelegenheit werde ich Dich wieder aufsuchen. Bis dahin w&uuml;nsche ich Dir viel Gl&uuml;ck!</FONT></html>";
+			 		text2 ="<html> <FONT COLOR=#FAFAD2> blub</FONT></html>";
+			 		text3 ="<html> <FONT COLOR=#FAFAD2> blob</FONT></html>";
+			 		textElse = "<html> <FONT COLOR=#FAFAD2> Leider kann ich Dir gerade nicht helfen</FONT></html>";
+			 	
+			 			 		
+			 		switch (level)//checks which level and sets appropiate text
+			 		{
+			 			case 1:		 text = text1;break;
+			 			case 2:		 text = text2;break;
+			 			case 3:		 text = text3;break;
+			 			default:	text = textElse; break;
+			 		}
+			 		
+			 		textLabel = new JLabel ();			 					 		
 			 		textLabel.setText(text);
 			 		textLabel.setBounds(10,-80,398,400);
 			 		
