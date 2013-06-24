@@ -189,7 +189,7 @@ public void loadImage(){
 				{
 					System.out.println("Fehler in der drawStuff Methode");
 				}
-		
+		//
 				bs.show();												//draw image from buffer on screen
 			}
 						
