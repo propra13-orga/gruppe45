@@ -130,7 +130,7 @@ public static ArrayList<Figure> create_room(int lvl, int room) { // reads level 
 								break;
                             case 'i':
                                     // noch ein zufälliges item
-                            		int l=(int)(Math.random()*5);
+                            		int l=(int)(Math.random()*7);
                             		System.out.println(l);
                                     Item i = Item.items.get(l);
                                     i.pos_x=spalte*Board.block_groesse; 
