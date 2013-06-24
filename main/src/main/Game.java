@@ -28,7 +28,7 @@ public class Game extends Thread{
 					Fly.fly();
 					AI.move_all_opp();
 					Coll.shop();
-//					Coll.npc();
+					Coll.npc();
 					Coll.poison();
 				}
 				if(Main.reset)
