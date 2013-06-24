@@ -125,6 +125,9 @@ public static ArrayList<Figure> create_room(int lvl, int room) { // reads level 
 									goal=new Goal(spalte*Board.block_groesse, zeile*Board.block_groesse);
 								}
 								break;
+							case 'b':
+								gameobjects.add(new Boss(spalte*Board.block_groesse, zeile*Board.block_groesse));
+								break;
                             case 'i':
                                     // noch ein zufälliges item
                             		int l=(int)(Math.random()*5);
