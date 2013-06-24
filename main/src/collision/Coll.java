@@ -1,7 +1,7 @@
 package collision;
 
+import gameobjects.Create;
 import gameobjects.Figure;
-import gameobjects.Hero;
 import gameobjects.Item;
 import main.Main;
 
@@ -126,6 +126,10 @@ public class Coll {
 					{
 						tester.bag.add((Item) Main.obj_list.get(i));
 						Main.obj_list.remove(i);
+						
+						Create.hero1.setHp(Create.hero1.getHp() + 10);					//Meilenstein 2
+						Create.hero1.setMp(Create.hero1.getMp() + 5);					//
+						
 						for(int j = i ; j < Main.obj_list.size() ; j++)
 						{
 							Main.obj_list.get(j).nr = j;
@@ -151,7 +155,7 @@ public class Coll {
 						 && (tester.pos_y + y +tester.image.getHeight(null) > Main.obj_list.get(i).pos_y) )
 				{
 					hit(tester , i);
-					Main.obj_list.remove(tester.nr);
+//					Main.obj_list.remove(tester.nr);
 					return false;
 				}
 			}
@@ -202,20 +206,35 @@ public class Coll {
 	
 	//called upon a spells collision, damages the target and destroyes it if hp <= 0
 	public static void hit(Figure spell, int i){
-		if(Main.obj_list.get(i).type == 3)
+		if(Main.obj_list.get(i).type == 3 | Main.obj_list.get(i).type == 5)
 		{
 			if(Main.obj_list.get(i).destroyable)
 			{
 				if((Main.obj_list.get(i).hp -= spell.dmg) < 1)				//if targets hp is < 1
 				{
-					Main.obj_list.remove(i);
-					for(int j = i ; j < Main.obj_list.size() ; j++)			//update index, since 1 figure was removed
+					Create.hero1.setBugs(Create.hero1.getBugs()+Main.obj_list.get(i).bugs);
+					Main.obj_list.get(2).ep += Main.obj_list.get(i).ep;
+					if(Main.obj_list.get(i).type == 5)
 					{
-						Main.obj_list.get(j).nr = j;
+//						System.exit(0);
+						for(int j = 5 ; j < Main.obj_list.size() ;){
+							Main.obj_list.remove(j);
+						}
+					}
+					else
+					{
+						Main.obj_list.remove(spell.nr);
+						Main.obj_list.remove(i);
+						for(int j = i ; j < Main.obj_list.size() ; j++)			//update index, since 1 figure was removed
+						{
+							Main.obj_list.get(j).nr = j;
+						}
 					}
 				}
+				else Main.obj_list.remove(spell.nr);
 			}
 		}
+		else Main.obj_list.remove(spell.nr);
 	}
 
 }
