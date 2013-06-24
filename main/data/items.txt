@@ -6,3 +6,4 @@
 1;10;Knüppel einer toten Ameise;hase;10;0;0;0;1;Eine Nahkampfwaffe, die minimal die eigene Schlagkraft steigert.;stick.png
 1;10;Blumenrüstung;hase;0;20;0;0;1;Durch ihre desinfizierende Wirkung führen Bisse von infizierten Hasen nicht mehr zum sofortigen Tod.;flower_purple.png
 3;20;Panzer aus verseuchten Wurzeln;fuchs;0;50;-20;0;1;Der Tragekomfort könnte besser sein, aber er hilft enorm gegen Fuchsangriffe;root.png
+3;50;Feuerball;alle;0;0;0;0;0;Waffe für den Fernkampf;icon_fireball.png

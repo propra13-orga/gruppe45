@@ -24,6 +24,7 @@ public class Create {
 	public static Hero hero2;
 	private static Shop shop;
 	public static Board board;
+	public static Npc npc;
 	
 	public static int datei = 1;
 	public static File fdatei;
@@ -61,7 +62,9 @@ public static ArrayList<Figure> create_room(int lvl, int room) { // reads level 
 	String dat_name="";
 	int zeilenlaenge =0;
 	int zeile;
+	int l;
 	boolean feld=false;
+	Item i;
 	if (shop!=null){
 		shop.pos_x = -1000;
 		shop.pos_y = -1000;
@@ -128,11 +131,40 @@ public static ArrayList<Figure> create_room(int lvl, int room) { // reads level 
 							case 'b':
 								gameobjects.add(new Boss(spalte*Board.block_groesse, zeile*Board.block_groesse));
 								break;
+							case 'c':
+								if (npc!=null) {
+									npc.pos_x = spalte*Board.block_groesse;
+									npc.pos_y = zeile*Board.block_groesse;
+								} else {
+									npc = new Npc(spalte*Board.block_groesse, zeile*Board.block_groesse);
+								}
+								break;
+							case '5':
+								System.out.println(zeileninhalt.charAt(spalte));
+								i = Item.items.get(5);
+                                i.pos_x=spalte*Board.block_groesse; 
+                                i.pos_y=zeile*Board.block_groesse;
+								gameobjects.add((Figure) i.copy());
+								break;
+							case '6':
+								System.out.println(zeileninhalt.charAt(spalte));
+								i = Item.items.get(6);
+                                i.pos_x=spalte*Board.block_groesse; 
+                                i.pos_y=zeile*Board.block_groesse;
+								gameobjects.add((Figure) i.copy());
+								break;
+							case '7':
+								System.out.println(zeileninhalt.charAt(spalte));
+								i = Item.items.get(7);
+                                i.pos_x=spalte*Board.block_groesse; 
+                                i.pos_y=zeile*Board.block_groesse;
+								gameobjects.add((Figure) i.copy());
+								break;
                             case 'i':
                                     // noch ein zufälliges item
-                            		int l=(int)(Math.random()*7);
+                            		l=(int)(Math.random()*5);
                             		System.out.println(l);
-                                    Item i = Item.items.get(l);
+                                    i = Item.items.get(l);
                                     i.pos_x=spalte*Board.block_groesse; 
                                     i.pos_y=zeile*Board.block_groesse;
                                     
@@ -166,10 +198,11 @@ public static ArrayList<Figure> create_room(int lvl, int room) { // reads level 
 	gameobjects.add(2,hero1);
 	gameobjects.add(3,hero2);
 	gameobjects.add(4,shop);
+//	gameobjects.add(5,npc);
 
-		int i = 0;
+		int j = 0;
 		for (Figure  figur: gameobjects) {
-			System.out.println(i);
+			System.out.println(j);
 			System.out.println(figur.getClass().getSimpleName());
 			System.out.println(figur.image);
 			System.out.println(figur.image.getWidth(null));
@@ -177,9 +210,9 @@ public static ArrayList<Figure> create_room(int lvl, int room) { // reads level 
 //			System.out.println(figur.pos_x);
 			System.out.println(figur.pos_y);
 			System.out.println("-------------------");
-			i++;
+			j++;
 		}
-		System.out.println(String.valueOf(i) + " Objekte in der Liste");
+		System.out.println(String.valueOf(j) + " Objekte in der Liste");
 		System.out.println("-------------------");
 		return gameobjects;
 	}
