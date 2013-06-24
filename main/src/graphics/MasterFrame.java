@@ -30,12 +30,14 @@ public class MasterFrame extends JFrame {
 	 BufferStrategy bs;
 	 GamePanel gamePanel = new GamePanel();				//Game Panel created
 	 JLayeredPane pane;
+	 
+	 public static boolean set = false;
          
 	 int width = Main.board_width;
 	 int height = Main.board_height;
 	 
 	 
-	 Image icon1, icon2, life, weapon, bug, blob, fireball, peace;
+	 Image icon1, icon2, life, weapon, bug, blob, fireball, peace, attention;
 
 	 
 	//configuration of main Frame
@@ -78,6 +80,7 @@ public void loadImage(){
 			life = ImageIO.read(new File (local.Fs.img_pfad+"heart.png"));
 			blob = ImageIO.read(new File (local.Fs.img_pfad+"blob.png"));
 			peace = ImageIO.read(new File (local.Fs.img_pfad+"peace.jpg"));
+			attention = ImageIO.read(new File (local.Fs.img_pfad+"attention.png"));
 			bug = ImageIO.read(new File (local.Fs.img_pfad+"bug.png"));}
 			
 		catch(IOException e){	//TODO Auto-generated block		}
@@ -94,6 +97,7 @@ public void loadImage(){
 	//new Panel with Game
 	public class GamePanel extends JPanel
 	{
+		
 		public void drawStuff()
 		{
 			Figure player1 = Main.obj_list.get(2);						//local variable Player1
@@ -124,11 +128,15 @@ public void loadImage(){
 		    					g.drawString("HP: "+localFigure.hp,localFigure.pos_x,localFigure.pos_y-25);
 		    					g.drawString("Level: "+localFigure.level,localFigure.pos_x,localFigure.pos_y-15);
 		    				}
+		    				if ((localFigure.type == 6)&&(set==false)){//draw level and hp of enemy
+		    					g.drawImage(attention,localFigure.pos_x-30,localFigure.pos_y+5,this);
+		    					
+		    				}
 		    			}
 		    			Toolkit.getDefaultToolkit().sync();					//checks from OS if repaint is neccessary 
 		    			
                      }//end of array list
-					
+				
 					//backround Image
 					g.setColor(new Color(47, 118, 19));						//Hex: 2f 76 13			
 					g.fillRect(width-1024,height-80,300,80);		
