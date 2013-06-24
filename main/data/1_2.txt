@@ -1,13 +1,13 @@
 #
-n s w
-n w
-nw i w w t
-n k
-n w
-n21 w
-n w
+n________s__w
+n__w________w
+n______i____w_w_t
+n_______k
+n____________w
+n21          
+n____________w
 n
 n
-n w k t
-n w
-n z
+n___w_k_t
+n___w
+n____________z
