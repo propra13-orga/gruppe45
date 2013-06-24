@@ -17,6 +17,7 @@ public class ShopFrame extends JFrame {
 
     JLayeredPane layeredPane;
     Image player1Icon, bugs;
+    JLabel labelB, labelHP, labelMP;
 
    //testvalues
 
@@ -44,19 +45,19 @@ public class ShopFrame extends JFrame {
         JLabel kLabel1_a = new JLabel(new ImageIcon(bugs));
         kLabel1_a.setBounds(10,100,50,50);
         
-        JLabel labelB = new JLabel (String.valueOf(new Integer(gameobjects.Create.hero1.getBugs())));
+        labelB = new JLabel (String.valueOf(new Integer(gameobjects.Create.hero1.getBugs())));
         labelB.setBounds(100,100,50,50);
 
         JLabel klabel1_b = new JLabel ("HP:");
         klabel1_b.setBounds(50, 120, 50, 50);
         
-        JLabel labelHP = new JLabel (String.valueOf(new Integer(gameobjects.Create.hero1.getHp())));
+        labelHP = new JLabel (String.valueOf(new Integer(gameobjects.Create.hero1.getHp())));
         labelHP.setBounds(100,120,50,50);
         
         JLabel labelMP_a = new JLabel("MP:");
         labelMP_a.setBounds(50,140,50,50);
         
-        JLabel labelMP = new JLabel(String.valueOf(new Integer(gameobjects.Create.hero1.getMp())));
+        labelMP = new JLabel(String.valueOf(new Integer(gameobjects.Create.hero1.getMp())));
         labelMP.setBounds(100,140,50,50);
         
         //PlayerRight Label	
@@ -111,6 +112,9 @@ public class ShopFrame extends JFrame {
                 	gameobjects.Create.hero1.setHp(hp); 					//1 bug = 10 hps
                 	int bug = gameobjects.Create.hero1.getBugs()-1;
                 	gameobjects.Create.hero1.setBugs(bug);					//minus 1 bug
+                	updatePoints(1);
+                	updatePoints(2);
+                	
                 }
             }
 
@@ -129,7 +133,10 @@ public class ShopFrame extends JFrame {
                 	int mp = gameobjects.Create.hero1.getMp()+8;
                 	gameobjects.Create.hero1.setMp(mp);//1 bug for 8 mana
            			int bug = gameobjects.Create.hero1.getBugs()-1;
-                	gameobjects.Create.hero1.setBugs(bug);					//minus 1 bug					
+                	gameobjects.Create.hero1.setBugs(bug);					//minus 1 bug	
+                	updatePoints(1);
+                	updatePoints(3);
+                	
                  }
             }
         });
@@ -258,6 +265,23 @@ public class ShopFrame extends JFrame {
          
          
     }
+
+public void updatePoints(int index){
+	switch (index)
+	{
+		case 1: {//change Bugs
+					labelB.setText(String.valueOf(new Integer(gameobjects.Create.hero1.getBugs())));
+				}break;
+		case 2: {//change HPs
+					labelHP.setText(String.valueOf(new Integer(gameobjects.Create.hero1.getHp())));
+				}break;
+		case 3: {//changes MPs
+			       labelMP.setText(String.valueOf(new Integer(gameobjects.Create.hero1.getMp())));
+				}break;
+	
+	}
+}
+    
 public void loadIcon(){
 		
 		try
