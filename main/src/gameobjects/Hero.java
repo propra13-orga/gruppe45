@@ -11,13 +11,13 @@ public class Hero extends Figure {
 	public boolean defense = false;
 	public boolean attack = false;
 	public boolean spell = false;
-	
+
 	public Hero (int x, int y, String player) {
 		super(4,x,y,Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+player+"_l.png"));
 		this.start_x=x;
 		this.start_y=y;
 		this.level = 1;
-		this.hp = 555;
+		this.hp = 100 * this.level;
 		this.bugs=2;
 		this.mp = 100;
 		this.lives = 2;
@@ -25,6 +25,7 @@ public class Hero extends Figure {
 		this.destroyable = true;
 		this.bag = new Inventory();
 	}
+
 	public int getHp()
 	{
 		return this.hp;

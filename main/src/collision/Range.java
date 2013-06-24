@@ -22,24 +22,24 @@ public class Range {
 	
 	//returns the number of the closest player in range
 	public static int range(Figure tester){
-		int range_rabbit = pyth_c(tester , Main.obj_list.get(2));
-		
-		if(Main.Nr_of_Players == 1){							//checks if single- or multiplayer game
-			
-			if(range_rabbit < RANGE*RANGE) return 2;			//returns 1 if player in range, 0 else
-			else return 0;
-		}
-		else{
-			int range_hedgehog = pyth_c(tester , Main.obj_list.get(3));
-			
-			if(range_rabbit <= range_hedgehog){					//returns 1 if player1 in range
-				if(range_rabbit < RANGE*RANGE) return 2;
-			}
-			
-			else if(range_hedgehog < RANGE*RANGE) return 3;		//returns 2 if player2 in range
-			
-			else return 0;										//returns 0 if no player in range
-		}
+//		int range_rabbit = pyth_c(tester , Main.obj_list.get(2));
+//		
+//		if(Main.Nr_of_Players == 1){							//checks if single- or multiplayer game
+//			
+//			if(range_rabbit < RANGE*RANGE) return 2;			//returns 2 if player in range, 0 else
+//			else return 0;
+//		}
+//		else{
+//			int range_hedgehog = pyth_c(tester , Main.obj_list.get(3));
+//			
+//			if(range_rabbit <= range_hedgehog){					//returns 2 if player1 in range
+//				if(range_rabbit < RANGE*RANGE) return 2;
+//			}
+//			
+//			else if(range_hedgehog < RANGE*RANGE) return 3;		//returns 3 if player2 in range
+//			
+//			else return 0;										//returns 0 if no player in range
+//		}
 		return 0;												//useless statement.... , error if removed
 	}
 }
