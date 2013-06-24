@@ -33,6 +33,7 @@ public class Npc extends JFrame
 		public Npc()
 			{	
 				loadIcon();
+				MasterFrame.set=true;
 				Main.ingame = false;
 			
 				JPanel NpcPanel1 = new NpcPanel1();
