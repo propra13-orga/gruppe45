@@ -31,6 +31,7 @@ public class Figure {
 											//2 == poisonous tree
 											//3 == fox
 											//4 == player
+											//5 == boss
 											//8 == item
 											//9 == spell
 	public int nr;							//index in obj_list

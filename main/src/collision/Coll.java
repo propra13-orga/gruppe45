@@ -155,7 +155,7 @@ public class Coll {
 						 && (tester.pos_y + y +tester.image.getHeight(null) > Main.obj_list.get(i).pos_y) )
 				{
 					hit(tester , i);
-					Main.obj_list.remove(tester.nr);
+//					Main.obj_list.remove(tester.nr);
 					return false;
 				}
 			}
@@ -206,7 +206,7 @@ public class Coll {
 	
 	//called upon a spells collision, damages the target and destroyes it if hp <= 0
 	public static void hit(Figure spell, int i){
-		if(Main.obj_list.get(i).type == 3 || Main.obj_list.get(i).type == 5)
+		if(Main.obj_list.get(i).type == 3 | Main.obj_list.get(i).type == 5)
 		{
 			if(Main.obj_list.get(i).destroyable)
 			{
@@ -216,12 +216,14 @@ public class Coll {
 					Main.obj_list.get(2).ep += Main.obj_list.get(i).ep;
 					if(Main.obj_list.get(i).type == 5)
 					{
-						for(int j = 5 ; j < Main.obj_list.size() ; j++){
+//						System.exit(0);
+						for(int j = 5 ; j < Main.obj_list.size() ;){
 							Main.obj_list.remove(j);
 						}
 					}
 					else
 					{
+						Main.obj_list.remove(spell.nr);
 						Main.obj_list.remove(i);
 						for(int j = i ; j < Main.obj_list.size() ; j++)			//update index, since 1 figure was removed
 						{
@@ -229,8 +231,10 @@ public class Coll {
 						}
 					}
 				}
+				else Main.obj_list.remove(spell.nr);
 			}
 		}
+		else Main.obj_list.remove(spell.nr);
 	}
 
 }
