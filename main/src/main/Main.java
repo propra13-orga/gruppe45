@@ -14,7 +14,7 @@ public static int board_height = 768;
 public static int board_width = 1024;
 public static int off = 50;						//boarder at the side of bord
 public static int Nr_of_Players = 1;			//1 == Singleplayer , 2 == Multiplayer
-public static int level = 1;
+public static int level = 3;
 public static int room = 1;
 public static Random rand = new Random();		//variable for random movement
 public static boolean reset = false;			//true if Game needs to be resetted
@@ -43,7 +43,7 @@ public static void main(String[] args) throws IOException
 		game.start();												//starts Game logic
 		graphics.MasterFrame window = new graphics.MasterFrame();	//creates RenderFrame
 		
-	
+		graphics.Npc test = new graphics.Npc();
 	
 		//Gui start = new Gui();										//Starts Gui
 		
