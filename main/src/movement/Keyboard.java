@@ -4,6 +4,7 @@ import local.Fs;
 import main.*;
 
 import gameobjects.Create;
+import graphics.Npc;
 import graphics.ShopFrame;
 
 import java.awt.Toolkit;
@@ -56,12 +57,18 @@ public class Keyboard implements KeyListener {
 					break;	
 				
 				case KeyEvent.VK_S:									//open shop
-//					if(Main.shop)
-//					{
+					if(Main.shop)
+					{
 						@SuppressWarnings("unused")
 						ShopFrame shop = new ShopFrame();
 						Main.ingame = false;
-//					}
+					}
+					else if(Main.npc)
+					{
+						@SuppressWarnings("unused")
+						Npc npc = new Npc();
+						Main.ingame = false;	
+					}
 					break;
 					
 				case KeyEvent.VK_H:

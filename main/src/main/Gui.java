@@ -10,10 +10,10 @@ import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 import java.awt.*;
-
-import local.Fs;
-
 import javax.swing.JLayeredPane;
+
+
+
 //import java.io.IOException;
 
 public class Gui extends JFrame implements ActionListener{
@@ -28,10 +28,12 @@ public class Gui extends JFrame implements ActionListener{
 	JLabel foxLabel, treeLabel1,treeLabel2, treeLabel3, backLabel, titleLabel, bunnyLabel, hedgeLabel, shopLabel;
 	JLabel messageLabel, messageLabelIn;
 	
-	JButton go, exit, person, option;
+	JButton go, exit, person, option, backButton;
 	JLayeredPane pane;
 	
 	public Gui(){
+		
+		Main.ingame = false;
 		
 		setTitle("Lucky Bunny");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -57,6 +59,7 @@ public class Gui extends JFrame implements ActionListener{
 		pane.add(option,		 new Integer(10));
 		pane.add(messageLabel,	 new Integer(0));
 		pane.add(messageLabelIn, new Integer(0));
+		pane.add(backButton,      new Integer(0));
 		
 		//pane.setVisible(true);
 		
@@ -76,10 +79,11 @@ public class Gui extends JFrame implements ActionListener{
 	    	public void actionPerformed(ActionEvent e){
 	     		pane.setLayer(messageLabel , 500);
 	     		pane.setLayer(messageLabelIn , 510);
-	     //		pane.setLayer(person , 0);
-		   //		pane.setLayer(option , 0);
-		   //		pane.setLayer(go , 0);
-		   //		pane.setLayer(exit , 0);
+	    		pane.setLayer(person , 0);
+		   		pane.setLayer(option , 0);
+		  		pane.setLayer(go , 0);
+		   		pane.setLayer(exit , 0);
+	     		pane.setLayer(backButton, 515);
 	    	}
 	    });
 		
@@ -88,12 +92,27 @@ public class Gui extends JFrame implements ActionListener{
 		   	public void actionPerformed(ActionEvent e){
 		   		pane.setLayer(messageLabel , 500);
 		   		pane.setLayer(messageLabelIn , 510);
-		   //		pane.setLayer(person , 0);
-		   //		pane.setLayer(option , 0);
-		   //		pane.setLayer(go , 0);
-		   //		pane.setLayer(exit , 0);
+		 		pane.setLayer(person , 0);
+		 		pane.setLayer(option , 0);
+		  		pane.setLayer(go , 0);
+		  		pane.setLayer(exit , 0);
+		   			pane.setLayer(backButton, 515);
 		   	}
 		});
+		
+		//Zurück button event listener
+		backButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				pane.setLayer(messageLabel , 0);
+		   		pane.setLayer(messageLabelIn , 0);
+		  		pane.setLayer(person , 10);
+		   		pane.setLayer(option , 10);
+		   		pane.setLayer(go , 10);
+		   		pane.setLayer(exit , 10);
+		   		pane.setLayer(backButton, 0);
+				   			
+				   	}
+				});
 		
 	}
 	
@@ -178,6 +197,12 @@ public class Gui extends JFrame implements ActionListener{
 	 		messageLabelIn.setBounds((width/2)-250,(height/2)-250,500,500);
 	 		messageLabelIn.setOpaque(true);
 	 		messageLabelIn.setBackground(Color.white);
+	 		
+	 		backButton = new JButton("Zurück");
+	 		backButton.setBounds(400,600,200,30);
+	 		backButton.setOpaque(true);
+	 		backButton.setBackground(Color.black);
+	 		backButton.setForeground(Color.white);
 	 		
 	 		
 	 	}
