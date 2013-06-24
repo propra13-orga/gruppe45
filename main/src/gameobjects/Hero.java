@@ -8,6 +8,8 @@ import local.Fs;
 // hero class
 public class Hero extends Figure {
 	public Image lives_img=Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"lives_bunny.png");
+	public boolean defense = false;
+	public boolean attack = false;
 	public boolean spell = false;
 	
 	public Hero (int x, int y, String player) {
@@ -76,7 +78,7 @@ public class Hero extends Figure {
 										this.direction,
 										this.level * this.dmg );
 		}
-		else
+		else if(this.attack)
 		{
 			this.mp += 10;
 			@SuppressWarnings("unused")
