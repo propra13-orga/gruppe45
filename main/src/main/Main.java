@@ -18,7 +18,8 @@ public static int room = 1;
 public static Random rand = new Random();	//variable for random movement
 public static boolean run = false;	//movements are made when run == true, then run ist set to false until painted
 public static boolean ingame = true;	//ingame == false while in menu
-
+public static boolean go = false;
+public static boolean onOff = true;
 
 public static ArrayList<Figure> obj_list = new ArrayList<Figure>();	//holds all figures in game
 //0 reserved for board
@@ -29,14 +30,23 @@ public static ArrayList<Figure> obj_list = new ArrayList<Figure>();	//holds all 
 
 public graphics.MasterFrame window;
 
-public static void main(String[] args) throws IOException{
-Fs.init();
-// obj_list = Create.init();
-Game game = new Game();
-game.start();
-graphics.MasterFrame window = new graphics.MasterFrame();	
 
-window.startNow();
-    }
 
+public static void main(String[] args) throws IOException
+	{
+		Fs.init();
+		Game game = new Game();										//creates Game logic		
+		game.start();												//starts Game logic
+		graphics.MasterFrame window = new graphics.MasterFrame();	//creates RenderFrame
+		Gui start = new Gui();										//Starts Gui
+		
+		while(onOff)
+		{
+			if (go == true)											//wait boolean from Gui to start
+			{
+				window.startNow();									//sets MasterFrame
+				onOff = false;										//if started once cannot start again
+			};
+		}
+	}
 }
