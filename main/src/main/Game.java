@@ -36,8 +36,14 @@ public class Game extends Thread{
 					Main.level -= 1;
 					Main.room = 3;
 					if((Create.hero1.lives -= 1) < 0) System.exit(0);
-					Create.hero1.setHp(100 * Create.hero1.level);
+					Create.hero1.setHp(50 + 50 * Create.hero1.level);
 					break;
+				}
+				if(Main.obj_list.get(2).ep == (int) Math.pow(2, Main.obj_list.get(2).level))
+				{
+					Main.obj_list.get(2).ep = 0;
+					Main.obj_list.get(2).level += 1;
+					Create.hero1.setHp(100 + 50 * Main.obj_list.get(2).level);
 				}
 			}
 

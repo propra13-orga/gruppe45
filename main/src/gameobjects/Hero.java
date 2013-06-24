@@ -17,7 +17,7 @@ public class Hero extends Figure {
 		this.start_x=x;
 		this.start_y=y;
 		this.level = 1;
-		this.hp = 100 * this.level;
+		this.hp = 50 + 50 * this.level;
 		this.bugs=2;
 		this.mp = 100;
 		this.lives = 2;
@@ -33,6 +33,7 @@ public class Hero extends Figure {
 
 	public void setHp(int hp)
 	{
+		if(hp > 50 + 50 * this.level) hp = 50 + 50 * this.level;
 		this.hp = hp;
 	}
 

@@ -206,7 +206,7 @@ public class Coll {
 
 	//deals dmg to players
 	static void deal_dmg(Figure dealer , Figure reciever){
-		reciever.hp -= dealer.dmg / reciever.defe;
+		reciever.hp -= (dealer.dmg / reciever.defe);
 		if(reciever.hp < 1)
 		{
 			if(reciever.nr == 2 || reciever.nr == 3)
