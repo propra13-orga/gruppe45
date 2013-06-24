@@ -20,7 +20,7 @@ public static boolean run = false;				//movements are made when run == true, the
 public static boolean ingame = true;			//ingame == false while in menu
 public static boolean shop = false;				//can shop be openend?
 public static boolean music = true;				//music on/off
-public static boolean go = false;
+public static boolean go = true;
 public static boolean onOff = true;
 
 public static ArrayList<Figure> obj_list = new ArrayList<Figure>();	//holds all figures in game
@@ -40,8 +40,8 @@ public static void main(String[] args) throws IOException
 		Game game = new Game();										//creates Game logic		
 		game.start();												//starts Game logic
 		graphics.MasterFrame window = new graphics.MasterFrame();	//creates RenderFrame
-		@SuppressWarnings("unused")
-		Gui start = new Gui();										//Starts Gui
+	
+	//	Gui start = new Gui();										//Starts Gui
 		
 		while(onOff)
 		{
