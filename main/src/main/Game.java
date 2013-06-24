@@ -10,7 +10,6 @@ public class Game extends Thread{
 //manages the game
 	public void run(){
 		Main.obj_list = Create.init();
-                Item.get_item_list();
 		while(true)
 		{
 			//while not hitting goal
