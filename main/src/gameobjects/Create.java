@@ -125,20 +125,20 @@ public static ArrayList<Figure> create_room(int lvl, int room) { // reads level 
 									goal=new Goal(spalte*Board.block_groesse, zeile*Board.block_groesse);
 								}
 								break;
-                                case 'i':
-                                        // noch ein zufälliges item
-                                		int l=(int)(Math.random()*5);
-                                		System.out.println(l);
-                                        Item i = Item.items.get(l);
-                                        i.pos_x=spalte*Board.block_groesse; 
-                                        i.pos_y=zeile*Board.block_groesse;
-                                        
-                                        gameobjects.add((Figure) i.copy());
-                                        System.out.println(i.getClass().getSimpleName());
-                                        System.out.println(i.image.getWidth(null));
-                                        System.out.println(i.image.getWidth(null));
-                                        System.out.println("-----------------------------"); 
-                                        break;
+                            case 'i':
+                                    // noch ein zufälliges item
+                            		int l=(int)(Math.random()*5);
+                            		System.out.println(l);
+                                    Item i = Item.items.get(l);
+                                    i.pos_x=spalte*Board.block_groesse; 
+                                    i.pos_y=zeile*Board.block_groesse;
+                                    
+                                    gameobjects.add((Figure) i.copy());
+                                    System.out.println(i.getClass().getSimpleName());
+                                    System.out.println(i.image.getWidth(null));
+                                    System.out.println(i.image.getWidth(null));
+                                    System.out.println("-----------------------------"); 
+                                    break;
 							default:
 							// nix
 							}
