@@ -17,7 +17,7 @@ public static int Nr_of_Players = 1;			//1 == Singleplayer , 2 == Multiplayer
 public static int level = 1;
 public static int room = 1;
 public static Random rand = new Random();		//variable for random movement
-public static boolean run = false;				//movements are made when run == true, then run ist set to false until painted
+public static boolean reset = false;			//true if Game needs to be resetted
 public static boolean ingame = true;			//ingame == false while in menu
 public static boolean shop = false;				//can shop be openend?
 public static boolean music = true;				//music on/off

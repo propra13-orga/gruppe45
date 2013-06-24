@@ -32,20 +32,20 @@ public class Coll {
 
 	//changes value of Main.npc if player hits npc
 	public static void npc(){
-		if (   (Main.obj_list.get(2).pos_x < Main.obj_list.get(4).pos_x + Main.obj_list.get(4).image.getWidth(null) + Main.obj_list.get(4).fog)
-			&& (Main.obj_list.get(2).pos_x + Main.obj_list.get(2).image.getWidth(null) > Main.obj_list.get(4).pos_x - Main.obj_list.get(4).fog)
-			&& (Main.obj_list.get(2).pos_y < Main.obj_list.get(4).pos_y + Main.obj_list.get(4).image.getHeight(null) + Main.obj_list.get(4).fog)
-			&& (Main.obj_list.get(2).pos_y + Main.obj_list.get(2).image.getHeight(null) > Main.obj_list.get(4).pos_y - Main.obj_list.get(4).fog) )
+		if (   (Main.obj_list.get(2).pos_x < Main.obj_list.get(5).pos_x + Main.obj_list.get(5).image.getWidth(null) + Main.obj_list.get(5).fog)
+			&& (Main.obj_list.get(2).pos_x + Main.obj_list.get(2).image.getWidth(null) > Main.obj_list.get(5).pos_x - Main.obj_list.get(5).fog)
+			&& (Main.obj_list.get(2).pos_y < Main.obj_list.get(5).pos_y + Main.obj_list.get(5).image.getHeight(null) + Main.obj_list.get(5).fog)
+			&& (Main.obj_list.get(2).pos_y + Main.obj_list.get(2).image.getHeight(null) > Main.obj_list.get(5).pos_y - Main.obj_list.get(5).fog) )
 		{
 		Main.npc = true;
 		}
 		
 		else if(Main.Nr_of_Players == 2)
 		{
-			if (   (Main.obj_list.get(3).pos_x < Main.obj_list.get(0).pos_x + Main.obj_list.get(4).image.getWidth(null) + Main.obj_list.get(4).fog)
-						&& (Main.obj_list.get(3).pos_x + Main.obj_list.get(3).image.getWidth(null) > Main.obj_list.get(4).pos_x - Main.obj_list.get(4).fog)
-						&& (Main.obj_list.get(3).pos_y < Main.obj_list.get(0).pos_y + Main.obj_list.get(4).image.getHeight(null) + Main.obj_list.get(4).fog)
-						&& (Main.obj_list.get(3).pos_y + Main.obj_list.get(3).image.getHeight(null) > Main.obj_list.get(4).pos_y - Main.obj_list.get(4).fog) )
+			if (   (Main.obj_list.get(3).pos_x < Main.obj_list.get(5).pos_x + Main.obj_list.get(5).image.getWidth(null) + Main.obj_list.get(5).fog)
+				&& (Main.obj_list.get(3).pos_x + Main.obj_list.get(3).image.getWidth(null) > Main.obj_list.get(5).pos_x - Main.obj_list.get(5).fog)
+				&& (Main.obj_list.get(3).pos_y < Main.obj_list.get(5).pos_y + Main.obj_list.get(5).image.getHeight(null) + Main.obj_list.get(5).fog)
+				&& (Main.obj_list.get(3).pos_y + Main.obj_list.get(3).image.getHeight(null) > Main.obj_list.get(5).pos_y - Main.obj_list.get(5).fog) )
 			{
 			Main.npc = true;
 			}
@@ -207,12 +207,16 @@ public class Coll {
 
 	//deals dmg to players
 	static void deal_dmg(Figure dealer , Figure reciever){
-		reciever.hp-=dealer.dmg;
+		reciever.hp -= dealer.dmg / reciever.defe;
 		if(reciever.hp < 1)
 		{
 			if(reciever.nr == 2 || reciever.nr == 3)
 			{
-				System.exit(0);
+				Main.level -= 1;
+				Main.room = 3;
+				if((Create.hero1.lives -= 1) < 0) System.exit(0);
+				Create.hero1.setHp(100 * Create.hero1.level);
+				Main.reset = true;
 			}
 			else
 			{
@@ -231,13 +235,14 @@ public class Coll {
 		{
 			if(Main.obj_list.get(i).destroyable)
 			{
-				if((Main.obj_list.get(i).hp -= spell.dmg) < 1)				//if targets hp is < 1
+				if((Main.obj_list.get(i).hp -= spell.dmg / Main.obj_list.get(i).defe) < 1)				//if targets hp is < 1
 				{
 					Create.hero1.setBugs(Create.hero1.getBugs()+Main.obj_list.get(i).bugs);
 					Main.obj_list.get(2).ep += Main.obj_list.get(i).ep;
+					
+					//if boss dies clear room
 					if(Main.obj_list.get(i).type == 5)
 					{
-//						System.exit(0);
 						for(int j = 5 ; j < Main.obj_list.size() ;){
 							Main.obj_list.remove(j);
 						}

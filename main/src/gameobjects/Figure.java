@@ -20,7 +20,7 @@ public class Figure {
 	public int mp_pot = 0;
 	public int ep = 0;
 	public int level = 0;
-	public int defe;
+	public int defe = 1;
 	public int bugs = 0;
 	public int lives = 0;
 	public int dmg;							//damage
