@@ -70,17 +70,6 @@ public class Item extends Figure{
 				e.printStackTrace();
 			}
 		}
-		int i=0;
-		for (Item ding :Item.items){
-			System.out.println(i);				
-			System.out.println(ding.itemname);
-			System.out.println(ding.preis);
-			System.out.println(ding.min_level);
-			System.out.println(ding.faktor_schaden);
-			System.out.println(ding.faktor_schaden);
-			System.out.println("---------------");
-			i++;
-		}
 		return items;
 	}
 	
