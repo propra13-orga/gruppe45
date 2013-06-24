@@ -163,6 +163,29 @@ public class Coll {
 			return true;
 
 
+		//tester == boss
+		case 5:
+			for(int i=2; i < Main.obj_list.size(); i++){
+				if (Main.obj_list.get(i).nr == tester.nr)		//don't test yourself
+				{
+					continue;
+				}
+				else if ( 	(tester.pos_x + x < Main.obj_list.get(i).pos_x + Main.obj_list.get(i).image.getWidth(null))
+						 && (tester.pos_x + x + tester.image.getWidth(null) > Main.obj_list.get(i).pos_x)
+						 && (tester.pos_y + y < Main.obj_list.get(i).pos_y + Main.obj_list.get(i).image.getHeight(null))
+						 && (tester.pos_y + y +tester.image.getHeight(null) > Main.obj_list.get(i).pos_y) )
+				{
+					if(Main.obj_list.get(i).type == 4)
+					{
+						deal_dmg(tester , Main.obj_list.get(i));
+					}
+
+					return false;
+				}
+			}
+			return true;
+			
+			
 		//Spells
 		case 9:
 			for(int i=2; i < Main.obj_list.size(); i++){
