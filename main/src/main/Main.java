@@ -21,7 +21,7 @@ public static boolean run = false;				//movements are made when run == true, the
 public static boolean ingame = true;			//ingame == false while in menu
 public static boolean shop = false;				//can shop be openend?
 public static boolean music = true;				//music on/off
-public static boolean go = true;
+public static boolean go = false;
 public static boolean onOff = true;
 public static boolean npc = false;
 public static boolean reset=true;
@@ -44,7 +44,7 @@ public static void main(String[] args) throws IOException
 		game.start();												//starts Game logic
 		graphics.MasterFrame window = new graphics.MasterFrame();	//creates RenderFrame
 		
-		//Gui start = new Gui();										//Starts Gui
+		Gui start = new Gui();										//Starts Gui
 		
 		while(onOff)
 		{
