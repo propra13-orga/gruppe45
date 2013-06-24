@@ -1,5 +1,6 @@
 package graphics;
 
+import gameobjects.Create;
 import gameobjects.Figure;
 import gameobjects.Hero;
 import java.awt.Color;
@@ -34,7 +35,7 @@ public class MasterFrame extends JFrame {
 	 int height = Main.board_height;
 	 
 	 
-	 Image icon1, icon2, life, weapon, bug;
+	 Image icon1, icon2, life, weapon, bug, blob, fireball;
 
 	 
 	//configuration of main Frame
@@ -73,7 +74,9 @@ public void loadImage(){
 			icon1 = ImageIO.read(new File(local.Fs.img_pfad+"icon_bunny.png"));
 			weapon = ImageIO.read(new File(local.Fs.img_pfad+"icon_fireball.png"));
 			icon2 = ImageIO.read(new File(local.Fs.img_pfad+"bunny_l.png"));
+			fireball = ImageIO.read(new File (local.Fs.img_pfad+"icon_fireball.png"));
 			life = ImageIO.read(new File (local.Fs.img_pfad+"heart.png"));
+			blob = ImageIO.read(new File (local.Fs.img_pfad+"blob.png"));
 			bug = ImageIO.read(new File (local.Fs.img_pfad+"bug.png"));}
 			
 		catch(IOException e){	//TODO Auto-generated block		}
@@ -149,7 +152,13 @@ public void loadImage(){
 					
 					//Weappon Icon
 					g.fillRect(width-935, height-70, 50, 50);//Weapen Icon Ofensive
-					g.drawImage(weapon,width-935,height-70,this);
+					//checks if Create.Hero1.defense or Create.Hero1.spell is set to identify available weapons
+		    		if (Create.hero1.spell==true){//draw fireball  
+	    				g.drawImage(fireball,width-935,height-70,this);} //weapon
+	    				else{
+	    					if (Create.hero1.attack == true ){//draw blob
+	    						g.drawImage(blob,width-935,height-70,this);}//weapon	
+	    					}
 					g.drawString("Weapon", width-935, height-6);
 					
 					//Armor Icon
