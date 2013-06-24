@@ -40,7 +40,7 @@ public class AI {
 	static void rand_move(Figure figure){
 		if(rand_check(figure))
 		{
-			int rand = Main.rand.nextInt(5);						//get random number between 0 and 7
+			int rand = Main.rand.nextInt(4);						//get random number between 0 and 7
 
 			switch(rand){											//random movement
 				case 0:	figure.direction = 'u';
@@ -58,8 +58,6 @@ public class AI {
 				case 3:	figure.direction = 'l';
 						Move.left(figure , STEP);								//left
 						break;
-
-				case 4:	break;												//too lazy to move
 			}
 		}
 	}

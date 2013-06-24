@@ -261,7 +261,7 @@ public class Coll {
 					//if boss dies clear room
 					if(Main.obj_list.get(i).type == 5)
 					{
-						for(int j = 5 ; j < Main.obj_list.size() ;){
+						for(int j = 6 ; j < Main.obj_list.size() ;){
 							Main.obj_list.remove(j);
 						}
 					}
