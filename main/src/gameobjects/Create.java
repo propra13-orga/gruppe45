@@ -72,10 +72,15 @@ public static ArrayList<Figure> create_room(int lvl, int room) { // reads level 
 		shop = new Shop(-1000, -1000);
 	}
 	if (goal!=null){
-		shop.pos_x = -2000;
-		shop.pos_y = -2000;
+		goal.pos_x = -2000;
+		goal.pos_y = -2000;
 	}
-	
+	if (npc!=null){
+		npc.pos_x = -3000;
+		npc.pos_y = -3000;
+	} else {
+		npc = new Npc(-3000, -3000);
+	}
 	gameobjects.clear();
 	try {
 		fdatei = new File(Fs.data_pfad+dat_name+".txt");
