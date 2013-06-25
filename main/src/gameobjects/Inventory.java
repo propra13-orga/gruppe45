@@ -19,7 +19,7 @@ public class Inventory {
 		boolean new_item = true;
 		Item i;
 		for (Item ding: inventory) {
-			if (ding.itemname == item.itemname){
+			if (ding.name.equals(item.name)){
 				ding.anzahl += anzahl;
 				new_item = false;
 			}

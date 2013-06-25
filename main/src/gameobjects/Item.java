@@ -9,7 +9,6 @@ import local.Fs;
 
 public class Item extends Figure{
 
-	public String itemname;
 	public int zustand; // 0-99%
 	public int dauer; // 0=einmalig, 1=dauerhaft
 	public int angelegt; // 0=im Rucksack, 1=angelegt
@@ -49,7 +48,7 @@ public class Item extends Figure{
 							item = new Item();
 							item.min_level = Integer.parseInt(splitResult[0]);
 							item.preis = Integer.parseInt(splitResult[1]);
-							item.itemname = splitResult[2];
+							item.name = splitResult[2];
 //							item.helps_against = splitResult[3]; // wenn nur gegen bestimmte Gegner nützlich
 							item.faktor_schaden = Integer.parseInt(splitResult[4]);
 							item.faktor_schutz= Integer.parseInt(splitResult[5]);
@@ -60,7 +59,7 @@ public class Item extends Figure{
 							item.image = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+splitResult[10]);
 							Item.items.add(item);
 							zeile++; // next line
-							System.out.println(item.itemname + " erschaffen. Bild:"+splitResult[10]);
+							System.out.println(item.name + " erschaffen. Bild:"+splitResult[10]);
 						}
 					}
 				} while (zeileninhalt != null); // empty line -> EOF (end of file)
@@ -77,7 +76,7 @@ public class Item extends Figure{
 		Item itemcopy;
 		itemcopy = new Item();
 		itemcopy.min_level= this.min_level;
-		itemcopy.itemname= this.itemname;
+		itemcopy.name= this.name;
 		itemcopy.zustand= this.zustand;
 		itemcopy.dauer= this.dauer;
 		itemcopy.angelegt= this.angelegt;

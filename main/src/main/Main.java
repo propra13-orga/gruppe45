@@ -52,7 +52,7 @@ public static void main(String[] args) throws IOException
 			{
 				window.startNow();									//sets MasterFrame
 				onOff = false;										//if started once cannot start again
-			};
+			}
 		}
 	}
 }
