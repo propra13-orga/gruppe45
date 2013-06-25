@@ -146,7 +146,7 @@ public class Coll {
 					if(Main.obj_list.get(i).type == 8)
 					{
 						tester.bag.add((Item) Main.obj_list.get(i));
-						if(Main.obj_list.get(i).name.equals("Fireball")) Create.hero1.spell = true;
+						if(Main.obj_list.get(i).name.equals("Feuerball")) Create.hero1.spell = true;
 						Main.obj_list.remove(i);
 						
 						Create.hero1.setHp(Create.hero1.getHp() + 10);					//Meilenstein 2
