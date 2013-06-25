@@ -127,6 +127,7 @@ public static ArrayList<Figure> create_room(int lvl, int room) { // reads level 
 								if (goal!=null) {
 									goal.pos_x = spalte*Board.block_groesse;
 									goal.pos_y = zeile*Board.block_groesse;
+									goal.image = goal.get_goal_image(Main.level, Main.room);
 								} else {
 									goal=new Goal(spalte*Board.block_groesse, zeile*Board.block_groesse);
 								}
@@ -141,6 +142,13 @@ public static ArrayList<Figure> create_room(int lvl, int room) { // reads level 
 								} else {
 									npc = new Npc(spalte*Board.block_groesse, zeile*Board.block_groesse);
 								}
+								break;
+							case '4':
+								System.out.println(zeileninhalt.charAt(spalte));
+								i = Item.items.get(4);
+                                i.pos_x=spalte*Board.block_groesse; 
+                                i.pos_y=zeile*Board.block_groesse;
+								gameobjects.add((Figure) i.copy());
 								break;
 							case '5':
 								System.out.println(zeileninhalt.charAt(spalte));
