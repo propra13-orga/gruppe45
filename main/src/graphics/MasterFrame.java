@@ -14,6 +14,7 @@ import java.awt.*;
 import javax.swing.*;
 import javax.imageio.ImageIO;
 
+import local.Pics;
 import main.Main;
 
 import movement.Keyboard;
@@ -37,16 +38,12 @@ public class MasterFrame extends JFrame {
 	 int height = Main.board_height;
 	 
 	 
-	 Image icon1, icon2, life, weapon, bug, blob, fireball, peace, attention, flower;
-
-	 
 	//configuration of main Frame
 	public MasterFrame()
 	{
 		
 		pane = getLayeredPane();
 		
-		loadImage();
 		setTitle("Lucky Bunny");						//create MasterFrame Window
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(width, height);							//Window Size
@@ -55,12 +52,9 @@ public class MasterFrame extends JFrame {
 		setVisible(true);	
 		createBufferStrategy(2);						//BufferedStrategy active rendering
 		bs = getBufferStrategy();						//setup buffer
-	
-		
+			
 		pane.add(gamePanel, new Integer(100));
 
-		//getContentPane().add(gamePanel);				//Container for Frame Objects
-	
 		gamePanel.setIgnoreRepaint(true);				//no automatic repaint, OS will decide
 		Keyboard keyboard = new Keyboard();				//create KeyListener
 		addKeyListener(keyboard);						//connect KeyListener to Frame
@@ -68,25 +62,7 @@ public class MasterFrame extends JFrame {
 
 
 	}
-// loads Icons for Statusbar	
-public void loadImage(){
-		
-		try
-		{
-			icon1 = ImageIO.read(new File(local.Fs.img_pfad+"icon_bunny.png"));
-			weapon = ImageIO.read(new File(local.Fs.img_pfad+"icon_fireball.png"));
-			icon2 = ImageIO.read(new File(local.Fs.img_pfad+"bunny_l.png"));
-			fireball = ImageIO.read(new File (local.Fs.img_pfad+"icon_fireball.png"));
-			life = ImageIO.read(new File (local.Fs.img_pfad+"heart.png"));
-			blob = ImageIO.read(new File (local.Fs.img_pfad+"blob.png"));
-			peace = ImageIO.read(new File (local.Fs.img_pfad+"peace.jpg"));
-			attention = ImageIO.read(new File (local.Fs.img_pfad+"attention.png"));
-			flower = ImageIO.read(new File (local.Fs.img_pfad+"flower_purple.png"));
-			bug = ImageIO.read(new File (local.Fs.img_pfad+"bug.png"));}
-			
-		catch(IOException e){	//TODO Auto-generated block		}
-			System.out.println("Bild aus MasterFrame.loadImage() kann nicht eingelesen werden");
-		 }}
+
 
 	//Method to start Window
 	public void startNow()
@@ -130,7 +106,7 @@ public void loadImage(){
 		    					g.drawString("Level: "+localFigure.level,localFigure.pos_x,localFigure.pos_y-15);
 		    				}
 		    				if ((localFigure.type == 6)&&(set==false)){//draw level and hp of enemy
-		    					g.drawImage(attention,localFigure.pos_x-30,localFigure.pos_y+5,this);
+		    					g.drawImage(Pics.attention,localFigure.pos_x-30,localFigure.pos_y+5,this);
 		    					
 		    				}
 		    			}
@@ -147,7 +123,7 @@ public void loadImage(){
 					g.drawString("HP: ", width-800 , height-58);
     				g.drawString("MP: ", width-800, height-46);
     				g.drawString("EP: ", width-800, height-34);
-    				g.drawImage(bug, width-801, height-30,this);			//bugs
+    				g.drawImage(Pics.bug, width-801, height-30,this);			//bugs
     				g.drawString(""+player1.bugs, width-760, height-18);	//bugs counter
     			
     				//Status Values
@@ -157,27 +133,27 @@ public void loadImage(){
 					
     				//Icon Player
 					g.setColor(new Color(0, 0, 0));
-					g.drawImage(icon1,width-1010,height-70,this);
+					g.drawImage(Pics.icon1,width-1010,height-70,this);
 					g.drawString(player1.name, width-1010, height-6);
 					
 					//Weappon Icon
 					g.fillRect(width-935, height-70, 50, 50);//Weapen Icon Ofensive
 					//checks if Create.Hero1.defense or Create.Hero1.spell is set to identify available weapons
 		    		if (Create.hero1.spell==true){//draw fireball  
-	    				g.drawImage(fireball,width-935,height-70,this);} //weapon
+	    				g.drawImage(Pics.fireball,width-935,height-70,this);} //weapon
 	    				else{
 	    					if (Create.hero1.attack == true ){//draw blob
-	    						g.drawImage(blob,width-935,height-70,this);}//weapon	
+	    						g.drawImage(Pics.blob,width-935,height-70,this);}//weapon	
 	    					
 	    						else{
-	    							g.drawImage(peace,width-935,height-70,this);}//weapon	
+	    							g.drawImage(Pics.peace,width-935,height-70,this);}//weapon	
 		    				}
 					g.drawString("Weapon", width-935, height-6);
 					
 					//Armor Icon
 					g.fillRect(width-860, height-70, 50, 50);//Armor Icon Defensive
 					if(Create.hero1.defense == true){
-						g.drawImage(flower, width-860, height-70,this);
+						g.drawImage(Pics.flower, width-860, height-70,this);
 						}
 					g.drawString("Armor", width-860, height-6);
 					
@@ -192,11 +168,11 @@ public void loadImage(){
 					g.drawString("Level "+Main.level, width-1010, height-679);
 					
 					switch(lives){//paints amount of lives
-						case 5:g.drawImage(life,posX+68,height-721,this);
-						case 4:g.drawImage(life,posX+51,height-721,this);
-						case 3:g.drawImage(life,posX+34,height-721,this);
-						case 2:g.drawImage(life,posX+17,height-721,this);
-						case 1:g.drawImage(life,posX,height-721,this);
+						case 5:g.drawImage(Pics.life,posX+68,height-721,this);
+						case 4:g.drawImage(Pics.life,posX+51,height-721,this);
+						case 3:g.drawImage(Pics.life,posX+34,height-721,this);
+						case 2:g.drawImage(Pics.life,posX+17,height-721,this);
+						case 1:g.drawImage(Pics.life,posX,height-721,this);
 						case 0: break;
 					}
 				}
@@ -205,7 +181,7 @@ public void loadImage(){
 				{
 					System.out.println("Fehler in der drawStuff Methode");
 				}
-		//
+		
 				bs.show();												//draw image from buffer on screen
 			}
 						

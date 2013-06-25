@@ -40,6 +40,7 @@ public graphics.MasterFrame window;
 public static void main(String[] args) throws IOException
 	{
 		Fs.init();
+		local.Pics.loadPics();
 		Game game = new Game();										//creates Game logic		
 		game.start();												//starts Game logic
 		graphics.MasterFrame window = new graphics.MasterFrame();	//creates RenderFrame
