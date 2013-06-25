@@ -13,6 +13,7 @@ public class Fox extends Figure {
 		this.dmg = 100 * this.level;
 		this.hp = 100 * this.level;
 		this.ep = 1;
+		this.bugs = 1;
 		this.destroyable = true;
 	}
 }
