@@ -1,8 +1,5 @@
 package gameobjects;
 
-import java.awt.Toolkit;
-
-import local.Fs;
 
 //Boss class
 public class Boss extends Figure{

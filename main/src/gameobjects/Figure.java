@@ -11,7 +11,7 @@ public class Figure {
 	
 	public Image image;
 	public Inventory bag;
-	public Image off = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad + "icon_fireball.png");
+	public Image off = local.Pics.fireball;
 	public Image def;
 	public String name = "blubb";
 	public int hp = 100;						//health points
