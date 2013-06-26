@@ -1,13 +1,9 @@
 package movement;
 
-import local.Fs;
-import main.*;
-
 import gameobjects.Create;
+import main.Main;
 import graphics.Npc;
 import graphics.ShopFrame;
-
-import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -27,13 +23,13 @@ public class Keyboard implements KeyListener {
 				
 				case KeyEvent.VK_LEFT:// int 37
 					Main.obj_list.get(2).direction = 'l';
-					Main.obj_list.get(2).image = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"bunny_l_motion.png");
+					Main.obj_list.get(2).image = local.Pics.bunny_l_motion;
 					Move.left(Main.obj_list.get(2) , STEP);
 					break;
 				
 				case KeyEvent.VK_RIGHT: // int 18
 					Main.obj_list.get(2).direction = 'r';
-					Main.obj_list.get(2).image = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"bunny_r_motion.png");
+					Main.obj_list.get(2).image = local.Pics.bunny_r_motion;
 					Move.right(Main.obj_list.get(2) , STEP);
 					break;
 				
@@ -107,8 +103,8 @@ public class Keyboard implements KeyListener {
 	//Angleichen, je nach endgültigem Bewegungssystem
 	public void keyReleased(KeyEvent e){
 		key = e.getKeyCode();
-		if (key == KeyEvent.VK_LEFT)Main.obj_list.get(2).image = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"bunny_l.png");
-		if (key == KeyEvent.VK_RIGHT)Main.obj_list.get(2).image = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"bunny_r.png");
+		if (key == KeyEvent.VK_LEFT)Main.obj_list.get(2).image = local.Pics.icon1;
+		if (key == KeyEvent.VK_RIGHT)Main.obj_list.get(2).image = local.Pics.bunny_r;
 		// if (key == KeyEvent.VK_UP)
 		// if (key == KeyEvent.VK_DOWN)
 	}

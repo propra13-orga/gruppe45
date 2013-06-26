@@ -1,5 +1,5 @@
 package main;
-import javax.imageio.ImageIO;
+
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JButton;
@@ -9,8 +9,6 @@ import main.Main;
 
 import java.awt.Color;
 import java.awt.event.*;
-import java.io.File;
-import java.io.IOException;
 import java.awt.Font;
 import javax.swing.JLayeredPane;
 
