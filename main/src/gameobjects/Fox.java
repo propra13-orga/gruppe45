@@ -9,6 +9,7 @@ import local.Fs;
 public class Fox extends Figure {
 	public Fox (int x, int y) {
 		super(3,x,y,Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"fox_l.png"));
+	//	super(3,x,y,Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"fox_l.png"));
 		this.level = Main.level;
 		this.dmg = 100 * this.level;
 		this.hp = 100 * this.level;
