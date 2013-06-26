@@ -22,7 +22,7 @@ public class Npc extends JFrame
 		private int height = Main.board_height;
 		private int width = Main.board_width;
 		
-		Image cave, mole;
+//		Image cave, mole;
 		
 		JLabel background, moleLabel, textLabel;
 		JLayeredPane pane;
@@ -32,7 +32,6 @@ public class Npc extends JFrame
 		
 		public Npc()
 			{	
-				loadIcon();
 				MasterFrame.set=true;
 				Main.ingame = false;
 			
@@ -60,13 +59,13 @@ public class Npc extends JFrame
 				public NpcPanel1()
 				{
 					//Background
-					background = new JLabel(new ImageIcon(cave));
+					background = new JLabel(new ImageIcon(local.Pics.cave));
 					background.setBounds(0, 0, 400, 400);
 					background.setOpaque(true);
 					background.setBackground(Color.black);
 					
 					//Label mole
-					moleLabel = new JLabel(new ImageIcon(mole));
+					moleLabel = new JLabel(new ImageIcon(local.Pics.mole));
 			 		moleLabel.setBounds(280, 250, 110, 150);
 			 		
 			 		//text content for different level
@@ -118,19 +117,7 @@ public class Npc extends JFrame
 		
 		
 		
-		public void loadIcon(){
-			
-			try
-				{
-					cave = ImageIO.read(new File(local.Fs.img_pfad+"cave.jpg"));		
-					mole = ImageIO.read(new File (local.Fs.img_pfad+"shop_active.png"));
-					//		lives = ImageIO.read(new File (local.Fs.img_pfad+"heart.jpg"));}
-				}
-			catch(IOException e)
-				{	
-				System.out.println("Fehler in NpcLevel1 loadImage");	
-				}
-			 }
+		
 
    
 	
