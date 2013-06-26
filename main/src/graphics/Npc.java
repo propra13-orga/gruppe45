@@ -5,13 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLayeredPane;
 import javax.swing.JLabel;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowAdapter;
-import java.io.IOException;
-import java.io.File;
 import javax.swing.*;
-import javax.imageio.ImageIO;
-import local.Fs;
 import main.Main;
 
 import java.awt.*;
