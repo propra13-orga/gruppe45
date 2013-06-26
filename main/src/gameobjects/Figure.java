@@ -3,9 +3,6 @@ package gameobjects;
 //parent class of Fox, Hero, Goal, Poisonous_Tree, Wall
 
 import java.awt.Image;
-import java.awt.Toolkit;
-
-import local.Fs;
 
 public class Figure {
 	

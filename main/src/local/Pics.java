@@ -7,7 +7,7 @@ import javax.imageio.ImageIO;
 //please do no changes!!! still 
 public class Pics 
 {
-	public static Image icon1, icon2, life, weapon, bug, blob, fireball, peace, attention, flower;
+	public static Image icon1, icon2, life, weapon, bug, blob, fireball, peace, attention, flower, boss_l;
 	
 	public static void loadPics(){
 	
@@ -22,6 +22,7 @@ public class Pics
 		peace = ImageIO.read(new File (local.Fs.img_pfad+"peace.jpg"));
 		attention = ImageIO.read(new File (local.Fs.img_pfad+"attention.png"));
 		flower = ImageIO.read(new File (local.Fs.img_pfad+"flower_purple.png"));
+		boss_l = ImageIO.read(new File (local.Fs.img_pfad+"boss_l.png"));
 		bug = ImageIO.read(new File (local.Fs.img_pfad+"bug.png"));}
 		
 	catch(IOException e)

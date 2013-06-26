@@ -28,7 +28,7 @@ public class Gui extends JFrame implements ActionListener{
 	JLabel foxLabel, treeLabel1,treeLabel2, treeLabel3, backLabel, titleLabel, bunnyLabel, hedgeLabel, shopLabel;
 	JLabel messageLabel, messageLabelIn;
 	
-	JButton go, exit, person, option, backButton;
+	JButton go, exit, person, option, backButton, editorButton;
 	JLayeredPane pane;
 	
 	public Gui(){
@@ -61,6 +61,7 @@ public class Gui extends JFrame implements ActionListener{
 		pane.add(messageLabel,	 new Integer(0));
 		pane.add(messageLabelIn, new Integer(0));
 		pane.add(backButton,      new Integer(0));
+		pane.add(editorButton,    new Integer(10));
 		
 		//pane.setVisible(true);
 		
@@ -84,6 +85,7 @@ public class Gui extends JFrame implements ActionListener{
 		   		pane.setLayer(option , 0);
 		  		pane.setLayer(go , 0);
 		   		pane.setLayer(exit , 0);
+		   		pane.setLayer(editorButton, 0);
 	     		pane.setLayer(backButton, 515);
 	    	}
 	    });
@@ -97,7 +99,8 @@ public class Gui extends JFrame implements ActionListener{
 		 		pane.setLayer(option , 0);
 		  		pane.setLayer(go , 0);
 		  		pane.setLayer(exit , 0);
-		   			pane.setLayer(backButton, 515);
+		   		pane.setLayer(backButton, 515);
+		   		pane.setLayer(editorButton, 0);
 		   	}
 		});
 		
@@ -111,17 +114,25 @@ public class Gui extends JFrame implements ActionListener{
 		   		pane.setLayer(go , 10);
 		   		pane.setLayer(exit , 10);
 		   		pane.setLayer(backButton, 0);
+		   		pane.setLayer(editorButton, 10);
 				   			
 				   	}
 				});
+		
+		//option button event listener
+				editorButton.addActionListener(new ActionListener(){
+			    	public void actionPerformed(ActionEvent e){
+			    			LevelEditor editor = new LevelEditor();
+			    	}
+			    });
 		
 	}
 	
 	
 
 
-//starts new game when clicked			 
- public void actionPerformed(ActionEvent e) 
+	//starts new game when clicked			 
+	public void actionPerformed(ActionEvent e) 
  	{
 	     dispose();                        			//close Window
 	     Main.ingame = true;						//set game logic on
@@ -144,24 +155,36 @@ public class Gui extends JFrame implements ActionListener{
 	 		go.setForeground(Color.white );
 	 		go.setBackground(Color.black);
 	 		
-	 		//mitwirkenden
-	 		person = new JButton("Mitwirkenden");
-	 		person.setBounds(width-320,height-360,200,30);
-	 		person.setForeground(Color.white );
-	 		person.setBackground(Color.black);
-	 		
 	 		//Optionen
 	 		option = new JButton("Optionen");
 	 		option.setBounds(width-320,height-400,200,30);
 	 		option.setForeground(Color.white );
 	 		option.setBackground(Color.black);
 	 		
+	 		//mitwirkenden
+	 		person = new JButton("Mitwirkenden");
+	 		person.setBounds(width-320,height-360,200,30);
+	 		person.setForeground(Color.white );
+	 		person.setBackground(Color.black);
+	 		
+	 		//Leveleditor Button
+	 		editorButton = new JButton("Level Editor");
+	 		editorButton.setBounds(width-320,height-320,200,30);
+	 		editorButton.setOpaque(true);
+	 		editorButton.setBackground(Color.black);
+	 		editorButton.setForeground(Color.white);
+
 	 		//exit button
 	 		exit = new JButton("Beenden");
-	 		exit.setBounds(width-320,height-320,200,30);
+	 		exit.setBounds(width-320,height-280,200,30);
 	 		exit.setForeground(Color.white );
 	 		exit.setBackground(Color.black);
-
+			 		
+	 		backButton = new JButton("Zurück");
+	 		backButton.setBounds(400,600,200,30);
+	 		backButton.setOpaque(true);
+	 		backButton.setBackground(Color.black);
+	 		backButton.setForeground(Color.white);
 	 		
 	 		titleLabel = new JLabel("Lucky Bunny");
 	 		titleLabel.setBounds(width-500,height-700,200,200);
@@ -199,11 +222,8 @@ public class Gui extends JFrame implements ActionListener{
 	 		messageLabelIn.setOpaque(true);
 	 		messageLabelIn.setBackground(Color.white);
 	 		
-	 		backButton = new JButton("Zurück");
-	 		backButton.setBounds(400,600,200,30);
-	 		backButton.setOpaque(true);
-	 		backButton.setBackground(Color.black);
-	 		backButton.setForeground(Color.white);
+	 		
+	 		
 	 		
 	 		
 	 	}
