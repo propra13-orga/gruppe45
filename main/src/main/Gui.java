@@ -6,23 +6,19 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JFrame;
 import main.Main;
+
+import java.awt.Color;
 import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
-import java.awt.*;
+import java.awt.Font;
 import javax.swing.JLayeredPane;
-
-
-
-//import java.io.IOException;
 
 public class Gui extends JFrame implements ActionListener{
 	
 	private int height = Main.board_height;
 	private int width = Main.board_width;
-	
-	Image fox, tree, back, bunny, hedgehog, shop;
-	
+		
 	startPanel start = new startPanel();				//create Gui Elements
 	
 	JLabel foxLabel, treeLabel1,treeLabel2, treeLabel3, backLabel, titleLabel, bunnyLabel, hedgeLabel, shopLabel;
@@ -148,8 +144,6 @@ public class Gui extends JFrame implements ActionListener{
 	 	Color lightGreen = (new Color(47, 118, 19));	
 	 	public startPanel()
 	 	{	
-	 		loadIcon();									//loads images
-	 		
 	 		//start button
 	 		go = new JButton("Neues Spiel");
 	 		go.setBounds(width-320,height-440,200,30);
@@ -198,26 +192,27 @@ public class Gui extends JFrame implements ActionListener{
 	 		titleLabel.setBounds(width-500,height-700,200,200);
 	 		titleLabel.setFont(new Font(titleLabel.getName(), Font.PLAIN, 30));
 	 		
-	 		foxLabel = new JLabel(new ImageIcon(fox));
+	 		
+	 		foxLabel = new JLabel(new ImageIcon(local.Pics.fox_r));
 	 		foxLabel.setBounds(width-950,height-550,300,200);
 	 		
-	 		treeLabel1 = new JLabel(new ImageIcon(tree));
+	 		treeLabel1 = new JLabel(new ImageIcon(local.Pics.tree));
 	 		treeLabel1.setBounds(width-1000,height-700,200,200);
-	 		treeLabel2 = new JLabel(new ImageIcon(tree));
+	 		treeLabel2 = new JLabel(new ImageIcon(local.Pics.tree));
 	 		treeLabel2.setBounds(width-900,height-780,200,200);
-	 		treeLabel3 = new JLabel(new ImageIcon(tree));
+	 		treeLabel3 = new JLabel(new ImageIcon(local.Pics.tree));
 	 		treeLabel3.setBounds(width-800,height-760,200,200);
 	 		
-	 		backLabel = new JLabel(new ImageIcon(back));
+	 		backLabel = new JLabel(new ImageIcon(local.Pics.back));
 	 		backLabel.setBounds(0,0,1024,768);
 	 		
-	 		bunnyLabel = new JLabel(new ImageIcon(bunny));
+	 		bunnyLabel = new JLabel(new ImageIcon(local.Pics.bunny_r));
 	 		bunnyLabel.setBounds(width-500, height-500, 100, 300);
 	 		
-	 		shopLabel = new JLabel(new ImageIcon(shop));
+	 		shopLabel = new JLabel(new ImageIcon(local.Pics.mole));
 	 		shopLabel.setBounds(width-900, height-300, 200, 200);
 	 		
-	 		hedgeLabel = new JLabel(new ImageIcon(hedgehog));
+	 		hedgeLabel = new JLabel(new ImageIcon(local.Pics.hedgehog));
 	 		hedgeLabel.setBounds(width-500, height-300, 100, 300);
 	 		
 	 		messageLabel = new JLabel();
@@ -230,28 +225,7 @@ public class Gui extends JFrame implements ActionListener{
 	 		messageLabelIn.setOpaque(true);
 	 		messageLabelIn.setBackground(Color.white);
 	 		
-	 		
-	 		
-	 		
-	 		
 	 	}
-	 	
-	 	public void loadIcon(){
-			
-			try
-				{
-					fox = ImageIO.read(new File(local.Fs.img_pfad+"fox_r.png"));		
-					tree = ImageIO.read(new File(local.Fs.img_pfad+"wall_1.png"));
-					back = ImageIO.read(new File (local.Fs.img_pfad+"bg_1_1.png"));
-					bunny = ImageIO.read(new File (local.Fs.img_pfad+"bunny_r.png"));
-					hedgehog = ImageIO.read(new File (local.Fs.img_pfad+"hedgehog_l.png"));
-					shop = ImageIO.read(new File (local.Fs.img_pfad+"shop_active.png"));
-					
-				}
-			catch(IOException e)
-				{	
-				System.out.println("Fehler in Gui loadImage");	
-				}
-			 }
+	
 	 }
 }
