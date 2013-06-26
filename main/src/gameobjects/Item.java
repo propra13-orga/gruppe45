@@ -25,7 +25,8 @@ public class Item extends Figure{
 	public static ArrayList<Item> items = new ArrayList<Item>();
 
 	public Item() {
-		super(8,0,0,Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"bg_menue.png"));
+		super(8,0,0,local.Pics.hero2);
+	//	super(8,0,0,Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"bg_menue.png"));
 	}
 
 	public static ArrayList<Item> get_item_list () {
