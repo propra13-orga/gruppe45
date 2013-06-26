@@ -201,7 +201,8 @@ public static ArrayList<Figure> create_room(int lvl, int room) { // reads level 
 	}
 	if (Main.Nr_of_Players==1) {
 		hero2 = new Hero(0, 0, "hedgehog");
-		hero2.image = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"bg_menue.png");
+	//	hero2.image = Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"bg_menue.png");
+		hero2.image = local.Pics.hero2;
 	}
 	board.image = Create.get_board_bg_image(lvl, room);
 	gameobjects.add(0,board);
