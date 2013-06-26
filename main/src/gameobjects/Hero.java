@@ -2,12 +2,12 @@ package gameobjects;
 
 import java.awt.Image;
 import java.awt.Toolkit;
-
 import local.Fs;
 
 // hero class
 public class Hero extends Figure {
-	public Image lives_img=Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"lives_bunny.png");
+	public Image lives_img;
+//	public Image lives_img=Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"lives_bunny.png");
 	public boolean defense = false;
 	public boolean attack = false;
 	public boolean spell = false;
@@ -24,6 +24,7 @@ public class Hero extends Figure {
 		this.dmg = 100;
 		this.destroyable = true;
 		this.bag = new Inventory();
+		this.lives_img = local.Pics.lives_img;
 	}
 
 	public int getHp()
@@ -86,7 +87,8 @@ public class Hero extends Figure {
 			@SuppressWarnings("unused")
 			Spell blob = new Spell(	pos[0],
 										pos[1],
-										Toolkit.getDefaultToolkit().getImage(Fs.img_pfad +"blob.png"),
+										local.Pics.blob,
+									//	Toolkit.getDefaultToolkit().getImage(Fs.img_pfad +"blob.png"),
 										this.direction,
 										(int) this.dmg / 2 );
 		}

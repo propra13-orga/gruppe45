@@ -2,7 +2,6 @@ package gameobjects;
 
 import java.awt.Image;
 import java.awt.Toolkit;
-
 import local.Fs;
 import main.Main;
 
