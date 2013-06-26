@@ -1,35 +1,28 @@
 package graphics;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLayeredPane;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowAdapter;
-import java.io.IOException;
-import java.io.File;
-import javax.swing.*;
-import javax.imageio.ImageIO;
-import java.awt.*;
-
 
 public class ShopFrame extends JFrame {
 
     JLayeredPane layeredPane;
-    Image player1Icon, bugs;
     JLabel labelB, labelHP, labelMP;
-
-   //testvalues
-
 
     public ShopFrame(){
         super("Shop");
-        loadIcon();
+
         
         //creating some JLabels
         
         //PlayerLeft Icon
-        JLabel lIcon = new JLabel(new ImageIcon(player1Icon));
+        JLabel lIcon = new JLabel(new ImageIcon(local.Pics.icon1));
         lIcon.setBounds(80,50,200,50);
         
         //PlayerLeft Label
@@ -42,7 +35,7 @@ public class ShopFrame extends JFrame {
         kLabel1.setText("Käfer: ");
         kLabel1.setBounds(50,100,50,50);
        
-        JLabel kLabel1_a = new JLabel(new ImageIcon(bugs));
+        JLabel kLabel1_a = new JLabel(new ImageIcon(local.Pics.bug));
         kLabel1_a.setBounds(10,100,50,50);
         
         labelB = new JLabel (String.valueOf(new Integer(gameobjects.Create.hero1.getBugs())));
@@ -282,19 +275,6 @@ public void updatePoints(int index){
 	}
 }
     
-public void loadIcon(){
-		
-		try
-			{
-				player1Icon = ImageIO.read(new File(local.Fs.img_pfad+"icon_bunny.png"));		
-				bugs = ImageIO.read(new File(local.Fs.img_pfad+"bug.png"));
-				//		lives = ImageIO.read(new File (local.Fs.img_pfad+"heart.jpg"));}
-			}
-		catch(IOException e)
-			{	
-			System.out.println("Fehler in Shop loadImage");	
-			}
-		 }
 public void noBugs(){
 	JOptionPane.showMessageDialog(null, "Zu wenig Käfer!"); 
 }
