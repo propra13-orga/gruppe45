@@ -28,7 +28,7 @@ public class Gui extends JFrame implements ActionListener{
 	JLabel foxLabel, treeLabel1,treeLabel2, treeLabel3, backLabel, titleLabel, bunnyLabel, hedgeLabel, shopLabel;
 	JLabel messageLabel, messageLabelIn;
 	
-	JButton go, exit, person, option, backButton, editorButton;
+	JButton go, exit, person, option, backButton, editorButton, multyButton;
 	JLayeredPane pane;
 	
 	public Gui(){
@@ -62,6 +62,7 @@ public class Gui extends JFrame implements ActionListener{
 		pane.add(messageLabelIn, new Integer(0));
 		pane.add(backButton,      new Integer(0));
 		pane.add(editorButton,    new Integer(10));
+		pane.add(multyButton,    new Integer(10));
 		
 		//pane.setVisible(true);
 		
@@ -161,22 +162,29 @@ public class Gui extends JFrame implements ActionListener{
 	 		option.setForeground(Color.white );
 	 		option.setBackground(Color.black);
 	 		
+	 		//Multiplayer Button
+	 		multyButton = new JButton("Multiplayer");
+	 		multyButton.setBounds(width-320,height-360,200,30);
+	 		multyButton.setOpaque(true);
+	 		multyButton.setBackground(Color.black);
+	 		multyButton.setForeground(Color.white);
+	 		
 	 		//mitwirkenden
 	 		person = new JButton("Mitwirkenden");
-	 		person.setBounds(width-320,height-360,200,30);
+	 		person.setBounds(width-320,height-320,200,30);
 	 		person.setForeground(Color.white );
 	 		person.setBackground(Color.black);
 	 		
 	 		//Leveleditor Button
 	 		editorButton = new JButton("Level Editor");
-	 		editorButton.setBounds(width-320,height-320,200,30);
+	 		editorButton.setBounds(width-320,height-280,200,30);
 	 		editorButton.setOpaque(true);
 	 		editorButton.setBackground(Color.black);
 	 		editorButton.setForeground(Color.white);
 
 	 		//exit button
 	 		exit = new JButton("Beenden");
-	 		exit.setBounds(width-320,height-280,200,30);
+	 		exit.setBounds(width-320,height-240,200,30);
 	 		exit.setForeground(Color.white );
 	 		exit.setBackground(Color.black);
 			 		
