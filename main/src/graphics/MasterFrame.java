@@ -4,16 +4,13 @@ import gameobjects.Create;
 import gameobjects.Figure;
 import gameobjects.Hero;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
-
 import java.awt.Toolkit;
 import java.awt.image.BufferStrategy;
-import java.io.File;
-import java.io.IOException;
-import java.awt.*;
-import javax.swing.*;
-import javax.imageio.ImageIO;
-
+import javax.swing.JFrame;
+import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
 import local.Pics;
 import main.Main;
 
