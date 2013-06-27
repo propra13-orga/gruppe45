@@ -5,6 +5,8 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JFrame;
+import javax.swing.JTextField;
+
 import main.Main;
 
 import java.awt.Color;
@@ -20,10 +22,11 @@ public class Gui extends JFrame implements ActionListener{
 	startPanel start = new startPanel();				//create Gui Elements
 	
 	JLabel foxLabel, treeLabel1,treeLabel2, treeLabel3, backLabel, titleLabel, bunnyLabel, hedgeLabel, shopLabel,
-			messageLabel, messageLabelIn, player1Label, player2Label;
+			messageLabel, messageLabelIn, player1Label, player2Label, playerMod, name1Auf, name2Auf;
 	
 	JButton go, exit, person, option, backButton, editorButton, multyButton ,player1Icon, player2Icon ;
 	JLayeredPane pane;
+	JTextField name1,name2;
 	
 	public Gui(){
 		
@@ -61,6 +64,12 @@ public class Gui extends JFrame implements ActionListener{
 		pane.add(player2Label,	 new Integer(0));
 		pane.add(player1Icon,   new Integer(0));
 		pane.add(player2Icon,   new Integer(0));
+		pane.add(name1, 		new Integer(0));
+		pane.add(name2,          new Integer(0));
+		pane.add(playerMod, new Integer(0));
+		pane.add(name1Auf, new Integer(0));
+		pane.add(name2Auf, new Integer(0));
+	
 		//pane.setVisible(true);
 		
 		go.addActionListener(this);						//adds key Listener to Gui
@@ -90,6 +99,11 @@ public class Gui extends JFrame implements ActionListener{
 	     		pane.setLayer(player2Label, 515);
 	     		pane.setLayer(player1Icon, 515);
 	     		pane.setLayer(player2Icon, 515);
+	     		pane.setLayer(name1, 515);
+	     		pane.setLayer(name2, 515);
+	     		pane.setLayer(playerMod,515);
+	     		pane.setLayer(name1Auf, 516);
+	     		pane.setLayer(name2Auf, 516);
 	     	
 	     		}
 	    });
@@ -106,7 +120,6 @@ public class Gui extends JFrame implements ActionListener{
 		   		pane.setLayer(backButton, 515);
 		   		pane.setLayer(editorButton, 0);
 		   		pane.setLayer(multyButton , 0);
-		   	
 		   	}
 		});
 		
@@ -125,8 +138,17 @@ public class Gui extends JFrame implements ActionListener{
 		   		pane.setLayer(player1Label, 0);
 	     		pane.setLayer(player2Label, 0);
 	     		pane.setLayer(player1Icon, 0);
-	     		pane.setLayer(player2Icon, 0);	     	
-		  
+	     		pane.setLayer(player2Icon, 0);	     
+	     		pane.setLayer(name1, 0);
+	     		pane.setLayer(name2, 0);
+	     		pane.setLayer(playerMod, 0);
+	     		pane.setLayer(name1Auf, 0);
+	     		pane.setLayer(name2Auf, 0);	  
+	     		
+	     		//puts input name into variable, needs to be connected to Hero
+	     		String name1S = name1.getText();
+	     		String name2S = name2.getText();
+
 				   	}
 				});
 		
@@ -135,25 +157,30 @@ public class Gui extends JFrame implements ActionListener{
 		   	public void actionPerformed(ActionEvent e){
 		   		//Insert Code to start Player 1
 		   		main.Main.Nr_of_Players =1;
+		   		playerMod.setText("Single Player Modus aktiviert");
+		
 		   	
 		   	}
 		});
 		
 		//Optionen Player2 Button Event Listener
-				player1Icon.addActionListener(new ActionListener(){
+				player2Icon.addActionListener(new ActionListener(){
 				   	public void actionPerformed(ActionEvent e){
 				   		//Insert Code to start Player 2
 				   		main.Main.Nr_of_Players =2;
+				   		playerMod.setText("2 Player Modus aktiviert");
 				   	
 				   	}
 				});
 		
 		//option button event listener
 				editorButton.addActionListener(new ActionListener(){
-			    	public void actionPerformed(ActionEvent e){
-			    			LevelEditor editor = new LevelEditor();
-			    	}
-			    });
+				    	public void actionPerformed(ActionEvent e){
+				    		if (pane.getLayer(editorButton)==10)	
+				    		{		
+				    			LevelEditor editor = new LevelEditor();}
+				    		}
+				 });
 		
 	}
 	
@@ -163,10 +190,11 @@ public class Gui extends JFrame implements ActionListener{
 	//starts new game when clicked			 
 	public void actionPerformed(ActionEvent e) 
  	{
+		if (pane.getLayer(go)==10 ){				//asks if go label is visible
 	     dispose();                        			//close Window
 	     Main.ingame = true;						//set game logic on
 	     Main.go = true;							//gives boolean to main to start game
-	   
+		}
  	}
   
 //Gui Panel 
@@ -275,6 +303,28 @@ public class Gui extends JFrame implements ActionListener{
 	 		//Button Player 2
 	 		player2Icon = new JButton(new ImageIcon(local.Pics.hedgehog));
 	 		player2Icon.setBounds((width/2),(height/2),150,150);
+	 		
+	 		//Input Textfield name 1
+	 		name1Auf = new JLabel("Bitte Namen eingeben:");
+	 		name1Auf.setBounds((width/2)-200,(height/2)-80,170,30);
+	 		name1 = new JTextField("Bunny");
+	 		name1.setBounds((width/2)-200,(height/2)-50,150,30);
+	 			 		
+	 		//Input Textfield name 2
+	 		name2Auf = new JLabel("Bitte Namen eingeben:");
+	 		name2Auf.setBounds((width/2),(height/2)-80,170,30);
+	 		name2 = new JTextField("Hedgehog");
+	 		name2.setBounds((width/2),(height/2)-50,150,30);
+	 			 	
+	 		// Modus aktiviert Button
+	 		playerMod = new JLabel ("Single Player Modus aktiviert");
+	 		playerMod.setBounds(400,560,220,30);
+	 		
+	 		//text description
+	 		
+	 		
+
+
 	 		
 	 	}
 	
