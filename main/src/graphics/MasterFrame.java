@@ -204,7 +204,7 @@ public class MasterFrame extends JFrame {
 					
     				//Icon Player
 					g.setColor(new Color(0, 0, 0));
-					g.drawImage(Pics.icon1,width-64,height-70,this);
+					g.drawImage(Pics.hedgehog,width-64,height-70,this);
 					g.drawString(player2.name, width-64, height-6);
 					
 					//Weappon Icon
