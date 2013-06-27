@@ -19,10 +19,10 @@ public class Gui extends JFrame implements ActionListener{
 		
 	startPanel start = new startPanel();				//create Gui Elements
 	
-	JLabel foxLabel, treeLabel1,treeLabel2, treeLabel3, backLabel, titleLabel, bunnyLabel, hedgeLabel, shopLabel;
-	JLabel messageLabel, messageLabelIn;
+	JLabel foxLabel, treeLabel1,treeLabel2, treeLabel3, backLabel, titleLabel, bunnyLabel, hedgeLabel, shopLabel,
+			messageLabel, messageLabelIn, player1Label, player2Label;
 	
-	JButton go, exit, person, option, backButton, editorButton, multyButton;
+	JButton go, exit, person, option, backButton, editorButton, multyButton ,player1Icon, player2Icon ;
 	JLayeredPane pane;
 	
 	public Gui(){
@@ -57,7 +57,10 @@ public class Gui extends JFrame implements ActionListener{
 		pane.add(backButton,      new Integer(0));
 		pane.add(editorButton,    new Integer(10));
 		pane.add(multyButton,    new Integer(10));
-		
+		pane.add(player1Label,	 new Integer(0));
+		pane.add(player2Label,	 new Integer(0));
+		pane.add(player1Icon,   new Integer(0));
+		pane.add(player2Icon,   new Integer(0));
 		//pane.setVisible(true);
 		
 		go.addActionListener(this);						//adds key Listener to Gui
@@ -82,7 +85,13 @@ public class Gui extends JFrame implements ActionListener{
 		   		pane.setLayer(exit , 0);
 		   		pane.setLayer(editorButton, 0);
 	     		pane.setLayer(backButton, 515);
-	    	}
+	     		pane.setLayer(multyButton , 0);
+	     		pane.setLayer(player1Label, 515);
+	     		pane.setLayer(player2Label, 515);
+	     		pane.setLayer(player1Icon, 515);
+	     		pane.setLayer(player2Icon, 515);
+	     	
+	     		}
 	    });
 		
 		//Mitwirkenden button event listener
@@ -96,6 +105,8 @@ public class Gui extends JFrame implements ActionListener{
 		  		pane.setLayer(exit , 0);
 		   		pane.setLayer(backButton, 515);
 		   		pane.setLayer(editorButton, 0);
+		   		pane.setLayer(multyButton , 0);
+		   	
 		   	}
 		});
 		
@@ -110,7 +121,30 @@ public class Gui extends JFrame implements ActionListener{
 		   		pane.setLayer(exit , 10);
 		   		pane.setLayer(backButton, 0);
 		   		pane.setLayer(editorButton, 10);
-				   			
+		   		pane.setLayer(multyButton , 10);
+		   		pane.setLayer(player1Label, 0);
+	     		pane.setLayer(player2Label, 0);
+	     		pane.setLayer(player1Icon, 0);
+	     		pane.setLayer(player2Icon, 0);	     	
+		  
+				   	}
+				});
+		
+		//Optionen Player1 Button Event Listener
+		player1Icon.addActionListener(new ActionListener(){
+		   	public void actionPerformed(ActionEvent e){
+		   		//Insert Code to start Player 1
+		   		main.Main.Nr_of_Players =1;
+		   	
+		   	}
+		});
+		
+		//Optionen Player2 Button Event Listener
+				player1Icon.addActionListener(new ActionListener(){
+				   	public void actionPerformed(ActionEvent e){
+				   		//Insert Code to start Player 2
+				   		main.Main.Nr_of_Players =2;
+				   	
 				   	}
 				});
 		
@@ -222,6 +256,25 @@ public class Gui extends JFrame implements ActionListener{
 	 		messageLabelIn.setBounds((width/2)-250,(height/2)-250,500,500);
 	 		messageLabelIn.setOpaque(true);
 	 		messageLabelIn.setBackground(Color.white);
+	 		
+	 		//player1Icon, player2Icon
+	 		//Option Label for choosing 1 or 2 player
+	 		
+	 		player1Label = new JLabel("1 Player Modus");
+	 		player1Label.setBounds((width/2)-200,(height/2)-200,200,30);
+	 		player1Label.setForeground(Color.black);
+	 		
+	 		player2Label = new JLabel("2 Player Modus");
+	 		player2Label.setBounds((width/2),(height/2)-200,200,30);
+	 		player2Label.setForeground(Color.black);
+	 		
+	 		//Button Player 1
+	 		player1Icon = new JButton(new ImageIcon(local.Pics.bunny_l));
+	 		player1Icon.setBounds((width/2)-200,(height/2),150,150);
+	 		
+	 		//Button Player 2
+	 		player2Icon = new JButton(new ImageIcon(local.Pics.hedgehog));
+	 		player2Icon.setBounds((width/2),(height/2),150,150);
 	 		
 	 	}
 	
