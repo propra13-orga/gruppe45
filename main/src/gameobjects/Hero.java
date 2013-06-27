@@ -14,6 +14,7 @@ public class Hero extends Figure {
 
 	public Hero (int x, int y, String player) {
 		super(4,x,y,Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+player+"_l.png"));
+	//	hier wieder das Problem zusammengesetzter Dateiname
 		this.start_x=x;
 		this.start_y=y;
 		this.level = 1;

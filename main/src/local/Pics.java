@@ -7,7 +7,10 @@ import javax.imageio.ImageIO;
 //please do no changes!!! still in progress
 public class Pics 
 {
-	public static Image icon1, bunny_l_motion, bunny_l, bunny_r_motion, hedgehog, bunny_r, back, tree, fox_r, cave, mole, shop_inactive, poisonous_tree, sign, healthbar_green, healthbar_yellow, healthbar_red, lives_img, fox_l, hero2, icon2, life, weapon, bug, blob, fireball, peace, attention, flower, boss_l;
+	public static Image icon1, bunny_l_motion, bunny_l, bunny_r_motion, hedgehog, bunny_r, 
+		back, tree, fox_r, cave, mole, shop_inactive, poisonous_tree, sign, healthbar_green, 
+		healthbar_yellow, healthbar_red, lives_img, fox_l, hero2, icon2, life, weapon, bug, 
+		blob, fireball, peace, attention, flower, boss_l;
 	
 	public static void loadPics(){
 	

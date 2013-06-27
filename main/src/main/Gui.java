@@ -162,7 +162,7 @@ public class Gui extends JFrame implements ActionListener{
 	 		multyButton.setForeground(Color.white);
 	 		
 	 		//mitwirkenden
-	 		person = new JButton("Mitwirkenden");
+	 		person = new JButton("Mitwirkende");
 	 		person.setBounds(width-320,height-320,200,30);
 	 		person.setForeground(Color.white );
 	 		person.setBackground(Color.black);
