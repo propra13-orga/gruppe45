@@ -103,7 +103,7 @@ public class Keyboard implements KeyListener {
 	//Angleichen, je nach endgültigem Bewegungssystem
 	public void keyReleased(KeyEvent e){
 		key = e.getKeyCode();
-		if (key == KeyEvent.VK_LEFT)Main.obj_list.get(2).image = local.Pics.icon1;
+		if (key == KeyEvent.VK_LEFT)Main.obj_list.get(2).image = local.Pics.bunny_l;
 		if (key == KeyEvent.VK_RIGHT)Main.obj_list.get(2).image = local.Pics.bunny_r;
 		// if (key == KeyEvent.VK_UP)
 		// if (key == KeyEvent.VK_DOWN)

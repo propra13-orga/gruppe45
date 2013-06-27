@@ -7,7 +7,7 @@ import javax.imageio.ImageIO;
 //please do no changes!!! still in progress
 public class Pics 
 {
-	public static Image icon1, bunny_l_motion, bunny_r_motion, hedgehog, bunny_r, back, tree, fox_r, cave, mole, shop_inactive, poisonous_tree, sign, healthbar_green, healthbar_yellow, healthbar_red, lives_img, fox_l, hero2, icon2, life, weapon, bug, blob, fireball, peace, attention, flower, boss_l;
+	public static Image icon1, bunny_l_motion, bunny_l, bunny_r_motion, hedgehog, bunny_r, back, tree, fox_r, cave, mole, shop_inactive, poisonous_tree, sign, healthbar_green, healthbar_yellow, healthbar_red, lives_img, fox_l, hero2, icon2, life, weapon, bug, blob, fireball, peace, attention, flower, boss_l;
 	
 	public static void loadPics(){
 	
@@ -16,6 +16,7 @@ public class Pics
 		icon1 = ImageIO.read(new File(local.Fs.img_pfad+"icon_bunny.png"));
 	//	weapon = ImageIO.read(new File(local.Fs.img_pfad+"icon_fireball.png"));
 		icon2 = ImageIO.read(new File(local.Fs.img_pfad+"bunny_l.png"));
+		bunny_l = ImageIO.read(new File(local.Fs.img_pfad+"bunny_l.png"));
 		bunny_r = ImageIO.read(new File (local.Fs.img_pfad+"bunny_r.png"));
 		bunny_l_motion = ImageIO.read(new File (local.Fs.img_pfad+"bunny_l_motion.png"));
 		bunny_r_motion = ImageIO.read(new File (local.Fs.img_pfad+"bunny_r_motion.png"));
