@@ -14,7 +14,6 @@ public class LevelEditor extends JFrame {
 	public LevelEditor(){
 		
 		setTitle("Du wolltest ein Fenster");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(600, 600);							//Window Size
 		setResizable(false);						//Window frame not resizable
 		setAlwaysOnTop(true);

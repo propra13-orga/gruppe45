@@ -152,6 +152,13 @@ public class Gui extends JFrame implements ActionListener{
 				   	}
 				});
 		
+		//Multiplayer button event listener
+			multyButton.addActionListener(new ActionListener(){
+				   	public void actionPerformed(ActionEvent e){
+				   		Multiplayer multi = new Multiplayer();
+				   	}
+				});
+		
 		//Optionen Player1 Button Event Listener
 		player1Icon.addActionListener(new ActionListener(){
 		   	public void actionPerformed(ActionEvent e){
