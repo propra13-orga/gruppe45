@@ -10,6 +10,9 @@ public class Game extends Thread{
 //manages the game
 	public void run(){
 		Main.obj_list = Create.init();
+		
+		System.out.println("Nr_of_Players: " + String.valueOf(Main.Nr_of_Players));
+		
 		while(true)
 		{
 			//while not hitting goal
