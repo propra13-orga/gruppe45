@@ -37,7 +37,7 @@ public class Gui extends JFrame implements ActionListener{
 		setSize(width, height);							//Window Size
 		setResizable(false);							//Window frame not resizable
 		this.setAlwaysOnTop(true);
-		this.setUndecorated(true);
+	//	this.setUndecorated(true);
 		pane =  getLayeredPane();
 		
 		this.setLayout(null);

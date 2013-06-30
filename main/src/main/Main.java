@@ -6,6 +6,7 @@ import local.Fs;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
+import graphics.ShopFrame;
 
 
 public class Main{
