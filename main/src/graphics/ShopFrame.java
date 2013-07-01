@@ -64,12 +64,12 @@ public class ShopFrame extends JFrame {
         //HealLabel
         JLabel hLabel = new JLabel();
         hLabel.setText("Heiltrank (10HP)");
-        hLabel.setBounds(400,200,200,50);
+        hLabel.setBounds(420,200,200,50);
 
         //ManaLabel
         JLabel mLabel = new JLabel();
         mLabel.setText("Manatrank (8MP)");
-        mLabel.setBounds(400,250,200,50);
+        mLabel.setBounds(420,250,200,50);
 
         //CloseButton
         JButton cButton = new JButton();
@@ -86,7 +86,7 @@ public class ShopFrame extends JFrame {
         //Heal Player 1
         JButton hButton1 = new JButton();
         hButton1.setText("Heiltrank");
-        hButton1.setBounds(50,200,150,50);
+        hButton1.setBounds(50,200,180,50);
         hButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 if (gameobjects.Create.hero1.getBugs()< 1){
@@ -108,7 +108,7 @@ public class ShopFrame extends JFrame {
         //Mana Player 1
         JButton mButton1 = new JButton();
         mButton1.setText("Manatrank");
-        mButton1.setBounds(50,250,150,50);
+        mButton1.setBounds(50,250,180,50);
         mButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
             	if (gameobjects.Create.hero1.getBugs()< 1){
@@ -137,7 +137,7 @@ public class ShopFrame extends JFrame {
         setSize(600,512);
          setResizable(false);
          setLayout(null);
-         this.setUndecorated(true);
+      //   this.setUndecorated(true);
          setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
          //adding Components to ShopFrame
@@ -164,35 +164,35 @@ public class ShopFrame extends JFrame {
         	 
              //PlayerRight Icon
              JLabel rIcon = new JLabel(new ImageIcon(local.Pics.icon1));
-             rIcon.setBounds(210,50,200,50);
+             rIcon.setBounds(240,50,200,50);
              
          	//PlayerRight Label	
          	JLabel PlayerRechts = new JLabel();
          	PlayerRechts.setText("Player 2");
-         	PlayerRechts.setBounds(200,50,200,50);
+         	PlayerRechts.setBounds(230,50,200,50);
          
              JLabel kLabel2_a = new JLabel(new ImageIcon(local.Pics.bug));
              kLabel2_a.setBounds(10,100,50,50);
              
              labelB2 = new JLabel (String.valueOf(new Integer(gameobjects.Create.hero2.getBugs())));
-             labelB2.setBounds(250,100,50,50);
+             labelB2.setBounds(280,100,50,50);
 
              JLabel klabel2_b = new JLabel ("HP:");
-             klabel2_b.setBounds(200, 120, 50, 50);
+             klabel2_b.setBounds(230, 120, 50, 50);
              
              labelHP2 = new JLabel (String.valueOf(new Integer(gameobjects.Create.hero2.getHp())));
-             labelHP2.setBounds(250,120,50,50);
+             labelHP2.setBounds(280,120,50,50);
              
              JLabel labelMP2_a = new JLabel("MP:");
-             labelMP2_a.setBounds(200,140,50,50);
+             labelMP2_a.setBounds(230,140,50,50);
              
              labelMP2 = new JLabel(String.valueOf(new Integer(gameobjects.Create.hero2.getMp())));
-             labelMP2.setBounds(250,140,50,50);
+             labelMP2.setBounds(280,140,50,50);
              
              //Bugtransfer Button Player 1
              JButton tButton1 = new JButton();
              tButton1.setText("Give Bugs to Player2");
-             tButton1.setBounds(50,300,150,50);
+             tButton1.setBounds(50,300,180,50);
              tButton1.addActionListener(new java.awt.event.ActionListener() {
                   public void actionPerformed(java.awt.event.ActionEvent evt) {
                       if (gameobjects.Create.hero1.getBugs()< 1){
@@ -213,7 +213,7 @@ public class ShopFrame extends JFrame {
              //Heal Player 2
              JButton hButton2 = new JButton();
              hButton2.setText("Heiltrank");
-             hButton2.setBounds(200,200,150,50);
+             hButton2.setBounds(230,200,180,50);
              hButton2.addActionListener(new java.awt.event.ActionListener() {
                  public void actionPerformed(java.awt.event.ActionEvent evt) {
                      if (gameobjects.Create.hero2.getBugs()< 1){
@@ -235,7 +235,7 @@ public class ShopFrame extends JFrame {
              //Mana Player 2
              JButton mButton2 = new JButton();
              mButton2.setText("Manatrank");
-             mButton2.setBounds(200,250,150,50);
+             mButton2.setBounds(230,250,180,50);
              mButton2.addActionListener(new java.awt.event.ActionListener() {
                  public void actionPerformed(java.awt.event.ActionEvent evt) {
                  	if (gameobjects.Create.hero2.getBugs()< 1){
@@ -257,7 +257,7 @@ public class ShopFrame extends JFrame {
              //Bugtransfer Button Player 1
              JButton tButton2 = new JButton();
              tButton2.setText("Give Bugs to Player1");
-             tButton2.setBounds(200,300,150,50);
+             tButton2.setBounds(230,300,180,50);
              tButton2.addActionListener(new java.awt.event.ActionListener() {
                   public void actionPerformed(java.awt.event.ActionEvent evt) {
                       if (gameobjects.Create.hero2.getBugs()< 1){
