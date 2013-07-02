@@ -60,35 +60,25 @@ public class Multiplayer extends JFrame {
 		//Multiplayer button event listener validates ip adress and tries to connect
 		verbindenButton.addActionListener(new ActionListener(){
 			   	public void actionPerformed(ActionEvent e){
-			   		
-			 
-			   try{		
-			   		if ((Integer.parseInt(ip1.getText())>=0)&&(Integer.parseInt(ip1.getText())<255)){
-			   			if ((Integer.parseInt(ip2.getText())>=0)&&(Integer.parseInt(ip2.getText())<255)){
-			   				if ((Integer.parseInt(ip3.getText())>=0)&&(Integer.parseInt(ip3.getText())<255)){
-			   					if ((Integer.parseInt(ip4.getText())>=0)&&(Integer.parseInt(ip4.getText())<255)){
-			   						//valid ip
-			   						chatArea.append("verbinden mit "+ip1.getText()+"."+ip2.getText()+"."+ip3.getText()+"."+ip4.getText()+"\n" );	//puts ip connect message int textfield	
-			   					}
-			   					else {
-						   			JOptionPane.showMessageDialog(null, "Bitte gültige IP Adresse eingeben!"); 
-						   		}
-			   				}
-			   				else {
-					   			JOptionPane.showMessageDialog(null, "Bitte gültige IP Adresse eingeben!"); 
-					   		}
-			   			}
-			   			else {
-				   			JOptionPane.showMessageDialog(null, "Bitte gültige IP Adresse eingeben!"); 
+			   					 
+			   try{		//checks if ip is a valid ip
+			   		if (((Integer.parseInt(ip1.getText())>=0)&&(Integer.parseInt(ip1.getText())<255))&&
+			   			 ((Integer.parseInt(ip2.getText())>=0)&&(Integer.parseInt(ip2.getText())<255))&&
+			   				((Integer.parseInt(ip3.getText())>=0)&&(Integer.parseInt(ip3.getText())<255))&&
+			   					(Integer.parseInt(ip4.getText())>=0)&&(Integer.parseInt(ip4.getText())<255))
+			   		{//valid ip
+			   			chatArea.append("verbinden mit "+ip1.getText()+"."+ip2.getText()+"."+ip3.getText()+"."+ip4.getText()+"\n" );	//puts ip connect message int textfield	
+			   			//create ChatClient and copy reference of chat window
+			   			ChatClient client = new ChatClient(Multiplayer.this);
 				   		}
-			   		}
-			   		else {
-			   			JOptionPane.showMessageDialog(null, "Bitte gültige IP Adresse eingeben!"); 
-			   		}
-			   }
-			   catch (Exception f){
+			   		else { //ip is not valid pop up prompting to enter valid ip
+						 JOptionPane.showMessageDialog(null, "Bitte gültige IP Adresse eingeben!"); 
+			   			}
+			   		}//end of try block ip is not valid
+			   catch (Exception f)
+			   		{		//if ip NaN
 				   JOptionPane.showMessageDialog(null, "Bitte gültige IP Adresse eingeben!"); 
-			   }
+			   		}
 			   	}
 			});
 		
@@ -97,6 +87,7 @@ public class Multiplayer extends JFrame {
 			   	public void actionPerformed(ActionEvent e){
 			   		chatArea.append(hostName+": " +chatField.getText()+"\n");
 			   		chatField.setText("");
+			   		
 			   	}
 			});
 		
@@ -104,7 +95,11 @@ public class Multiplayer extends JFrame {
 		hostButton.addActionListener(new ActionListener(){
 		   	public void actionPerformed(ActionEvent e){
 		   		chatArea.append(hostName+": game Server wird gestartet..."+"\n");
-		   		//enter code to start game server
+		   		//create ChatServer and copy reference of chat window
+		  		ChatServer server = new ChatServer(Multiplayer.this);
+	
+		   		
+		   		
 		   		
 		   	}
 		});
