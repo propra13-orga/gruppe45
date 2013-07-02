@@ -22,7 +22,10 @@ public class ChatClient {
 	    {
 	      //Verbindung zu Port 13000 auf localhost aufbauen:
 			//localhost = Servernamen
-	      server = new Socket ("superloser",6666);
+			
+	//!!!!!!!!!!!!!!!!!!!!!!!!!!enter host		
+	      server = new Socket ("enter host",6666);
+	//!!!!!!!!!!!!!!!!!!!!!!!!!enter host
 	    }
 	    catch (Exception ex)
 	    {
