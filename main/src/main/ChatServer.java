@@ -51,7 +51,7 @@ public class ChatServer extends Thread {
 		for(int i=0; i< (stringArray.length-1); i++){
 			clientIP += stringArray[i+1];
 		}
-		//clientIP = clientIPraw;
+		clientIP = clientIPraw;
 	}
 	
 	public void readMessage(Socket client, Multiplayer gui)

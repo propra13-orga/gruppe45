@@ -1,5 +1,6 @@
 package main;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 
@@ -38,11 +39,17 @@ public class ChatClient {
 		System.out.println("Client kann keine Verbindung aufbauen");
 		}
 		
+		
+		
+
+		
 	}//end ChatClient
 	
 	public void sendMessage(Multiplayer gui){
 		try{
-		//	out = new PrintWriter(server.getOutputStream(),true);
+			ip = gui.connectIP; //gets inserted server ip from Multiplayer
+			server = new Socket (ip,6666);	// creates socket to call server
+			out = new PrintWriter(server.getOutputStream(),true);
 			message = gui.hostName+": "+gui.chatField.getText();
 			gui.chatArea.append(message+"\n");							//displays chat message on client screen
 			out.println(message);
