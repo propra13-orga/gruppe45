@@ -3,15 +3,14 @@ package main;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
-import main.Multiplayer;
 
 
 public class ChatServer extends Thread {
 	
-	private String message="";
-	private ServerSocket serverSocket;
+	private String message="", clientIPraw, clientIP="";
+	protected ServerSocket serverSocket;
 	private Scanner in;
-	private Boolean go=true;
+	protected Boolean go=true;
 	Multiplayer gui;
 	
 	public ChatServer(Multiplayer gui)
@@ -35,11 +34,24 @@ public class ChatServer extends Thread {
 			Socket client = null;
 			try{ //accepts incomming connections
 				client = serverSocket.accept();
+				clientIPraw = client.getInetAddress().toString();
+				formatIP();
 				readMessage(client, gui);
+			
 			}
 			catch (Exception e)
 			{	message = "eingehende Verbindung kann nicht akzeptiert werden";
 			}}
+	}
+	
+	public void formatIP(){
+		//remove 1st slash from IP
+		char[] stringArray = clientIPraw.toCharArray();
+		clientIP="";
+		for(int i=0; i< (stringArray.length-1); i++){
+			clientIP += stringArray[i+1];
+		}
+		//clientIP = clientIPraw;
 	}
 	
 	public void readMessage(Socket client, Multiplayer gui)
@@ -47,8 +59,9 @@ public class ChatServer extends Thread {
 			try{
 				in = new Scanner (client.getInputStream());
 				message = in.nextLine()+"\n";
-				gui.chatArea.append(message); //somehow doesn't work
-				System.out.println(message);
+				gui.chatArea.append(message);
+				System.out.println(clientIP);
+			
 		
 				}catch (Exception e){
 								System.out.println("Fehler in read Message");	}

@@ -1,6 +1,5 @@
 package main;
 
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 
@@ -31,23 +30,26 @@ public class ChatClient {
 		try
 		{
 			out = new PrintWriter(server.getOutputStream(),true);		//object needed for socket message
-			message = gui.hostName+": "+gui.chatField.getText();		//creates chatmessage with hostname
+			message = gui.hostName+" verbunden";		//creates chatmessage with hostname
 			gui.chatArea.append(message+"\n");							//displays chat message on client screen
 			out.println(message);										//sends message to server
 		}
 		catch (Exception e){
-		System.out.println("Client kann Nachricht nicht senden");
+		System.out.println("Client kann keine Verbindung aufbauen");
 		}
 		
-		
-		
-		
-		try{ //closes socket
-		server.close();}
-		catch (IOException e){
-			System.out.println("Socket kann nicht geschlossen werden.");
+	}//end ChatClient
+	
+	public void sendMessage(Multiplayer gui){
+		try{
+		//	out = new PrintWriter(server.getOutputStream(),true);
+			message = gui.hostName+": "+gui.chatField.getText();
+			gui.chatArea.append(message+"\n");							//displays chat message on client screen
+			out.println(message);
 		}
-		
+		catch (Exception e){
+			System.out.println("Client kann Nachricht nicht senden");
+			}
 	}
 
 }
