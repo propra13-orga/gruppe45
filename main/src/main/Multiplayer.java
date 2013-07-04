@@ -55,7 +55,10 @@ public class Multiplayer extends JFrame {
 		pane2.add(hostButton,10);
 		pane2.add(chatInputLabel, 10 );
 		pane2.add(multiGoButton, 10);
+		pane2.add(chatField, 10);
 		
+		//start chat server to listen to port
+		ChatServer server = new ChatServer(Multiplayer.this);
 		
 		//Multiplayer button event listener and tries to connect to open port, port needs to be opened by server
 		verbindenButton.addActionListener(new ActionListener(){
@@ -88,9 +91,9 @@ public class Multiplayer extends JFrame {
 		hostButton.addActionListener(new ActionListener(){
 		   	public void actionPerformed(ActionEvent e){
 
-		   		chatArea.append(hostName+": game Server wird gestartet..."+"\n");
+		  // 		chatArea.append(hostName+": game Server wird gestartet..."+"\n");
 		   		//create ChatServer and copy reference of chat window
-		   		ChatServer server = new ChatServer(Multiplayer.this);
+		  // 		ChatServer server = new ChatServer(Multiplayer.this);
 		   	   	  	}
 			});
 
@@ -155,6 +158,10 @@ public class Multiplayer extends JFrame {
 			multiGoButton = new JButton("Multiplayer Spiel starten");
 			multiGoButton.setBounds(400, 635, 250, 30);
 			
+			//just information label
+			chatInputLabel = new JLabel("Chat Eingabefeld:");
+			chatInputLabel.setBounds(50,479,200,30);
+			
 			//Chat input field
 			chatField = new JTextField();
 			chatField.setBounds(50, 500, 600 , 30);
@@ -184,9 +191,7 @@ public class Multiplayer extends JFrame {
 			ip4.setBounds(335,575,30,20);
 			
 						
-			//just information label
-			chatInputLabel = new JLabel("Chat Eingabefeld:");
-			chatInputLabel.setBounds(50,479,200,30);
+			
 		}
 	}
 }

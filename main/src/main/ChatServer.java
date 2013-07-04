@@ -16,6 +16,8 @@ public class ChatServer extends Thread {
 	
 	public ChatServer(Multiplayer gui)
 	{
+		this.gui = gui;
+		
 		try
 			{	//opens new ServerSocket that listens on 6666
 				System.out.println("Socket geöffnet");
@@ -44,12 +46,13 @@ public class ChatServer extends Thread {
 		{
 			try{
 				in = new Scanner (client.getInputStream());
-				message = in.nextLine();
-			//	gui.chatArea.append(message); //somehow doesn't work
+				message = in.nextLine()+"\n";
+				gui.chatArea.append(message); //somehow doesn't work
 				System.out.println(message);
 		
 				}catch (Exception e){
 								System.out.println("Fehler in read Message");	}
+
 			if (message.equals("exit")){
 				try {client.close();}catch(Exception e){System.out.println("Fehler"); go = false;}
 			}
