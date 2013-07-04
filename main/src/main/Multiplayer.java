@@ -3,10 +3,7 @@ package main;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.InetAddress;
-import java.net.NetworkInterface;
 import java.net.Socket;
-import java.util.Collections;
-import java.util.Enumeration;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -19,32 +16,35 @@ import javax.swing.JTextField;
 
 public class Multiplayer extends JFrame {
 	
-	private String hostName, ipV4, connectIP ;
 	private InetAddress ip;
+	private JLayeredPane pane2;
 	
-	JLabel hostLabel, ipLabel, connectLabel, chatInputLabel; 
-	JButton verbindenButton, sendenButton, hostButton, multiGoButton;
-	JLayeredPane pane2;
-	JTextField chatField, ip1, ip2, ip3, ip4, chatFieldL;
-	JTextArea chatArea;
+	protected JLabel hostLabel, ipLabel, connectLabel, chatInputLabel; 
+	protected JButton verbindenButton, sendenButton, hostButton, multiGoButton;
+	protected String hostName, ipV4, connectIP; 
+	protected JTextField chatField, ip1, ip2, ip3, ip4;
+	protected JTextArea chatArea;
+
 	
 	public Multiplayer(){
 		
 		super("Netzwerkmodus");
-		getIP();
+		getIP();			// gets own ip adress value needs to be reworked not direct usable
 		
+		//creates visible panel elements   
 		netPanel panel = new netPanel();
 		
+		//window frame option
 		this.setSize(700,700);
 		this.setResizable(false);
 		this.setAlwaysOnTop(true);
 		this.setVisible(true);
 		
+		//creates content pane of visible icons with layers
 		pane2 =  getLayeredPane();
 		pane2.add(hostLabel, 10);
 		pane2.add(ipLabel, 10);
 		pane2.add(verbindenButton, 10);
-		pane2.add(chatField, 10);
 		pane2.add(sendenButton, 10);
 		pane2.add(ip1,10);
 		pane2.add(ip2, 10);
@@ -57,29 +57,22 @@ public class Multiplayer extends JFrame {
 		pane2.add(multiGoButton, 10);
 		
 		
-		//Multiplayer button event listener validates ip adress and tries to connect
+		//Multiplayer button event listener and tries to connect to open port, port needs to be opened by server
 		verbindenButton.addActionListener(new ActionListener(){
-			   	public void actionPerformed(ActionEvent e){
-			   					 
-			   try{		//checks if ip is a valid ip
-			   		if (((Integer.parseInt(ip1.getText())>=0)&&(Integer.parseInt(ip1.getText())<255))&&
-			   			 ((Integer.parseInt(ip2.getText())>=0)&&(Integer.parseInt(ip2.getText())<255))&&
-			   				((Integer.parseInt(ip3.getText())>=0)&&(Integer.parseInt(ip3.getText())<255))&&
-			   					(Integer.parseInt(ip4.getText())>=0)&&(Integer.parseInt(ip4.getText())<255))
-			   		{//valid ip
-			   			chatArea.append("verbinden mit "+ip1.getText()+"."+ip2.getText()+"."+ip3.getText()+"."+ip4.getText()+"\n" );	//puts ip connect message int textfield	
+			   	public void actionPerformed(ActionEvent e){				//validates if number could possibly an ip number
+			   		if 	(   ( ( (Integer.valueOf(ip1.getText()) )>0) && ( (Integer.valueOf(ip1.getText()) )<255) ) &&
+			  			    ( ( (Integer.valueOf(ip2.getText()) )>0) && ( (Integer.valueOf(ip2.getText()) )<255) ) &&
+			 		        ( ( (Integer.valueOf(ip3.getText()) )>0) && ( (Integer.valueOf(ip3.getText()) )<255) ) &&
+			   		        ( ( (Integer.valueOf(ip4.getText()) )>0) && ( (Integer.valueOf(ip4.getText()) )<255) ) ){
+			  			connectIP =  ip1.getText()+"."+ip2.getText()+"."+ip3.getText()+"."+ip4.getText(); //creates entered ip adress
+			   			chatArea.append("verbinden mit "+connectIP+"\n" );	//puts ip connect message int textfield	
 			   			//create ChatClient and copy reference of chat window
-			   			ChatClient client = new ChatClient(Multiplayer.this);
+			   			ChatClient client = new ChatClient(Multiplayer.this);		
 				   		}
-			   		else { //ip is not valid pop up prompting to enter valid ip
+	 	   		else { //ip is not valid pop up prompting to enter valid ip
 						 JOptionPane.showMessageDialog(null, "Bitte gültige IP Adresse eingeben!"); 
 			   			}
-			   		}//end of try block ip is not valid
-			   catch (Exception f)
-			   		{		//if ip NaN
-				   JOptionPane.showMessageDialog(null, "Bitte gültige IP Adresse eingeben!"); 
 			   		}
-			   	}
 			});
 		
 		//chat Button button event listener
@@ -87,28 +80,24 @@ public class Multiplayer extends JFrame {
 			   	public void actionPerformed(ActionEvent e){
 			   		chatArea.append(hostName+": " +chatField.getText()+"\n");
 			   		chatField.setText("");
-			   		
-			   	}
+			   	   	}
 			});
 		
 		//hostButton to start server
+
 		hostButton.addActionListener(new ActionListener(){
 		   	public void actionPerformed(ActionEvent e){
+
 		   		chatArea.append(hostName+": game Server wird gestartet..."+"\n");
 		   		//create ChatServer and copy reference of chat window
-		  		ChatServer server = new ChatServer(Multiplayer.this);
-	
-		   		
-		   		
-		   		
-		   	}
-		});
-		
+		   		ChatServer server = new ChatServer(Multiplayer.this);
+		   	   	  	}
+			});
 
-		
-		
-	}	
 	
+		
+	}//end multiplayer	
+
 		
 	public void getIP(){	
 	
@@ -138,7 +127,7 @@ public class Multiplayer extends JFrame {
 		
 	}
 
-	public class netPanel extends JPanel{
+	public class netPanel extends JPanel{ //panel with buttons and stuff
 		
 		public netPanel(){
 			
@@ -170,6 +159,10 @@ public class Multiplayer extends JFrame {
 			chatField = new JTextField();
 			chatField.setBounds(50, 500, 600 , 30);
 			
+			//chat output field
+			chatArea = new JTextArea();
+			chatArea.setBounds(51, 51, 599, 399);
+				
 			//just label to enter ip address
 			connectLabel = new JLabel("Host eingeben:");
 			connectLabel.setBounds(50,570, 200,30);
@@ -190,19 +183,10 @@ public class Multiplayer extends JFrame {
 			ip4 = new JTextField();
 			ip4.setBounds(335,575,30,20);
 			
-			//area big box displaying chat and events
-			chatArea = new JTextArea();
-			chatArea.setBounds(51, 51, 599, 399);
-			
+						
 			//just information label
 			chatInputLabel = new JLabel("Chat Eingabefeld:");
 			chatInputLabel.setBounds(50,479,200,30);
-			
-
-			
-			
-
-			
 		}
 	}
 }

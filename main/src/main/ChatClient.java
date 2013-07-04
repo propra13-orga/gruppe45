@@ -3,29 +3,25 @@ package main;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.net.UnknownHostException;
 
-import main.Multiplayer;
 
 public class ChatClient {
 	
-	private String message="";
-	Socket server;
-	Multiplayer gui;
-	PrintWriter out;
+	private String message, ip;
+
+	private Socket server;
+	private PrintWriter out;
 		
 	public ChatClient(Multiplayer gui){
 		
-		this.gui = gui; //copies reference to Multiplayer object to work with
+
 		
 		try
 	    {
-	      //Verbindung zu Port 13000 auf localhost aufbauen:
-			//localhost = Servernamen
-			
-	//!!!!!!!!!!!!!!!!!!!!!!!!!!enter host		
-	      server = new Socket ("enter host",6666);
-	//!!!!!!!!!!!!!!!!!!!!!!!!!enter host
+			ip = gui.connectIP; //gets inserted server ip from Multiplayer
+			server = new Socket (ip,6666);	// creates socket to call server
+	    
+
 	    }
 	    catch (Exception ex)
 	    {
@@ -34,12 +30,13 @@ public class ChatClient {
 		
 		try
 		{
-			out = new PrintWriter(server.getOutputStream(),true);
-
-			out.println("Dies ist eine Nachricht vom Client");
+			out = new PrintWriter(server.getOutputStream(),true);		//object needed for socket message
+			message = gui.hostName+": "+gui.chatField.getText();		//creates chatmessage with hostname
+			gui.chatArea.append(message+"\n");							//displays chat message on client screen
+			out.println(message);										//sends message to server
 		}
 		catch (Exception e){
-			System.out.println("Es ist ein Fehler aufgetreten");
+		System.out.println("Client kann Nachricht nicht senden");
 		}
 		
 		
