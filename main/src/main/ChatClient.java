@@ -1,26 +1,33 @@
 package main;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.ServerSocket;
 import java.net.Socket;
 
 
-public class ChatClient {
+public class ChatClient extends Thread{
 	
 	private String message, ip;
-
+	protected ServerSocket serverSocket;
 	protected Socket server;
-	private PrintWriter out,out2;
+	private PrintWriter out;
+	protected Multiplayer gui;
+	protected Boolean go=true;
 		
 	public ChatClient(Multiplayer gui){
 		
 
-		
+		this.gui = gui;
 		try
 	    {
 			ip = gui.connectIP; //gets inserted server ip from Multiplayer
 			server = new Socket (ip,6666);	// creates socket to call server
 			gui.verbindenButton.setText("Verbindung aktiv");
+		//	serverSocket = new ServerSocket(6667);
+		//	this.run();
 			gui.verbindenButton.setEnabled(false);
 	    
 
@@ -66,5 +73,38 @@ public class ChatClient {
 			}
 		
 	}
+	public void run(){
+		while (go){
+			Socket client = null;
+			
+			try{ //accepts incomming connections
+				
+				client = serverSocket.accept();
+				readMessage(client, gui);
+			
+			}
+			catch (Exception e)
+			{	message = "eingehende Verbindung kann nicht akzeptiert werden";
+			}}
+	}
+	
+	public void readMessage(Socket client, Multiplayer gui) 
+	{
+	BufferedReader br = null;
+	
+		try{
+			 br = new BufferedReader(new InputStreamReader(client.getInputStream()));
+			 String line;
+			 while ((line = br.readLine()) != null)
+			 { 	
+				 System.out.println(line);
+				 gui.chatArea.append(line+"\n");
+			 }
+			}//end of try block
+		catch (Exception e)
+					{
+							System.out.println("Fehler in read Message");	
+						}
+			}
 
 }

@@ -3,6 +3,7 @@ package main;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
@@ -15,9 +16,11 @@ public class ChatServer extends Thread {
 	private String message="", clientIPraw, clientIP="";
 	protected ServerSocket serverSocket;
 	private InputStream in;
-	//private Scanner in;
 	protected Boolean go=true;
 	protected Multiplayer gui;
+	protected boolean connected = false; //indicates if server is running on current instance, true = this is server
+	private PrintWriter out;
+	protected Socket client;
 	
 	public ChatServer(Multiplayer gui)
 	{
@@ -56,6 +59,9 @@ public class ChatServer extends Thread {
 	}
 	
 	public void formatIP(){
+		gui.verbindenButton.setText("Client verbunden");
+		connected = true;
+		gui.verbindenButton.setEnabled(false);				//connection already received preventing additional out connect
 		//remove 1st slash from IP
 		char[] stringArray = clientIPraw.toCharArray();
 		clientIP="";
@@ -83,6 +89,30 @@ public class ChatServer extends Thread {
 								System.out.println("Fehler in read Message");	
 							}
 				}
+	//opens new socket to client
+	public void sendMessage(Multiplayer gui){
+		
+			String ip = clientIP ; 
+		try{	
+			client = new Socket(ip,6667);
+			}
+		catch(Exception i) {System.out.println("Fehler in ChatServer.sendMessage");}
+	
+		try{
+		//	System.out.println("Server ist closed? : "+ server.isClosed());
+			
+			out = new PrintWriter(client.getOutputStream(),true);
+		
+			message = gui.hostName+": "+gui.chatField.getText();
+			gui.chatArea.append(message+"\n");							//displays chat message on client screen
+			out.println(message);
+			out.flush();
+		}
+		catch (Exception e){
+			System.out.println("Server kann Nachricht nicht senden");
+			}
+		
+	}
 	
 
 
