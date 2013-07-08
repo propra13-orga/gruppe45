@@ -97,17 +97,7 @@ public class Multiplayer extends JFrame {
 			   		
 			   	   	}
 			});
-		//obsolete due to chat autostart
-		//hostButton to start server
-
-//		hostButton.addActionListener(new ActionListener(){
-//		   	public void actionPerformed(ActionEvent e){
-
-		  // 		chatArea.append(hostName+": game Server wird gestartet..."+"\n");
-		   		//create ChatServer and copy reference of chat window
-		  // 		ChatServer server = new ChatServer(Multiplayer.this);
-//		   	   	  	}
-//			});
+	
 		//Eventlistener for exit button
 		exitButton.addActionListener(new ActionListener(){
 		   	public void actionPerformed(ActionEvent e){
@@ -115,6 +105,8 @@ public class Multiplayer extends JFrame {
 		   		if (server.serverSocket.isClosed() == false){	
 		   			try{
 		   				server.serverSocket.close();
+		   				verbindenButton.setText("Verbinden");
+		   				verbindenButton.setEnabled(true); 				//reactivate button
 		   				}
 		   				catch (Exception ex){
 		   					chatArea.append("Verbindung kann nicht geschlossen werden");

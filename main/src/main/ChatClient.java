@@ -9,8 +9,8 @@ public class ChatClient {
 	
 	private String message, ip;
 
-	private Socket server;
-	private PrintWriter out;
+	protected Socket server;
+	private PrintWriter out,out2;
 		
 	public ChatClient(Multiplayer gui){
 		
@@ -20,6 +20,8 @@ public class ChatClient {
 	    {
 			ip = gui.connectIP; //gets inserted server ip from Multiplayer
 			server = new Socket (ip,6666);	// creates socket to call server
+			gui.verbindenButton.setText("Verbindung aktiv");
+			gui.verbindenButton.setEnabled(false);
 	    
 
 	    }
@@ -36,27 +38,33 @@ public class ChatClient {
 			out.println(message);										//sends message to server
 		}
 		catch (Exception e){
-		System.out.println("Client kann keine Verbindung aufbauen");
+		System.out.println("Client kann keine Verbindung aufbauen");}
 		}
 		
-		
-		
-
-		
-	}//end ChatClient
 	
 	public void sendMessage(Multiplayer gui){
-		try{
+		try
+	    {
 			ip = gui.connectIP; //gets inserted server ip from Multiplayer
-			server = new Socket (ip,6666);	// creates socket to call server
+		 }
+	    catch (Exception ex)
+	    {
+	       message = "Nachricht kann nicht versendet werden";
+	    }
+		try{
+			System.out.println("Server ist closed? : "+ server.isClosed());
+			
 			out = new PrintWriter(server.getOutputStream(),true);
+		
 			message = gui.hostName+": "+gui.chatField.getText();
 			gui.chatArea.append(message+"\n");							//displays chat message on client screen
 			out.println(message);
+			out.flush();
 		}
 		catch (Exception e){
 			System.out.println("Client kann Nachricht nicht senden");
 			}
+		
 	}
 
 }
