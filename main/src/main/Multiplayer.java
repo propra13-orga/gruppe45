@@ -73,10 +73,10 @@ public class Multiplayer extends JFrame {
 	
 			   		
 			   	//validates if number could possibly an ip number
-			   		if 	(   ( ( (Integer.valueOf(ip1.getText()) )>0) && ( (Integer.valueOf(ip1.getText()) )<255) ) &&
-			  			    ( ( (Integer.valueOf(ip2.getText()) )>0) && ( (Integer.valueOf(ip2.getText()) )<255) ) &&
-			 		        ( ( (Integer.valueOf(ip3.getText()) )>0) && ( (Integer.valueOf(ip3.getText()) )<255) ) &&
-			   		        ( ( (Integer.valueOf(ip4.getText()) )>0) && ( (Integer.valueOf(ip4.getText()) )<255) ) ){
+			   		if 	(   ( ( (Integer.valueOf(ip1.getText()) )>=0) && ( (Integer.valueOf(ip1.getText()) )<255) ) &&
+			  			    ( ( (Integer.valueOf(ip2.getText()) )>=0) && ( (Integer.valueOf(ip2.getText()) )<255) ) &&
+			 		        ( ( (Integer.valueOf(ip3.getText()) )>=0) && ( (Integer.valueOf(ip3.getText()) )<255) ) &&
+			   		        ( ( (Integer.valueOf(ip4.getText()) )>=0) && ( (Integer.valueOf(ip4.getText()) )<255) ) ){
 			  			connectIP =  ip1.getText()+"."+ip2.getText()+"."+ip3.getText()+"."+ip4.getText(); //creates entered ip adress
 			   	//		chatArea.append("verbinden mit "+connectIP+"\n" );	//puts ip connect message int textfield	
 			   			//create ChatClient and copy reference of chat window
