@@ -70,6 +70,8 @@ public class Multiplayer extends JFrame {
 		//Multiplayer button event listener and tries to connect to open port, port needs to be opened by server
 		verbindenButton.addActionListener(new ActionListener(){
 			   	public void actionPerformed(ActionEvent e){				
+	
+			   		
 			   	//validates if number could possibly an ip number
 			   		if 	(   ( ( (Integer.valueOf(ip1.getText()) )>0) && ( (Integer.valueOf(ip1.getText()) )<255) ) &&
 			  			    ( ( (Integer.valueOf(ip2.getText()) )>0) && ( (Integer.valueOf(ip2.getText()) )<255) ) &&
@@ -83,23 +85,29 @@ public class Multiplayer extends JFrame {
 	 	   		else { //ip is not valid pop up prompting to enter valid ip
 						 JOptionPane.showMessageDialog(null, "Bitte gültige IP Adresse eingeben!"); 
 			   			}
-			   		} 
+			   		}
 			});
 		
 		//chat Button button event listener
 		sendenButton.addActionListener(new ActionListener(){
 			   	public void actionPerformed(ActionEvent e){
-			//   		if (server.connected==false){
-			   		//	chatArea.append(hostName+": " +chatField.getText()+"\n");
-			   			client.sendMessage(Multiplayer.this);
-			   		}
-			 //  		else{	//connected = true => this machine is server
-			 //  			//start code 
-			 //  			server.sendMessage(Multiplayer.this);
-			  // 		}
-			//   	   	}
+			   		chatArea.append(hostName+": " +chatField.getText()+"\n");
+			   		//chatField.setText("");
+			   		client.sendMessage(Multiplayer.this);
+			   		
+			   	   	}
 			});
-	
+		//obsolete due to chat autostart
+		//hostButton to start server
+
+//		hostButton.addActionListener(new ActionListener(){
+//		   	public void actionPerformed(ActionEvent e){
+
+		  // 		chatArea.append(hostName+": game Server wird gestartet..."+"\n");
+		   		//create ChatServer and copy reference of chat window
+		  // 		ChatServer server = new ChatServer(Multiplayer.this);
+//		   	   	  	}
+//			});
 		//Eventlistener for exit button
 		exitButton.addActionListener(new ActionListener(){
 		   	public void actionPerformed(ActionEvent e){
@@ -107,8 +115,6 @@ public class Multiplayer extends JFrame {
 		   		if (server.serverSocket.isClosed() == false){	
 		   			try{
 		   				server.serverSocket.close();
-		   				verbindenButton.setText("Verbinden");
-		   				verbindenButton.setEnabled(true); 				//reactivate button
 		   				}
 		   				catch (Exception ex){
 		   					chatArea.append("Verbindung kann nicht geschlossen werden");
