@@ -1,12 +1,10 @@
 package main;
 
-import gameobjects.Figure;
 import local.Fs;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
-import graphics.ShopFrame;
 
 
 public class Main{
@@ -26,8 +24,10 @@ public static boolean go = false;
 public static boolean onOff = true;
 public static boolean npc = false;
 public static boolean reset=true;
+public static String player1_name = "Bunny";
+public static String player2_name = "Hedgehog";
 
-public static ArrayList<Figure> obj_list = new ArrayList<Figure>();	//holds all figures in game
+public static ArrayList<int[]> obj_list = new ArrayList<int[]>();	//holds all figures in game
 //0 reserved for board
 //1 reserved for goal
 //2 reserved for player 1
@@ -36,16 +36,33 @@ public static ArrayList<Figure> obj_list = new ArrayList<Figure>();	//holds all 
 
 public graphics.MasterFrame window;
 
-
-
 public static void main(String[] args) throws IOException
 	{
 		Fs.init();
+		
+		System.out.println("initializing pics");
+		
 		local.Pics.loadPics();
-		Game game = new Game();										//creates Game logic		
-		game.start();												//starts Game logic
+
+		System.out.println("done");
+		
+		//		Game game = new Game();										//creates Game logic		
+//		game.start();												//starts Game logic
+		
+		System.out.println("initializing gameobjects");
+		
+		local.Create.init();
+		
+		System.out.println("done");
+		System.out.println("initializing room");
+		
+		local.Create.create_room();
+		
+		System.out.println("done");
+		
 		graphics.MasterFrame window = new graphics.MasterFrame();	//creates RenderFrame
 		
+		@SuppressWarnings("unused")
 		Gui start = new Gui();										//Starts Gui
 		
 		while(onOff)

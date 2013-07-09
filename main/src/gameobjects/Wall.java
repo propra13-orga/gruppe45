@@ -1,23 +1,20 @@
 package gameobjects;
 
 import java.awt.Image;
-import java.awt.Toolkit;
-
-import local.Fs;
 import main.Main;
-import collision.Coll;
 
 // wall class
 public class Wall extends Figure {
-	public Wall (int x, int y) {
-		super(1,x,y,Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"wall"+"_"+String.valueOf(Main.level)+".png"));	//change tree to variable according to level
+
+	@Override public Image getPic( int direction){
+		switch(Main.level){
+			case 1:		return local.Pics.tree;
+			case 2:		return local.Pics.bush;
+			default:	return local.Pics.rock;
+		}
 	}
 	
-	public Image getWallImage(){
-		if(Coll.wall_opaque(pos_x , pos_y , image.getWidth(null) , image.getHeight(null)))		//*3 to get real height
-		{
-			return Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"tree"+"_opaque.png");	//change tree to variable according to level
-		}
-		else return this.image;
+	public Wall () {
+		super();	//change tree to variable according to level
 	}
 }

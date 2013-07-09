@@ -1,22 +1,22 @@
 package main;
 
-import gameobjects.Create;
 import graphics.MasterFrame;
 import collision.Coll;
+import local.Create;
 import movement.*;
 
 public class Game extends Thread{
 
 //manages the game
 	public void run(){
-		Main.obj_list = Create.init();
+		Create.init();
 		
 		System.out.println("Nr_of_Players: " + String.valueOf(Main.Nr_of_Players));
 		
 		while(true)
 		{
 			//while not hitting goal
-			Main.obj_list = Create.create_room(Main.level, Main.room);
+			Create.create_room();
 			Main.reset = false;
 			while(Coll.goal())
 			{
@@ -29,11 +29,11 @@ public class Game extends Thread{
 				//if game is running
 				if(Main.ingame)
 				{
-					Fly.fly();
-					AI.move_all_opp();
-					Coll.shop();
-					Coll.npc();
-					Coll.poison();
+//					Fly.fly();
+//					AI.move_all_opp();
+//					Coll.shop();
+//					Coll.npc();
+//					Coll.poison();
 				}
 				if(Main.reset)
 				{
@@ -43,11 +43,11 @@ public class Game extends Thread{
 					Create.hero1.setHp(50 + 50 * Create.hero1.level);
 					break;
 				}
-				if(Main.obj_list.get(2).ep == (int) Math.pow(2, Main.obj_list.get(2).level))
+				if(Create.hero1.ep == (int) Math.pow(2, Create.hero1.level))
 				{
-					Main.obj_list.get(2).ep = 0;
-					Main.obj_list.get(2).level += 1;
-					Create.hero1.setHp(100 + 50 * Main.obj_list.get(2).level);
+					Create.hero1.ep = 0;
+					Create.hero1.level += 1;
+					Create.hero1.setHp(100 + 50 * Create.hero1.level);
 				}
 			}
 

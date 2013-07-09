@@ -1,6 +1,6 @@
 package movement;
 
-import gameobjects.Create;
+import local.Create;
 import main.Main;
 import graphics.Npc;
 import graphics.ShopFrame;
@@ -10,6 +10,7 @@ import java.awt.event.KeyListener;
 public class Keyboard implements KeyListener {
 
 	int key;
+	int[] figure;
 	
 	int STEP = 10;
 	
@@ -18,38 +19,41 @@ public class Keyboard implements KeyListener {
 	//Spielfeld.obj_list.get(2) = hase
 		public void keyPressed (KeyEvent e){
 		key = e.getKeyCode();
+		figure = Main.obj_list.get(2);
+		
 		if (Main.ingame) { // game is running
 			switch(key) {
 				
-				case KeyEvent.VK_LEFT:// int 37
-					Main.obj_list.get(2).direction = 'l';
-					Main.obj_list.get(2).image = local.Pics.bunny_l_motion;
-					Move.left(Main.obj_list.get(2) , STEP);
+				case KeyEvent.VK_UP: // int 38
+					figure[5] = 1;
+					Create.hero1.moving = true;
+					Move.up(figure , STEP);
 					break;
 				
 				case KeyEvent.VK_RIGHT: // int 18
-					Main.obj_list.get(2).direction = 'r';
-					Main.obj_list.get(2).image = local.Pics.bunny_r_motion;
-					Move.right(Main.obj_list.get(2) , STEP);
-					break;
-				
-				case KeyEvent.VK_UP: // int 38
-					Main.obj_list.get(2).direction = 'u';
-					Move.up(Main.obj_list.get(2) , STEP);
+					figure[5] = 2;
+					Create.hero1.moving = true;
+					Move.right(figure , STEP);
 					break;
 				
 				case KeyEvent.VK_DOWN: // int 40
-					Main.obj_list.get(2).direction = 'd';
-					Move.down(Main.obj_list.get(2) , STEP);
+					figure[5] = 3;
+					Create.hero1.moving = true;
+					Move.down(figure , STEP);
+					break;
+				
+				case KeyEvent.VK_LEFT:// int 37
+					figure[5] = 4;
+					Create.hero1.moving = true;
+					Move.left(figure , STEP);
 					break;
 				
 				case KeyEvent.VK_SPACE:								//cast Spell
-					Create.hero1.cast_Spell();
+					Create.hero1.cast_Spell(figure[5],figure[2],figure[3]);
 					break;
 				
 				case KeyEvent.VK_ESCAPE:							//open menu
 					Main.ingame = false;
-					System.exit(0);	//change later
 					break;	
 				
 				case KeyEvent.VK_S:									//open shop
@@ -103,10 +107,7 @@ public class Keyboard implements KeyListener {
 	//Angleichen, je nach endgültigem Bewegungssystem
 	public void keyReleased(KeyEvent e){
 		key = e.getKeyCode();
-		if (key == KeyEvent.VK_LEFT)Main.obj_list.get(2).image = local.Pics.bunny_l;
-		if (key == KeyEvent.VK_RIGHT)Main.obj_list.get(2).image = local.Pics.bunny_r;
-		// if (key == KeyEvent.VK_UP)
-		// if (key == KeyEvent.VK_DOWN)
+		Create.hero1.moving = false;
 	}
 	
 	public void keyTyped(java.awt.event.KeyEvent e) {

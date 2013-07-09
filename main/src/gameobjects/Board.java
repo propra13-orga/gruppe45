@@ -12,29 +12,19 @@ package gameobjects;
 */
 
 import java.awt.Image;
+import java.awt.Toolkit;
+
+import local.Fs;
 import main.*;
 
 public class Board extends Figure{
 
-public static final int block_groesse=50;
-
-public Image bg_image;
-public int max_x_blocks = 0;
-public int max_y_blocks = 0;
-public int rand_x = 40;
-public int rand_y = 70;
-public String nachricht ="";
-
-	public Board(int lvl, int room){
-		super(0,0,0,Create.get_board_bg_image(lvl, room)); //Überarbeiten....aktuelles bild einfügen
-		this.initBoard();
-        Item.get_item_list();
+	@Override public Image getPic(int direction){
+		return Toolkit.getDefaultToolkit().getImage(Fs.img_pfad + "bg_" + String.valueOf(Main.level) + "_" + String.valueOf(Main.room) + ".png");
 	}
 
-
-	private void initBoard(){ // called by all class constructors to set start values
-	//this.bg_image =Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"Su_s BG.png");
-	this.max_x_blocks = Main.board_width/this.block_groesse;
-	this.max_y_blocks = Main.board_height/this.block_groesse;
+	public Board(){
+		super();
 	}
+
 }

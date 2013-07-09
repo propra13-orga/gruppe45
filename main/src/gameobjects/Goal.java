@@ -1,20 +1,23 @@
 package gameobjects;
 
 import java.awt.Image;
-import java.awt.Toolkit;
-import local.Fs;
-import main.Main;
 
 // destination class (exit of a level)
 public class Goal extends Figure {
-	public Goal (int x, int y) {
-		super(0,x,y,Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"goal_" + Main.level + "_" + Main.room + ".png"));
+
+	@Override public Image getPic(int direction){
+		if(main.Main.level == 2 && main.Main.room == 3)
+		{
+			this.height = local.Pics.hole.getHeight(null);
+			this.width = local.Pics.goal.getWidth(null);
+			return local.Pics.hole;
+		}
+		else return local.Pics.goal;
 	}
-	
-	Image get_goal_image(int lvl, int room) {
-		String dat_name;
-		dat_name ="goal_" + Main.level + "_" + Main.room + ".png";
-		return Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+dat_name);
-		
+
+	public Goal () {
+		super();
+		this.height = local.Pics.goal.getHeight(null);
+		this.width = local.Pics.goal.getWidth(null);
 	}
 }

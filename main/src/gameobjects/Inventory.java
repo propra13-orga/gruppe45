@@ -1,55 +1,64 @@
 package gameobjects;
 
-import java.util.ArrayList;
+import local.Create;
 
 
 public class Inventory {
 	
-	public ArrayList<Item> inventory = new ArrayList<Item>();
+	public int[] inventory = {0,0};
 	
 	public Inventory() {
 		
 	}
 	
-	public void add(Item item) {
-		add (item, 1);
+	public void add(int[] item) {
+		switch(item[5]){
+		
+			//mp-pot
+			case 4:	add(1,this.inventory[0]);
+					break;
+			
+			//hp-pot
+			case 5:	add(1,this.inventory[1]);
+					break;
+			
+			//blob
+			case 6:	Create.hero1.attack = true;
+					break;
+			
+			//fireball
+			case 7:	Create.hero1.spell = true;
+					break;
+			
+			//flower
+			case 8:	Create.hero1.defense = true;
+					Create.hero1.defe = 2;
+					break;
+			
+			//bug
+			case 9:	Create.hero1.bugs += 1;
+					break;
+		}
 	}
 	
-	public void add (Item item, int anzahl){
-		boolean new_item = true;
-		Item i;
-		for (Item ding: inventory) {
-			if (ding.name.equals(item.name)){
-				ding.anzahl += anzahl;
-				new_item = false;
-			}
+	public void add (int anzahl, int pos){
+		pos += anzahl;
+	}
+
+	public boolean getMp_pot(){
+		if(this.inventory[0] > 0){
+			this.inventory[0] -= 1;
+			return true;
 		}
-		if(new_item) {
-			i = item.copy();
-			i.anzahl=anzahl;
-			this.inventory.add(i);
+		else return false;
+	}
+	
+	public boolean getHp_pot(){
+		if(this.inventory[1] > 0){
+			this.inventory[1] -=1;
+			return true;
 		}
+		else return false;
 	}
-
-	public void remove (Item item){
-		this.inventory.remove(item.copy());
-	}
-
-	public void used(Item item) {
-		used(item,1);
-	}
-
-	public int used (Item item, int anzahl){
-		int used;
-		used=anzahl;
-		if (item.anzahl-anzahl>0) {
-			item.anzahl -= anzahl;
-		} else {
-			used=item.anzahl;
-			this.remove(item);
-		}
-		return used;
-	}
-
 
 }

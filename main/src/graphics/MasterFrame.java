@@ -1,8 +1,9 @@
 package graphics;
 
-import gameobjects.Create;
 import gameobjects.Figure;
-import gameobjects.Hero;
+import gameobjects.Bunny;
+import gameobjects.Hedgehog;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
@@ -11,10 +12,13 @@ import java.awt.image.BufferStrategy;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
+
+import local.Create;
 import local.Pics;
 import main.Main;
 
 import movement.Keyboard;
+import movement.Keyboard2;
 
 
 
@@ -22,19 +26,18 @@ import movement.Keyboard;
 
 public class MasterFrame extends JFrame {
 	
-	 int ep = 0;	
-	 Figure localFigure;
-	 Hero localHero;
-	 BufferStrategy bs;
-	 GamePanel gamePanel = new GamePanel();				//Game Panel created
-	 JLayeredPane pane;
-	 
-	 public static boolean set = false;
-         
-	 int width = Main.board_width;
-	 int height = Main.board_height;
-	 
-	 
+	int ep = 0;	
+	int[] localFigure;
+	BufferStrategy bs;
+	GamePanel gamePanel = new GamePanel();				//Game Panel created
+	JLayeredPane pane;
+	
+	public static boolean set = false;
+
+	int width = Main.board_width;
+	int height = Main.board_height;
+	
+	
 	//configuration of main Frame
 	public MasterFrame()
 	{
@@ -56,7 +59,8 @@ public class MasterFrame extends JFrame {
 		Keyboard keyboard = new Keyboard();				//create KeyListener
 		addKeyListener(keyboard);						//connect KeyListener to Frame
 
-
+		Keyboard2 keyboard2 = new Keyboard2();
+		addKeyListener(keyboard2);
 
 	}
 
@@ -74,8 +78,8 @@ public class MasterFrame extends JFrame {
 		
 		public void drawStuff()
 		{
-			Figure player1 = Main.obj_list.get(2);						//local variable Player1
-			Figure player2 = Main.obj_list.get(3);						//local variable Player2
+			Bunny player1 = Create.hero1;						//local variable Player1
+			Hedgehog player2 = Create.hero2;						//local variable Player2
 			
 			Font heading = new Font("Arial",Font.BOLD,18);				//Font for heading
 			Font regular = new Font("Arial",Font.PLAIN,12);				//Font for regular text
@@ -86,36 +90,33 @@ public class MasterFrame extends JFrame {
 			{
 				int lives1 = player1.lives;
 				int lives2 = player2.lives;								//!!!!!!!!!!
-				try														//try block to avoid deadlock
-				{
+//				try														//try block to avoid deadlock
+//				{
 					Graphics2D g = (Graphics2D)bs.getDrawGraphics();	//instance of new graphics object
-									
+								
 					for(int i=0; i<Main.obj_list.size();i++)			//every object in arraylist obj_list
 					{
-					   if((localFigure = Main.obj_list.get(i)) != null) //validation no empty field in arraylist painted
-		    			{	//draw board and all objects
-		    				g.drawImage(localFigure.image,localFigure.pos_x,localFigure.pos_y,this);//draws each element from list
-		    				if (i==2){
-		    					g.drawString("HP: "+player1.hp,player1.pos_x,player1.pos_y-25);
-		    					g.drawString("EP: "+player1.ep,player1.pos_x,player1.pos_y-15);
-		    				}
-		    				if ((localFigure.type == 3)){//draw level and hp of enemy
-		    					g.drawString("HP: "+localFigure.hp,localFigure.pos_x,localFigure.pos_y-25);
-		    					g.drawString("Level: "+localFigure.level,localFigure.pos_x,localFigure.pos_y-15);
-		    				}
-		    				if ((localFigure.type == 6)&&(set==false)){//draw level and hp of enemy
-		    					g.drawImage(Pics.attention,localFigure.pos_x-30,localFigure.pos_y+5,this);
-		    					
-		    				}
-		    				//Player 2 same as Player 1 !!!
-		    				if(main.Main.Nr_of_Players==2){
-			    				if (i==2){
-			    					g.drawString("HP: "+player1.hp,player1.pos_x,player1.pos_y-25);
-			    					g.drawString("EP: "+player1.ep,player1.pos_x,player1.pos_y-15);
-			    					}
-		    				}
-		    				//!!!
-		    			}
+						if((localFigure = Main.obj_list.get(i).clone()) != null) //validation no empty field in arraylist painted
+						{	//draw board and all objects
+							g.drawImage(Create.gameobjects[localFigure[0]].getPic(localFigure[5]),localFigure[2],localFigure[3],this);//draws each element from list
+							if (i==2){
+								g.drawString("HP: "+player1.getHp(),localFigure[2],localFigure[3]-25);
+								g.drawString("EP: "+player1.ep,localFigure[2],localFigure[3]-15);
+							}
+							if (i==3 && Main.Nr_of_Players == 2){
+								g.drawString("HP: "+player2.getHp(),localFigure[2],localFigure[3]-25);
+								g.drawString("EP: "+player2.ep,localFigure[2],localFigure[3]-15);
+							}
+							if ((localFigure[1] == 6)){//draw level and hp of enemy
+								g.drawString("HP: "+localFigure[4],localFigure[2],localFigure[3]-25);
+								g.drawString("Level: "+Main.level,localFigure[2],localFigure[3]-15);
+							}
+							if ((localFigure[0] == 9)&&(set==false)){//draw mark for npc
+								g.drawImage(Pics.attention,localFigure[2]-30,localFigure[3],this);
+								
+							}
+						
+						}
 		    			Toolkit.getDefaultToolkit().sync();					//checks from OS if repaint is neccessary 
 		    			
                      }//end of array list
@@ -137,23 +138,29 @@ public class MasterFrame extends JFrame {
     				g.drawString(""+player1.mp , width-760, height-46);
     				g.drawString(""+ep , width-760, height-34);
 					
-    				//Icon Player
+					//Icon Player
 					g.setColor(new Color(0, 0, 0));
 					g.drawImage(Pics.icon1,width-1010,height-70,this);
-					g.drawString(player1.name, width-1010, height-6);
+					g.drawString(Main.player1_name, width-1010, height-6);
 					
 					//Weappon Icon
 					g.fillRect(width-935, height-70, 50, 50);//Weapen Icon Ofensive
 					//checks if Create.Hero1.defense or Create.Hero1.spell is set to identify available weapons
-		    		if (Create.hero1.spell==true){//draw fireball  
-	    				g.drawImage(Pics.fireball,width-935,height-70,this);} //weapon
-	    				else{
-	    					if (Create.hero1.attack == true ){//draw blob
-	    						g.drawImage(Pics.blob,width-935,height-70,this);}//weapon	
-	    					
-	    						else{
-	    							g.drawImage(Pics.peace,width-935,height-70,this);}//weapon	
-		    				}
+					if (Create.hero1.spell==true)//draw fireball  
+					{
+						g.drawImage(Pics.fireball,width-935,height-70,this);//weapon
+					}
+					else
+					{
+						if (Create.hero1.attack == true )//draw blob
+						{
+							g.drawImage(Pics.blob,width-935,height-70,this);//weapon	
+						}
+						else
+						{
+							g.drawImage(Pics.peace,width-935,height-70,this);//weapon	
+						}
+					}
 					g.drawString("Weapon", width-935, height-6);
 					
 					//Armor Icon
@@ -204,21 +211,21 @@ public class MasterFrame extends JFrame {
 					
     				//Icon Player
 					g.setColor(new Color(0, 0, 0));
-					g.drawImage(Pics.hedgehog,width-64,height-70,this);
-					g.drawString(player2.name, width-64, height-6);
+					g.drawImage(Pics.hedgehog_r,width-64,height-70,this);
+					g.drawString(Main.player2_name, width-64, height-6);
 					
 					//Weappon Icon
 					g.fillRect(width-139, height-70, 50, 50);//Weapen Icon Ofensive
 					//checks if Create.Hero1.defense or Create.Hero1.spell is set to identify available weapons
-		    		if (Create.hero2.spell==true){//draw fireball  
-	    				g.drawImage(Pics.fireball,width-139,height-70,this);} //weapon
-	    				else{
-	    					if (Create.hero2.attack == true ){//draw blob
-	    						g.drawImage(Pics.blob,width-139,height-70,this);}//weapon	
-	    					
-	    						else{
-	    							g.drawImage(Pics.peace,width-139,height-70,this);}//weapon	
-		    				}
+					if (Create.hero2.spell==true){//draw fireball  
+						g.drawImage(Pics.fireball,width-139,height-70,this);} //weapon
+						else{
+							if (Create.hero2.attack == true ){//draw blob
+								g.drawImage(Pics.blob,width-139,height-70,this);}//weapon	
+							
+								else{
+									g.drawImage(Pics.peace,width-139,height-70,this);}//weapon	
+							}
 					g.drawString("Weapon", width-139, height-6);
 					
 					//Armor Icon
@@ -247,14 +254,14 @@ public class MasterFrame extends JFrame {
 						case 1:g.drawImage(Pics.life,width-94,height-705,this);
 						case 0: break;
 					}
-				}
+					}
 				//!!!!!!!!!!!!!!!!!!!!!!!!!!!
-				}
-				
-				catch (Exception e)//error notification
-				{
-					System.out.println("Fehler in der drawStuff Methode");
-				}
+//				}
+//				
+//				catch (Exception e)//error notification
+//				{
+//					System.out.println("Fehler in der drawStuff Methode");
+//				}
 		
 				bs.show();												//draw image from buffer on screen
 			}

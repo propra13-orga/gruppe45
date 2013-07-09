@@ -279,7 +279,7 @@ public class Gui extends JFrame implements ActionListener{
 	 		shopLabel = new JLabel(new ImageIcon(local.Pics.mole));
 	 		shopLabel.setBounds(width-900, height-300, 200, 200);
 	 		
-	 		hedgeLabel = new JLabel(new ImageIcon(local.Pics.hedgehog));
+	 		hedgeLabel = new JLabel(new ImageIcon(local.Pics.hedgehog_r));
 	 		hedgeLabel.setBounds(width-500, height-300, 100, 300);
 	 		
 	 		messageLabel = new JLabel();
@@ -308,7 +308,7 @@ public class Gui extends JFrame implements ActionListener{
 	 		player1Icon.setBounds((width/2)-200,(height/2),150,150);
 	 		
 	 		//Button Player 2
-	 		player2Icon = new JButton(new ImageIcon(local.Pics.hedgehog));
+	 		player2Icon = new JButton(new ImageIcon(local.Pics.hedgehog_r));
 	 		player2Icon.setBounds((width/2),(height/2),150,150);
 	 		
 	 		//Input Textfield name 1

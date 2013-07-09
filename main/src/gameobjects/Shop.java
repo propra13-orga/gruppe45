@@ -1,9 +1,16 @@
 package gameobjects;
 
+import java.awt.Image;
+
 
 public class Shop  extends Figure{
-	public Shop (int x, int y) {
-		super(0,x,y,local.Pics.shop_inactive);
-		//super(0,x,y,Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"shop_inactive.png"));
+	
+	@Override public Image getPic(int direction){
+		if(main.Main.shop) return local.Pics.shop_active;
+		else return local.Pics.shop_inactive;
+	}
+	
+	public Shop () {
+		super();
 	}
 }

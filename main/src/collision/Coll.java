@@ -1,8 +1,8 @@
 package collision;
 
-import gameobjects.Create;
 import gameobjects.Figure;
 import gameobjects.Item;
+import local.Create;
 import main.Main;
 
 public class Coll {
@@ -105,24 +105,24 @@ public class Coll {
 
 	//returns true for no collision, if false, invokes event if tester = killer / poisontree
 	//1 for wall/tree, 2 for poisontree, 3 for fox, 4 for player
-	public static boolean coll(Figure tester , int x , int y){
-	switch (tester.type) {				//coll varies according to testers type
+	public static boolean coll(int[] figure , int x , int y){
+	switch (figure[0]) {				//coll varies according to testers type
 
 		//tester == fox
 		case 3:
 			for(int i=2; i < Main.obj_list.size(); i++){
-				if (Main.obj_list.get(i).nr == tester.nr)		//don't test yourself
+				if (Main.obj_list.get(i).nr == figure.nr)		//don't test yourself
 				{
 					continue;
 				}
-				else if ( 	(tester.pos_x + x < Main.obj_list.get(i).pos_x + Main.obj_list.get(i).image.getWidth(null))
-						 && (tester.pos_x + x + tester.image.getWidth(null) > Main.obj_list.get(i).pos_x)
-						 && (tester.pos_y + y < Main.obj_list.get(i).pos_y + Main.obj_list.get(i).image.getHeight(null))
-						 && (tester.pos_y + y +tester.image.getHeight(null) > Main.obj_list.get(i).pos_y) )
+				else if ( 	(figure.pos_x + x < Main.obj_list.get(i).pos_x + Main.obj_list.get(i).image.getWidth(null))
+						 && (figure.pos_x + x + figure.image.getWidth(null) > Main.obj_list.get(i).pos_x)
+						 && (figure.pos_y + y < Main.obj_list.get(i).pos_y + Main.obj_list.get(i).image.getHeight(null))
+						 && (figure.pos_y + y +figure.image.getHeight(null) > Main.obj_list.get(i).pos_y) )
 				{
 					if(Main.obj_list.get(i).type == 4)
 					{
-						deal_dmg(tester , Main.obj_list.get(i));
+						deal_dmg(figure , Main.obj_list.get(i));
 					}
 
 					return false;
@@ -134,18 +134,18 @@ public class Coll {
 		//tester == player
 		case 4:
 			for(int i=2; i < Main.obj_list.size(); i++){
-				if (Main.obj_list.get(i).nr == tester.nr)		//don't test yourself
+				if (Main.obj_list.get(i).nr == figure.nr)		//don't test yourself
 				{
 					continue;
 				}
-				else if ( 	(tester.pos_x + x < Main.obj_list.get(i).pos_x + Main.obj_list.get(i).image.getWidth(null))
-						 && (tester.pos_x + x + tester.image.getWidth(null) > Main.obj_list.get(i).pos_x)
-						 && (tester.pos_y + y < Main.obj_list.get(i).pos_y + Main.obj_list.get(i).image.getHeight(null))
-						 && (tester.pos_y + y + tester.image.getHeight(null) > Main.obj_list.get(i).pos_y + Main.obj_list.get(i).image.getHeight(null) / 3) )
+				else if ( 	(figure.pos_x + x < Main.obj_list.get(i).pos_x + Main.obj_list.get(i).image.getWidth(null))
+						 && (figure.pos_x + x + figure.image.getWidth(null) > Main.obj_list.get(i).pos_x)
+						 && (figure.pos_y + y < Main.obj_list.get(i).pos_y + Main.obj_list.get(i).image.getHeight(null))
+						 && (figure.pos_y + y + figure.image.getHeight(null) > Main.obj_list.get(i).pos_y + Main.obj_list.get(i).image.getHeight(null) / 3) )
 				{
 					if(Main.obj_list.get(i).type == 8)
 					{
-						tester.bag.add((Item) Main.obj_list.get(i));
+						figure.bag.add((Item) Main.obj_list.get(i));
 						if(Main.obj_list.get(i).name.equals("Feuerball")) Create.hero1.spell = true;
 						Main.obj_list.remove(i);
 						
@@ -167,18 +167,18 @@ public class Coll {
 		//tester == boss
 		case 5:
 			for(int i=2; i < Main.obj_list.size(); i++){
-				if (Main.obj_list.get(i).nr == tester.nr)		//don't test yourself
+				if (Main.obj_list.get(i).nr == figure.nr)		//don't test yourself
 				{
 					continue;
 				}
-				else if ( 	(tester.pos_x + x < Main.obj_list.get(i).pos_x + Main.obj_list.get(i).image.getWidth(null))
-						 && (tester.pos_x + x + tester.image.getWidth(null) > Main.obj_list.get(i).pos_x)
-						 && (tester.pos_y + y < Main.obj_list.get(i).pos_y + Main.obj_list.get(i).image.getHeight(null))
-						 && (tester.pos_y + y +tester.image.getHeight(null) > Main.obj_list.get(i).pos_y) )
+				else if ( 	(figure.pos_x + x < Main.obj_list.get(i).pos_x + Main.obj_list.get(i).image.getWidth(null))
+						 && (figure.pos_x + x + figure.image.getWidth(null) > Main.obj_list.get(i).pos_x)
+						 && (figure.pos_y + y < Main.obj_list.get(i).pos_y + Main.obj_list.get(i).image.getHeight(null))
+						 && (figure.pos_y + y +figure.image.getHeight(null) > Main.obj_list.get(i).pos_y) )
 				{
 					if(Main.obj_list.get(i).type == 4)
 					{
-						deal_dmg(tester , Main.obj_list.get(i));
+						deal_dmg(figure , Main.obj_list.get(i));
 					}
 
 					return false;
@@ -190,16 +190,16 @@ public class Coll {
 		//Spells
 		case 9:
 			for(int i=2; i < Main.obj_list.size(); i++){
-				if (Main.obj_list.get(i).nr == tester.nr)		//don't test yourself
+				if (Main.obj_list.get(i).nr == figure.nr)		//don't test yourself
 				{
 					continue;
 				}
-				else if ( 	(tester.pos_x + x < Main.obj_list.get(i).pos_x + Main.obj_list.get(i).image.getWidth(null))
-						 && (tester.pos_x + x + tester.image.getWidth(null) > Main.obj_list.get(i).pos_x)
-						 && (tester.pos_y + y < Main.obj_list.get(i).pos_y + Main.obj_list.get(i).image.getHeight(null))
-						 && (tester.pos_y + y +tester.image.getHeight(null) > Main.obj_list.get(i).pos_y) )
+				else if ( 	(figure.pos_x + x < Main.obj_list.get(i).pos_x + Main.obj_list.get(i).image.getWidth(null))
+						 && (figure.pos_x + x + figure.image.getWidth(null) > Main.obj_list.get(i).pos_x)
+						 && (figure.pos_y + y < Main.obj_list.get(i).pos_y + Main.obj_list.get(i).image.getHeight(null))
+						 && (figure.pos_y + y +figure.image.getHeight(null) > Main.obj_list.get(i).pos_y) )
 				{
-					hit(tester , i);
+					hit(figure , i);
 					return false;
 				}
 			}
@@ -257,7 +257,7 @@ public class Coll {
 				if((Main.obj_list.get(i).hp -= spell.dmg / Main.obj_list.get(i).defe) < 1)				//if targets hp is < 1
 				{
 					Create.hero1.setBugs(Create.hero1.getBugs()+Main.obj_list.get(i).bugs);
-					Main.obj_list.get(2).ep += Main.obj_list.get(i).ep;
+					if(Create.hero1.level < Main.level) Main.obj_list.get(2).ep += Main.obj_list.get(i).ep;
 					
 					//if boss dies clear room
 					if(Main.obj_list.get(i).type == 5)
