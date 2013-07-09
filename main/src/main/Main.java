@@ -46,8 +46,8 @@ public static void main(String[] args) throws IOException
 
 		System.out.println("done");
 		
-		//		Game game = new Game();										//creates Game logic		
-//		game.start();												//starts Game logic
+				Game game = new Game();										//creates Game logic		
+		game.start();												//starts Game logic
 		
 		System.out.println("initializing gameobjects");
 		

@@ -9,19 +9,19 @@ public class Coll {
 
 	//returns false if player hits goal, good for while-loop
 	public static boolean goal(){
-		if (   (Main.obj_list.get(2).pos_x < Main.obj_list.get(1).pos_x + Main.obj_list.get(1).image.getWidth(null))
-			&& (Main.obj_list.get(2).pos_x + Main.obj_list.get(2).image.getWidth(null) > Main.obj_list.get(1).pos_x)
-			&& (Main.obj_list.get(2).pos_y < Main.obj_list.get(1).pos_y + Main.obj_list.get(1).image.getHeight(null))
-			&& (Main.obj_list.get(2).pos_y + Main.obj_list.get(2).image.getHeight(null) > Main.obj_list.get(1).pos_y) )
+		if (   (Main.obj_list.get(2)[2] < Main.obj_list.get(1)[2] + Create.gameobjects[Main.obj_list.get(1)[0]].width)
+			&& (Main.obj_list.get(2)[2] + Create.gameobjects[Main.obj_list.get(2)[0]].width > Main.obj_list.get(1)[2])
+			&& (Main.obj_list.get(2)[3] < Main.obj_list.get(1)[3] + Create.gameobjects[Main.obj_list.get(1)[0]].height)
+			&& (Main.obj_list.get(2)[3] + Create.gameobjects[Main.obj_list.get(2)[0]].height > Main.obj_list.get(1)[3]) )
 		{
 			return false;
 		}
 		else if(Main.Nr_of_Players == 2)
 		{
-			if (   (Main.obj_list.get(3).pos_x < Main.obj_list.get(1).pos_x + Main.obj_list.get(1).image.getWidth(null))
-				&& (Main.obj_list.get(3).pos_x + Main.obj_list.get(3).image.getWidth(null) > Main.obj_list.get(1).pos_x)
-				&& (Main.obj_list.get(3).pos_y < Main.obj_list.get(1).pos_y + Main.obj_list.get(1).image.getHeight(null))
-				&& (Main.obj_list.get(3).pos_y + Main.obj_list.get(3).image.getHeight(null) > Main.obj_list.get(1).pos_y) )
+			if (   (Main.obj_list.get(3)[2] < Main.obj_list.get(1)[2] + Create.gameobjects[Main.obj_list.get(1)[0]].width)
+				&& (Main.obj_list.get(3)[2] + Create.gameobjects[Main.obj_list.get(3)[0]].width > Main.obj_list.get(1)[2])
+				&& (Main.obj_list.get(3)[3] < Main.obj_list.get(1)[3] + Create.gameobjects[Main.obj_list.get(1)[0]].height)
+				&& (Main.obj_list.get(3)[3] + Create.gameobjects[Main.obj_list.get(3)[0]].height > Main.obj_list.get(1)[3]) )
 			{
 				return false;
 			}
@@ -32,20 +32,20 @@ public class Coll {
 
 	//changes value of Main.npc if player hits npc
 	public static void npc(){
-		if (   (Main.obj_list.get(2).pos_x < Main.obj_list.get(5).pos_x + Main.obj_list.get(5).image.getWidth(null) + Main.obj_list.get(5).fog)
-			&& (Main.obj_list.get(2).pos_x + Main.obj_list.get(2).image.getWidth(null) > Main.obj_list.get(5).pos_x - Main.obj_list.get(5).fog)
-			&& (Main.obj_list.get(2).pos_y < Main.obj_list.get(5).pos_y + Main.obj_list.get(5).image.getHeight(null) + Main.obj_list.get(5).fog)
-			&& (Main.obj_list.get(2).pos_y + Main.obj_list.get(2).image.getHeight(null) > Main.obj_list.get(5).pos_y - Main.obj_list.get(5).fog) )
+		if (   (Main.obj_list.get(2)[2] < Main.obj_list.get(5)[2] + Create.gameobjects[Main.obj_list.get(5)[0]].width + Create.gameobjects[Main.obj_list.get(5)[0]].fog)
+			&& (Main.obj_list.get(2)[2] + Create.gameobjects[Main.obj_list.get(2)[0]].width > Main.obj_list.get(5)[2] - Create.gameobjects[Main.obj_list.get(5)[0]].fog)
+			&& (Main.obj_list.get(2)[3] < Main.obj_list.get(5)[3] + Create.gameobjects[Main.obj_list.get(5)[0]].height + Create.gameobjects[Main.obj_list.get(5)[0]].fog)
+			&& (Main.obj_list.get(2)[3] + Create.gameobjects[Main.obj_list.get(2)[0]].height > Main.obj_list.get(5)[3] - Create.gameobjects[Main.obj_list.get(5)[0]].fog) )
 		{
 		Main.npc = true;
 		}
 		
 		else if(Main.Nr_of_Players == 2)
 		{
-			if (   (Main.obj_list.get(3).pos_x < Main.obj_list.get(5).pos_x + Main.obj_list.get(5).image.getWidth(null) + Main.obj_list.get(5).fog)
-				&& (Main.obj_list.get(3).pos_x + Main.obj_list.get(3).image.getWidth(null) > Main.obj_list.get(5).pos_x - Main.obj_list.get(5).fog)
-				&& (Main.obj_list.get(3).pos_y < Main.obj_list.get(5).pos_y + Main.obj_list.get(5).image.getHeight(null) + Main.obj_list.get(5).fog)
-				&& (Main.obj_list.get(3).pos_y + Main.obj_list.get(3).image.getHeight(null) > Main.obj_list.get(5).pos_y - Main.obj_list.get(5).fog) )
+			if (   (Main.obj_list.get(3)[2] < Main.obj_list.get(5)[2] + Create.gameobjects[Main.obj_list.get(5)[0]].width + Create.gameobjects[Main.obj_list.get(5)[0]].fog)
+				&& (Main.obj_list.get(3)[2] + Create.gameobjects[Main.obj_list.get(3)[0]].width > Main.obj_list.get(5)[2] - Create.gameobjects[Main.obj_list.get(5)[0]].fog)
+				&& (Main.obj_list.get(3)[3] < Main.obj_list.get(5)[3] + Create.gameobjects[Main.obj_list.get(5)[0]].height + Create.gameobjects[Main.obj_list.get(5)[0]].fog)
+				&& (Main.obj_list.get(3)[3] + Create.gameobjects[Main.obj_list.get(3)[0]].height > Main.obj_list.get(5)[3] - Create.gameobjects[Main.obj_list.get(5)[0]].fog) )
 			{
 			Main.npc = true;
 			}

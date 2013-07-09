@@ -26,6 +26,7 @@ public class Game extends Thread{
 				}
 				catch (InterruptedException e) {}
 				
+				
 				//if game is running
 				if(Main.ingame)
 				{
@@ -50,7 +51,7 @@ public class Game extends Thread{
 					Create.hero1.setHp(100 + 50 * Create.hero1.level);
 				}
 			}
-
+			
 			if((Main.room += 1) > 3)
 			{
 				Main.room = 1;
