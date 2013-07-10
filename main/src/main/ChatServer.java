@@ -47,10 +47,6 @@ public class ChatServer extends Thread {
 				clientIPraw = client.getInetAddress().toString();
 				formatIP();
 				Multiplayer.isServer = true;
-
-
-	  	//		ServerRead input = new ServerRead();
-		//		input.start( client, this.gui);
 				readMessage(client, gui);
 			
 			}
@@ -62,6 +58,7 @@ public class ChatServer extends Thread {
 	public void formatIP(){
 		gui.verbindenButton.setText("Client verbunden");
 		connected = true;
+		gui.sendenButton.setEnabled(true);
 		gui.verbindenButton.setEnabled(false);				//connection already received preventing additional out connect
 		//remove 1st slash from IP
 		char[] stringArray = clientIPraw.toCharArray();

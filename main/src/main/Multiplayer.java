@@ -81,6 +81,7 @@ public class Multiplayer extends JFrame {
 			   		        ( ( (Integer.valueOf(ip4.getText()) )>=0) && ( (Integer.valueOf(ip4.getText()) )<255) ) ){
 			  			connectIP =  ip1.getText()+"."+ip2.getText()+"."+ip3.getText()+"."+ip4.getText(); //creates entered ip adress
 			   			//create ChatClient and copy reference of chat window
+			  			sendenButton.setEnabled(true);
 			   			client = new ChatClient(Multiplayer.this);		
 				   		}
 	 	   		else { //ip is not valid pop up prompting to enter valid ip
@@ -169,6 +170,7 @@ public class Multiplayer extends JFrame {
 			//send button
 			sendenButton = new JButton ("Chat Senden");
 			sendenButton.setBounds(400,530,250,30);
+			sendenButton.setEnabled(false);
 			
 			//connect button (act as client)
 			verbindenButton = new JButton("Verbinden");
