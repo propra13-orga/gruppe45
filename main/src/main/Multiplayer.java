@@ -110,15 +110,27 @@ public class Multiplayer extends JFrame {
 		exitButton.addActionListener(new ActionListener(){
 		   	public void actionPerformed(ActionEvent e){
 		   		//checks if any open connection and closes
-		   		if (server.serverSocket.isClosed() == false){	
-		   			try{
-		   				server.serverSocket.close();
-		   				client.serverSocket.close();
-		   				}
-		   				catch (Exception ex){
-		   					chatArea.append("Verbindung kann nicht geschlossen werden");
+		   		if (isServer == true){
+		   			if (server.serverSocket.isClosed() == false){	
+		   				try{
+		   					server.serverSocket.close();
+		   				
 		   					}
+		   					catch (Exception ex){
+		   						chatArea.append("Verbindung kann nicht geschlossen werden");
+		   						}
+		   				}
 		   			}
+		   		else{
+		   			if (client.serverSocket.isClosed() == false){	
+		   				try{
+		   				
+		   					client.serverSocket.close();
+		   				}
+		   					catch (Exception ex){
+		   						chatArea.append("Verbindung kann nicht geschlossen werden");
+		   					}
+		   			}}
 		   		server.go = false;			//quiets server listening on input stream
 		   		Multiplayer.this.dispose();
 		   		server.isConnected = false;
