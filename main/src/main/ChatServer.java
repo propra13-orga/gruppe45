@@ -20,6 +20,7 @@ public class ChatServer extends Thread {
 	protected Multiplayer gui;
 	protected boolean connected = false; //indicates if server is running on current instance, true = this is server
 	private PrintWriter out;
+	protected boolean isConnected= false; //states if server out is connected
 	protected Socket client;
 	
 	public ChatServer(Multiplayer gui)
@@ -90,11 +91,11 @@ public class ChatServer extends Thread {
 	//opens new socket to client
 	public void sendMessage(Multiplayer gui){
 		
-
-		try{	
-			client = new Socket(clientIP,6667);
-			}
-		catch(Exception i) {System.out.println("Fehler in ChatServer.sendMessage");}
+		if (isConnected == false)
+		{
+			connectToClient();
+		}
+		
 	
 		try{
 			out = new PrintWriter(client.getOutputStream(),true);
@@ -109,6 +110,16 @@ public class ChatServer extends Thread {
 			System.out.println("Server kann Nachricht nicht senden");
 			}
 		System.out.println("Server ist closed? : "+ client.isClosed());
+	}
+	
+	public void connectToClient()
+	{
+		try{	
+			client = new Socket(clientIP,6667);
+			isConnected = true;
+			}
+		catch(Exception i) {System.out.println("Fehler in ChatServer.sendMessage");}
+		
 	}
 	
 

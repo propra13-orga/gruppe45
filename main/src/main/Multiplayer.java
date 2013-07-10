@@ -113,6 +113,7 @@ public class Multiplayer extends JFrame {
 		   		if (server.serverSocket.isClosed() == false){	
 		   			try{
 		   				server.serverSocket.close();
+		   				client.serverSocket.close();
 		   				}
 		   				catch (Exception ex){
 		   					chatArea.append("Verbindung kann nicht geschlossen werden");
@@ -120,6 +121,7 @@ public class Multiplayer extends JFrame {
 		   			}
 		   		server.go = false;			//quiets server listening on input stream
 		   		Multiplayer.this.dispose();
+		   		server.isConnected = false;
 		   		
 		   	   	}
 		});
