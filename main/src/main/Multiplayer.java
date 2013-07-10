@@ -28,7 +28,9 @@ public class Multiplayer extends JFrame {
 	protected JTextArea chatArea;
 	protected ChatServer server;
 	protected ChatClient client;
-	protected boolean go = true;
+	protected boolean go = false;
+	
+	public static boolean isServer = true;
 
 
 	
@@ -78,7 +80,6 @@ public class Multiplayer extends JFrame {
 			 		        ( ( (Integer.valueOf(ip3.getText()) )>=0) && ( (Integer.valueOf(ip3.getText()) )<255) ) &&
 			   		        ( ( (Integer.valueOf(ip4.getText()) )>=0) && ( (Integer.valueOf(ip4.getText()) )<255) ) ){
 			  			connectIP =  ip1.getText()+"."+ip2.getText()+"."+ip3.getText()+"."+ip4.getText(); //creates entered ip adress
-			   	//		chatArea.append("verbinden mit "+connectIP+"\n" );	//puts ip connect message int textfield	
 			   			//create ChatClient and copy reference of chat window
 			   			client = new ChatClient(Multiplayer.this);		
 				   		}
@@ -91,23 +92,19 @@ public class Multiplayer extends JFrame {
 		//chat Button button event listener
 		sendenButton.addActionListener(new ActionListener(){
 			   	public void actionPerformed(ActionEvent e){
-			   		chatArea.append(hostName+": " +chatField.getText()+"\n");
-			   		//chatField.setText("");
-			   		client.sendMessage(Multiplayer.this);
+			   		if (isServer == false)
+			   		{
+			   			client.sendMessage(Multiplayer.this);
+			   		}
+			   		if (isServer == true)
+			   		{
+			   			server.sendMessage(Multiplayer.this);
+			   		}
+			   		
 			   		
 			   	   	}
 			});
-		//obsolete due to chat autostart
-		//hostButton to start server
-
-//		hostButton.addActionListener(new ActionListener(){
-//		   	public void actionPerformed(ActionEvent e){
-
-		  // 		chatArea.append(hostName+": game Server wird gestartet..."+"\n");
-		   		//create ChatServer and copy reference of chat window
-		  // 		ChatServer server = new ChatServer(Multiplayer.this);
-//		   	   	  	}
-//			});
+		
 		//Eventlistener for exit button
 		exitButton.addActionListener(new ActionListener(){
 		   	public void actionPerformed(ActionEvent e){
