@@ -72,10 +72,7 @@ public class MultMasterFrame extends JFrame implements Runnable
 								
 					
 				
-					//backround Image
-					g.setColor(new Color(47, 118, 19));						//Hex: 2f 76 13			
-					g.fillRect(width-1024,height-80,300,80);		
-					g.setColor(new Color(0, 0, 0));
+					g.drawImage(local.Pics.bg_1_1, width, height,this);
 					
 					
 				
@@ -90,6 +87,9 @@ public class MultMasterFrame extends JFrame implements Runnable
 				}
 		
 				bs.show();												//draw image from buffer on screen
+				try{
+				Thread.sleep(1000);}
+				catch (Exception s){System.out.println("Thread could not sleep");}
 			}
 						
 		}
