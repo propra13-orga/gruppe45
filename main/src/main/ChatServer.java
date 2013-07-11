@@ -7,6 +7,9 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
+import java.util.regex.Pattern;
+
+import javax.swing.JOptionPane;
 
 
 
@@ -80,8 +83,22 @@ public class ChatServer extends Thread {
 				 String line;
 				 while ((line = in.readLine()) != null)
 				 { 	
+					 //parses input  stream if tag with instructions (values) is received
+					 if (Pattern.matches("<.*>.*", line))
+					 {	
+
+						 String tag = line.replaceAll(">.*","");
+						 tag = tag.replaceAll("<", "");
+						 String value = line.replace("<.*>", "");
+						 JOptionPane.showMessageDialog(null, "Es wurde ein Tag versendet: "+tag+" Mit dem Wert: "+value);
+						 //from here on server instructions can be received by tag and value
+					 }
+					 else
+					 {
+					 				
 					 System.out.println(line);
 					 gui.chatArea.append(line+"\n");
+					 }
 				 }
 				 in.close();
 				}//end of try block

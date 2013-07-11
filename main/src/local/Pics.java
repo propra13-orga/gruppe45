@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.awt.*;
 import javax.imageio.ImageIO;
-//please do no changes!!! still in progress
+
 public class Pics{
 		public static Image	icon1, bunny_l_motion, bunny_l, bunny_r_motion, hedgehog_l, hedgehog_r, bunny_r,
 							back, tree, bush, rock, fox_r, cave, mole, shop_inactive, shop_active, poisonous_tree,
