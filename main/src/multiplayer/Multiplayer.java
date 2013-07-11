@@ -158,7 +158,7 @@ public class Multiplayer extends JFrame {
 					   		if (isServer == false)//player is Client
 					   		{
 					   			gameClient = new MultiGame(client.server);
-					   			gameClient.sendMessage(client.server, "", "ready");
+					   			gameClient.sendMessage(client.server, hostName , "ready");
 					   		
 					   			
 					   		}

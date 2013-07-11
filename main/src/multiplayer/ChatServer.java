@@ -90,14 +90,15 @@ public class ChatServer extends Thread {
 
 						 String tag = line.replaceAll(">.*","");
 						 tag = tag.replaceAll("<", "");
-						 String value = line.replace("<.*>", "");
+						 String value = line.replaceAll("<.*>", "");
 					/**	 JOptionPane.showMessageDialog(null, "Es wurde ein Tag versendet: "+tag+" Mit dem Wert: "+value);
 ------------------------------------------------------------------------------------------------------------------------------*/					 
 						 //from here on server instructions can be received by tag and value
 						 if (tag.equals("ready")){
 							 //player is ready for play
 							 gui.readyLabel.setVisible(true);
-							 clientReady = true;
+							 gui.chatArea.append(value+" ist bereit. Spiel kann beginnen \n");
+							 clientReady = true; 
 /**---------------------------------------------------------------------------------------------------------------------------*/						 
 
 						 }
