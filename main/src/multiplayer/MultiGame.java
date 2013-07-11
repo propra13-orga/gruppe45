@@ -12,7 +12,7 @@ public class MultiGame {
 	
 	private PrintWriter out;
 	protected Socket client, server;
-//	protected ServerSocket server;
+
 	
 	public MultiGame(Socket client)
 	{
@@ -48,7 +48,8 @@ public class MultiGame {
 			}}
 	
 	
-	//method to sent instructions during Multiplayer game
+	//generalised method to sent instructions during Multiplayer game
+	//need the socket to sent to, string value ans tag, it is coded before sending and will be decoded on receivers side
 	public void sendMessage(Socket client, String value, String tag){
 		
 		try{

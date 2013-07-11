@@ -1,15 +1,11 @@
 package multiplayer;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.regex.Pattern;
-
-import javax.swing.JOptionPane;
-
 
 public class ChatClient extends Thread{
 	
@@ -115,8 +111,8 @@ public class ChatClient extends Thread{
 ------------------------------------------------------------------------------------------------------------------------------*/					 
 					 //from here on client instructions can be received by tag and value
 					 if (tag.equals("start")){
-						 gui.dispose();
-						 gui.menu.dispose();
+						 gui.dispose();			//closes multiplayer gui
+						 gui.menu.dispose();	//closes game gui
 /**---------------------------------------------------------------------------------------------------------------------------*/						 
 					 }
 				 }
