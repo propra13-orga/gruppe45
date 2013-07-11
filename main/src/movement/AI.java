@@ -11,12 +11,12 @@ public class AI {
 	//uses move on all opponents
 	public static void move_all_opp(){
 		for(int i = 5 ; i < Main.obj_list.size() ; i++){
-			if(Main.obj_list.get(i).type == 3 || Main.obj_list.get(i).type == 5) move(Main.obj_list.get(i));
+			if(Main.obj_list.get(i)[0] == 3 || Main.obj_list.get(i)[0] == 5) move(Main.obj_list.get(i));
 		}
 	}
 
 	//moves an opponent
-	public static void move(Figure figure){
+	public static void move(int[] figure){
 		
 		int closest_player = Range.range(figure);					//index(obj_list) of closest player
 		

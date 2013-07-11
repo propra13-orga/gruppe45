@@ -10,7 +10,7 @@ public class Fly {
 		
 		for(int i = 0 ; i < Main.obj_list.size() ; i++)
 		{
-			if(Main.obj_list.get(i).type == 9)
+			if(Main.obj_list.get(i)[0] == ||)
 			{
 				switch(Main.obj_list.get(i).direction){
 					case 'u':
