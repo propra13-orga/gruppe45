@@ -30,7 +30,7 @@ public class Game extends Thread{
 				//if game is running
 				if(Main.ingame)
 				{
-//					Fly.fly();
+					Fly.fly();
 //					AI.move_all_opp();
 					Coll.shop();
 					Coll.npc();
