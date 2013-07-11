@@ -10,7 +10,7 @@ public class Pics{
 							back, tree, bush, rock, fox_r, cave, mole, shop_inactive, shop_active, poisonous_tree,
 							sign, healthbar_green, healthbar_yellow, healthbar_red, lives_img, fox_l, hero2, icon2,
 							life, bug, blob, fireball, fireball_r, fireball_d, fireball_l, fireball_u, peace,
-							attention, flower, boss_l, boss_r, goal, hole, mp, hp, bg_1_1;
+							attention, flower, boss_l, boss_r, goal, hole, mp, hp, bg_1_1, bg_2_1,abyss, matrix;
 	
 	public static void loadPics(){
 	
@@ -59,6 +59,9 @@ public class Pics{
 		hp = ImageIO.read(new File (local.Fs.img_pfad+"medipack.png"));
 		mp = ImageIO.read(new File (local.Fs.img_pfad+"candy_blue.png"));
 		bg_1_1 = ImageIO.read(new File (local.Fs.img_pfad+"bg_1_1.png"));
+		bg_2_1  = ImageIO.read(new File (local.Fs.img_pfad+"bg_2_1.png"));
+		abyss  = ImageIO.read(new File (local.Fs.img_pfad+"rabbit_abyss.jpg"));
+		matrix = ImageIO.read(new File (local.Fs.img_pfad+"matrix.jpg"));
 	}
 		
 	catch(IOException e)

@@ -36,8 +36,9 @@ public class Multiplayer extends JFrame {
 	protected boolean go = false;
 	protected netPanel panel;
 	protected MultiGame gameClient, gameServer;
-	protected String[] maps = {"Bitte Karte auswählen","Bunny Paradies","Im Abyss","Hoppelditz Erwachen","Todesstachel"};
-	protected int map = 0;
+	protected String[] maps = {"Bitte Karte auswählen","Bunny Paradies","Im Abyss","Todesstachel","Matrix"};
+	public static int map = 0;
+	protected int instanz = 0;
 	
 	
 	public static boolean isServer = true;
@@ -180,6 +181,8 @@ public class Multiplayer extends JFrame {
 					   						gameServer.sendMessage(server.client, "", "start");			//sends client method that game is going to start
 					   						Multiplayer.this.dispose();									//closes multiplayer gui
 					   						menu.dispose();												//closes game gui
+					   						main.Main.window.dispose();
+					   						startGame();
 					     				}
 					   				}
 					   			else{
@@ -301,5 +304,12 @@ public class Multiplayer extends JFrame {
 						
 			
 		}
+	}
+	public void startGame(){
+		if (instanz != 1){
+		 instanz ++;	
+		 MultMasterFrame window = new MultMasterFrame();
+		 Thread draw = new Thread(window);
+		 draw.start();}
 	}
 }

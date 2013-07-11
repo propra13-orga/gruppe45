@@ -4,6 +4,7 @@ package multiplayer;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.image.BufferStrategy;
 
@@ -21,6 +22,7 @@ public class MultMasterFrame extends JFrame implements Runnable
 	BufferStrategy bs;
 	GamePanel gamePanel = new GamePanel();				//Game Panel created
 	JLayeredPane pane;
+	Image map;
 	
 	public static boolean set = false;
 
@@ -47,6 +49,15 @@ public class MultMasterFrame extends JFrame implements Runnable
 
 		gamePanel.setIgnoreRepaint(true);				//no automatic repaint, OS will decide
 		
+		switch (Multiplayer.map)
+		{
+		case 1: map = local.Pics.bg_1_1; break;
+		case 2: map = local.Pics.abyss; break;
+		case 3: map = local.Pics.bg_2_1; break;
+		case 4: map = local.Pics.matrix; break;
+		default: break;
+		}
+		
 
 	}
 
@@ -62,6 +73,7 @@ public class MultMasterFrame extends JFrame implements Runnable
 	public class GamePanel extends JPanel
 	{
 		
+		
 		public void drawStuff()
 		{
 						
@@ -75,10 +87,14 @@ public class MultMasterFrame extends JFrame implements Runnable
 				
 					//backround Image
 
-					g.drawImage(local.Pics.back, 0, 0,this);
+					g.drawImage(map, 0, 0,this);
+					g.drawImage(local.Pics.bunny_r, 50, height/2,this);
+					g.drawImage(local.Pics.hedgehog_l, width-100, height/2, this);
+					
+					
 					Toolkit.getDefaultToolkit().sync();
 					
-					g.drawString("(Map "+Main.room+"/3)", width-94, height-675);
+				
 					
 				
 					
