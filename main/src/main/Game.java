@@ -34,7 +34,11 @@ public class Game extends Thread{
 //					AI.move_all_opp();
 					Coll.shop();
 					Coll.npc();
-//					Coll.poison();
+					Coll.poison();
+					
+					Create.hero1.hp = Main.obj_list.get(2)[4];
+					Create.hero2.hp = Main.obj_list.get(3)[4];
+					
 				}
 				if(Main.reset)
 				{

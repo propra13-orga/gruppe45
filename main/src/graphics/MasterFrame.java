@@ -59,9 +59,6 @@ public class MasterFrame extends JFrame {
 		Keyboard keyboard = new Keyboard();				//create KeyListener
 		addKeyListener(keyboard);						//connect KeyListener to Frame
 
-		Keyboard2 keyboard2 = new Keyboard2();
-		addKeyListener(keyboard2);
-
 	}
 
 

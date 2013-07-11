@@ -166,6 +166,7 @@ public class Gui extends JFrame implements ActionListener{
 		   	public void actionPerformed(ActionEvent e){
 		   		//Insert Code to start Player 1
 		   		main.Main.Nr_of_Players =1;
+		   		local.Create.create_room();
 		   		playerMod.setText("Single Player Modus aktiviert");
 		
 		   	
@@ -177,6 +178,7 @@ public class Gui extends JFrame implements ActionListener{
 				   	public void actionPerformed(ActionEvent e){
 				   		//Insert Code to start Player 2
 				   		main.Main.Nr_of_Players =2;
+				   		local.Create.create_room();
 				   		playerMod.setText("2 Player Modus aktiviert");
 				   	
 				   	}

@@ -1,7 +1,5 @@
 package collision;
 
-import gameobjects.Figure;
-import gameobjects.Item;
 import local.Create;
 import main.Main;
 
@@ -26,7 +24,6 @@ public class Coll {
 				return false;
 			}
 		}
-		else return true;
 		return true;
 	}
 
@@ -41,8 +38,9 @@ public class Coll {
 			{
 			Main.npc = true;
 			}
+			else Main.npc = false;
 			
-			else if(Main.Nr_of_Players == 2)
+			if(Main.Nr_of_Players == 2)
 			{
 				if (   (Main.obj_list.get(3)[2] < Main.obj_list.get(i)[2] + Create.gameobjects[Main.obj_list.get(i)[0]].width + Create.gameobjects[Main.obj_list.get(i)[0]].fog)
 					&& (Main.obj_list.get(3)[2] + Create.gameobjects[Main.obj_list.get(3)[0]].width > Main.obj_list.get(i)[2] - Create.gameobjects[Main.obj_list.get(i)[0]].fog)
@@ -51,8 +49,8 @@ public class Coll {
 				{
 				Main.npc = true;
 				}
+				else Main.npc = false;
 			}
-			else Main.npc = false;
 		}
 	}
 	
@@ -67,8 +65,9 @@ public class Coll {
 			{
 			Main.shop = true;
 			}
+			else Main.shop = false;
 			
-			else if(Main.Nr_of_Players == 2)
+			if(Main.Nr_of_Players == 2)
 			{
 				if (   (Main.obj_list.get(3)[2] < Main.obj_list.get(i)[2] + Create.gameobjects[Main.obj_list.get(i)[0]].width + Create.gameobjects[Main.obj_list.get(i)[0]].fog)
 						&& (Main.obj_list.get(3)[2] + Create.gameobjects[Main.obj_list.get(3)[0]].width > Main.obj_list.get(i)[2] - Create.gameobjects[Main.obj_list.get(i)[0]].fog)
@@ -77,8 +76,8 @@ public class Coll {
 				{
 				Main.shop = true;
 				}
+				else Main.shop = false;
 			}
-			else Main.shop = false;
 		}
 	}
 	
@@ -109,114 +108,6 @@ public class Coll {
 		}
 	}
 
-	//returns true for no collision, if false, invokes event if tester = killer / poisontree
-	//1 for wall/tree, 2 for poisontree, 3 for fox, 4 for player
-	public static boolean coll(int[] figure , int x , int y){
-	switch (figure[0]) {				//coll varies according to testers type
-
-		//tester == fox
-		case 6:
-			for(int i=2; i < Main.obj_list.size(); i++){
-				if (Main.obj_list.get(i).nr == figure.nr)		//don't test yourself
-				{
-					continue;
-				}
-				else if ( 	(figure.pos_x + x < Main.obj_list.get(i).pos_x + Main.obj_list.get(i).image.getWidth(null))
-						 && (figure.pos_x + x + figure.image.getWidth(null) > Main.obj_list.get(i).pos_x)
-						 && (figure.pos_y + y < Main.obj_list.get(i).pos_y + Main.obj_list.get(i).image.getHeight(null))
-						 && (figure.pos_y + y +figure.image.getHeight(null) > Main.obj_list.get(i).pos_y) )
-				{
-					if(Main.obj_list.get(i).type == 4)
-					{
-						deal_dmg(figure , Main.obj_list.get(i));
-					}
-
-					return false;
-				}
-			}
-			return true;
-
-
-		//tester == bunny
-		case 2:
-			for(int i=2; i < Main.obj_list.size(); i++){
-				if (Main.obj_list.get(i).nr == figure.nr)		//don't test yourself
-				{
-					continue;
-				}
-				else if ( 	(figure.pos_x + x < Main.obj_list.get(i).pos_x + Main.obj_list.get(i).image.getWidth(null))
-						 && (figure.pos_x + x + figure.image.getWidth(null) > Main.obj_list.get(i).pos_x)
-						 && (figure.pos_y + y < Main.obj_list.get(i).pos_y + Main.obj_list.get(i).image.getHeight(null))
-						 && (figure.pos_y + y + figure.image.getHeight(null) > Main.obj_list.get(i).pos_y + Main.obj_list.get(i).image.getHeight(null) / 3) )
-				{
-					if(Main.obj_list.get(i).type == 8)
-					{
-						figure.bag.add((Item) Main.obj_list.get(i));
-						if(Main.obj_list.get(i).name.equals("Feuerball")) Create.hero1.spell = true;
-						Main.obj_list.remove(i);
-						
-						Create.hero1.setHp(Create.hero1.getHp() + 10);					//Meilenstein 2
-						Create.hero1.setMp(Create.hero1.getMp() + 5);					//
-						
-						for(int j = i ; j < Main.obj_list.size() ; j++)
-						{
-							Main.obj_list.get(j).nr = j;
-						}
-						return true;
-					}
-					else return false;
-				}
-			}
-			return true;
-
-
-		//tester == boss
-		case 7:
-			for(int i=2; i < Main.obj_list.size(); i++){
-				if (Main.obj_list.get(i).nr == figure.nr)		//don't test yourself
-				{
-					continue;
-				}
-				else if ( 	(figure.pos_x + x < Main.obj_list.get(i).pos_x + Main.obj_list.get(i).image.getWidth(null))
-						 && (figure.pos_x + x + figure.image.getWidth(null) > Main.obj_list.get(i).pos_x)
-						 && (figure.pos_y + y < Main.obj_list.get(i).pos_y + Main.obj_list.get(i).image.getHeight(null))
-						 && (figure.pos_y + y +figure.image.getHeight(null) > Main.obj_list.get(i).pos_y) )
-				{
-					if(Main.obj_list.get(i).type == 4)
-					{
-						deal_dmg(figure , Main.obj_list.get(i));
-					}
-
-					return false;
-				}
-			}
-			return true;
-			
-			
-		//tester = blob
-		case 11:
-			for(int i=2; i < Main.obj_list.size(); i++){
-				if (Main.obj_list.get(i).nr == figure.nr)		//don't test yourself
-				{
-					continue;
-				}
-				else if ( 	(figure.pos_x + x < Main.obj_list.get(i).pos_x + Main.obj_list.get(i).image.getWidth(null))
-						 && (figure.pos_x + x + figure.image.getWidth(null) > Main.obj_list.get(i).pos_x)
-						 && (figure.pos_y + y < Main.obj_list.get(i).pos_y + Main.obj_list.get(i).image.getHeight(null))
-						 && (figure.pos_y + y +figure.image.getHeight(null) > Main.obj_list.get(i).pos_y) )
-				{
-					hit(figure , i);
-					return false;
-				}
-			}
-			return true;
-
-		default:
-			return true;
-	}
-
-}
-
 	//returns true if no collision, else invokes event
 	public static boolean coll(int[] tester , int x , int y){
 		for(int i = 2 ; i < Main.obj_list.size() ; i++)
@@ -233,11 +124,49 @@ public class Coll {
 				&& (tester[3] + y < figure[3] + Create.gameobjects[figure[0]].height)
 				&& (tester[3] + y + Create.gameobjects[tester[0]].height > figure[3]))
 			{
-				if(tester[0] == 6 || tester[0] == 7)
+				
+				//tester == bunny
+				if(tester[0] == 2)
+				{
+					
+					//figure == item
+					if(figure[0] == 10)
+					{
+						Create.hero1.bag.add(figure);
+						return true;
+					}
+				}
+				
+				//tester == hedgehog
+				else if(tester[0] == 3)
+				{
+					
+					//figure == item
+					if(figure[0] == 10)
+					{
+						Create.hero2.bag.add(figure);
+						return true;
+					}
+				}
+				
+				//tester == opponent
+				else if(tester[0] == 6 || tester[0] == 7)
+				{
+					if(figure[0] == 2 || figure[0] == 3)
+					{
+						deal_dmg(tester , figure);
+					}
+				}
+				
+				//tester == spell
+				else if(tester[0] == 11 || tester[0] == 12)
+				{
+						hit(tester , figure);
+				}
+				return false;
 			}
-			
-			return true;
 		}
+		return true;
 	}
 	
 	//deals dmg to players
@@ -270,37 +199,48 @@ public class Coll {
 	}
 	
 	//called upon a spells collision, damages the target and destroyes it if hp <= 0
-	public static void hit(Figure spell, int i){
-		if(Main.obj_list.get(i).type == 3 | Main.obj_list.get(i).type == 5)
+	public static void hit(int[] spell , int[] victim){
+		if(victim[0] == 3 || victim[0] == 5)
 		{
-			if(Main.obj_list.get(i).destroyable)
+			
+			//if targets hp is < 1
+			if((victim[4] -= Create.gameobjects[spell[0]].dmg / Create.gameobjects[victim[0]].defe) < 1)
 			{
-				if((Main.obj_list.get(i).hp -= spell.dmg / Main.obj_list.get(i).defe) < 1)				//if targets hp is < 1
+				
+				//get bugs
+				Create.hero1.setBugs(Create.hero1.getBugs() +Create.gameobjects[victim[0]].bugs);
+				
+				//get ep
+				Create.hero1.ep += Create.gameobjects[victim[0]].ep;
+				Create.hero2.ep += Create.gameobjects[victim[0]].ep;
+				
+				//if boss dies clear room
+				if(victim[0] == 5)
 				{
-					Create.hero1.setBugs(Create.hero1.getBugs()+Main.obj_list.get(i).bugs);
-					if(Create.hero1.level < Main.level) Main.obj_list.get(2).ep += Main.obj_list.get(i).ep;
-					
-					//if boss dies clear room
-					if(Main.obj_list.get(i).type == 5)
-					{
-						for(int j = 6 ; j < Main.obj_list.size() ;){
-							Main.obj_list.remove(j);
-						}
-					}
-					else
-					{
-						Main.obj_list.remove(spell.nr);
-						Main.obj_list.remove(i);
-						for(int j = i ; j < Main.obj_list.size() ; j++)			//update index, since 1 figure was removed
-						{
-							Main.obj_list.get(j).nr = j;
-						}
+					for(int j = 4 ; j < Main.obj_list.size() ;){
+						if(Main.obj_list.get(j)[0] == 4) Main.obj_list.remove(j);
+						if(j < Main.obj_list.size()) Main.obj_list.get(j)[1] = j;
+						
 					}
 				}
-				else Main.obj_list.remove(spell.nr);
+				
+				Main.obj_list.remove(spell[1]);
+				Main.obj_list.remove(victim[1]);
+				for(int j = 4 ; j < Main.obj_list.size() ; j++)			//update index
+				{
+					Main.obj_list.get(j)[1] = j;
+				}
 			}
 		}
-		else Main.obj_list.remove(spell.nr);
+		
+		else
+		{
+			Main.obj_list.remove(spell[1]);
+			for(int j = 4 ; j < Main.obj_list.size() ; j++)			//update index
+			{
+				Main.obj_list.get(j)[1] = j;
+			}
+		}
 	}
 
 }

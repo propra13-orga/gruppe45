@@ -32,6 +32,8 @@ public class Item extends Figure{
 	
 	public Item() {
 		super();
+		this.height = local.Pics.mp.getHeight(null);
+		this.width = local.Pics.mp.getWidth(null);
 	}
 
 }
