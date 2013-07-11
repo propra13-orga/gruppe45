@@ -28,6 +28,8 @@ public class Create {
 	
 	public static Bunny hero1;
 	public static Hedgehog hero2;
+	public static int npc;
+	public static int shop;
 	
 	public static Figure[] gameobjects = new Figure[13];
 	
@@ -64,6 +66,8 @@ public class Create {
 			temp.add(1,new int[]{0,0,0,0,0,0});
 			temp.add(2,new int[]{0,0,0,0,0,0});
 			temp.add(3,new int[]{0,0,0,0,0,0});
+			npc = 0;
+			shop = 0;
 			
 			BufferedReader br = new BufferedReader(new FileReader(Fs.data_pfad+String.valueOf(Main.level)+"_"+String.valueOf(Main.room)+".txt"));
 			zeile=0;
@@ -113,10 +117,12 @@ public class Create {
 										
 								//shop
 								case 's':	temp.add(new int[]{8,temp.size(),spalte*Create.block_groesse, zeile*Create.block_groesse,0,0});
+											shop = temp.size();
 											break;
 										
 								//npc
 								case 'c':	temp.add(new int[]{9,temp.size(),spalte*Create.block_groesse, zeile*Create.block_groesse,0,0});
+											npc = temp.size()-1;
 											break;
 							
 								//mp-pot

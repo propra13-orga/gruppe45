@@ -32,69 +32,75 @@ public class Coll {
 
 	//changes value of Main.npc if player hits npc
 	public static void npc(){
-		if (   (Main.obj_list.get(2)[2] < Main.obj_list.get(5)[2] + Create.gameobjects[Main.obj_list.get(5)[0]].width + Create.gameobjects[Main.obj_list.get(5)[0]].fog)
-			&& (Main.obj_list.get(2)[2] + Create.gameobjects[Main.obj_list.get(2)[0]].width > Main.obj_list.get(5)[2] - Create.gameobjects[Main.obj_list.get(5)[0]].fog)
-			&& (Main.obj_list.get(2)[3] < Main.obj_list.get(5)[3] + Create.gameobjects[Main.obj_list.get(5)[0]].height + Create.gameobjects[Main.obj_list.get(5)[0]].fog)
-			&& (Main.obj_list.get(2)[3] + Create.gameobjects[Main.obj_list.get(2)[0]].height > Main.obj_list.get(5)[3] - Create.gameobjects[Main.obj_list.get(5)[0]].fog) )
-		{
-		Main.npc = true;
-		}
-		
-		else if(Main.Nr_of_Players == 2)
-		{
-			if (   (Main.obj_list.get(3)[2] < Main.obj_list.get(5)[2] + Create.gameobjects[Main.obj_list.get(5)[0]].width + Create.gameobjects[Main.obj_list.get(5)[0]].fog)
-				&& (Main.obj_list.get(3)[2] + Create.gameobjects[Main.obj_list.get(3)[0]].width > Main.obj_list.get(5)[2] - Create.gameobjects[Main.obj_list.get(5)[0]].fog)
-				&& (Main.obj_list.get(3)[3] < Main.obj_list.get(5)[3] + Create.gameobjects[Main.obj_list.get(5)[0]].height + Create.gameobjects[Main.obj_list.get(5)[0]].fog)
-				&& (Main.obj_list.get(3)[3] + Create.gameobjects[Main.obj_list.get(3)[0]].height > Main.obj_list.get(5)[3] - Create.gameobjects[Main.obj_list.get(5)[0]].fog) )
+		if(local.Create.npc > 0){
+			int i = local.Create.npc;
+			if (   (Main.obj_list.get(2)[2] < Main.obj_list.get(i)[2] + Create.gameobjects[Main.obj_list.get(i)[0]].width + Create.gameobjects[Main.obj_list.get(i)[0]].fog)
+				&& (Main.obj_list.get(2)[2] + Create.gameobjects[Main.obj_list.get(2)[0]].width > Main.obj_list.get(i)[2] - Create.gameobjects[Main.obj_list.get(i)[0]].fog)
+				&& (Main.obj_list.get(2)[3] < Main.obj_list.get(i)[3] + Create.gameobjects[Main.obj_list.get(i)[0]].height + Create.gameobjects[Main.obj_list.get(i)[0]].fog)
+				&& (Main.obj_list.get(2)[3] + Create.gameobjects[Main.obj_list.get(2)[0]].height > Main.obj_list.get(i)[3] - Create.gameobjects[Main.obj_list.get(i)[0]].fog) )
 			{
 			Main.npc = true;
 			}
+			
+			else if(Main.Nr_of_Players == 2)
+			{
+				if (   (Main.obj_list.get(3)[2] < Main.obj_list.get(i)[2] + Create.gameobjects[Main.obj_list.get(i)[0]].width + Create.gameobjects[Main.obj_list.get(i)[0]].fog)
+					&& (Main.obj_list.get(3)[2] + Create.gameobjects[Main.obj_list.get(3)[0]].width > Main.obj_list.get(i)[2] - Create.gameobjects[Main.obj_list.get(i)[0]].fog)
+					&& (Main.obj_list.get(3)[3] < Main.obj_list.get(i)[3] + Create.gameobjects[Main.obj_list.get(i)[0]].height + Create.gameobjects[Main.obj_list.get(i)[0]].fog)
+					&& (Main.obj_list.get(3)[3] + Create.gameobjects[Main.obj_list.get(3)[0]].height > Main.obj_list.get(i)[3] - Create.gameobjects[Main.obj_list.get(i)[0]].fog) )
+				{
+				Main.npc = true;
+				}
+			}
+			else Main.npc = false;
 		}
-		else Main.npc = false;
 	}
 	
 	//sets Main.shop = true if player in range
 	public static void shop(){
-		if (   (Main.obj_list.get(2).pos_x < Main.obj_list.get(4).pos_x + Main.obj_list.get(4).image.getWidth(null) + Main.obj_list.get(4).fog)
-			&& (Main.obj_list.get(2).pos_x + Main.obj_list.get(2).image.getWidth(null) > Main.obj_list.get(4).pos_x - Main.obj_list.get(4).fog)
-			&& (Main.obj_list.get(2).pos_y < Main.obj_list.get(4).pos_y + Main.obj_list.get(4).image.getHeight(null) + Main.obj_list.get(4).fog)
-			&& (Main.obj_list.get(2).pos_y + Main.obj_list.get(2).image.getHeight(null) > Main.obj_list.get(4).pos_y - Main.obj_list.get(4).fog) )
-		{
-		Main.shop = true;
-		}
-		
-		else if(Main.Nr_of_Players == 2)
-		{
-			if (   (Main.obj_list.get(3).pos_x < Main.obj_list.get(0).pos_x + Main.obj_list.get(4).image.getWidth(null) + Main.obj_list.get(4).fog)
-						&& (Main.obj_list.get(3).pos_x + Main.obj_list.get(3).image.getWidth(null) > Main.obj_list.get(4).pos_x - Main.obj_list.get(4).fog)
-						&& (Main.obj_list.get(3).pos_y < Main.obj_list.get(0).pos_y + Main.obj_list.get(4).image.getHeight(null) + Main.obj_list.get(4).fog)
-						&& (Main.obj_list.get(3).pos_y + Main.obj_list.get(3).image.getHeight(null) > Main.obj_list.get(4).pos_y - Main.obj_list.get(4).fog) )
+		if(local.Create.shop > 0){
+				int i = local.Create.shop;
+			if (   (Main.obj_list.get(2)[2] < Main.obj_list.get(i)[2] + Create.gameobjects[Main.obj_list.get(i)[0]].width + Create.gameobjects[Main.obj_list.get(i)[0]].fog)
+				&& (Main.obj_list.get(2)[2] + Create.gameobjects[Main.obj_list.get(2)[0]].width > Main.obj_list.get(i)[2] - Create.gameobjects[Main.obj_list.get(i)[0]].fog)
+				&& (Main.obj_list.get(2)[3] < Main.obj_list.get(i)[3] + Create.gameobjects[Main.obj_list.get(i)[0]].height + Create.gameobjects[Main.obj_list.get(i)[0]].fog)
+				&& (Main.obj_list.get(2)[3] + Create.gameobjects[Main.obj_list.get(2)[0]].height > Main.obj_list.get(i)[3] - Create.gameobjects[Main.obj_list.get(i)[0]].fog) )
 			{
 			Main.shop = true;
 			}
+			
+			else if(Main.Nr_of_Players == 2)
+			{
+				if (   (Main.obj_list.get(3)[2] < Main.obj_list.get(i)[2] + Create.gameobjects[Main.obj_list.get(i)[0]].width + Create.gameobjects[Main.obj_list.get(i)[0]].fog)
+						&& (Main.obj_list.get(3)[2] + Create.gameobjects[Main.obj_list.get(3)[0]].width > Main.obj_list.get(i)[2] - Create.gameobjects[Main.obj_list.get(i)[0]].fog)
+						&& (Main.obj_list.get(3)[3] < Main.obj_list.get(i)[3] + Create.gameobjects[Main.obj_list.get(i)[0]].height + Create.gameobjects[Main.obj_list.get(i)[0]].fog)
+						&& (Main.obj_list.get(3)[3] + Create.gameobjects[Main.obj_list.get(3)[0]].height > Main.obj_list.get(i)[3] - Create.gameobjects[Main.obj_list.get(i)[0]].fog) )
+				{
+				Main.shop = true;
+				}
+			}
+			else Main.shop = false;
 		}
-		else Main.shop = false;
 	}
 	
 	//invokes poisoning
 	public static void poison(){
-		for(int i = 5 ; i < Main.obj_list.size() ; i++)
+		for(int i = 4 ; i < Main.obj_list.size() ; i++)
 		{
-			if(Main.obj_list.get(i).type == 2)
+			if(Main.obj_list.get(i)[0] == 5)
 			{
-				if (   (Main.obj_list.get(2).pos_x < Main.obj_list.get(i).pos_x + Main.obj_list.get(i).image.getWidth(null) + Main.obj_list.get(i).fog)
-					&& (Main.obj_list.get(2).pos_x + Main.obj_list.get(2).image.getWidth(null) > Main.obj_list.get(i).pos_x - Main.obj_list.get(i).fog)
-					&& (Main.obj_list.get(2).pos_y < Main.obj_list.get(i).pos_y + Main.obj_list.get(i).image.getHeight(null) + Main.obj_list.get(i).fog)
-					&& (Main.obj_list.get(2).pos_y + Main.obj_list.get(2).image.getHeight(null) > Main.obj_list.get(i).pos_y + Main.obj_list.get(i).image.getHeight(null) / 3 - Main.obj_list.get(i).fog) )
-				{
+				if (   (Main.obj_list.get(2)[2] < Main.obj_list.get(i)[2] + Create.gameobjects[Main.obj_list.get(i)[0]].width + Create.gameobjects[Main.obj_list.get(i)[0]].fog)
+						&& (Main.obj_list.get(2)[2] + Create.gameobjects[Main.obj_list.get(2)[0]].width > Main.obj_list.get(i)[2] - Create.gameobjects[Main.obj_list.get(i)[0]].fog)
+						&& (Main.obj_list.get(2)[3] < Main.obj_list.get(i)[3] + Create.gameobjects[Main.obj_list.get(i)[0]].height + Create.gameobjects[Main.obj_list.get(i)[0]].fog)
+						&& (Main.obj_list.get(2)[3] + Create.gameobjects[Main.obj_list.get(2)[0]].height > Main.obj_list.get(i)[3] - Create.gameobjects[Main.obj_list.get(i)[0]].fog + (int) Create.gameobjects[Main.obj_list.get(i)[0]].height / 3) )
+					{
 					deal_dmg(Main.obj_list.get(i) , Main.obj_list.get(2));
 				}
 				if(Main.Nr_of_Players == 2)
 				{
-					if (   (Main.obj_list.get(3).pos_x < Main.obj_list.get(i).pos_x + Main.obj_list.get(i).image.getWidth(null) + Main.obj_list.get(i).fog)
-						&& (Main.obj_list.get(3).pos_x + Main.obj_list.get(3).image.getWidth(null) > Main.obj_list.get(i).pos_x - Main.obj_list.get(i).fog)
-						&& (Main.obj_list.get(3).pos_y < Main.obj_list.get(i).pos_y + Main.obj_list.get(i).image.getHeight(null) + Main.obj_list.get(i).fog)
-						&& (Main.obj_list.get(3).pos_y + Main.obj_list.get(3).image.getHeight(null) > Main.obj_list.get(i).pos_y - Main.obj_list.get(i).fog) )
+					if (   (Main.obj_list.get(3)[2] < Main.obj_list.get(i)[2] + Create.gameobjects[Main.obj_list.get(i)[0]].width + Create.gameobjects[Main.obj_list.get(i)[0]].fog)
+							&& (Main.obj_list.get(3)[2] + Create.gameobjects[Main.obj_list.get(3)[0]].width > Main.obj_list.get(i)[2] - Create.gameobjects[Main.obj_list.get(i)[0]].fog)
+							&& (Main.obj_list.get(3)[3] < Main.obj_list.get(i)[3] + Create.gameobjects[Main.obj_list.get(i)[0]].height + Create.gameobjects[Main.obj_list.get(i)[0]].fog)
+							&& (Main.obj_list.get(3)[3] + Create.gameobjects[Main.obj_list.get(3)[0]].height > Main.obj_list.get(i)[3] - Create.gameobjects[Main.obj_list.get(i)[0]].fog + (int) Create.gameobjects[Main.obj_list.get(i)[0]].height / 3) )
 					{
 						deal_dmg(Main.obj_list.get(i) , Main.obj_list.get(3));
 					}
@@ -211,38 +217,30 @@ public class Coll {
 
 }
 
-	//returns true if fox or player behind tree
-	public static boolean wall_opaque(int x , int y , int width , int height){
-		for(int i=2 ; i < Main.obj_list.size() ; i++){
-			if(Main.obj_list.get(i).type < 2)
-			{
-				if(		(Main.obj_list.get(i).pos_x < x + width)
-					&&	(Main.obj_list.get(i).pos_x + Main.obj_list.get(i).image.getWidth(null) > x)
-					&&	(Main.obj_list.get(i).pos_y < y + height)
-					&&	(Main.obj_list.get(i).pos_y + Main.obj_list.get(i).image.getHeight(null) > y))
-				{
-					return true;
-				}
-			}
-		}
-		return false;
-	}
-
 	//deals dmg to players
-	static void deal_dmg(Figure dealer , Figure reciever){
-		reciever.hp -= (dealer.dmg / reciever.defe);
-		if(reciever.hp < 1)
+	static void deal_dmg(int[] dealer , int[] reciever){
+		reciever[4] -= (Create.gameobjects[dealer[0]].dmg / Create.gameobjects[reciever[0]].defe);
+		if(reciever[4] < 1)
 		{
-			if(reciever.nr == 2 || reciever.nr == 3)
+			//reduce lives of bunny
+			if(reciever[1] == 2)
 			{
+				if((Create.hero1.lives -= 1) < 0) System.exit(0);
 				Main.reset = true;
 			}
+			//reduce lives of hedgehog
+			else if(reciever[1] == 3)
+			{
+				if((Create.hero2.lives -= 1) < 0) System.exit(0);
+				Main.reset = true;
+			}
+			//remove figure from board
 			else
 			{
-				Main.obj_list.remove(reciever.nr);
+				Main.obj_list.remove(reciever[1]);
 				for(int j = 2 ; j < Main.obj_list.size() ; j++)
 				{
-					Main.obj_list.get(j).nr = j;
+					Main.obj_list.get(j)[1] = j;
 				}
 			}
 		}
