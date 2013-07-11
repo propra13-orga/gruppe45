@@ -17,16 +17,12 @@ public class MultiGame {
 	public MultiGame(Socket client)
 	{
 			int zahl = 0;
-		//	this.server = server;
+
 			this.client = client;
 			String message = "tolle Nachricht";
 			String tag = "blah";
-			while (zahl <100){
-				sendMessage (client, message, tag);
-				//method for automated status sending
-				zahl +=50;
-			}
-		
+
+		sendMessage(client,"","start");
 		
 	}
 	
