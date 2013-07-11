@@ -153,7 +153,7 @@ public class Multiplayer extends JFrame {
 					   		if (isServer == false)//player is Client
 					   		{
 					   			MultiGame game = new MultiGame(client.server);
-					   			Multiplayer.this.dispose();
+					   			game.sendMessage(client.server, "", "ready");
 					   		
 					   			
 					   		}
@@ -164,6 +164,7 @@ public class Multiplayer extends JFrame {
 					   			
 					   			
 					   			  MultiGame game = new MultiGame(server.client);
+					   			  game.sendMessage(server.client, "", "start");
 					   			  Multiplayer.this.dispose();
 				
 					   			  

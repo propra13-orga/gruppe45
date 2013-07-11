@@ -111,15 +111,20 @@ public class ChatClient extends Thread{
 					 String tag = line.replaceAll(">.*","");
 					 tag = tag.replaceAll("<", "");
 					 String value = line.replace("<.*>", "");
-					 JOptionPane.showMessageDialog(null, "Es wurde ein Tag versendet: "+tag+" Mit dem Wert: "+value);
+					 /**JOptionPane.showMessageDialog(null, "Es wurde ein Tag versendet: "+tag+" Mit dem Wert: "+value);
+------------------------------------------------------------------------------------------------------------------------------*/					 
 					 //from here on client instructions can be received by tag and value
+					 if (tag.equals("start")){
+						 gui.dispose();
+/**---------------------------------------------------------------------------------------------------------------------------*/						 
+					 }
 				 }
 				 else
 				 {
 					 System.out.println(line);
 					 gui.chatArea.append(line+"\n");
 				 }	 
-			 }in.close(); //close Buffered Reader
+			 }
 			}//end of try block
 		catch (Exception e)
 					{
