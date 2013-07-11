@@ -32,6 +32,7 @@ public class Multiplayer extends JFrame {
 	protected ChatClient client;
 	protected boolean go = false;
 	protected netPanel panel;
+	protected MultiGame gameClient, gameServer;
 	
 	
 	public static boolean isServer = true;
@@ -152,8 +153,8 @@ public class Multiplayer extends JFrame {
 					   	public void actionPerformed(ActionEvent e){
 					   		if (isServer == false)//player is Client
 					   		{
-					   			MultiGame game = new MultiGame(client.server);
-					   			game.sendMessage(client.server, "", "ready");
+					   			gameClient = new MultiGame(client.server);
+					   			gameClient.sendMessage(client.server, "", "ready");
 					   		
 					   			
 					   		}
@@ -163,8 +164,8 @@ public class Multiplayer extends JFrame {
 					   			{server.connectToClient();}
 					   			
 					   			
-					   			  MultiGame game = new MultiGame(server.client);
-					   			  game.sendMessage(server.client, "", "start");
+					   			  MultiGame gameServer = new MultiGame(server.client);
+					   			  gameServer.sendMessage(server.client, "", "start");
 					   			  Multiplayer.this.dispose();
 				
 					   			  
