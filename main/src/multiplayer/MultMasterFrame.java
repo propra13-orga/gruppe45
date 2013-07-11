@@ -75,7 +75,7 @@ public class MultMasterFrame extends JFrame implements Runnable
 				
 					//backround Image
 
-					g.drawImage(local.Pics.back, width, height,this);
+					g.drawImage(local.Pics.back, 0, 0,this);
 					Toolkit.getDefaultToolkit().sync();
 					
 					g.drawString("(Map "+Main.room+"/3)", width-94, height-675);
