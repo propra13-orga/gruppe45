@@ -106,7 +106,6 @@ public class AI {
 			default: break;
 		}
 
-		System.out.print(true);	
 		return true;
 		}
 
