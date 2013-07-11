@@ -152,9 +152,8 @@ public class Multiplayer extends JFrame {
 					   	public void actionPerformed(ActionEvent e){
 					   		if (isServer == false)//player is Client
 					   		{
-					 //  			MultiGame game = new MultiGame();
-					   			
-					   	//		Multiplayer.this.dispose();
+					   			MultiGame game = new MultiGame(client.server);
+					   			Multiplayer.this.dispose();
 					   		
 					   			
 					   		}
@@ -271,6 +270,7 @@ public class Multiplayer extends JFrame {
 			readyLabel = new JLabel("Spieler 2 bereit");
 			readyLabel.setForeground(Color.RED);
 			readyLabel.setBounds(50, 530, 250, 30);
+			readyLabel.setVisible(false);
 			
 			
 						
