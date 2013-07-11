@@ -6,6 +6,9 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.regex.Pattern;
+
+import javax.swing.JOptionPane;
 
 
 public class ChatClient extends Thread{
@@ -13,9 +16,10 @@ public class ChatClient extends Thread{
 	private String message, ip;
 	protected ServerSocket serverSocket;
 	protected Socket server;
-	private PrintWriter out;
+	protected PrintWriter out;
 	protected Multiplayer gui;
 	protected Boolean go=true;
+	protected BufferedReader in;
 		
 	public ChatClient(Multiplayer gui){
 		
@@ -71,6 +75,7 @@ public class ChatClient extends Thread{
 			gui.chatField.setText("");
 			out.println(message);
 			out.flush();
+			out.close();
 		}
 		catch (Exception e){
 			System.out.println("Client kann Nachricht nicht senden");
@@ -95,21 +100,34 @@ public class ChatClient extends Thread{
 	
 	public void readMessage(Socket client, Multiplayer gui) 
 	{
-	BufferedReader br = null;
+	 in = null;
 	while (true){
 		try{
-			 br = new BufferedReader(new InputStreamReader(client.getInputStream()));
+			 in = new BufferedReader(new InputStreamReader(client.getInputStream()));
 			 String line;
-			 while ((line = br.readLine()) != null)
-			 { 	
-				 System.out.println(line);
-				 gui.chatArea.append(line+"\n");
-			 }
+			 while ((line = in.readLine()) != null)
+			 { 		
+				 //parses input  stream if tag with instructions (values) is received
+				 if (Pattern.matches("<.*>.*", line))
+				 {	
+					 String tag = line.replaceAll(">.*","");
+					 tag = tag.replaceAll("<", "");
+					 String value = line.replace("<.*>", "");
+					 JOptionPane.showMessageDialog(null, "Es wurde ein Tag versendet: "+tag+" Mit dem Wert: "+value);
+					 //from here on client instructions can be received by tag and value
+				 }
+				 else
+				 {
+					 System.out.println(line);
+					 gui.chatArea.append(line+"\n");
+				 }	 
+			 }in.close(); //close Buffered Reader
 			}//end of try block
 		catch (Exception e)
 					{
 							System.out.println("Fehler in read Message");	
-						}
-			}} 
+						} 
+			}
+	} 
 
 }
