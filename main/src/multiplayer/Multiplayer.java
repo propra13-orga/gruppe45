@@ -171,8 +171,7 @@ public class Multiplayer extends JFrame {
 					   					MultiGame gameServer = new MultiGame(server.client);
 					   					gameServer.sendMessage(server.client, "", "start");
 					   					Multiplayer.this.dispose();
-					   				//	menu.closeGUI();
-					   					
+					   					menu.dispose();
 					  
 			  				   		}
 					   			else{

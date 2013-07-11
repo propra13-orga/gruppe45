@@ -116,6 +116,7 @@ public class ChatClient extends Thread{
 					 //from here on client instructions can be received by tag and value
 					 if (tag.equals("start")){
 						 gui.dispose();
+						 gui.menu.dispose();
 /**---------------------------------------------------------------------------------------------------------------------------*/						 
 					 }
 				 }
