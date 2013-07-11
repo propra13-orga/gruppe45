@@ -271,19 +271,19 @@ public class Multiplayer extends JFrame {
 			connectLabel.setBounds(50,570, 200,30);
 			
 			//first part of ipV4 address
-			ip1 = new JTextField();
+			ip1 = new JTextField("192");
 			ip1.setBounds(230,575,30,20);
 			
 			//second part of ipV4 address
-			ip2 = new JTextField();
+			ip2 = new JTextField("168");
 			ip2.setBounds(265,575,30,20);
 			
 			//third part of ipV4 address
-			ip3 = new JTextField();
+			ip3 = new JTextField("1");
 			ip3.setBounds(300,575,30,20);
 			
 			//fourth part of ipV4 address
-			ip4 = new JTextField();
+			ip4 = new JTextField("34");
 			ip4.setBounds(335,575,30,20);
 			
 			//player ready label
