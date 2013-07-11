@@ -1,10 +1,12 @@
 package main;
 
 import local.Fs;
+import multiplayer.MultMasterFrame;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
+
 import graphics.*;
 
 
@@ -66,6 +68,8 @@ public static void main(String[] args) throws IOException
 		
 		@SuppressWarnings("unused")
 		Gui start = new Gui();										//Starts Gui
+		
+	
 		
 		while(onOff)
 		{
