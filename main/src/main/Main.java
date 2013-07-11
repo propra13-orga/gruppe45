@@ -5,6 +5,7 @@ import local.Fs;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
+import graphics.*;
 
 
 public class Main{
@@ -26,6 +27,7 @@ public static boolean npc = false;
 public static boolean reset=true;
 public static String player1_name = "Bunny";
 public static String player2_name = "Hedgehog";
+public static MasterFrame window;
 
 public static ArrayList<int[]> obj_list = new ArrayList<int[]>();	//holds all figures in game
 //0 reserved for board
@@ -34,7 +36,7 @@ public static ArrayList<int[]> obj_list = new ArrayList<int[]>();	//holds all fi
 //3 reserved for player 2
 //4 reserved for shop
 
-public graphics.MasterFrame window;
+
 
 public static void main(String[] args) throws IOException
 	{
@@ -60,7 +62,7 @@ public static void main(String[] args) throws IOException
 		
 		System.out.println("done");
 		
-		graphics.MasterFrame window = new graphics.MasterFrame();	//creates RenderFrame
+		window = new graphics.MasterFrame();	//creates RenderFrame
 		
 		@SuppressWarnings("unused")
 		Gui start = new Gui();										//Starts Gui

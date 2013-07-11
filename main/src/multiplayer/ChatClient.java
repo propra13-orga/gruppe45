@@ -7,6 +7,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.regex.Pattern;
 
+
 public class ChatClient extends Thread{
 	
 	private String message, ip;
@@ -16,6 +17,7 @@ public class ChatClient extends Thread{
 	protected Multiplayer gui;
 	protected Boolean go=true;
 	protected BufferedReader in;
+	protected int instanz = 0;
 		
 	public ChatClient(Multiplayer gui){
 		
@@ -106,15 +108,19 @@ public class ChatClient extends Thread{
 				 {	
 					 String tag = line.replaceAll(">.*","");
 					 tag = tag.replaceAll("<", "");
-					 String value = line.replace("<.*>", "");
+					 String value = line.replaceAll("<.*>", "");
 					 /**JOptionPane.showMessageDialog(null, "Es wurde ein Tag versendet: "+tag+" Mit dem Wert: "+value);
 ------------------------------------------------------------------------------------------------------------------------------*/					 
 					 //from here on client instructions can be received by tag and value
 					 if (tag.equals("start")){
 						 gui.dispose();			//closes multiplayer gui
 						 gui.menu.dispose();	//closes game gui
-/**---------------------------------------------------------------------------------------------------------------------------*/						 
+						 main.Main.window.dispose();
+						 startGame();
 					 }
+						 
+/**---------------------------------------------------------------------------------------------------------------------------*/						 
+					 
 				 }
 				 else
 				 {
@@ -128,6 +134,14 @@ public class ChatClient extends Thread{
 							System.out.println("Fehler in read Message");	
 						} 
 			}
-	} 
+	}
+	public void startGame(){
+		if (instanz != 1){
+			MultMasterFrame window = new MultMasterFrame();
+			Thread draw = new Thread(window);
+			draw.start();}
+		
+	}
+	
 
 }
