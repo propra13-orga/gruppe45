@@ -67,6 +67,7 @@ public class LevelEditor extends JFrame {
  			}
  		}
 
+ 		
 		lpane =  getLayeredPane();
 		lpane.add(screen, 10);
 		for (int i=0; i<z;i++) {
