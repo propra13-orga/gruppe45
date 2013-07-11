@@ -27,6 +27,7 @@ public class ChatClient extends Thread{
 			server = new Socket (ip,6666);	// creates socket to call server
 			gui.verbindenButton.setText("Verbindung aktiv");
 			gui.verbindenButton.setEnabled(false);
+			gui.multiGoButton.setText("bereit Spiel starten");
 			serverSocket = new ServerSocket(6667);
 			Multiplayer.isServer = false;
 			this.start();

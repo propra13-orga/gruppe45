@@ -19,7 +19,7 @@ public class ChatServer extends Thread {
 	protected Boolean go=true;
 	protected Multiplayer gui;
 	protected boolean connected = false; //indicates if server is running on current instance, true = this is server
-	private PrintWriter out;
+	protected PrintWriter out;
 	protected boolean isConnected= false; //states if server out is connected
 	protected Socket client;
 	

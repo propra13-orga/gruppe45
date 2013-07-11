@@ -1,5 +1,6 @@
 package main;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.InetAddress;
@@ -20,8 +21,9 @@ public class Multiplayer extends JFrame {
 	
 	private InetAddress ip;
 	private JLayeredPane pane2;
+	private Gui menu;
 	
-	protected JLabel hostLabel, ipLabel, connectLabel, chatInputLabel; 
+	protected JLabel hostLabel, ipLabel, connectLabel, chatInputLabel, readyLabel; 
 	protected JButton verbindenButton, sendenButton, hostButton, multiGoButton, exitButton;
 	protected String hostName, ipV4, connectIP; 
 	protected JTextField chatField, ip1, ip2, ip3, ip4;
@@ -29,18 +31,20 @@ public class Multiplayer extends JFrame {
 	protected ChatServer server;
 	protected ChatClient client;
 	protected boolean go = false;
+	protected netPanel panel;
+	
 	
 	public static boolean isServer = true;
 
 
 	
-	public Multiplayer(){
+	public Multiplayer(Gui menu){
 		
 		super("Netzwerkmodus");
 		getIP();			// gets own ip adress value needs to be reworked not direct usable
-		
+		this.menu = menu;
 		//creates visible panel elements   
-		netPanel panel = new netPanel();
+		panel = new netPanel();
 		
 		//window frame option
 		this.setSize(700,700);
@@ -64,12 +68,13 @@ public class Multiplayer extends JFrame {
 		pane2.add(chatInputLabel, 10 );
 		pane2.add(multiGoButton, 10);
 		pane2.add(chatField, 10);
+		pane2.add(readyLabel,0);
 
 		
 		//start chat server to listen to port
 		server = new ChatServer(Multiplayer.this);
 		
-		//Multiplayer button event listener and tries to connect to open port, port needs to be opened by server
+		//Connect button event listener and tries to connect to open port, port needs to be opened by server
 		verbindenButton.addActionListener(new ActionListener(){
 			   	public void actionPerformed(ActionEvent e){				
 	
@@ -114,14 +119,13 @@ public class Multiplayer extends JFrame {
 		   			if (server.serverSocket.isClosed() == false){	
 		   				try{
 		   					server.serverSocket.close();
-		   				
 		   					}
 		   					catch (Exception ex){
 		   						chatArea.append("Verbindung kann nicht geschlossen werden");
 		   						}
 		   				}
 		   			}
-		   		else{
+		   		else{  //closes socket on client side
 		   			if (client.serverSocket.isClosed() == false){	
 		   				try{
 		   				
@@ -131,12 +135,37 @@ public class Multiplayer extends JFrame {
 		   						chatArea.append("Verbindung kann nicht geschlossen werden");
 		   					}
 		   			}}
-		   		server.go = false;			//quiets server listening on input stream
 		   		Multiplayer.this.dispose();
 		   		server.isConnected = false;
 		   		
 		   	   	}
 		});
+		
+		//Multiplayer start Button button event listener
+				multiGoButton.addActionListener(new ActionListener(){
+					   	public void actionPerformed(ActionEvent e){
+					   		if (isServer == false)//player is Client
+					   		{
+					 //  			MultiGame game = new MultiGame();
+					   			
+					   	//		Multiplayer.this.dispose();
+					   		
+					   			
+					   		}
+					   		if (isServer == true)//player is Server
+					   		{
+					   			if (server.isConnected == false)
+					   			{server.connectToClient();}
+					   			
+					   			
+					   			  MultiGame game = new MultiGame(server.client);
+					   			  Multiplayer.this.dispose();
+				
+					   			  System.out.println("test");
+					   			  				   		}
+					   	   	}
+					});
+		
 		
 	}//end multiplayer	
 
@@ -209,8 +238,7 @@ public class Multiplayer extends JFrame {
 			//chat output field
 			chatArea = new JTextArea();
 			chatArea.setBounds(51, 51, 599, 399);
-
-
+			chatArea.setEditable(false);
 				
 			//just label to enter ip address
 			connectLabel = new JLabel("Host eingeben:");
@@ -231,6 +259,12 @@ public class Multiplayer extends JFrame {
 			//fourth part of ipV4 address
 			ip4 = new JTextField();
 			ip4.setBounds(335,575,30,20);
+			
+			//player ready label
+			readyLabel = new JLabel("Spieler 2 bereit");
+			readyLabel.setForeground(Color.RED);
+			readyLabel.setBounds(50, 530, 250, 30);
+			
 			
 						
 			

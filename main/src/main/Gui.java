@@ -29,7 +29,7 @@ public class Gui extends JFrame implements ActionListener{
 	JTextField name1,name2;
 	
 	public Gui(){
-		
+		super();
 		Main.ingame = false;
 		
 		setTitle("Lucky Bunny");
@@ -155,7 +155,7 @@ public class Gui extends JFrame implements ActionListener{
 		//Multiplayer button event listener
 			multyButton.addActionListener(new ActionListener(){
 				   	public void actionPerformed(ActionEvent e){
-				   		Multiplayer multi = new Multiplayer();
+				   		Multiplayer multi = new Multiplayer(Gui.this);
 				   	}
 				});
 		
