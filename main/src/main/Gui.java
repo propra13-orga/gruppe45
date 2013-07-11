@@ -8,10 +8,12 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 
 import main.Main;
+import multiplayer.Multiplayer;
 
 import java.awt.Color;
 import java.awt.event.*;
 import java.awt.Font;
+
 import javax.swing.JLayeredPane;
 
 public class Gui extends JFrame implements ActionListener{
@@ -336,7 +338,5 @@ public class Gui extends JFrame implements ActionListener{
 	 	}
 	
 	 }
- public void closeGUI(){
-	 Gui.this.dispose();
- }
+ 
 }
