@@ -20,10 +20,11 @@ public class MultiGame {
 		//	this.server = server;
 			this.client = client;
 			String message = "tolle Nachricht";
+			String tag = "blah";
 			while (zahl <100){
-				
-				sendMessage(client,message);
-				zahl ++;
+				sendMessage (client, message, tag);
+				//method for automated status sending
+				zahl +=50;
 			}
 		
 		
@@ -52,11 +53,11 @@ public class MultiGame {
 	
 	
 	//method to sent instructions during Multiplayer game
-	public void sendMessage(Socket client, String message){
+	public void sendMessage(Socket client, String message, String tag){
 		
 		try{
 			System.out.println("Server ist closed? : "+ client.isClosed());
-			
+			message = "<"+tag+">"+message;
 			out = new PrintWriter(client.getOutputStream(),true);
 			out.println(message);
 			out.flush();

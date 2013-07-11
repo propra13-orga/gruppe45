@@ -6,6 +6,9 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.regex.Pattern;
+
+import javax.swing.JOptionPane;
 
 
 public class ChatClient extends Thread{
@@ -13,9 +16,10 @@ public class ChatClient extends Thread{
 	private String message, ip;
 	protected ServerSocket serverSocket;
 	protected Socket server;
-	private PrintWriter out;
+	protected PrintWriter out;
 	protected Multiplayer gui;
 	protected Boolean go=true;
+	protected BufferedReader in;
 		
 	public ChatClient(Multiplayer gui){
 		
@@ -95,15 +99,23 @@ public class ChatClient extends Thread{
 	
 	public void readMessage(Socket client, Multiplayer gui) 
 	{
-	BufferedReader br = null;
+	 in = null;
 	while (true){
 		try{
-			 br = new BufferedReader(new InputStreamReader(client.getInputStream()));
+			 in = new BufferedReader(new InputStreamReader(client.getInputStream()));
 			 String line;
-			 while ((line = br.readLine()) != null)
+			 while ((line = in.readLine()) != null)
 			 { 	
-				 System.out.println(line);
-				 gui.chatArea.append(line+"\n");
+				 if (Pattern.matches("<.>*", line))
+				 {
+					 
+					 JOptionPane.showMessageDialog(null, "Es wurde ein Tag versendet"); 
+				 }
+				 else
+				 {
+					 System.out.println(line);
+					 gui.chatArea.append(line+"\n");
+				 }	 
 			 }
 			}//end of try block
 		catch (Exception e)

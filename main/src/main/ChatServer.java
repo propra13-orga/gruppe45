@@ -15,7 +15,7 @@ public class ChatServer extends Thread {
 	
 	private String message="", clientIPraw, clientIP="";
 	protected ServerSocket serverSocket;
-	private InputStream in;
+	protected BufferedReader in;
 	protected Boolean go=true;
 	protected Multiplayer gui;
 	protected boolean connected = false; //indicates if server is running on current instance, true = this is server
@@ -58,6 +58,7 @@ public class ChatServer extends Thread {
 	
 	public void formatIP(){
 		gui.verbindenButton.setText("Client verbunden");
+		gui.multiGoButton.setEnabled(true);
 		connected = true;
 		gui.sendenButton.setEnabled(true);
 		gui.verbindenButton.setEnabled(false);				//connection already received preventing additional out connect
@@ -72,16 +73,17 @@ public class ChatServer extends Thread {
 	
 	public void readMessage(Socket client, Multiplayer gui) 
 		{
-		BufferedReader br = null;
+		in = null;
 		
 			try{
-				 br = new BufferedReader(new InputStreamReader(client.getInputStream()));
+				 in = new BufferedReader(new InputStreamReader(client.getInputStream()));
 				 String line;
-				 while ((line = br.readLine()) != null)
+				 while ((line = in.readLine()) != null)
 				 { 	
 					 System.out.println(line);
 					 gui.chatArea.append(line+"\n");
 				 }
+				 in.close();
 				}//end of try block
 			catch (Exception e)
 						{
@@ -105,6 +107,8 @@ public class ChatServer extends Thread {
 			gui.chatField.setText("");
 			out.println(message);
 			out.flush();
+			out.close();
+			
 		}
 		catch (Exception e){
 			System.out.println("Server kann Nachricht nicht senden");

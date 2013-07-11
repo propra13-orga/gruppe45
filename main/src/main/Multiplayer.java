@@ -87,6 +87,7 @@ public class Multiplayer extends JFrame {
 			  			connectIP =  ip1.getText()+"."+ip2.getText()+"."+ip3.getText()+"."+ip4.getText(); //creates entered ip adress
 			   			//create ChatClient and copy reference of chat window
 			  			sendenButton.setEnabled(true);
+			  			multiGoButton.setEnabled(true);
 			   			client = new ChatClient(Multiplayer.this);		
 				   		}
 	 	   		else { //ip is not valid pop up prompting to enter valid ip
@@ -119,6 +120,8 @@ public class Multiplayer extends JFrame {
 		   			if (server.serverSocket.isClosed() == false){	
 		   				try{
 		   					server.serverSocket.close();
+		   				//	server.in.close();
+		   				//	server.out.close();
 		   					}
 		   					catch (Exception ex){
 		   						chatArea.append("Verbindung kann nicht geschlossen werden");
@@ -130,6 +133,9 @@ public class Multiplayer extends JFrame {
 		   				try{
 		   				
 		   					client.serverSocket.close();
+		   			
+		   				//	client.out.close();
+		   				//	client.in.close();
 		   				}
 		   					catch (Exception ex){
 		   						chatArea.append("Verbindung kann nicht geschlossen werden");
@@ -161,7 +167,7 @@ public class Multiplayer extends JFrame {
 					   			  MultiGame game = new MultiGame(server.client);
 					   			  Multiplayer.this.dispose();
 				
-					   			  System.out.println("test");
+					   			  
 					   			  				   		}
 					   	   	}
 					});
@@ -222,6 +228,7 @@ public class Multiplayer extends JFrame {
 			//host button to act as server
 			multiGoButton = new JButton("Multiplayer Spiel starten");
 			multiGoButton.setBounds(400, 600, 250, 30);
+			multiGoButton.setEnabled(false);
 			
 			//start Button for Multiplayer
 			exitButton = new JButton("Abbrechen");
