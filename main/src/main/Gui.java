@@ -336,4 +336,7 @@ public class Gui extends JFrame implements ActionListener{
 	 	}
 	
 	 }
+ public void closeGUI(){
+	 Gui.this.dispose();
+ }
 }

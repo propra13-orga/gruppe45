@@ -21,8 +21,8 @@ public class Multiplayer extends JFrame {
 	
 	private InetAddress ip;
 	private JLayeredPane pane2;
-	private Gui menu;
 	
+	protected Gui menu;
 	protected JLabel hostLabel, ipLabel, connectLabel, chatInputLabel, readyLabel; 
 	protected JButton verbindenButton, sendenButton, hostButton, multiGoButton, exitButton;
 	protected String hostName, ipV4, connectIP; 
@@ -39,7 +39,7 @@ public class Multiplayer extends JFrame {
 
 
 	
-	public Multiplayer(Gui menu){
+	public Multiplayer(final Gui menu){
 		
 		super("Netzwerkmodus");
 		getIP();			// gets own ip adress value needs to be reworked not direct usable
@@ -169,6 +169,8 @@ public class Multiplayer extends JFrame {
 					   					MultiGame gameServer = new MultiGame(server.client);
 					   					gameServer.sendMessage(server.client, "", "start");
 					   					Multiplayer.this.dispose();
+					   					menu.closeGUI();
+					   					
 					  
 			  				   		}
 					   			else{
