@@ -59,7 +59,7 @@ public class Coll {
 	//sets Main.shop = true if player in range
 	public static void shop(){
 		if(local.Create.shop > 0){
-				int i = local.Create.shop;
+			int i = local.Create.shop;
 			if (   (Main.obj_list.get(2)[2] < Main.obj_list.get(i)[2] + Create.gameobjects[Main.obj_list.get(i)[0]].width + Create.gameobjects[Main.obj_list.get(i)[0]].fog)
 				&& (Main.obj_list.get(2)[2] + Create.gameobjects[Main.obj_list.get(2)[0]].width > Main.obj_list.get(i)[2] - Create.gameobjects[Main.obj_list.get(i)[0]].fog)
 				&& (Main.obj_list.get(2)[3] < Main.obj_list.get(i)[3] + Create.gameobjects[Main.obj_list.get(i)[0]].height + Create.gameobjects[Main.obj_list.get(i)[0]].fog)
@@ -98,9 +98,9 @@ public class Coll {
 				if(Main.Nr_of_Players == 2)
 				{
 					if (   (Main.obj_list.get(3)[2] < Main.obj_list.get(i)[2] + Create.gameobjects[Main.obj_list.get(i)[0]].width + Create.gameobjects[Main.obj_list.get(i)[0]].fog)
-							&& (Main.obj_list.get(3)[2] + Create.gameobjects[Main.obj_list.get(3)[0]].width > Main.obj_list.get(i)[2] - Create.gameobjects[Main.obj_list.get(i)[0]].fog)
-							&& (Main.obj_list.get(3)[3] < Main.obj_list.get(i)[3] + Create.gameobjects[Main.obj_list.get(i)[0]].height + Create.gameobjects[Main.obj_list.get(i)[0]].fog)
-							&& (Main.obj_list.get(3)[3] + Create.gameobjects[Main.obj_list.get(3)[0]].height > Main.obj_list.get(i)[3] - Create.gameobjects[Main.obj_list.get(i)[0]].fog + (int) Create.gameobjects[Main.obj_list.get(i)[0]].height / 3) )
+						&& (Main.obj_list.get(3)[2] + Create.gameobjects[Main.obj_list.get(3)[0]].width > Main.obj_list.get(i)[2] - Create.gameobjects[Main.obj_list.get(i)[0]].fog)
+						&& (Main.obj_list.get(3)[3] < Main.obj_list.get(i)[3] + Create.gameobjects[Main.obj_list.get(i)[0]].height + Create.gameobjects[Main.obj_list.get(i)[0]].fog)
+						&& (Main.obj_list.get(3)[3] + Create.gameobjects[Main.obj_list.get(3)[0]].height > Main.obj_list.get(i)[3] - Create.gameobjects[Main.obj_list.get(i)[0]].fog + (int) Create.gameobjects[Main.obj_list.get(i)[0]].height / 3) )
 					{
 						deal_dmg(Main.obj_list.get(i) , Main.obj_list.get(3));
 					}
@@ -115,7 +115,7 @@ public class Coll {
 	switch (figure[0]) {				//coll varies according to testers type
 
 		//tester == fox
-		case 3:
+		case 6:
 			for(int i=2; i < Main.obj_list.size(); i++){
 				if (Main.obj_list.get(i).nr == figure.nr)		//don't test yourself
 				{
@@ -137,8 +137,8 @@ public class Coll {
 			return true;
 
 
-		//tester == player
-		case 4:
+		//tester == bunny
+		case 2:
 			for(int i=2; i < Main.obj_list.size(); i++){
 				if (Main.obj_list.get(i).nr == figure.nr)		//don't test yourself
 				{
@@ -171,7 +171,7 @@ public class Coll {
 
 
 		//tester == boss
-		case 5:
+		case 7:
 			for(int i=2; i < Main.obj_list.size(); i++){
 				if (Main.obj_list.get(i).nr == figure.nr)		//don't test yourself
 				{
@@ -193,8 +193,8 @@ public class Coll {
 			return true;
 			
 			
-		//Spells
-		case 9:
+		//tester = blob
+		case 11:
 			for(int i=2; i < Main.obj_list.size(); i++){
 				if (Main.obj_list.get(i).nr == figure.nr)		//don't test yourself
 				{
@@ -217,6 +217,29 @@ public class Coll {
 
 }
 
+	//returns true if no collision, else invokes event
+	public static boolean coll(int[] tester , int x , int y){
+		for(int i = 2 ; i < Main.obj_list.size() ; i++)
+		{
+			//local variable
+			int[] figure = Main.obj_list.get(i);
+			
+			//no self testing
+			if(tester[1] == i) continue;
+			
+			//collision test
+			if (   (tester[2] + x < figure[2] + Create.gameobjects[figure[0]].width)
+				&& (tester[2] + x + Create.gameobjects[tester[0]].width > figure[2])
+				&& (tester[3] + y < figure[3] + Create.gameobjects[figure[0]].height)
+				&& (tester[3] + y + Create.gameobjects[tester[0]].height > figure[3]))
+			{
+				if(tester[0] == 6 || tester[0] == 7)
+			}
+			
+			return true;
+		}
+	}
+	
 	//deals dmg to players
 	static void deal_dmg(int[] dealer , int[] reciever){
 		reciever[4] -= (Create.gameobjects[dealer[0]].dmg / Create.gameobjects[reciever[0]].defe);
