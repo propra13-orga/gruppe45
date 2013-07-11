@@ -67,9 +67,7 @@ public class ChatClient extends Thread{
 	    }
 		try{
 			System.out.println("Server ist closed? : "+ server.isClosed());
-			
 			out = new PrintWriter(server.getOutputStream(),true);
-		
 			message = gui.hostName+": "+gui.chatField.getText();
 			gui.chatArea.append(message+"\n");							//displays chat message on client screen
 			gui.chatField.setText("");
