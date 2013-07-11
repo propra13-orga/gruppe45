@@ -25,6 +25,7 @@ public class ChatServer extends Thread {
 	protected PrintWriter out;
 	protected boolean isConnected= false; //states if server out is connected
 	protected Socket client;
+	protected boolean clientReady = false;
 	
 	public ChatServer(Multiplayer gui)
 	{
@@ -96,6 +97,7 @@ public class ChatServer extends Thread {
 						 if (tag.equals("ready")){
 							 //player is ready for play
 							 gui.readyLabel.setVisible(true);
+							 clientReady = true;
 /**---------------------------------------------------------------------------------------------------------------------------*/						 
 
 						 }

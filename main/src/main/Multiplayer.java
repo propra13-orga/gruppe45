@@ -163,13 +163,19 @@ public class Multiplayer extends JFrame {
 					   			if (server.isConnected == false)
 					   			{server.connectToClient();}
 					   			
-					   			
-					   			  MultiGame gameServer = new MultiGame(server.client);
-					   			  gameServer.sendMessage(server.client, "", "start");
-					   			  Multiplayer.this.dispose();
-				
-					   			  
-					   			  				   		}
+					   			if (server.clientReady==true)
+					   				{
+					   				
+					   					MultiGame gameServer = new MultiGame(server.client);
+					   					gameServer.sendMessage(server.client, "", "start");
+					   					Multiplayer.this.dispose();
+					  
+			  				   		}
+					   			else{
+									JOptionPane.showMessageDialog(null, "Spieler 2 noch nicht bereit! \n Spieler muss erst bestätigen");
+					   			}
+					   				
+					   		}
 					   	   	}
 					});
 		
