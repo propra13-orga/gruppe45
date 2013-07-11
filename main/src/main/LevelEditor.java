@@ -2,6 +2,7 @@ package main;
 import java.awt.Color;
 import java.awt.Image;
 
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -32,7 +33,7 @@ public class LevelEditor extends JFrame {
 		setAlwaysOnTop(true);
 		this.setLayout(null);
 		this.setBackground(Color.green);
-		
+
  		int x =50;
  		int y =620;
  		int w=50;
