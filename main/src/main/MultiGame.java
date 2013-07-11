@@ -53,13 +53,13 @@ public class MultiGame {
 	
 	
 	//method to sent instructions during Multiplayer game
-	public void sendMessage(Socket client, String message, String tag){
+	public void sendMessage(Socket client, String value, String tag){
 		
 		try{
 			System.out.println("Server ist closed? : "+ client.isClosed());
-			message = "<"+tag+">"+message;
+			value = "<"+tag+">"+value;
 			out = new PrintWriter(client.getOutputStream(),true);
-			out.println(message);
+			out.println(value);
 			out.flush();
 		}
 		catch (Exception e){

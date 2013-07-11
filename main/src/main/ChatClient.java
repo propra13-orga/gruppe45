@@ -75,6 +75,7 @@ public class ChatClient extends Thread{
 			gui.chatField.setText("");
 			out.println(message);
 			out.flush();
+			out.close();
 		}
 		catch (Exception e){
 			System.out.println("Client kann Nachricht nicht senden");
@@ -105,23 +106,28 @@ public class ChatClient extends Thread{
 			 in = new BufferedReader(new InputStreamReader(client.getInputStream()));
 			 String line;
 			 while ((line = in.readLine()) != null)
-			 { 	
-				 if (Pattern.matches("<.>*", line))
-				 {
-					 
-					 JOptionPane.showMessageDialog(null, "Es wurde ein Tag versendet"); 
+			 { 		
+				 //parses input  stream if tag with instructions (values) is received
+				 if (Pattern.matches("<.*>.*", line))
+				 {	
+					 String tag = line.replaceAll(">.*","");
+					 tag = tag.replaceAll("<", "");
+					 String value = line.replace("<.*>", "");
+					 JOptionPane.showMessageDialog(null, "Es wurde ein Tag versendet: "+tag+" Mit dem Wert: "+value);
+					 //from here on client instructions can be received by tag and value
 				 }
 				 else
 				 {
 					 System.out.println(line);
 					 gui.chatArea.append(line+"\n");
 				 }	 
-			 }
+			 }in.close(); //close Buffered Reader
 			}//end of try block
 		catch (Exception e)
 					{
 							System.out.println("Fehler in read Message");	
-						}
-			}} 
+						} 
+			}
+	} 
 
 }
