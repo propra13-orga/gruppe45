@@ -2,7 +2,6 @@ package multiplayer;
 
 
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -12,9 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
-import local.Pics;
 import main.Main;
-import movement.Keyboard;
 
 public class MultMasterFrame extends JFrame implements Runnable
 {
@@ -25,6 +22,11 @@ public class MultMasterFrame extends JFrame implements Runnable
 	Image map;
 	
 	public static boolean set = false;
+	
+	public static int posA_X=50; 
+	public static int posA_Y= (Main.board_height)/2; 
+	public static int posB_X= (Main.board_width)-100; 
+	public static int posB_Y= (Main.board_height)/2; 
 
 	int width = Main.board_width;
 	int height = Main.board_height;
@@ -58,6 +60,8 @@ public class MultMasterFrame extends JFrame implements Runnable
 		default: break;
 		}
 		
+		MultiKeyboard keys = new MultiKeyboard();
+		addKeyListener(keys);
 
 	}
 
@@ -88,8 +92,8 @@ public class MultMasterFrame extends JFrame implements Runnable
 					//backround Image
 
 					g.drawImage(map, 0, 0,this);
-					g.drawImage(local.Pics.bunny_r, 50, height/2,this);
-					g.drawImage(local.Pics.hedgehog_l, width-100, height/2, this);
+					g.drawImage(local.Pics.bunny_r, posA_X, posA_Y,this);
+					g.drawImage(local.Pics.hedgehog_l, posB_X,posB_Y, this);
 					
 					
 					Toolkit.getDefaultToolkit().sync();
@@ -109,7 +113,8 @@ public class MultMasterFrame extends JFrame implements Runnable
 		
 				bs.show();												//draw image from buffer on screen
 				try{
-					Thread.sleep(1000);}
+				//	Thread.sleep(1000);
+					}
 					catch (Exception s){ System.out.println("Thread could not sleep");}
 				}
 			}

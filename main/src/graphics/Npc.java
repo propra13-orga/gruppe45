@@ -32,6 +32,7 @@ public class Npc extends JFrame
 		
 		public Npc()
 			{	
+				loadIcon();
 				MasterFrame.set=true;
 				Main.ingame = false;
 			
@@ -75,26 +76,26 @@ public class Npc extends JFrame
 			 		
 			 		text1_story= "<html> <FONT COLOR=#FAFAD2>"+ 
 			 				"Herzlich Willkommen im Lucky Bunny ich bin <I>Mole</I>.<p> <p>"+
-			 						"Ich erz�hle euch nun, wie es zum Abenteuer des Hasen kam.<p> <p>"+
-			 						"Der Hase startete sein Abenteuer fr�h am Morgen. "+
-			 						"Er steht jeden morgen fr�h auf um eine seiner k�stlichen Karotten zu verspeisen. Aber oh Schreck alle Karotten waren weg." +
-			 						"Nicht eine einzige war <p> �brig geblieben und anfangs wusste er nicht was passiert war." +
+			 						"Ich erz&auml;hle euch nun, wie es zum Abenteuer des Hasen kam.<p> <p>"+
+			 						"Der Hase startete sein Abenteuer fr&uuml;h am Morgen. "+
+			 						"Er steht jeden morgen fr&uuml;h auf um eine seiner k&ouml;stlichen Karotten zu verspeisen. Aber oh Schreck alle Karotten waren weg." +
+			 						"Nicht eine einzige war <p> &uuml;brig geblieben und anfangs wusste er nicht was passiert war." +
 			 						"Gestern als er zu Bett ging war noch alles in Ordnung. <p> <p> Da entdeckte er einen Brief."+
-			 						"Er war an ihn adressiert und es stand <p> dort geschrieben: 'Ich freue mich dir mitteilen zu k�nnen, dass ich es notwendig"+ 
-			 						"fand alle Karotten an mich zu nehmen. Ich danke dir f�r <p> das bevorstehende Festmahl.' Unterschrieben hatte niemand <p> anderes als das Gro�e Wei�e Kaninchen.</FONT></html>";
+			 						"Er war an ihn adressiert und es stand <p> dort geschrieben: 'Ich freue mich dir mitteilen zu k&ouml;nnen, dass ich es notwendig"+ 
+			 						"fand alle Karotten an mich zu nehmen. Ich danke dir f&uuml;r <p> das bevorstehende Festmahl.' Unterschrieben hatte niemand <p> anderes als das Große Weiße Kaninchen.</FONT></html>";
 			 		 
 			 		
 			 		text1_1 ="<html> <FONT COLOR=#FAFAD2> 	 " +
-			 				"Ich werde stehe dir auf der anstrengenden Reise gerne zur Seite f�r eine entsprechende Gegenleistung."+
-			 				"Um zu laufen benutze die Pfeiltasten, wie du den Shop �ffnest hast du ja schon <p> herausgefunden (mit S). <p> <p> "+
+			 				"Ich werde stehe dir auf der anstrengenden Reise gerne zur Seite f&uuml;r eine entsprechende Gegenleistung."+
+			 				"Um zu laufen benutze die Pfeiltasten, wie du den Shop &ouml;ffnest hast du ja schon <p> herausgefunden (mit S). <p> <p> "+
 			 				"H&uuml;te Dich vor den F&uuml;chsen, sie sind sehr hungrig und auf der Suche nach einem leckerem Gaumenschmau&szlig;.<p><p>" +
-			 				"Wenn du mir eine Schnecke mitbringst werde ich dir daf�r etwas ganz besonderes schenken. <p><p>" +
+			 				"Wenn du mir eine Schnecke mitbringst werde ich dir daf&uuml;r etwas ganz besonderes schenken. <p><p>" +
 			 				
 			 				"Zu passender Gelegenheit werde ich Dich aufsuchen. Bis dahin w&uuml;nsche ich Dir viel Gl&uuml;ck!</FONT></html>";
-			 				//For this first Quest you need to bring a snail to the Mole which is found in one of the next rooms(if you can�t find it in the second put annother one in the third, so you don�t need to restart the game)
+			 				//For this first Quest you need to bring a snail to the Mole which is found in one of the next rooms(if you can´t find it in the second put annother one in the third, so you don´t need to restart the game)
 			 				//As a reward the Mole will give you the Fireball technique.
-			 		text1_3 ="<html> <FONT COLOR=#FAFAD2> : Dankesch�n! <p>" +
-			 				"Ich wei� zwar nicht was das genau ist, und wof�r man sie braucht . . . aber ich wollte schon immer eine haben. <p>"+
+			 		text1_3 ="<html> <FONT COLOR=#FAFAD2> : Dankesch&ouml;n! <p>" +
+			 				"Ich weiß zwar nicht was das genau ist, und wof&uuml;r man sie braucht . . . aber ich wollte schon immer eine haben. <p>"+
 			 				"Nimm diesen Zauber als Zeichen meines Dankes.<p>"+
 			 				"Ich &uuml;berreiche Dir hiermit den magischen Feuerball. Diesen Zauber kannst Du durch die Leertaste auf Deine Gegner anwenden."+
 			 				"Du ben&ouml;tigst Mana um den Zauber anwenden zu k&ouml;nnen.<p><p>" +
@@ -108,12 +109,12 @@ public class Npc extends JFrame
 			 				//Put a Poisontree over the exit, so that you can only pass when the Quest is fulfilled and you have spoken to Mole
 			 				//For this Quest you need to kill all foxes. 
 			 				//As a reward the Mole will destroy or change the Poisontree at the end of the Level.
-			 		text2_3 ="<html> <FONT COLOR=#FAFAD2> Vielen Dank! Jetzt f�hle ich mich sicherer. <p> <p>" +
+			 		text2_3 ="<html> <FONT COLOR=#FAFAD2> Vielen Dank! Jetzt f&uuml;hle ich mich sicherer. <p> <p>" +
 			 				 "Lass mich dir zum Dank helfen! </FONT></html>";			 		
 			 		text3_1 ="<html> <FONT COLOR=#FAFAD2> Du machst tolle Fortschritte <p><p>" +
 			 				"Gratulation! <p><p>" +
-			 				"Ich brauche aber noch einmal deine Hilfe. Das Gro�e Wei�e Kaninchen hat mein Buch gestohlen. <p>" +
-			 				"Solltest du es finden bring es mir bitte zur�ck.<p><p>"+
+			 				"Ich brauche aber noch einmal deine Hilfe. Das Große Weiße Kaninchen hat mein Buch gestohlen. <p>" +
+			 				"Solltest du es finden bring es mir bitte zur&uuml;ck.<p><p>"+
 			 				"Aber sei vorsichtig, es ist sehr stark. </FONT></html>";
 			 		text3_3 ="<html> <FONT COLOR=#FAFAD2> Ich kann dir gar nicht genug danken!! <p><p>"+
 			 				 "Ich hatte es fast ausgelesen, als es mir entwendet wurde. " +
@@ -165,7 +166,19 @@ public class Npc extends JFrame
 		
 		
 		
-		
+		public void loadIcon(){
+			
+			try
+				{
+					cave = ImageIO.read(new File(local.Fs.img_pfad+"cave.jpg"));		
+					mole = ImageIO.read(new File (local.Fs.img_pfad+"shop_active.png"));
+					//		lives = ImageIO.read(new File (local.Fs.img_pfad+"heart.jpg"));}
+				}
+			catch(IOException e)
+				{	
+				System.out.println("Fehler in NpcLevel1 loadImage");	
+				}
+			 }
 
    
 	
