@@ -47,11 +47,10 @@ public static void main(String[] args) throws IOException
 		System.out.println("initializing pics");
 		
 		local.Pics.loadPics();
-
+		
 		System.out.println("done");
 		
 		Game game = new Game();										//creates Game logic		
-		game.start();												//starts Game logic
 		
 		System.out.println("initializing gameobjects");
 		
@@ -60,7 +59,7 @@ public static void main(String[] args) throws IOException
 		System.out.println("done");
 		System.out.println("initializing room");
 		
-		local.Create.create_room();
+		game.start();												//starts Game logic
 		
 		System.out.println("done");
 		

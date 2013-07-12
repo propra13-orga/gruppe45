@@ -17,6 +17,7 @@ public class Game extends Thread{
 		{
 			//while not hitting goal
 			Create.create_room();
+			
 			Main.reset = false;
 			while(Coll.goal())
 			{

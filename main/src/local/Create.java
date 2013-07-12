@@ -54,18 +54,18 @@ public class Create {
 	}
 	
 	// reads level file and creates game objects
-	public static void create_room() throws IOException{
+	public static void create_room(){
 		String zeileninhalt =""; // line content of a level file
 		int zeilenlaenge =0;
 		int zeile;
 		
-//		try
-//		{
+		try
+		{
 			temp.clear();
 			temp.add(0,new int[]{0,0,0,0,0,0});
 			temp.add(1,new int[]{0,0,0,0,0,0});
 			temp.add(2,new int[]{0,0,0,0,0,0});
-			temp.add(3,new int[]{3,0,-2000,-2000,0,0});
+			temp.add(3,new int[]{3,3,-2000,-2000,0,0});
 			npc = 0;
 			shop = 0;
 			
@@ -166,9 +166,9 @@ public class Create {
 			br.close();
 			//copy to obj_list
 			Main.obj_list = temp;
-//		} catch (IOException e) {
-//			System.out.println("Fehler: " + e.getMessage());
-//		}
+		} catch (IOException e) {
+			System.out.println("Fehler: " + e.getMessage());
+		}
 	}
 
 	//restores Main.obj_list if player dies
