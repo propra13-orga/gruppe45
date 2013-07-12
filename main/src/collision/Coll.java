@@ -182,7 +182,6 @@ public class Coll {
 			//reduce lives of hedgehog
 			else if(reciever[1] == 3)
 			{
-				if((Create.hero2.lives -= 1) < 0) System.exit(0);
 				Main.reset = true;
 			}
 			//remove figure from board
