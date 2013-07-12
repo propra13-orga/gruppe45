@@ -170,6 +170,9 @@ public class Multiplayer extends JFrame {
 					   		{
 					   			gameClient = new MultiGame(client.server);
 					   			gameClient.sendMessage(client.server, hostName , "ready");
+					   			SendPosition sendC = new SendPosition(gameClient,client.server);
+					   			Thread sent = new Thread(sendC);
+		   						sent.start();
 					   		
 					   			
 					   		}
@@ -194,6 +197,10 @@ public class Multiplayer extends JFrame {
 					   						menu.dispose();												//closes game gui
 					   						main.Main.window.dispose();
 					   						startGame();
+					   						SendPosition sendS = new SendPosition(gameServer,server.client);					   						
+					   						Thread sent = new Thread(sendS);
+					   						sent.start();
+					   						
 					     				}
 					   				}
 					   			else{

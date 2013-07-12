@@ -102,6 +102,10 @@ public class ChatServer extends Thread {
 							 gui.readyLabel.setVisible(true);
 							 gui.chatArea.append(value+" ist bereit. Spiel kann beginnen \n");
 							 clientReady = true; 
+							 
+						 if (tag.equals("yPos")){
+							 MultMasterFrame.posB_Y = Integer.valueOf(value);
+							 }
 /**---------------------------------------------------------------------------------------------------------------------------*/						 
 
 						 }
@@ -143,7 +147,7 @@ public class ChatServer extends Thread {
 		catch (Exception e){
 			System.out.println("Server kann Nachricht nicht senden");
 			}
-		System.out.println("Server ist closed? : "+ client.isClosed());
+		//System.out.println("Server ist closed? : "+ client.isClosed());leave in for debugging purposes
 	}
 	
 	public void connectToClient()

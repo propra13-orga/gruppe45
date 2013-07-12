@@ -20,7 +20,7 @@ public static int level = 1;
 public static int room = 1;
 public static Random rand = new Random();		//variable for random movement
 public static boolean run = false;				//movements are made when run == true, then run ist set to false until painted
-public static boolean ingame = true;			//ingame == false while in menu
+public static boolean ingame = false;			//ingame == false while in menu
 public static boolean shop = false;				//can shop be openend?
 public static boolean music = true;				//music on/off
 public static boolean go = false;
@@ -47,11 +47,10 @@ public static void main(String[] args) throws IOException
 		System.out.println("initializing pics");
 		
 		local.Pics.loadPics();
-
+		
 		System.out.println("done");
 		
-				Game game = new Game();										//creates Game logic		
-		game.start();												//starts Game logic
+		Game game = new Game();										//creates Game logic		
 		
 		System.out.println("initializing gameobjects");
 		
@@ -60,7 +59,7 @@ public static void main(String[] args) throws IOException
 		System.out.println("done");
 		System.out.println("initializing room");
 		
-		local.Create.create_room();
+		game.start();												//starts Game logic
 		
 		System.out.println("done");
 		
@@ -75,6 +74,7 @@ public static void main(String[] args) throws IOException
 		{
 			if (go == true)											//wait boolean from Gui to start
 			{
+				Main.ingame = true;
 				window.startNow();									//sets MasterFrame
 				onOff = false;										//if started once cannot start again
 			}

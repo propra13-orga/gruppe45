@@ -65,7 +65,7 @@ public class Create {
 			temp.add(0,new int[]{0,0,0,0,0,0});
 			temp.add(1,new int[]{0,0,0,0,0,0});
 			temp.add(2,new int[]{0,0,0,0,0,0});
-			temp.add(3,new int[]{0,0,-2000,-2000,0,0});
+			temp.add(3,new int[]{3,3,-2000,-2000,0,0});
 			npc = 0;
 			shop = 0;
 			
