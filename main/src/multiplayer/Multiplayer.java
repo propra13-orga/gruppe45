@@ -15,7 +15,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.JToolBar;
 
 import main.Gui;
 
@@ -36,9 +35,10 @@ public class Multiplayer extends JFrame {
 	protected boolean go = false;
 	protected netPanel panel;
 	protected MultiGame gameClient, gameServer;
-	protected String[] maps = {"Bitte Karte auswählen","Bunny Paradies","Im Abyss","Hoppelditz Erwachen","Todesstachel"};
-	protected int map = 0;
-	
+	protected String[] maps = {"Bitte Karte auswählen","Bunny Paradies","Im Abyss","Todesstachel","Matrix"};
+	public static int map = 0;
+	protected int instanz = 0;
+
 	
 	public static boolean isServer = true;
 
@@ -81,6 +81,8 @@ public class Multiplayer extends JFrame {
 		//start chat server to listen to port
 		server = new ChatServer(Multiplayer.this);
 		
+
+		
 		//Connect button event listener and tries to connect to open port, port needs to be opened by server
 		verbindenButton.addActionListener(new ActionListener(){
 			   	public void actionPerformed(ActionEvent e){				
@@ -118,6 +120,15 @@ public class Multiplayer extends JFrame {
 			   			}
 			   	  	}
 			});
+		
+		mapBox.addActionListener(new ActionListener(){
+		   	public void actionPerformed(ActionEvent e)
+		   	{
+		   			//action  when map is choosen
+
+		   	  	}
+		});
+		
 		
 		//Eventlistener for exit button
 		exitButton.addActionListener(new ActionListener(){
@@ -176,10 +187,13 @@ public class Multiplayer extends JFrame {
 					   					}
 					   					else
 					   					{
-					   						MultiGame gameServer = new MultiGame(server.client);		//start gameServer general tag send method
+					   						gameServer = new MultiGame(server.client);		//start gameServer general tag send method
+					   						gameServer.sendMessage(server.client,Integer.toString(map),"map");
 					   						gameServer.sendMessage(server.client, "", "start");			//sends client method that game is going to start
 					   						Multiplayer.this.dispose();									//closes multiplayer gui
 					   						menu.dispose();												//closes game gui
+					   						main.Main.window.dispose();
+					   						startGame();
 					     				}
 					   				}
 					   			else{
@@ -190,7 +204,6 @@ public class Multiplayer extends JFrame {
 					   	   	}
 					});
 			
-		
 		
 	}//end multiplayer	
 
@@ -296,10 +309,20 @@ public class Multiplayer extends JFrame {
 			mapBox.setBounds(200, 530, 190, 30);
 			mapBox.setSelectedItem("Bitte Karte auswählen");
 			mapBox.setEditable(false);
+			mapBox.setEnabled(false);
 	
 			
 						
 			
 		}
 	}
+	public void startGame(){
+		if (instanz != 1){
+		 instanz ++;	
+		 MultMasterFrame window = new MultMasterFrame();
+		 Thread draw = new Thread(window);
+		 draw.start();}
+	}
+	
+	
 }
