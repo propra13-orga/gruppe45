@@ -10,7 +10,7 @@ public class AI {
 
 	//uses move on all opponents
 	public static void move_all_opp(){
-		for(int i = 5 ; i < Main.obj_list.size() ; i++){
+		for(int i = 4 ; i < Main.obj_list.size() ; i++){
 			if(Main.obj_list.get(i)[0] == 6 || Main.obj_list.get(i)[0] == 7) move(Main.obj_list.get(i));
 		}
 	}

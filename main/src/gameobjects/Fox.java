@@ -8,8 +8,8 @@ import main.Main;
 public class Fox extends Figure {
 
 	@Override public Image getPic(int direction){
-		if(direction == 2) return local.Pics.fox_r;
-		else return local.Pics.fox_r;
+		if(direction == 2 || direction == 1) return local.Pics.fox_r;
+		else return local.Pics.fox_l;
 	}
 
 	@Override public int getHp(){
@@ -26,8 +26,8 @@ public class Fox extends Figure {
 		this.ep = 1;
 		this.bugs = 1;
 		this.destroyable = true;
-		this.height = local.Pics.fox_l.getHeight(null);
-		this.width = local.Pics.fox_l.getWidth(null);
+		this.height = local.Pics.fox_r.getHeight(null);
+		this.width = local.Pics.fox_r.getWidth(null);
 	}
 
 }
