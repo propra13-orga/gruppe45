@@ -34,7 +34,7 @@ public class Pics{
 		flower = ImageIO.read(new File (local.Fs.img_pfad+"flower_purple.png"));
 		boss_l = ImageIO.read(new File (local.Fs.img_pfad+"boss_l.png"));
 		boss_r = ImageIO.read(new File (local.Fs.img_pfad+"boss_r.png"));
-		hero2 = ImageIO.read(new File (local.Fs.img_pfad+"bg_menue.png"));
+		hero2 = ImageIO.read(new File (local.Fs.img_pfad+"pixel_gray.png"));
 		fox_l = ImageIO.read(new File (local.Fs.img_pfad+"fox_l.png"));
 		fox_r = ImageIO.read(new File (local.Fs.img_pfad+"fox_r.png"));
 		lives_img = ImageIO.read(new File (local.Fs.img_pfad+"lives_bunny.png"));

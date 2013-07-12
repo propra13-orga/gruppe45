@@ -332,13 +332,8 @@ public class Gui extends JFrame implements ActionListener{
 	 		playerMod.setBounds(400,560,220,30);
 	 		
 	 		//text description
-	 		
-	 		
 
-
-	 		
 	 	}
 	
 	 }
- 
 }
