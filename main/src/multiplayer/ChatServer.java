@@ -66,6 +66,7 @@ public class ChatServer extends Thread {
 		connected = true;
 		gui.sendenButton.setEnabled(true);
 		gui.verbindenButton.setEnabled(false);				//connection already received preventing additional out connect
+		gui.mapBox.setEnabled(true);
 		//remove 1st slash from IP
 		char[] stringArray = clientIPraw.toCharArray();
 		clientIP="";
@@ -94,6 +95,8 @@ public class ChatServer extends Thread {
 					/**	 JOptionPane.showMessageDialog(null, "Es wurde ein Tag versendet: "+tag+" Mit dem Wert: "+value);
 ------------------------------------------------------------------------------------------------------------------------------*/					 
 						 //from here on server instructions can be received by tag and value
+						 
+						 
 						 if (tag.equals("ready")){
 							 //player is ready for play
 							 gui.readyLabel.setVisible(true);

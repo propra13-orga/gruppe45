@@ -81,6 +81,8 @@ public class Multiplayer extends JFrame {
 		//start chat server to listen to port
 		server = new ChatServer(Multiplayer.this);
 		
+
+		
 		//Connect button event listener and tries to connect to open port, port needs to be opened by server
 		verbindenButton.addActionListener(new ActionListener(){
 			   	public void actionPerformed(ActionEvent e){				
@@ -118,6 +120,15 @@ public class Multiplayer extends JFrame {
 			   			}
 			   	  	}
 			});
+		
+		mapBox.addActionListener(new ActionListener(){
+		   	public void actionPerformed(ActionEvent e)
+		   	{
+		   			//action  when map is choosen
+
+		   	  	}
+		});
+		
 		
 		//Eventlistener for exit button
 		exitButton.addActionListener(new ActionListener(){
@@ -298,6 +309,7 @@ public class Multiplayer extends JFrame {
 			mapBox.setBounds(200, 530, 190, 30);
 			mapBox.setSelectedItem("Bitte Karte auswählen");
 			mapBox.setEditable(false);
+			mapBox.setEnabled(false);
 	
 			
 						
