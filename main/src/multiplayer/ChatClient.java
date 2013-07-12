@@ -112,15 +112,17 @@ public class ChatClient extends Thread{
 					 /**JOptionPane.showMessageDialog(null, "Es wurde ein Tag versendet: "+tag+" Mit dem Wert: "+value);
 ------------------------------------------------------------------------------------------------------------------------------*/					 
 					 //from here on client instructions can be received by tag and value
+					 if (tag.equals("map")){
+						 Multiplayer.map = Integer.parseInt(value);
+					 }
+					 
 					 if (tag.equals("start")){
 						 gui.dispose();			//closes multiplayer gui
 						 gui.menu.dispose();	//closes game gui
 						 main.Main.window.dispose();
 						 startGame();
 						 }
-					 if (tag.equals("map")){
-						 Multiplayer.map = Integer.parseInt(value);
-					 }
+					
 						 
 /**---------------------------------------------------------------------------------------------------------------------------*/						 
 					 

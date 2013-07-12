@@ -177,11 +177,11 @@ public class Multiplayer extends JFrame {
 					   					else
 					   					{
 					   						gameServer = new MultiGame(server.client);		//start gameServer general tag send method
+					   						gameServer.sendMessage(server.client,Integer.toString(map),"map");
 					   						gameServer.sendMessage(server.client, "", "start");			//sends client method that game is going to start
 					   						Multiplayer.this.dispose();									//closes multiplayer gui
 					   						menu.dispose();												//closes game gui
 					   						main.Main.window.dispose();
-					   						gameServer.sendMessage(server.client, "map", Integer.toString(map));
 					   						startGame();
 					     				}
 					   				}

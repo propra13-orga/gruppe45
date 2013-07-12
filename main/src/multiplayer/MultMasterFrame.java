@@ -87,7 +87,14 @@ public class MultMasterFrame extends JFrame implements Runnable
 				{
 					Graphics2D g = (Graphics2D)bs.getDrawGraphics();	//instance of new graphics object
 								
-					
+					switch (Multiplayer.map)
+					{
+					case 1: map = local.Pics.bg_1_1; break;
+					case 2: map = local.Pics.abyss; break;
+					case 3: map = local.Pics.bg_2_1; break;
+					case 4: map = local.Pics.matrix; break;
+					default: break;
+					}
 				
 					//backround Image
 
@@ -97,6 +104,7 @@ public class MultMasterFrame extends JFrame implements Runnable
 					
 					
 					Toolkit.getDefaultToolkit().sync();
+					
 					
 				
 					
