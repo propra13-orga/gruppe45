@@ -59,9 +59,6 @@ public class MasterFrame extends JFrame {
 		Keyboard keyboard = new Keyboard();				//create KeyListener
 		addKeyListener(keyboard);						//connect KeyListener to Frame
 
-		Keyboard2 keyboard2 = new Keyboard2();
-		addKeyListener(keyboard2);
-
 	}
 
 
@@ -90,8 +87,8 @@ public class MasterFrame extends JFrame {
 			{
 				int lives1 = player1.lives;
 				int lives2 = player2.lives;								//!!!!!!!!!!
-//				try														//try block to avoid deadlock
-//				{
+				try														//try block to avoid deadlock
+				{
 					Graphics2D g = (Graphics2D)bs.getDrawGraphics();	//instance of new graphics object
 								
 					for(int i=0; i<Main.obj_list.size();i++)			//every object in arraylist obj_list
@@ -107,7 +104,7 @@ public class MasterFrame extends JFrame {
 								g.drawString("HP: "+player2.getHp(),localFigure[2],localFigure[3]-25);
 								g.drawString("EP: "+player2.ep,localFigure[2],localFigure[3]-15);
 							}
-							if ((localFigure[1] == 6)){//draw level and hp of enemy
+							if ((localFigure[0] == 6)){//draw level and hp of enemy
 								g.drawString("HP: "+localFigure[4],localFigure[2],localFigure[3]-25);
 								g.drawString("Level: "+Main.level,localFigure[2],localFigure[3]-15);
 							}
@@ -256,12 +253,12 @@ public class MasterFrame extends JFrame {
 					}
 					}
 				//!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//				}
-//				
-//				catch (Exception e)//error notification
-//				{
-//					System.out.println("Fehler in der drawStuff Methode");
-//				}
+				}
+				
+				catch (Exception e)//error notification
+				{
+					System.out.println("Fehler in der drawStuff Methode");
+				}
 		
 				bs.show();												//draw image from buffer on screen
 			}

@@ -12,5 +12,7 @@ public class Shop  extends Figure{
 	
 	public Shop () {
 		super();
+		this.height = local.Pics.shop_active.getHeight(null);
+		this.width = local.Pics.shop_active.getWidth(null);
 	}
 }

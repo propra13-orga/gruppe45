@@ -1,4 +1,4 @@
-package main;
+package multiplayer;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -7,24 +7,26 @@ import java.net.InetAddress;
 import java.net.Socket;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.text.DefaultCaret;
+
+import main.Gui;
 
 public class Multiplayer extends JFrame {
 	
 	private InetAddress ip;
 	private JLayeredPane pane2;
-	private Gui menu;
 	
+	protected Gui menu;
 	protected JLabel hostLabel, ipLabel, connectLabel, chatInputLabel, readyLabel; 
 	protected JButton verbindenButton, sendenButton, hostButton, multiGoButton, exitButton;
+	protected JComboBox mapBox;
 	protected String hostName, ipV4, connectIP; 
 	protected JTextField chatField, ip1, ip2, ip3, ip4;
 	protected JTextArea chatArea;
@@ -32,13 +34,17 @@ public class Multiplayer extends JFrame {
 	protected ChatClient client;
 	protected boolean go = false;
 	protected netPanel panel;
-	
+	protected MultiGame gameClient, gameServer;
+	protected String[] maps = {"Bitte Karte auswählen","Bunny Paradies","Im Abyss","Todesstachel","Matrix"};
+	public static int map = 0;
+	protected int instanz = 0;
+
 	
 	public static boolean isServer = true;
 
 
 	
-	public Multiplayer(Gui menu){
+	public Multiplayer(final Gui menu){
 		
 		super("Netzwerkmodus");
 		getIP();			// gets own ip adress value needs to be reworked not direct usable
@@ -69,10 +75,13 @@ public class Multiplayer extends JFrame {
 		pane2.add(multiGoButton, 10);
 		pane2.add(chatField, 10);
 		pane2.add(readyLabel,0);
+		pane2.add(mapBox, 10);
 
 		
 		//start chat server to listen to port
 		server = new ChatServer(Multiplayer.this);
+		
+
 		
 		//Connect button event listener and tries to connect to open port, port needs to be opened by server
 		verbindenButton.addActionListener(new ActionListener(){
@@ -96,54 +105,61 @@ public class Multiplayer extends JFrame {
 			   		}
 			});
 		
-		//chat Button button event listener
+/**chat Button button event listener
+  decides if player is server or client and create appropriate object  **/
 		sendenButton.addActionListener(new ActionListener(){
-			   	public void actionPerformed(ActionEvent e){
+			   	public void actionPerformed(ActionEvent e)
+			   	{
 			   		if (isServer == false)
-			   		{
-			   			client.sendMessage(Multiplayer.this);
-			   		}
+			   			{
+			   				client.sendMessage(Multiplayer.this);
+			   			}
 			   		if (isServer == true)
-			   		{
-			   			server.sendMessage(Multiplayer.this);
-			   		}
-			   		
-			   		
-			   	   	}
+			   			{
+			   				server.sendMessage(Multiplayer.this);
+			   			}
+			   	  	}
 			});
+		
+		mapBox.addActionListener(new ActionListener(){
+		   	public void actionPerformed(ActionEvent e)
+		   	{
+		   			//action  when map is choosen
+
+		   	  	}
+		});
+		
 		
 		//Eventlistener for exit button
 		exitButton.addActionListener(new ActionListener(){
 		   	public void actionPerformed(ActionEvent e){
 		   		//checks if any open connection and closes
-		   		if (isServer == true){
+
+		   		/** this is client side, client closes its sockets **/
+   		   		if (isServer == true)
+   		   		{
 		   			if (server.serverSocket.isClosed() == false){	
 		   				try{
 		   					server.serverSocket.close();
-		   				//	server.in.close();
-		   				//	server.out.close();
 		   					}
-		   					catch (Exception ex){
+		   				catch (Exception ex)
+		   				{
 		   						chatArea.append("Verbindung kann nicht geschlossen werden");
-		   						}
+		   					}
 		   				}
 		   			}
 		   		else{  //closes socket on client side
 		   			if (client.serverSocket.isClosed() == false){	
 		   				try{
-		   				
-		   					client.serverSocket.close();
-		   			
-		   				//	client.out.close();
-		   				//	client.in.close();
-		   				}
-		   					catch (Exception ex){
+		   				 		client.serverSocket.close();
+			   				}
+		   				catch (Exception ex)
+		   				{
 		   						chatArea.append("Verbindung kann nicht geschlossen werden");
 		   					}
 		   			}}
-		   		Multiplayer.this.dispose();
-		   		server.isConnected = false;
-		   		
+		   		Multiplayer.this.dispose(); 		//closes multiplayer gui
+		   		server.isConnected = false;			//sets boolean to announce disconnection
 		   	   	}
 		});
 		
@@ -152,25 +168,42 @@ public class Multiplayer extends JFrame {
 					   	public void actionPerformed(ActionEvent e){
 					   		if (isServer == false)//player is Client
 					   		{
-					   			MultiGame game = new MultiGame(client.server);
-					   			Multiplayer.this.dispose();
+					   			gameClient = new MultiGame(client.server);
+					   			gameClient.sendMessage(client.server, hostName , "ready");
 					   		
 					   			
 					   		}
 					   		if (isServer == true)//player is Server
-					   		{
+					   		{   //checks if in and out socket is connected if not connects additional socket
 					   			if (server.isConnected == false)
-					   			{server.connectToClient();}
+					   				{server.connectToClient();}
 					   			
-					   			
-					   			  MultiGame game = new MultiGame(server.client);
-					   			  Multiplayer.this.dispose();
-				
-					   			  
-					   			  				   		}
+					   			if (server.clientReady==true)
+					   				{
+					   					map = mapBox.getSelectedIndex();
+					   					if (map==0)
+					   					{
+					   						JOptionPane.showMessageDialog(null, "Bitte Karte auswählen");
+					   					}
+					   					else
+					   					{
+					   						gameServer = new MultiGame(server.client);		//start gameServer general tag send method
+					   						gameServer.sendMessage(server.client,Integer.toString(map),"map");
+					   						gameServer.sendMessage(server.client, "", "start");			//sends client method that game is going to start
+					   						Multiplayer.this.dispose();									//closes multiplayer gui
+					   						menu.dispose();												//closes game gui
+					   						main.Main.window.dispose();
+					   						startGame();
+					     				}
+					   				}
+					   			else{
+									JOptionPane.showMessageDialog(null, "Spieler 2 noch nicht bereit! \n Spieler muss erst bestätigen");
+					   			}
+					   				
+					   		}
 					   	   	}
 					});
-		
+			
 		
 	}//end multiplayer	
 
@@ -251,30 +284,45 @@ public class Multiplayer extends JFrame {
 			connectLabel.setBounds(50,570, 200,30);
 			
 			//first part of ipV4 address
-			ip1 = new JTextField();
+			ip1 = new JTextField("192");
 			ip1.setBounds(230,575,30,20);
 			
 			//second part of ipV4 address
-			ip2 = new JTextField();
+			ip2 = new JTextField("168");
 			ip2.setBounds(265,575,30,20);
 			
 			//third part of ipV4 address
-			ip3 = new JTextField();
+			ip3 = new JTextField("1");
 			ip3.setBounds(300,575,30,20);
 			
 			//fourth part of ipV4 address
-			ip4 = new JTextField();
+			ip4 = new JTextField("34");
 			ip4.setBounds(335,575,30,20);
 			
 			//player ready label
 			readyLabel = new JLabel("Spieler 2 bereit");
 			readyLabel.setForeground(Color.RED);
-			readyLabel.setBounds(50, 530, 250, 30);
+			readyLabel.setBounds(50, 530, 150, 30);
 			readyLabel.setVisible(false);
 			
+			mapBox = new JComboBox(maps);
+			mapBox.setBounds(200, 530, 190, 30);
+			mapBox.setSelectedItem("Bitte Karte auswählen");
+			mapBox.setEditable(false);
+			mapBox.setEnabled(false);
+	
 			
 						
 			
 		}
 	}
+	public void startGame(){
+		if (instanz != 1){
+		 instanz ++;	
+		 MultMasterFrame window = new MultMasterFrame();
+		 Thread draw = new Thread(window);
+		 draw.start();}
+	}
+	
+	
 }

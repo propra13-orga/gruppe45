@@ -10,5 +10,7 @@ public class Npc extends Figure{
 
 	public Npc(){
 		super();
+		this.height = local.Pics.sign.getHeight(null);
+		this.width = local.Pics.sign.getWidth(null);
 	}
 }

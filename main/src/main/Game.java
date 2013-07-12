@@ -30,11 +30,15 @@ public class Game extends Thread{
 				//if game is running
 				if(Main.ingame)
 				{
-//					Fly.fly();
-//					AI.move_all_opp();
-//					Coll.shop();
-//					Coll.npc();
-//					Coll.poison();
+					Fly.fly();
+					AI.move_all_opp();
+					Coll.shop();
+					Coll.npc();
+					Coll.poison();
+					
+					Create.hero1.hp = Main.obj_list.get(2)[4];
+					Create.hero2.hp = Main.obj_list.get(3)[4];
+					
 				}
 				if(Main.reset)
 				{

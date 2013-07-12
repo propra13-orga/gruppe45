@@ -16,7 +16,7 @@ public class Keyboard implements KeyListener {
 	
 	//moves the rabbit
 	//Move: moving figure and testing collisions
-	//Spielfeld.obj_list.get(2) = hase
+	//Main.obj_list.get(2) = bunny
 		public void keyPressed (KeyEvent e){
 		key = e.getKeyCode();
 		figure = Main.obj_list.get(2);
@@ -104,7 +104,6 @@ public class Keyboard implements KeyListener {
 		}
 	}
 	
-	//Angleichen, je nach endgültigem Bewegungssystem
 	public void keyReleased(KeyEvent e){
 		key = e.getKeyCode();
 		Create.hero1.moving = false;

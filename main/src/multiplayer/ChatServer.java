@@ -1,4 +1,4 @@
-package main;
+package multiplayer;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -25,6 +25,7 @@ public class ChatServer extends Thread {
 	protected PrintWriter out;
 	protected boolean isConnected= false; //states if server out is connected
 	protected Socket client;
+	protected boolean clientReady = false;
 	
 	public ChatServer(Multiplayer gui)
 	{
@@ -65,6 +66,7 @@ public class ChatServer extends Thread {
 		connected = true;
 		gui.sendenButton.setEnabled(true);
 		gui.verbindenButton.setEnabled(false);				//connection already received preventing additional out connect
+		gui.mapBox.setEnabled(true);
 		//remove 1st slash from IP
 		char[] stringArray = clientIPraw.toCharArray();
 		clientIP="";
@@ -89,9 +91,20 @@ public class ChatServer extends Thread {
 
 						 String tag = line.replaceAll(">.*","");
 						 tag = tag.replaceAll("<", "");
-						 String value = line.replace("<.*>", "");
-						 JOptionPane.showMessageDialog(null, "Es wurde ein Tag versendet: "+tag+" Mit dem Wert: "+value);
+						 String value = line.replaceAll("<.*>", "");
+					/**	 JOptionPane.showMessageDialog(null, "Es wurde ein Tag versendet: "+tag+" Mit dem Wert: "+value);
+------------------------------------------------------------------------------------------------------------------------------*/					 
 						 //from here on server instructions can be received by tag and value
+						 
+						 
+						 if (tag.equals("ready")){
+							 //player is ready for play
+							 gui.readyLabel.setVisible(true);
+							 gui.chatArea.append(value+" ist bereit. Spiel kann beginnen \n");
+							 clientReady = true; 
+/**---------------------------------------------------------------------------------------------------------------------------*/						 
+
+						 }
 					 }
 					 else
 					 {

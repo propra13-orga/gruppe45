@@ -28,6 +28,8 @@ public class Create {
 	
 	public static Bunny hero1;
 	public static Hedgehog hero2;
+	public static int npc;
+	public static int shop;
 	
 	public static Figure[] gameobjects = new Figure[13];
 	
@@ -63,7 +65,12 @@ public class Create {
 			temp.add(0,new int[]{0,0,0,0,0,0});
 			temp.add(1,new int[]{0,0,0,0,0,0});
 			temp.add(2,new int[]{0,0,0,0,0,0});
-			temp.add(3,new int[]{0,0,0,0,0,0});
+			temp.add(3,new int[]{0,0,-2000,-2000,0,0});
+			npc = 0;
+			shop = 0;
+			
+			gameobjects[4].height = gameobjects[4].getPic(0).getHeight(null);
+			gameobjects[4].width = gameobjects[4].getPic(0).getWidth(null);
 			
 			BufferedReader br = new BufferedReader(new FileReader(Fs.data_pfad+String.valueOf(Main.level)+"_"+String.valueOf(Main.room)+".txt"));
 			zeile=0;
@@ -92,7 +99,11 @@ public class Create {
 											break;
 										
 								//hedgehog
-								case '2':	temp.set(3, new int[]{3,3,spalte*Create.block_groesse, zeile*Create.block_groesse,hero2.hp,2});
+								case '2':	if(Main.Nr_of_Players == 2)
+											{
+												temp.set(3, new int[]{3,3,spalte*Create.block_groesse, zeile*Create.block_groesse,hero2.hp,2});
+											}
+											
 											break;
 										
 								//wall
@@ -113,10 +124,12 @@ public class Create {
 										
 								//shop
 								case 's':	temp.add(new int[]{8,temp.size(),spalte*Create.block_groesse, zeile*Create.block_groesse,0,0});
+											shop = temp.size()-1;
 											break;
 										
 								//npc
 								case 'c':	temp.add(new int[]{9,temp.size(),spalte*Create.block_groesse, zeile*Create.block_groesse,0,0});
+											npc = temp.size()-1;
 											break;
 							
 								//mp-pot

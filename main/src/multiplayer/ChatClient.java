@@ -1,14 +1,11 @@
-package main;
+package multiplayer;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.regex.Pattern;
-
-import javax.swing.JOptionPane;
 
 
 public class ChatClient extends Thread{
@@ -20,6 +17,7 @@ public class ChatClient extends Thread{
 	protected Multiplayer gui;
 	protected Boolean go=true;
 	protected BufferedReader in;
+	protected int instanz = 0;
 		
 	public ChatClient(Multiplayer gui){
 		
@@ -67,9 +65,7 @@ public class ChatClient extends Thread{
 	    }
 		try{
 			System.out.println("Server ist closed? : "+ server.isClosed());
-			
 			out = new PrintWriter(server.getOutputStream(),true);
-		
 			message = gui.hostName+": "+gui.chatField.getText();
 			gui.chatArea.append(message+"\n");							//displays chat message on client screen
 			gui.chatField.setText("");
@@ -112,22 +108,44 @@ public class ChatClient extends Thread{
 				 {	
 					 String tag = line.replaceAll(">.*","");
 					 tag = tag.replaceAll("<", "");
-					 String value = line.replace("<.*>", "");
-					 JOptionPane.showMessageDialog(null, "Es wurde ein Tag versendet: "+tag+" Mit dem Wert: "+value);
+					 String value = line.replaceAll("<.*>", "");
+					 /**JOptionPane.showMessageDialog(null, "Es wurde ein Tag versendet: "+tag+" Mit dem Wert: "+value);
+------------------------------------------------------------------------------------------------------------------------------*/					 
 					 //from here on client instructions can be received by tag and value
+					 if (tag.equals("map")){
+						 Multiplayer.map = Integer.parseInt(value);
+					 }
+					 
+					 if (tag.equals("start")){
+						 gui.dispose();			//closes multiplayer gui
+						 gui.menu.dispose();	//closes game gui
+						 main.Main.window.dispose();
+						 startGame();
+						 }
+					
+						 
+/**---------------------------------------------------------------------------------------------------------------------------*/						 
+					 
 				 }
 				 else
 				 {
 					 System.out.println(line);
 					 gui.chatArea.append(line+"\n");
 				 }	 
-			 }in.close(); //close Buffered Reader
+			 }
 			}//end of try block
 		catch (Exception e)
 					{
 							System.out.println("Fehler in read Message");	
 						} 
 			}
+	
 	} 
-
+	public void startGame(){
+		if (instanz != 1){
+		 instanz ++;	
+		 MultMasterFrame window = new MultMasterFrame();
+		 Thread draw = new Thread(window);
+		 draw.start();}
+	}
 }

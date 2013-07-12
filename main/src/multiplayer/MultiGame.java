@@ -1,4 +1,4 @@
-package main;
+package multiplayer;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -12,21 +12,17 @@ public class MultiGame {
 	
 	private PrintWriter out;
 	protected Socket client, server;
-//	protected ServerSocket server;
+
 	
 	public MultiGame(Socket client)
 	{
 			int zahl = 0;
-		//	this.server = server;
+
 			this.client = client;
 			String message = "tolle Nachricht";
 			String tag = "blah";
-			while (zahl <100){
-				sendMessage (client, message, tag);
-				//method for automated status sending
-				zahl +=50;
-			}
-		
+
+		sendMessage(client,"","start");
 		
 	}
 	
@@ -52,7 +48,8 @@ public class MultiGame {
 			}}
 	
 	
-	//method to sent instructions during Multiplayer game
+	//generalised method to sent instructions during Multiplayer game
+	//need the socket to sent to, string value ans tag, it is coded before sending and will be decoded on receivers side
 	public void sendMessage(Socket client, String value, String tag){
 		
 		try{
@@ -66,6 +63,8 @@ public class MultiGame {
 			System.out.println("MultiGame kann Nachricht nicht senden");
 			}
 	}
+	
+	
 	
 
 }

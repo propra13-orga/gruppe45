@@ -14,7 +14,7 @@ public class Keyboard2 implements KeyListener {
 	int STEP = 10;
 	
 	//Move: moving figure and testing collisions
-	//Spielfeld.obj_list.get(1) = hase
+	//Spielfeld.obj_list.get(3) = hedgehog
 	public void keyPressed (KeyEvent e){
 		key = e.getKeyCode();
 		figure = Main.obj_list.get(3);
@@ -47,7 +47,6 @@ public class Keyboard2 implements KeyListener {
 		}
 	}
 	
-	//Angleichen, je nach endgültigem Bewegungssystem
 	public void keyReleased(KeyEvent e){
 	key = e.getKeyCode();
 	Create.hero2.moving = false;

@@ -1,10 +1,13 @@
 package main;
 
 import local.Fs;
+import multiplayer.MultMasterFrame;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
+
+import graphics.*;
 
 
 public class Main{
@@ -12,7 +15,7 @@ public static double scale = 0.5;
 public static int board_height = 768;
 public static int board_width = 1024;
 public static int off = 50;						//boarder at the side of bord
-public static int Nr_of_Players = 2;			//1 == Singleplayer , 2 == Multiplayer
+public static int Nr_of_Players = 1;			//1 == Singleplayer , 2 == Multiplayer
 public static int level = 1;
 public static int room = 1;
 public static Random rand = new Random();		//variable for random movement
@@ -26,6 +29,7 @@ public static boolean npc = false;
 public static boolean reset=true;
 public static String player1_name = "Bunny";
 public static String player2_name = "Hedgehog";
+public static MasterFrame window;
 
 public static ArrayList<int[]> obj_list = new ArrayList<int[]>();	//holds all figures in game
 //0 reserved for board
@@ -34,7 +38,7 @@ public static ArrayList<int[]> obj_list = new ArrayList<int[]>();	//holds all fi
 //3 reserved for player 2
 //4 reserved for shop
 
-public graphics.MasterFrame window;
+
 
 public static void main(String[] args) throws IOException
 	{
@@ -60,10 +64,12 @@ public static void main(String[] args) throws IOException
 		
 		System.out.println("done");
 		
-		graphics.MasterFrame window = new graphics.MasterFrame();	//creates RenderFrame
+		window = new graphics.MasterFrame();	//creates RenderFrame
 		
 		@SuppressWarnings("unused")
 		Gui start = new Gui();										//Starts Gui
+		
+	
 		
 		while(onOff)
 		{

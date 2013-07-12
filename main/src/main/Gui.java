@@ -8,10 +8,12 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 
 import main.Main;
+import multiplayer.Multiplayer;
 
 import java.awt.Color;
 import java.awt.event.*;
 import java.awt.Font;
+
 import javax.swing.JLayeredPane;
 
 public class Gui extends JFrame implements ActionListener{
@@ -29,7 +31,7 @@ public class Gui extends JFrame implements ActionListener{
 	JTextField name1,name2;
 	
 	public Gui(){
-		
+		super();
 		Main.ingame = false;
 		
 		setTitle("Lucky Bunny");
@@ -155,7 +157,7 @@ public class Gui extends JFrame implements ActionListener{
 		//Multiplayer button event listener
 			multyButton.addActionListener(new ActionListener(){
 				   	public void actionPerformed(ActionEvent e){
-				   		Multiplayer multi = new Multiplayer();
+				   		Multiplayer multi = new Multiplayer(Gui.this);
 				   	}
 				});
 		
@@ -164,6 +166,7 @@ public class Gui extends JFrame implements ActionListener{
 		   	public void actionPerformed(ActionEvent e){
 		   		//Insert Code to start Player 1
 		   		main.Main.Nr_of_Players =1;
+		   		local.Create.create_room();
 		   		playerMod.setText("Single Player Modus aktiviert");
 		
 		   	
@@ -175,6 +178,7 @@ public class Gui extends JFrame implements ActionListener{
 				   	public void actionPerformed(ActionEvent e){
 				   		//Insert Code to start Player 2
 				   		main.Main.Nr_of_Players =2;
+				   		local.Create.create_room();
 				   		playerMod.setText("2 Player Modus aktiviert");
 				   	
 				   	}
@@ -328,11 +332,7 @@ public class Gui extends JFrame implements ActionListener{
 	 		playerMod.setBounds(400,560,220,30);
 	 		
 	 		//text description
-	 		
-	 		
 
-
-	 		
 	 	}
 	
 	 }
