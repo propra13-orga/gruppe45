@@ -117,7 +117,9 @@ public class ChatClient extends Thread{
 						 gui.menu.dispose();	//closes game gui
 						 main.Main.window.dispose();
 						 startGame();
-						 
+						 }
+					 if (tag.equals("map")){
+						 Multiplayer.map = Integer.parseInt(value);
 					 }
 						 
 /**---------------------------------------------------------------------------------------------------------------------------*/						 

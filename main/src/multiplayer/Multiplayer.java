@@ -15,7 +15,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.JToolBar;
 
 import main.Gui;
 
@@ -39,7 +38,7 @@ public class Multiplayer extends JFrame {
 	protected String[] maps = {"Bitte Karte auswählen","Bunny Paradies","Im Abyss","Todesstachel","Matrix"};
 	public static int map = 0;
 	protected int instanz = 0;
-	
+
 	
 	public static boolean isServer = true;
 
@@ -177,11 +176,12 @@ public class Multiplayer extends JFrame {
 					   					}
 					   					else
 					   					{
-					   						MultiGame gameServer = new MultiGame(server.client);		//start gameServer general tag send method
+					   						gameServer = new MultiGame(server.client);		//start gameServer general tag send method
 					   						gameServer.sendMessage(server.client, "", "start");			//sends client method that game is going to start
 					   						Multiplayer.this.dispose();									//closes multiplayer gui
 					   						menu.dispose();												//closes game gui
 					   						main.Main.window.dispose();
+					   						gameServer.sendMessage(server.client, "map", Integer.toString(map));
 					   						startGame();
 					     				}
 					   				}
@@ -193,7 +193,6 @@ public class Multiplayer extends JFrame {
 					   	   	}
 					});
 			
-		
 		
 	}//end multiplayer	
 
@@ -312,4 +311,6 @@ public class Multiplayer extends JFrame {
 		 Thread draw = new Thread(window);
 		 draw.start();}
 	}
+	
+	
 }

@@ -1,16 +1,16 @@
 package multiplayer;
 
-import main.Main;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
 
 public class MultiKeyboard implements KeyListener {
 
 	int key;
 	
 	
-
-	
+		
 
 		public void keyPressed (KeyEvent e){
 		key = e.getKeyCode();
@@ -21,7 +21,9 @@ public class MultiKeyboard implements KeyListener {
 			{
 				
 				case KeyEvent.VK_UP: 
-					MultMasterFrame.posA_Y -=10;	break;
+					MultMasterFrame.posA_Y -=10;	
+
+					break;
 				
 				case KeyEvent.VK_DOWN: 
 					MultMasterFrame.posA_Y +=10;	break;
