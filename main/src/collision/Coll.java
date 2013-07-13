@@ -203,7 +203,6 @@ public class Coll {
 		if(victim[0] == 6 || victim[0] == 7)
 		{
 			
-			System.out.println(true);
 			//if targets hp is < 1
 			if((victim[4] -= spell[4] / Create.gameobjects[victim[0]].defe) < 1)
 			{
@@ -216,17 +215,31 @@ public class Coll {
 				Create.hero2.ep += Create.gameobjects[victim[0]].ep;
 				
 				//if boss dies clear room
-				if(victim[0] == 5)
+				if(victim[0] == 7)
 				{
-					for(int j = 4 ; j < Main.obj_list.size() ; j++){
-						if(Main.obj_list.get(j)[0] == 4) Main.obj_list.remove(j);
-						if(j < Main.obj_list.size()) Main.obj_list.get(j)[1] = j;
-						j--;
+					for(int j = 4 ; j < Main.obj_list.size() ;){
+						if(Main.obj_list.get(j)[0] == 4)
+						{
+							Main.obj_list.remove(j);
+							if(j < Main.obj_list.size()) Main.obj_list.get(j)[1] = j;
+						}
+						else j++;
 					}
 				}
 				
 				Main.obj_list.remove(spell[1]);
 				Main.obj_list.remove(victim[1]);
+				for(int j = 4 ; j < Main.obj_list.size() ; j++)			//update index
+				{
+					Main.obj_list.get(j)[1] = j;
+					if(Main.obj_list.get(j)[0] == 8) Create.shop = j;
+					else if(Main.obj_list.get(j)[0] == 9) Create.npc = j;
+				}
+			}
+			
+			else
+			{
+				Main.obj_list.remove(spell[1]);
 				for(int j = 4 ; j < Main.obj_list.size() ; j++)			//update index
 				{
 					Main.obj_list.get(j)[1] = j;
