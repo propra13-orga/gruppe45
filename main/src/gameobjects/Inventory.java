@@ -15,11 +15,11 @@ public class Inventory {
 		switch(item[5]){
 		
 			//mp-pot
-			case 4:	add(1,this.inventory[0]);
+			case 4:	this.inventory[0] = add(1,this.inventory[0]);
 					break;
 			
 			//hp-pot
-			case 5:	add(1,this.inventory[1]);
+			case 5:	this.inventory[1] = add(1,this.inventory[1]);
 					break;
 			
 			//blob
@@ -41,8 +41,8 @@ public class Inventory {
 		}
 	}
 	
-	public void add (int anzahl, int pos){
-		pos += anzahl;
+	public int add (int anzahl, int pos){
+		return pos += anzahl;
 	}
 
 	public boolean getMp_pot(){

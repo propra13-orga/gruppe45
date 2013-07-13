@@ -61,15 +61,16 @@ public class Bunny extends Figure {
 
 	public void setMp(int mp)
 	{
-		this.mp = mp;
+		this.mp += mp;
 	}
 
 	public int getHp(){
-		return Main.obj_list.get(2)[4];
+		return this.hp;
 	}
 
-	public void setHp(int hp){
-		Main.obj_list.get(2)[4] += hp;
+	public void setHp(int health){
+		Main.obj_list.get(2)[4] += health;
+		if(Main.obj_list.get(2)[4] > 50 + this.level * 50) Main.obj_list.get(2)[4] = 50 + this.level * 50;
 	}
 
 	public void use_hp_pot()

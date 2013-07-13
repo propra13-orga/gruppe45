@@ -54,7 +54,11 @@ public class Game extends Thread{
 				{
 					Create.hero1.ep = 0;
 					Create.hero1.level += 1;
-					Create.hero1.setHp(100 + 50 * Create.hero1.level);
+					Create.hero1.setHp(50);
+				
+					Create.hero2.ep = 0;
+					Create.hero2.level += 1;
+					Create.hero2.setHp(50);
 				}
 			}
 			
