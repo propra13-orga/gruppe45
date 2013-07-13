@@ -105,6 +105,7 @@ public class ChatServer extends Thread {
 							 
 						 if (tag.equals("yPos")){
 							 MultMasterFrame.posB_Y = Integer.valueOf(value);
+							 System.out.println(tag);
 							 }
 /**---------------------------------------------------------------------------------------------------------------------------*/						 
 
@@ -147,7 +148,7 @@ public class ChatServer extends Thread {
 		catch (Exception e){
 			System.out.println("Server kann Nachricht nicht senden");
 			}
-		//System.out.println("Server ist closed? : "+ client.isClosed());leave in for debugging purposes
+		//System.out.println("Server ist closed? : "+ client.isClosed());
 	}
 	
 	public void connectToClient()

@@ -16,15 +16,16 @@ public class SendPosition implements Runnable {
 	@Override
 	public void run() {
 		
-	
+	if (Multiplayer.isServer == true)	{
 		while(true)
 		{
-			if (Multiplayer.isServer == true)	{
-			sendmethod.sendMessage(partner, Integer.toString(MultMasterFrame.posA_Y) , "yPos");}
-		
-			else{
-			sendmethod.sendMessage(partner, Integer.toString(MultMasterFrame.posB_Y) , "yPos");}
-		}
+			sendmethod.sendMessage(partner, Integer.toString(MultMasterFrame.posA_Y) , "yPos");
+		}}
+	else{
+		while(true)
+		{	
+			sendmethod.sendMessage(partner, Integer.toString(MultMasterFrame.posB_Y) , "yPos");
+		}}
 		
 	}
 
