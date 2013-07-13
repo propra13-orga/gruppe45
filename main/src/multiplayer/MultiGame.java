@@ -53,7 +53,7 @@ public class MultiGame {
 	public void sendMessage(Socket client, String value, String tag){
 		
 		try{
-		//	System.out.println("Server ist closed? : "+ client.isClosed());
+			//System.out.println("Server ist closed? : "+ client.isClosed());
 			value = "<"+tag+">"+value;
 			out = new PrintWriter(client.getOutputStream(),true);
 			out.println(value);

@@ -64,7 +64,7 @@ public class ChatClient extends Thread{
 	       message = "Nachricht kann nicht versendet werden";
 	    }
 		try{
-			//System.out.println("Server ist closed? : "+ server.isClosed());
+			System.out.println("Server ist closed? : "+ server.isClosed());
 			out = new PrintWriter(server.getOutputStream(),true);
 			message = gui.hostName+": "+gui.chatField.getText();
 			gui.chatArea.append(message+"\n");							//displays chat message on client screen
