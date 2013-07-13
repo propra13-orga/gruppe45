@@ -32,6 +32,7 @@ public class MultMasterFrame extends JFrame implements Runnable
 	int height = Main.board_height;
 	
 	
+	
 	//configuration of main Frame
 	public MultMasterFrame()
 	{
@@ -101,7 +102,7 @@ public class MultMasterFrame extends JFrame implements Runnable
 					g.drawImage(map, 0, 0,this);
 					g.drawImage(local.Pics.bunny_r, posA_X, posA_Y,this);
 					g.drawImage(local.Pics.hedgehog_l, posB_X,posB_Y, this);
-					
+					g.drawString("HP: ", width-800 , height-58);
 					
 					Toolkit.getDefaultToolkit().sync();
 					
