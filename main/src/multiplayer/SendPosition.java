@@ -20,11 +20,29 @@ public class SendPosition implements Runnable {
 		while(true)
 		{
 			sendmethod.sendMessage(partner, Integer.toString(MultMasterFrame.posA_Y) , "yPos");
+			for(int i=0; i<MultMasterFrame.weapons.size();i++)
+				{
+					if (( MultMasterFrame.weapons.get(i).direction == 1)&&(MultMasterFrame.weapons.get(i).sent==false))
+					{	//sends message fireball shot, only once
+						sendmethod.sendMessage(partner, Integer.toString(MultMasterFrame.weapons.get(i).posY),"weap");
+						MultMasterFrame.weapons.get(i).sent = true; //sets sent true, so only sent once
+					}
+				}
+			
 		}}
 	else{
 		while(true)
 		{	
 			sendmethod.sendMessage(partner, Integer.toString(MultMasterFrame.posB_Y) , "yPos");
+			for(int i=0; i<MultMasterFrame.weapons.size();i++)
+			{
+				if (( MultMasterFrame.weapons.get(i).direction == 2)&&(MultMasterFrame.weapons.get(i).sent==false))
+				{	//sends message fireball shot, only once
+					sendmethod.sendMessage(partner, Integer.toString(MultMasterFrame.weapons.get(i).posY),"weap");
+					MultMasterFrame.weapons.get(i).sent = true; //sets sent true, so only sent once
+				}
+			}
+			
 		}}
 		
 	}

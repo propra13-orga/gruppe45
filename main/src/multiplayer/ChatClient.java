@@ -71,7 +71,7 @@ public class ChatClient extends Thread{
 			gui.chatField.setText("");
 			out.println(message);
 			out.flush();
-			out.close();
+			//out.close();
 		}
 		catch (Exception e){
 			System.out.println("Client kann Nachricht nicht senden");
@@ -116,6 +116,14 @@ public class ChatClient extends Thread{
 						 Multiplayer.map = Integer.parseInt(value);
 					 }
 					 
+					 if (tag.equals("live1")){
+						 MultMasterFrame.lives1=Integer.parseInt(value);
+					 }
+					 
+					 if (tag.equals("live2")){
+						 MultMasterFrame.lives2=Integer.parseInt(value);
+					 }
+					 
 					 if (tag.equals("start")){
 						 gui.dispose();			//closes multiplayer gui
 						 gui.menu.dispose();	//closes game gui
@@ -125,6 +133,11 @@ public class ChatClient extends Thread{
 					 
 					 if (tag.equals("yPos")){
 						 MultMasterFrame.posA_Y = Integer.valueOf(value);
+					 	}
+					 
+					 if (tag.equals("weap")){
+						 Weapon weapon = new Weapon(50,Integer.valueOf(value),1);
+						 MultMasterFrame.weapons.add(weapon);
 					 }
 					
 						 
