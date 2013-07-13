@@ -58,7 +58,11 @@ public class LevelEditor extends JFrame {
 	
 	int max_x_blocks = Main.board_width/local.Create.block_groesse;
 	int max_y_blocks = Main.board_height/local.Create.block_groesse;
-				
+	
+	int blockgroesse_x = ed_x_size/max_x_blocks;
+	int blockgroesse_y = ed_y_size/max_y_blocks;
+	
+	
 	public LevelEditor(){
 		
 		setTitle("Du wolltest ein Fenster");
@@ -305,6 +309,8 @@ public class LevelEditor extends JFrame {
 	    		}
 	    	}
 	    });
+		
+		// show room
 	}
 	
 	private void write_label_txt(String s, JLabel [] label_list, int act_selection){
