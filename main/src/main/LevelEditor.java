@@ -479,23 +479,28 @@ public class LevelEditor extends JFrame {
 	    });
 		
 		
-		// Speichern
+		// Save
 		btn_room_save.addActionListener(new ActionListener(){
 	    	public void actionPerformed(ActionEvent e){
 	    		String file ="";
 	    		room_line = get_room_from_editor();
 	    		if (selected_lvl%2==0) { // Level bereits vorhanden
-		    		if (selected_room%2==0 || selected_room==max_room*2+1) { 
-		    			// Raum vorhanden oder neuen Raum hinten anhängen
-		    			save_as(selected_lvl/2, selected_room/2);
+		    		if (selected_room%2==0) { 
+		    			if (selected_room==max_room*2+1) { // Raum hinten anhängen
+		    				save_as(selected_lvl/2, selected_room/2+1);
+		    				selected_room++;
+		    			} else { // Raum vorhanden
+		    				save_as(selected_lvl/2, selected_room/2);
+		    			}
 		    		} else { // Raum nicht vorhanden -> alle dahinter liegenden Räume umbennen
 		    			for (int i=max_room; i>= (selected_room+1)/2;i--) {
-		    				//File oldFile = new File(local.Fs.data_pfad+String.valueOf(selected_lvl/2)+"_"+i+".txt"); 
-		    				//oldFile.renameTo(new File(local.Fs.data_pfad+String.valueOf((selected_lvl/2)+1)+"_"+i+".txt"));
+		    				File oldFile = new File(local.Fs.data_pfad+String.valueOf(selected_lvl/2)+"_"+i+".txt"); 
+		    				oldFile.renameTo(new File(local.Fs.data_pfad+String.valueOf((selected_lvl/2)+1)+"_"+i+".txt"));
 		    				System.out.println("Umbennen: "+ String.valueOf(selected_lvl/2)+"_"+i+".txt" + " in " + String.valueOf((selected_lvl/2))+"_"+String.valueOf(i+1)+".txt");
-		    				//rooms[selected_lvl/2][i+1]=true;
+		    				rooms[selected_lvl/2][i+1]=true;
 		    			}
-		    			//save_as((selected_lvl/2),(selected_room+1)/2);
+		    			save_as((selected_lvl/2),(selected_room+1)/2);
+		    			selected_room++;
 		    			System.out.println("Speichern: "+ String.valueOf(selected_lvl/2)+"_"+(selected_room+1)/2+".txt");
 	    				
 		    		}
@@ -504,18 +509,60 @@ public class LevelEditor extends JFrame {
 	    			for (int i=max_lvl; i>= (selected_lvl+1)/2;i-- ) {
 	    				int z =1;
 	    				while(rooms[i][z]){
-		    				//File oldFile = new File(local.Fs.data_pfad+String.valueOf(i)+"_"+z+".txt"); 
-		    				//oldFile.renameTo(new File(local.Fs.data_pfad+String.valueOf(i+1)+"_"+z+".txt"));
+		    				File oldFile = new File(local.Fs.data_pfad+String.valueOf(i)+"_"+z+".txt"); 
+		    				oldFile.renameTo(new File(local.Fs.data_pfad+String.valueOf(i+1)+"_"+z+".txt"));
 		    				System.out.println("Umbennen:  "+ String.valueOf(i)+"_"+z+".txt" + " in " + String.valueOf(i+1)+"_"+z+".txt");
-		    				// rooms[i+1][z]=true;
+		    				rooms[i+1][z]=true;
 		    				z++;		    				
 	    				}
-	    				//save_as((selected_lvl+1)/2,1);
+	    				save_as((selected_lvl+1)/2,1);
+	    				selected_room=1;
 	    				System.out.println("Speichern: "+ String.valueOf((selected_lvl+1)/2)+"_1.txt");
 	    				
 	    			}
 	    		}
 	    		System.out.println("------------------");
+	    		get_level_rooms();
+	    		if (selected_room>max_room*2+1) { selected_room=max_room*2+1;}
+	    		write_label_txt("Raum ", frm_room_list, selected_room);
+	    	}
+	    });
+		
+		// delete level
+		
+		btn_lvl_del.addActionListener(new ActionListener(){
+	    	public void actionPerformed(ActionEvent e){
+	    		
+	    		System.out.println("------------------");
+	    		get_level_rooms();
+	    	}
+	    });
+		
+		// delete room
+		
+		btn_room_del.addActionListener(new ActionListener(){
+	    	public void actionPerformed(ActionEvent e){
+	    		if(max_room!=1) { // 1 Raum löschen 
+	    			if (selected_room!=max_room*2) { // wenn nicht letzter -> dahinterligende Räume dekrementieren
+			    		for (int i=selected_room/2; i<= max_room;i++) {
+		    				File oldFile = new File(local.Fs.data_pfad+String.valueOf(selected_lvl/2)+"_"+String.valueOf(i+1)+".txt"); 
+		    				oldFile.renameTo(new File(local.Fs.data_pfad+String.valueOf(selected_lvl/2)+"_"+i+".txt"));
+		    				System.out.println("Umbennen: "+ String.valueOf(selected_lvl/2)+"_"+String.valueOf(i+1)+".txt" + " in " + String.valueOf(selected_lvl/2)+"_"+String.valueOf(i)+".txt");
+		    				rooms[selected_lvl/2][i+1]=false;
+		    			}
+	    			} else { // letzter Raum eines Levels (mit >1 Räumen) -> einfach löschen
+	    				System.out.println("Löschen: "+ String.valueOf(selected_lvl/2)+"_" + String.valueOf(selected_room/2)+".txt");
+	    				File file = new File(local.Fs.data_pfad+String.valueOf(selected_lvl/2)+"_"+String.valueOf(selected_room/2)+".txt");
+	    				file.delete();	
+	    			}	    			
+	    		} else { // einziger  Raum des Levels -> gesamten Level löschen und folgende Level 'nachschieben'
+	    			
+	    		}
+	    		System.out.println("------------------");
+	    		get_level_rooms();
+	    		selected_room-=1;
+	    		if (selected_room<1) { selected_room=1;}
+	    		write_label_txt("Raum ", frm_room_list, selected_room);
 	    	}
 	    });
 		
@@ -720,6 +767,11 @@ public class LevelEditor extends JFrame {
 		act_lvl= (selected_lvl+1)/2;
 		while (rooms[act_lvl][i]) {
 			max_room=i;
+			i++;
+		}
+		i=1;
+		while (rooms[i][1]) {
+			max_lvl=i;
 			i++;
 		}
 		if (debug){
