@@ -101,7 +101,7 @@ public class ShopFrame extends JFrame {
                        noBugs();
                 }
                 else{
-                	int hp = local.Create.hero1.getHp()+10;
+                	int hp = 10;
                 	local.Create.hero1.setHp(hp); 					//1 bug = 10 hps
                 	int bug = local.Create.hero1.getBugs()-1;
                 	local.Create.hero1.setBugs(bug);					//minus 1 bug
@@ -123,7 +123,7 @@ public class ShopFrame extends JFrame {
                   noBugs();
                 }
                 else{
-                	int mp = local.Create.hero1.getMp()+8;
+                	int mp = 8;
                 	local.Create.hero1.setMp(mp);//1 bug for 8 mana
            			int bug = local.Create.hero1.getBugs()-1;
                 	local.Create.hero1.setBugs(bug);					//minus 1 bug	

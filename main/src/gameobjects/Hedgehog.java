@@ -2,6 +2,8 @@ package gameobjects;
 
 import java.awt.Image;
 
+import main.Main;
+
 // hero class
 public class Hedgehog extends Bunny {
 	public Image lives_img = local.Pics.lives_img;
@@ -28,4 +30,8 @@ public class Hedgehog extends Bunny {
 		this.lives_img = local.Pics.lives_img;
 	}
 
+	public void setHp(int health){
+		Main.obj_list.get(3)[4] += health;
+		if(Main.obj_list.get(3)[4] > 50 + this.level * 50) Main.obj_list.get(3)[4] = 50 + this.level * 50;
+	}
 }
