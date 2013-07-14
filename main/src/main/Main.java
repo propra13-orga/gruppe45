@@ -1,6 +1,7 @@
 package main;
 
 import local.Fs;
+import movement.Playermovement;
 import multiplayer.MultMasterFrame;
 
 import java.io.IOException;
@@ -50,7 +51,8 @@ public static void main(String[] args) throws IOException
 		
 		System.out.println("done");
 		
-		Game game = new Game();										//creates Game logic		
+		Game game = new Game();										//creates Game logic
+		Playermovement move = new Playermovement();					//creates player moving class
 		
 		System.out.println("initializing gameobjects");
 		
@@ -75,6 +77,7 @@ public static void main(String[] args) throws IOException
 			if (go == true)											//wait boolean from Gui to start
 			{
 				Main.ingame = true;
+				move.start();
 				window.startNow();									//sets MasterFrame
 				onOff = false;										//if started once cannot start again
 			}

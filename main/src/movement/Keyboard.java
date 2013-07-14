@@ -1,62 +1,63 @@
 package movement;
 
 import local.Create;
-import main.Main;
+import main.*;
+
 import graphics.Npc;
 import graphics.ShopFrame;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class Keyboard implements KeyListener {
 
 	int key;
-	int[] figure;
+	int[] bunny = Main.obj_list.get(2);
+	int[] hedgehog = Main.obj_list.get(3);
 	
-	int STEP = 10;
-	
-	//moves the rabbit
-	//Move: moving figure and testing collisions
-	//Main.obj_list.get(2) = bunny
-		public void keyPressed (KeyEvent e){
+
+	public void keyPressed (KeyEvent e){
 		key = e.getKeyCode();
-		figure = Main.obj_list.get(2);
 		
 		if (Main.ingame) { // game is running
 			switch(key) {
-				
-				case KeyEvent.VK_UP: // int 38
-					figure[5] = 1;
-					Create.hero1.moving = true;
-					Move.up(figure , STEP);
+				case KeyEvent.VK_W: // up
+					Move.keys[0] = true;
 					break;
-				
-				case KeyEvent.VK_RIGHT: // int 18
-					figure[5] = 2;
-					Create.hero1.moving = true;
-					Move.right(figure , STEP);
+					
+				case KeyEvent.VK_A: // right
+					Move.keys[1] = true;
 					break;
-				
-				case KeyEvent.VK_DOWN: // int 40
-					figure[5] = 3;
-					Create.hero1.moving = true;
-					Move.down(figure , STEP);
+					
+				case KeyEvent.VK_S: // down
+					Move.keys[2] = true;
 					break;
-				
-				case KeyEvent.VK_LEFT:// int 37
-					figure[5] = 4;
-					Create.hero1.moving = true;
-					Move.left(figure , STEP);
+					
+				case KeyEvent.VK_D:	// left
+					Move.keys[3] = true;
 					break;
-				
-				case KeyEvent.VK_SPACE:								//cast Spell
-					Create.hero1.cast_Spell(figure[5],figure[2],figure[3]);
+					
+				case KeyEvent.VK_UP:
+					Move.keys[4] = true;
 					break;
-				
-				case KeyEvent.VK_ESCAPE:							//open menu
+					
+				case KeyEvent.VK_LEFT:
+					Move.keys[5] = true;
+					break;
+					
+				case KeyEvent.VK_DOWN:
+					Move.keys[6] = true;
+					break;
+					
+				case KeyEvent.VK_RIGHT:
+					Move.keys[7] = true;
+					break;
+					
+				case KeyEvent.VK_ESCAPE:
 					Main.ingame = false;
-					break;	
-				
-				case KeyEvent.VK_S:									//open shop
+					break;
+					
+				case KeyEvent.VK_SPACE:
 					if(Main.shop)
 					{
 						@SuppressWarnings("unused")
@@ -71,46 +72,101 @@ public class Keyboard implements KeyListener {
 					}
 					break;
 					
+				case KeyEvent.VK_Q:
+					Create.hero1.cast_Fireball(Main.obj_list.get(2)[5],Main.obj_list.get(2)[2],Main.obj_list.get(2)[3]);
+					break;
+					
 				case KeyEvent.VK_H:
+					Create.hero1.cast_Fireball(Main.obj_list.get(3)[5],Main.obj_list.get(3)[2],Main.obj_list.get(3)[3]);
+					break;
+					
+				case KeyEvent.VK_E:
+					Create.hero1.cast_Blob(Main.obj_list.get(2)[5],Main.obj_list.get(2)[2],Main.obj_list.get(2)[3]);
+					break;
+					
+				case KeyEvent.VK_J:
+					Create.hero1.cast_Blob(Main.obj_list.get(3)[5],Main.obj_list.get(3)[2],Main.obj_list.get(3)[3]);
+					break;
+					
+				case KeyEvent.VK_F:
 					Create.hero1.use_hp_pot();
 					break;
 					
-				case KeyEvent.VK_M:
+				case KeyEvent.VK_K:
+					Create.hero2.use_hp_pot();
+					break;
+					
+				case KeyEvent.VK_G:
 					Create.hero1.use_mp_pot();
 					break;
 					
-				case KeyEvent.VK_DELETE:
-					if(Main.music == true) Main.music = false;
-					else Main.music = true;
+				case KeyEvent.VK_L:
+					Create.hero2.use_mp_pot();
 					break;
-					
-				default:
-				// nix
 			}
-		} else { // in menu
-			switch(key) {
-				case KeyEvent.VK_N: // int 83
-					//calc.neues_spiel = true;
-					break;
-				case KeyEvent.VK_B: //
-					System.exit(0);
-					break;
+		}
+		
+		else
+		{
+			switch(key){
 				case KeyEvent.VK_ESCAPE:
 					Main.ingame = true;
 					break;
-				default:
-				// nothing
+					
+				case KeyEvent.VK_B:
+					System.exit(0);
+					break;
+					
+				case KeyEvent.VK_DELETE:
+					if(Main.music) Main.music = false;
+					else Main.music = true;
+					break;
 			}
 		}
 	}
 	
 	public void keyReleased(KeyEvent e){
 		key = e.getKeyCode();
-		Create.hero1.moving = false;
+		
+		if (Main.ingame) { // game is running
+			switch(key) {
+				case KeyEvent.VK_W: // up
+					Move.keys[0] = false;
+					break;
+					
+				case KeyEvent.VK_A: // right
+					Move.keys[1] = false;
+					break;
+					
+				case KeyEvent.VK_S: // down
+					Move.keys[2] = false;
+					break;
+					
+				case KeyEvent.VK_D:	// left
+					Move.keys[3] = false;
+					break;
+					
+				case KeyEvent.VK_UP:
+					Move.keys[4] = false;
+					break;
+					
+				case KeyEvent.VK_LEFT:
+					Move.keys[5] = false;
+					break;
+					
+				case KeyEvent.VK_DOWN:
+					Move.keys[6] = false;
+					break;
+					
+				case KeyEvent.VK_RIGHT:
+					Move.keys[7] = false;
+					break;
+					
+			}
+		}
 	}
-	
-	public void keyTyped(java.awt.event.KeyEvent e) {
-		// notwendig, da abstract inherited
+
+	public void keyTyped(KeyEvent e) {
 	}
 
 }

@@ -174,7 +174,7 @@ public class Coll {
 				}
 				
 				//tester == fireball
-				else if(tester[0] == 11)
+				else if(tester[0] == 12)
 				{
 						fireball_hit(tester , figure);
 				}

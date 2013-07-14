@@ -5,6 +5,8 @@ import collision.Coll;
 
 public class Move{ //moves any figure
 	
+	public static boolean[] keys = new boolean[]{false,false,false,false,false,false,false,false};
+	
 	//move STEP pxl up
 	public static void up(int[] figure , int STEP){
 		if((figure[3] - STEP > Main.off) && Coll.coll(figure , 0 , -STEP)){
