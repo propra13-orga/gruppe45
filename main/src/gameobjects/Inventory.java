@@ -14,6 +14,10 @@ public class Inventory {
 	public void add(int[] item) {
 		switch(item[5]){
 		
+			//snail
+			case 0:	Create.hero1.snail = true;
+					Create.hero2.snail = true;
+			
 			//mp-pot
 			case 4:	this.inventory[0] = add(1,this.inventory[0]);
 					break;
@@ -24,15 +28,19 @@ public class Inventory {
 			
 			//blob
 			case 6:	Create.hero1.attack = true;
+					Create.hero2.attack = true;
 					break;
 			
 			//fireball
 			case 7:	Create.hero1.spell = true;
+					Create.hero2.spell = true;
 					break;
 			
 			//flower
 			case 8:	Create.hero1.defense = true;
 					Create.hero1.defe = 2;
+					Create.hero2.defense = true;
+					Create.hero2.defe = 2;
 					break;
 			
 			//bug
