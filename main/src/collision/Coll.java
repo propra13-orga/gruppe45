@@ -49,7 +49,6 @@ public class Coll {
 				{
 				Main.npc = true;
 				}
-				else Main.npc = false;
 			}
 		}
 	}
@@ -76,7 +75,6 @@ public class Coll {
 				{
 				Main.shop = true;
 				}
-				else Main.shop = false;
 			}
 		}
 	}
@@ -154,6 +152,15 @@ public class Coll {
 					if(figure[0] == 10)
 					{
 						Create.hero2.bag.add(figure);
+
+						Main.obj_list.remove(figure[1]);
+						for(int j = 2 ; j < Main.obj_list.size() ; j++)
+						{
+							Main.obj_list.get(j)[1] = j;
+							if(Main.obj_list.get(j)[0] == 8) Create.shop = j;
+							else if(Main.obj_list.get(j)[0] == 9) Create.npc = j;
+						}
+						
 						return true;
 					}
 				}

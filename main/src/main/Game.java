@@ -45,7 +45,7 @@ public class Game extends Thread{
 				{
 					Main.level -= 1;
 					Main.room = 3;
-					if((Create.hero1.lives -= 1) < 0 || (Create.hero2.lives -= 2) < 0) System.exit(0);
+					if((Create.hero1.lives -= 1) < 0 || (Create.hero2.lives -= 1) < 0) System.exit(0);
 					Create.hero1.hp = 50 + 50 * Create.hero1.level;
 					Create.hero2.hp = 50 + 50 * Create.hero2.level;
 					break;

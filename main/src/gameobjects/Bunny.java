@@ -96,6 +96,7 @@ public class Bunny extends Figure {
 			Main.obj_list.add(this.getPosition_Spell(12,direction,x,y));
 		}
 	}
+	
 	public void cast_Blob(int direction , int x , int y)
 	{
 		if(this.attack)

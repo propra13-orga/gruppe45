@@ -77,7 +77,7 @@ public class Keyboard implements KeyListener {
 					break;
 					
 				case KeyEvent.VK_H:
-					Create.hero1.cast_Fireball(Main.obj_list.get(3)[5],Main.obj_list.get(3)[2],Main.obj_list.get(3)[3]);
+					Create.hero2.cast_Fireball(Main.obj_list.get(3)[5],Main.obj_list.get(3)[2],Main.obj_list.get(3)[3]);
 					break;
 					
 				case KeyEvent.VK_E:
@@ -85,7 +85,7 @@ public class Keyboard implements KeyListener {
 					break;
 					
 				case KeyEvent.VK_J:
-					Create.hero1.cast_Blob(Main.obj_list.get(3)[5],Main.obj_list.get(3)[2],Main.obj_list.get(3)[3]);
+					Create.hero2.cast_Blob(Main.obj_list.get(3)[5],Main.obj_list.get(3)[2],Main.obj_list.get(3)[3]);
 					break;
 					
 				case KeyEvent.VK_F:
