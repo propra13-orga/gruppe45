@@ -236,13 +236,25 @@ public class Coll {
 				//if boss dies clear room
 				if(victim[0] == 7)
 				{
+					
+					if(Main.level == 3 && Main.room == 3)
+					{
+						Main.obj_list.add(new int[]{10,Main.obj_list.size(),victim[2],victim[3],0,11});
+					}
+					
 					for(int j = 4 ; j < Main.obj_list.size() ;){
 						if(Main.obj_list.get(j)[0] == 4)
 						{
 							Main.obj_list.remove(j);
-							if(j < Main.obj_list.size()) Main.obj_list.get(j)[1] = j;
 						}
 						else j++;
+					}
+					
+					for(int j = 4 ; j < Main.obj_list.size() ; j++)			//update index
+					{
+						Main.obj_list.get(j)[1] = j;
+						if(Main.obj_list.get(j)[0] == 8) Create.shop = j;
+						else if(Main.obj_list.get(j)[0] == 9) Create.npc = j;
 					}
 				}
 				

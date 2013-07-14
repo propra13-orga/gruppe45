@@ -29,7 +29,10 @@ public class Item extends Figure{
 			case 9:	return local.Pics.bug;
 			
 			//snail
-			default: return local.Pics.snail;
+			case 10: return local.Pics.snail;
+			
+			//book
+			default: return local.Pics.book;
 		}
 	}
 	

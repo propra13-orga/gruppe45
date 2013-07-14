@@ -16,7 +16,7 @@ public class Inventory {
 		switch(item[5]){
 		
 			//snail
-			case 0:	for(int i = 4 ; i < Main.obj_list.size() ;i++)
+			case 10:	for(int i = 4 ; i < Main.obj_list.size() ;i++)
 					{
 							if(Main.obj_list.get(i)[0] == 13)
 							{
@@ -54,6 +54,9 @@ public class Inventory {
 			//bug
 			case 9:	Create.hero1.bugs += 1;
 					break;
+					
+			//book
+			case 11:Create.hero1.book = true;
 		}
 	}
 	

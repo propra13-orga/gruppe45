@@ -19,7 +19,7 @@ public class Bunny extends Figure {
 	public boolean attack = false;
 	public boolean spell = false;
 	public boolean moving = false;
-	public boolean snail = false;
+	public boolean book = false;
 	
 	@Override public Image getPic(int direction){
 		if(direction == 1 || direction == 2)

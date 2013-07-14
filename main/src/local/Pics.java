@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.awt.*;
 import javax.imageio.ImageIO;
 
-public class Pics{		public static Image	abyss, attention, back, bg_1_1, bg_2_1, blob, boss_l, boss_r, bug, 
+public class Pics{		public static Image	abyss, attention, back, bg_1_1, bg_2_1, blob, book, boss_l, boss_r, bug, 
 							bunny_l, bunny_l_motion, bunny_r, bunny_r_motion, bush, carrot, cave, 
 							fireball, fireball_d, fireball_l, fireball_r, fireball_u, flower, fox_l, fox_r, goal, 
 							healthbar_green, healthbar_yellow, healthbar_red, hedgehog_l, hedgehog_r, hero2, hp, hole, 
@@ -32,6 +32,7 @@ public class Pics{		public static Image	abyss, attention, back, bg_1_1, bg_2_1, 
 		peace = ImageIO.read(new File (local.Fs.img_pfad+"peace.jpg"));
 		attention = ImageIO.read(new File (local.Fs.img_pfad+"attention.png"));
 		flower = ImageIO.read(new File (local.Fs.img_pfad+"flower_purple.png"));
+		book = ImageIO.read(new File (local.Fs.img_pfad+"book.png"));
 		boss_l = ImageIO.read(new File (local.Fs.img_pfad+"boss_l.png"));
 		boss_r = ImageIO.read(new File (local.Fs.img_pfad+"boss_r.png"));
 		hero2 = ImageIO.read(new File (local.Fs.img_pfad+"pixel_gray.png"));
