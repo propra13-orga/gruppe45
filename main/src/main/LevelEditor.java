@@ -14,6 +14,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -44,15 +45,17 @@ public class LevelEditor extends JFrame {
 		int y=0;
 		int w=0;
 		int h=0;
+		String chr="";
 		boolean border;
 		JLabel boj;
 		
-		board_object(Image img, int max, int min, int x, int y) {
+		board_object(Image img, int max, int min, int x, int y, String chr) {
 			this.img = img;
 			this.max=max;
 			this.min=min;
 			this.x = x;
 			this.y = y;
+			this.chr = chr;
 			border=false;
 		}
 
@@ -67,7 +70,7 @@ public class LevelEditor extends JFrame {
 	JLabel [] frm_lvl_list = new JLabel[3];
 	JLabel [] frm_room_list = new JLabel[3];
 	JButton btn_lvl_up, btn_room_up, btn_lvl_down, btn_room_down, btn_room_del, btn_lvl_del, btn_room_show;
-	JButton btn_obj_up, btn_obj_down, btn_obj_left, btn_obj_right;
+	JButton btn_obj_up, btn_obj_down, btn_obj_left, btn_obj_right, btn_room_save, btn_room_reset, btn_exit;
 	JButton [] btn_gameobjects = new JButton[20];
 	int [] gameobjects_max = new int[20];
 	JButton [] btn_menu = new JButton[20];
@@ -78,6 +81,7 @@ public class LevelEditor extends JFrame {
 	ArrayList<Image> bg_image = new ArrayList<Image>();
 	ArrayList<String> room = new ArrayList<String>();
 	ArrayList<JLabel> figure = new ArrayList<JLabel>();
+	ArrayList<String> room_line = new ArrayList<String>();
 	board_object act_object;
 	
 	
@@ -92,15 +96,15 @@ public class LevelEditor extends JFrame {
 	int ed_y_start=150;
 	
 	int ed_x_size=ed_win_x_size-(2*x);
-	int ed_y_size=ed_win_y_size-200;
+	int ed_y_size=ed_win_y_size-220;
 	int selected_lvl=2, selected_room=2, act_lvl=2, act_room=2, max_lvl, max_room;
 	boolean debug=true;
 	
-	int max_x_blocks = Main.board_width/local.Create.block_groesse;
-	int max_y_blocks = Main.board_height/local.Create.block_groesse;
+	int max_x_blocks = (Main.board_width/local.Create.block_groesse);
+	int max_y_blocks = (Main.board_height/local.Create.block_groesse);
 	
-	int blockgroesse_x = ed_x_size/ max_x_blocks-1;
-	int blockgroesse_y =ed_y_size / max_y_blocks-1;
+	int blockgroesse_x = ed_x_size/ max_x_blocks;
+	int blockgroesse_y =ed_y_size / max_y_blocks;
 	
 	float faktor_x= (float)Main.board_width/ed_x_size;
 	float faktor_y= (float)Main.board_height/ed_y_size;
@@ -109,6 +113,8 @@ public class LevelEditor extends JFrame {
 	
 	public LevelEditor(){
 		
+		max_x_blocks -=2;
+		max_y_blocks -=2;
 		System.out.println(Main.board_width);
 		System.out.println(ed_x_size);
 		setTitle("Level-Editor");
@@ -201,6 +207,32 @@ public class LevelEditor extends JFrame {
  		btn_room_show.setToolTipText("Raum im Editor anzeigen");
  		btn_align_center(btn_room_show);
  		
+ 		// save room button
+ 		x=30;
+ 		y=640;
+ 		w=380;
+ 		h=20;
+ 		btn_room_save= new JButton("Speichern (Level 1 / Raum 1)");
+ 		btn_room_save.setBounds(x, y, w, h);
+ 		btn_room_save.setToolTipText("Raum speichern");
+ 		btn_align_center(btn_room_save);
+ 		
+ 		// reset room button
+ 		x=420;
+ 		w=180;
+ 		btn_room_reset= new JButton("Raum zurücksetzen");
+ 		btn_room_reset.setBounds(x, y, w, h);
+ 		btn_room_reset.setToolTipText("Raum auf ursprünglichen Zustand zurücksetzen");
+ 		btn_align_center(btn_room_reset);
+ 		
+ 		// exit button
+ 		x=620;
+ 		w=150;
+ 		btn_exit= new JButton("Verlassen");
+ 		btn_exit.setBounds(x, y, w, h);
+ 		btn_exit.setToolTipText("Editor verlassen");
+ 		btn_align_center(btn_exit);
+ 		
  		
  		y=30;
  		x=450;
@@ -212,7 +244,7 @@ public class LevelEditor extends JFrame {
  		int z=0;
  		float img_faktor=0;
  		// System.out.println("Anzahl: "+Create.gameobjects.length);
- 		for (int i=0; i<Create.gameobjects.length-4;i++) {
+ 		for (int i=0; i<Create.gameobjects.length-5;i++) {
  			img = new ImageIcon(Create.gameobjects[i].getPic(1));
  			img.getImage(); // noch notwendig wegen lazy loading beim Hero. Kann später raus.
  			img_faktor= (int) (img.getImage().getWidth(null)/img_breite);
@@ -323,6 +355,9 @@ public class LevelEditor extends JFrame {
 		lpane.add(btn_obj_down,22);
 		lpane.add(btn_obj_left,23);
 		lpane.add(btn_obj_right,24);
+		lpane.add(btn_room_save,25);
+		lpane.add(btn_room_reset,26);
+		lpane.add(btn_exit,27);
 		
 		this.setVisible(true);
 		editor_show_room();
@@ -395,37 +430,99 @@ public class LevelEditor extends JFrame {
 	    	}
 	    });
 		
-		// move right	
+		// bewege objekt im Editor um 1 block nach rechts
 		btn_obj_right.addActionListener(new ActionListener(){
 	    	public void actionPerformed(ActionEvent e){
 	    		if (act_object!=null) {
-	    			act_object.x+=1;
-		    		act_object.boj.setLocation(ed_x_start+act_object.x*blockgroesse_x, ed_y_start+act_object.y*blockgroesse_y);
+	    			if (act_object.x<max_x_blocks) {
+		    			act_object.x+=1;
+			    		act_object.boj.setLocation(ed_x_start+act_object.x*blockgroesse_x, ed_y_start+act_object.y*blockgroesse_y);
+	    			}
 	    		}
 	    	}
 	    });
+		
+		// bewege objekt im Editor um 1 block nach links
 		btn_obj_left.addActionListener(new ActionListener(){
 	    	public void actionPerformed(ActionEvent e){
 	    		if (act_object!=null) {
-	    			act_object.x-=1;
-		    		act_object.boj.setLocation(ed_x_start+act_object.x*blockgroesse_x, ed_y_start+act_object.y*blockgroesse_y);
+	    			if (act_object.x>1) {
+		    			act_object.x-=1;
+			    		act_object.boj.setLocation(ed_x_start+act_object.x*blockgroesse_x, ed_y_start+act_object.y*blockgroesse_y);
+	    			}
 	    		}
 	    	}
 	    });
+		
+		// bewege objekt im Editor um 1 block nach unten
 		btn_obj_down.addActionListener(new ActionListener(){
 	    	public void actionPerformed(ActionEvent e){
 	    		if (act_object!=null) {
-	    			act_object.y+=1;
-		    		act_object.boj.setLocation(ed_x_start+act_object.x*blockgroesse_x, ed_y_start+act_object.y*blockgroesse_y);
+	    			if (act_object.y<max_y_blocks) {
+		    			act_object.y+=1;
+			    		act_object.boj.setLocation(ed_x_start+act_object.x*blockgroesse_x, ed_y_start+act_object.y*blockgroesse_y);
+	    			}
 	    		}
 	    	}
 	    });
+		
+		// bewege objekt im Editor um 1 block nach oben
 		btn_obj_up.addActionListener(new ActionListener(){
 	    	public void actionPerformed(ActionEvent e){
 	    		if (act_object!=null) {
-	    			act_object.y-=1;
-		    		act_object.boj.setLocation(ed_x_start+act_object.x*blockgroesse_x, ed_y_start+act_object.y*blockgroesse_y);
+	    			if (act_object.y>1) {
+		    			act_object.y-=1;
+			    		act_object.boj.setLocation(ed_x_start+act_object.x*blockgroesse_x, ed_y_start+act_object.y*blockgroesse_y);
+	    			}
 	    		}
+	    	}
+	    });
+		
+		
+		// Speichern
+		btn_room_save.addActionListener(new ActionListener(){
+	    	public void actionPerformed(ActionEvent e){
+	    		String file ="";
+	    		room_line = get_room_from_editor();
+	    		if (selected_lvl%2==0) { // Level bereits vorhanden
+		    		if (selected_room%2==0 || selected_room==max_room*2+1) { 
+		    			// Raum vorhanden oder neuen Raum hinten anhängen
+		    			save_as(selected_lvl/2, selected_room/2);
+		    		} else { // Raum nicht vorhanden -> alle dahinter liegenden Räume umbennen
+		    			for (int i=max_room; i>= (selected_room+1)/2;i--) {
+		    				//File oldFile = new File(local.Fs.data_pfad+String.valueOf(selected_lvl/2)+"_"+i+".txt"); 
+		    				//oldFile.renameTo(new File(local.Fs.data_pfad+String.valueOf((selected_lvl/2)+1)+"_"+i+".txt"));
+		    				System.out.println("Umbennen: "+ String.valueOf(selected_lvl/2)+"_"+i+".txt" + " in " + String.valueOf((selected_lvl/2))+"_"+String.valueOf(i+1)+".txt");
+		    				//rooms[selected_lvl/2][i+1]=true;
+		    			}
+		    			//save_as((selected_lvl/2),(selected_room+1)/2);
+		    			System.out.println("Speichern: "+ String.valueOf(selected_lvl/2)+"_"+(selected_room+1)/2+".txt");
+	    				
+		    		}
+	    		} else { // Level noch nicht vorhanden -> alle dahinter liegenden Level umbennen
+	    			file = String.valueOf((selected_lvl+1)/2)+"_1.txt";
+	    			for (int i=max_lvl; i>= (selected_lvl+1)/2;i-- ) {
+	    				int z =1;
+	    				while(rooms[i][z]){
+		    				//File oldFile = new File(local.Fs.data_pfad+String.valueOf(i)+"_"+z+".txt"); 
+		    				//oldFile.renameTo(new File(local.Fs.data_pfad+String.valueOf(i+1)+"_"+z+".txt"));
+		    				System.out.println("Umbennen:  "+ String.valueOf(i)+"_"+z+".txt" + " in " + String.valueOf(i+1)+"_"+z+".txt");
+		    				// rooms[i+1][z]=true;
+		    				z++;		    				
+	    				}
+	    				//save_as((selected_lvl+1)/2,1);
+	    				System.out.println("Speichern: "+ String.valueOf((selected_lvl+1)/2)+"_1.txt");
+	    				
+	    			}
+	    		}
+	    		System.out.println("------------------");
+	    	}
+	    });
+		
+		// verlassen (sollte eigentlich zum Hauptmenue gehen)
+		btn_exit.addActionListener(new ActionListener(){
+	    	public void actionPerformed(ActionEvent e){
+	    		System.exit(0);
 	    	}
 	    });
 		
@@ -489,31 +586,34 @@ public class LevelEditor extends JFrame {
 			          for(int spalte=0; spalte<zeilenlaenge;spalte++){
 			            switch(zeileninhalt.charAt(spalte)) { 				
 			          case 'w':
-			        	  editor_objects.add(new board_object(Pics.tree,99,0,spalte, zeile));
+			        	  editor_objects.add(new board_object(Pics.tree,99,0,spalte, zeile, "w"));
 		                break;
 		              case 'k':
-		            	  editor_objects.add(new board_object(Pics.fox_l,99,0,spalte, zeile));
+		            	  editor_objects.add(new board_object(Pics.fox_l,99,0,spalte, zeile, "k"));
 		                break;
 		              case 't':
-		            	  editor_objects.add(new board_object(Pics.poisonous_tree,99,0,spalte, zeile));
+		            	  editor_objects.add(new board_object(Pics.poisonous_tree,99,0,spalte, zeile, "t"));
 		                break;
 		              case '1':
-		            	  editor_objects.add(new board_object(Pics.bunny_l,1,1,spalte, zeile));
+		            	  editor_objects.add(new board_object(Pics.bunny_l,1,1,spalte, zeile, "1"));
 		                break;
 		              case '2':
-		            	  editor_objects.add(new board_object(Pics.hedgehog_l,1,1, spalte, zeile));
+		            	  editor_objects.add(new board_object(Pics.hedgehog_l,1,1, spalte, zeile,"2"));
 		                break;
 		              case 'b':
-		            	  editor_objects.add(new board_object(Pics.boss_l,1,0, spalte, zeile));
+		            	  editor_objects.add(new board_object(Pics.boss_l,1,0, spalte, zeile,"b"));
 			            break;
 		              case 's':
-		            	  editor_objects.add(new board_object(Pics.shop_active,1,0, spalte, zeile));
+		            	  editor_objects.add(new board_object(Pics.shop_active,1,0, spalte, zeile,"s"));
 		                break;
 		              case 'c':
-		            	  editor_objects.add(new board_object(Pics.sign,1,0,spalte, zeile));
+		            	  editor_objects.add(new board_object(Pics.sign,1,0,spalte, zeile,"c"));
+		                break;
+		              case 'm':
+		            	  editor_objects.add(new board_object(Pics.carrot,1,0,spalte, zeile,"m"));
 		                break;
 		              case 'z':
-		            	  editor_objects.add(new board_object(Pics.goal,1,1,spalte, zeile));
+		            	  editor_objects.add(new board_object(Pics.goal,1,1,spalte, zeile, "z"));
 		                break;
 		              default:
 		              // nix
@@ -536,6 +636,7 @@ public class LevelEditor extends JFrame {
 	private void write_label_txt(String s, JLabel [] label_list, int act_selection){
 		int z=0;
 		int max=max_room;
+		String save_text = "Speichern";
 		for (int i=act_selection-1; i<act_selection+2; i++) {
 			String txt;
 			txt = "neu";
@@ -578,6 +679,30 @@ public class LevelEditor extends JFrame {
 				btn_room_show.setVisible(false);
 			}
 		}
+		if (selected_lvl%2==0) {
+			save_text += " (Level "+String.valueOf(selected_lvl/2);
+			if (selected_room%2==0) {
+				save_text += " / Raum "+ String.valueOf(selected_room/2)+")";
+			}else {
+				if (selected_room==1) {
+					save_text += " / neuer Raum vor Raum 1)";
+				} else if (selected_room==max_room*2+1) {
+					save_text += " / neuer Raum hinter Raum "+String.valueOf((selected_room-1)/2)+")";
+					
+				} else 	{
+					save_text += " / neuer Raum zwischen "+String.valueOf((selected_room-1)/2)+" und "+String.valueOf((selected_room+1)/2)+")";
+				}
+			}
+		} else {
+			if (selected_lvl==1) {
+				save_text += " (neuer Level vor Level 1 / Raum 1)";				
+			} else if (selected_lvl==max_lvl*2+1) {
+				save_text += " (neuer Level hinter Level "+String.valueOf((selected_lvl-1)/2)+" / Raum 1)";
+			}else {
+				save_text += " (neuer Level zwischen "+String.valueOf((selected_lvl-1)/2)+" und "+String.valueOf((selected_lvl+1)/2)+" / Raum 1)";
+			}
+		}
+		btn_room_save.setText(save_text);
 	}
 	
 	private void show_room_selection(boolean hide){
@@ -629,7 +754,7 @@ public class LevelEditor extends JFrame {
 		String path = local.Fs.img_pfad+"editor_templates"+local.Fs.os_slash;
 		File folder = new File(path);
 		for(File file : folder.listFiles())  {
-		  if (file.isFile() && file.getName().startsWith("bg_")) {
+		  if (file.isFile() && file.getName().startsWith("t_bg_")) {
 		    bg_image.add(Toolkit.getDefaultToolkit().getImage(path+file.getName()));
 		  } 
 		}
@@ -664,5 +789,43 @@ public class LevelEditor extends JFrame {
 			if (l==1 && r>max_room) {max_room=r;}
 			if (l==1 && r>max_lvl) {max_lvl=r;}
 		}
-	}	
+	}
+	
+	private ArrayList<String> get_room_from_editor() {
+		ArrayList<String> editor_line = new ArrayList<String>();
+		String e ="_";
+		String start="#";
+		for (int i = 0; i<max_x_blocks;i++){
+			start+=e;
+		}
+		for (int i=0; i<=max_y_blocks;i++){
+			editor_line.add(start);
+		}
+		for (board_object eo: editor_objects) {
+//			System.out.println(eo.chr);
+//			System.out.println(eo.x);
+//			System.out.println(eo.y);
+//			System.out.println("----------");
+			
+			editor_line.set(eo.y, editor_line.get(eo.y).substring(0,eo.x)+eo.chr+editor_line.get(eo.y).substring(eo.x+1));
+		}
+//		for (String el: editor_line) {
+//			System.out.println(el);
+//		}
+		
+		return editor_line;
+	}
+	
+	private void save_as(int lvl, int room) {
+		String file = lvl+"_"+room+".txt";
+		try {
+			PrintWriter out = new PrintWriter(local.Fs.data_pfad+file);
+			for (String rl: room_line) {
+				out.println(rl);
+			}
+            out.close();
+      } catch (IOException e){
+          e.printStackTrace();
+      }
+}
 }
