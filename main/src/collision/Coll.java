@@ -90,7 +90,7 @@ public class Coll {
 				if (   (Main.obj_list.get(2)[2] < Main.obj_list.get(i)[2] + Create.gameobjects[Main.obj_list.get(i)[0]].width + Create.gameobjects[Main.obj_list.get(i)[0]].fog)
 						&& (Main.obj_list.get(2)[2] + Create.gameobjects[Main.obj_list.get(2)[0]].width > Main.obj_list.get(i)[2] - Create.gameobjects[Main.obj_list.get(i)[0]].fog)
 						&& (Main.obj_list.get(2)[3] < Main.obj_list.get(i)[3] + Create.gameobjects[Main.obj_list.get(i)[0]].height + Create.gameobjects[Main.obj_list.get(i)[0]].fog)
-						&& (Main.obj_list.get(2)[3] + Create.gameobjects[Main.obj_list.get(2)[0]].height > Main.obj_list.get(i)[3] - Create.gameobjects[Main.obj_list.get(i)[0]].fog + (int) Create.gameobjects[Main.obj_list.get(i)[0]].height / 3) )
+						&& (Main.obj_list.get(2)[3] + Create.gameobjects[Main.obj_list.get(2)[0]].height > Main.obj_list.get(i)[3] - Create.gameobjects[Main.obj_list.get(i)[0]].fog) )
 					{
 					deal_dmg(Main.obj_list.get(i) , Main.obj_list.get(2));
 				}
@@ -99,7 +99,7 @@ public class Coll {
 					if (   (Main.obj_list.get(3)[2] < Main.obj_list.get(i)[2] + Create.gameobjects[Main.obj_list.get(i)[0]].width + Create.gameobjects[Main.obj_list.get(i)[0]].fog)
 						&& (Main.obj_list.get(3)[2] + Create.gameobjects[Main.obj_list.get(3)[0]].width > Main.obj_list.get(i)[2] - Create.gameobjects[Main.obj_list.get(i)[0]].fog)
 						&& (Main.obj_list.get(3)[3] < Main.obj_list.get(i)[3] + Create.gameobjects[Main.obj_list.get(i)[0]].height + Create.gameobjects[Main.obj_list.get(i)[0]].fog)
-						&& (Main.obj_list.get(3)[3] + Create.gameobjects[Main.obj_list.get(3)[0]].height > Main.obj_list.get(i)[3] - Create.gameobjects[Main.obj_list.get(i)[0]].fog + (int) Create.gameobjects[Main.obj_list.get(i)[0]].height / 3) )
+						&& (Main.obj_list.get(3)[3] + Create.gameobjects[Main.obj_list.get(3)[0]].height > Main.obj_list.get(i)[3] - Create.gameobjects[Main.obj_list.get(i)[0]].fog) )
 					{
 						deal_dmg(Main.obj_list.get(i) , Main.obj_list.get(3));
 					}

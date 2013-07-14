@@ -10,5 +10,7 @@ public class Carrot_Tree extends Figure {
 	
 	public Carrot_Tree() {
 		super();
+		this.height = local.Pics.carrot.getHeight(null);
+		this.width = local.Pics.carrot.getWidth(null);
 	}
 }
