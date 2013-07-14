@@ -104,7 +104,7 @@ public class MasterFrame extends JFrame {
 								g.drawString("HP: "+player2.getHp(),localFigure[2],localFigure[3]-25);
 								g.drawString("EP: "+player2.ep,localFigure[2],localFigure[3]-15);
 							}
-							if ((localFigure[0] == 6)){//draw level and hp of enemy
+							if ((localFigure[0] == 6) || (localFigure[0] == 7)){//draw level and hp of enemy
 								g.drawString("HP: "+localFigure[4],localFigure[2],localFigure[3]-25);
 								g.drawString("Level: "+Main.level,localFigure[2],localFigure[3]-15);
 							}

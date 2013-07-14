@@ -21,14 +21,27 @@ public class MultiKeyboard implements KeyListener {
 			{
 				
 				case KeyEvent.VK_UP: 
-					MultMasterFrame.posA_Y -=10;	
+					if (MultMasterFrame.posA_Y > 10)
+					{	//avoid rabbit running out of screen
+						MultMasterFrame.posA_Y -=15;	
+						}break;
 
-					break;
+					
 				
 				case KeyEvent.VK_DOWN: 
-					MultMasterFrame.posA_Y +=10;	break;
+					if (MultMasterFrame.posA_Y < 678)
+					{   //avoid rabbit running out of screen
+						MultMasterFrame.posA_Y +=15;	
+					}	break;
+					
+				case KeyEvent.VK_SPACE:	
+					{
+
+						Weapon weapon = new Weapon(MultMasterFrame.posA_X,MultMasterFrame.posA_Y, 1);
+						MultMasterFrame.weapons.add(weapon);
 						
-				case KeyEvent.VK_SPACE:	break;
+					}
+					break;
 																
 				default:
 				// nix
@@ -37,11 +50,25 @@ public class MultiKeyboard implements KeyListener {
 			switch(key) 
 			{
 				
-					case KeyEvent.VK_UP: MultMasterFrame.posB_Y -=10;	break;
+				case KeyEvent.VK_UP: 
+					if (MultMasterFrame.posB_Y > 10)
+					{	//avoid hedgehog running out of screen
+						MultMasterFrame.posB_Y -=15;	
+					}	break;
 		
-					case KeyEvent.VK_DOWN: MultMasterFrame.posB_Y +=10;	break;
-				
-					case KeyEvent.VK_SPACE:	break;
+				case KeyEvent.VK_DOWN: 
+					if (MultMasterFrame.posB_Y < 678)
+					{	//avoid hedgehog running out of screen
+						MultMasterFrame.posB_Y +=15;	
+					}	break;
+					
+					case KeyEvent.VK_SPACE:	
+					{
+
+						Weapon weapon = new Weapon(MultMasterFrame.posB_X,MultMasterFrame.posB_Y, 2);
+						MultMasterFrame.weapons.add(weapon);
+						
+					}break;
 			
 			}}
 	}

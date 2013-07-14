@@ -5,12 +5,12 @@ import java.io.IOException;
 import java.awt.*;
 import javax.imageio.ImageIO;
 
-public class Pics{
-		public static Image	icon1, bunny_l_motion, bunny_l, bunny_r_motion, hedgehog_l, hedgehog_r, bunny_r,
-							back, tree, bush, rock, fox_r, cave, mole, shop_inactive, shop_active, poisonous_tree,
-							sign, healthbar_green, healthbar_yellow, healthbar_red, lives_img, fox_l, hero2, icon2,
-							life, bug, blob, fireball, fireball_r, fireball_d, fireball_l, fireball_u, peace,
-							attention, flower, boss_l, boss_r, goal, hole, mp, hp, bg_1_1, bg_2_1,abyss, matrix;
+public class Pics{		public static Image	abyss, attention, back, bg_1_1, bg_2_1, blob, boss_l, boss_r, bug, 
+							bunny_l, bunny_l_motion, bunny_r, bunny_r_motion, bush, carrot, cave, 
+							fireball, fireball_d, fireball_l, fireball_r, fireball_u, flower, fox_l, fox_r, goal, 
+							healthbar_green, healthbar_yellow, healthbar_red, hedgehog_l, hedgehog_r, hero2, hp, hole, 
+							icon1, icon2, life, lives_img, matrix, mole, mp, 
+							peace, poisonous_tree, rock, sign, snail, shop_active, shop_inactive, tree;
 	
 	public static void loadPics(){
 	
@@ -43,9 +43,11 @@ public class Pics{
 		healthbar_red = ImageIO.read(new File (local.Fs.img_pfad+"healthbar_red.png"));
 		poisonous_tree = ImageIO.read(new File (local.Fs.img_pfad+"poisonous_tree.png"));
 		sign = ImageIO.read(new File (local.Fs.img_pfad+"sign.png"));
+		snail = ImageIO.read(new File (local.Fs.img_pfad+"snail.png"));
 		shop_active = ImageIO.read(new File (local.Fs.img_pfad+"shop_active.png"));
 		shop_inactive = ImageIO.read(new File (local.Fs.img_pfad+"shop_inactive.png"));
 		mole = ImageIO.read(new File (local.Fs.img_pfad+"shop_active.png"));
+		carrot = ImageIO.read(new File (local.Fs.img_pfad+"carrot_tree.png"));
 		cave = ImageIO.read(new File (local.Fs.img_pfad+"cave.jpg"));		
 		tree = ImageIO.read(new File (local.Fs.img_pfad+"wall_1.png"));
 		bush = ImageIO.read(new File (local.Fs.img_pfad+"wall_2.png"));

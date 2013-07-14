@@ -67,6 +67,8 @@ public class ChatServer extends Thread {
 		gui.sendenButton.setEnabled(true);
 		gui.verbindenButton.setEnabled(false);				//connection already received preventing additional out connect
 		gui.mapBox.setEnabled(true);
+		gui.live1Box.setEnabled(true);
+		gui.live2Box.setEnabled(true);
 		//remove 1st slash from IP
 		char[] stringArray = clientIPraw.toCharArray();
 		clientIP="";
@@ -79,7 +81,7 @@ public class ChatServer extends Thread {
 	public void readMessage(Socket client, Multiplayer gui) 
 		{
 		in = null;
-		
+	
 			try{
 				 in = new BufferedReader(new InputStreamReader(client.getInputStream()));
 				 String line;
@@ -96,20 +98,24 @@ public class ChatServer extends Thread {
 ------------------------------------------------------------------------------------------------------------------------------*/					 
 						 //from here on server instructions can be received by tag and value
 						 
-						 
+						 //System.out.println(tag);
 						 if (tag.equals("ready")){
 							 //player is ready for play
 							 gui.readyLabel.setVisible(true);
 							 gui.chatArea.append(value+" ist bereit. Spiel kann beginnen \n");
-							 clientReady = true; 
+							 clientReady = true; }
 							 
 						 if (tag.equals("yPos")){
 							 MultMasterFrame.posB_Y = Integer.valueOf(value);
-							 System.out.println(tag);
-							 }
-/**---------------------------------------------------------------------------------------------------------------------------*/						 
-
+						 	}
+						 
+						 if (tag.equals("weap")){
+							 Weapon weapon = new Weapon(1190,Integer.valueOf(value),2);
+							 MultMasterFrame.weapons.add(weapon);
 						 }
+						 
+/**---------------------------------------------------------------------------------------------------------------------------*/						 
+						 
 					 }
 					 else
 					 {
@@ -124,7 +130,7 @@ public class ChatServer extends Thread {
 						{
 								System.out.println("Fehler in read Message");	
 							}
-				}
+		}	
 	//opens new socket to client
 	public void sendMessage(Multiplayer gui){
 		
@@ -142,7 +148,7 @@ public class ChatServer extends Thread {
 			gui.chatField.setText("");
 			out.println(message);
 			out.flush();
-			out.close();
+			//out.close();
 			
 		}
 		catch (Exception e){

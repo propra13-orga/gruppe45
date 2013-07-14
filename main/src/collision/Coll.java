@@ -53,7 +53,7 @@ public class Coll {
 			}
 		}
 	}
-	
+
 	//sets Main.shop = true if player in range
 	public static void shop(){
 		if(local.Create.shop > 0){
@@ -80,7 +80,7 @@ public class Coll {
 			}
 		}
 	}
-	
+
 	//invokes poisoning
 	public static void poison(){
 		for(int i = 4 ; i < Main.obj_list.size() ; i++)
@@ -133,6 +133,15 @@ public class Coll {
 					if(figure[0] == 10)
 					{
 						Create.hero1.bag.add(figure);
+						
+						Main.obj_list.remove(figure[1]);
+						for(int j = 2 ; j < Main.obj_list.size() ; j++)
+						{
+							Main.obj_list.get(j)[1] = j;
+							if(Main.obj_list.get(j)[0] == 8) Create.shop = j;
+							else if(Main.obj_list.get(j)[0] == 9) Create.npc = j;
+						}
+						
 						return true;
 					}
 				}
@@ -158,17 +167,23 @@ public class Coll {
 					}
 				}
 				
-				//tester == spell
-				else if(tester[0] == 11 || tester[0] == 12)
+				//tester == blob
+				else if(tester[0] == 11)
 				{
-						hit(tester , figure);
+						blob_hit(tester , figure);
+				}
+				
+				//tester == fireball
+				else if(tester[0] == 11)
+				{
+						fireball_hit(tester , figure);
 				}
 				return false;
 			}
 		}
 		return true;
 	}
-	
+
 	//deals dmg to players
 	static void deal_dmg(int[] dealer , int[] reciever){
 		reciever[4] -= (Create.gameobjects[dealer[0]].dmg / Create.gameobjects[reciever[0]].defe);
@@ -191,18 +206,24 @@ public class Coll {
 				for(int j = 2 ; j < Main.obj_list.size() ; j++)
 				{
 					Main.obj_list.get(j)[1] = j;
+					if(Main.obj_list.get(j)[0] == 8) Create.shop = j;
+					else if(Main.obj_list.get(j)[0] == 9) Create.npc = j;
 				}
 			}
 		}
 	}
-	
-	//called upon a spells collision, damages the target and destroyes it if hp <= 0
-	public static void hit(int[] spell , int[] victim){
-		if(victim[0] == 3 || victim[0] == 5)
+
+	//called upon a blobs collision, damages the target and destroyes it if hp <= 0
+	public static void blob_hit(int[] spell , int[] victim){
+		if(victim[0] == 6 || victim[0] == 7)
 		{
 			
+			//dmg / 2 if victim == fox
+			if(victim[0] == 6) victim[4] -= spell[4] / 2 / Create.gameobjects[victim[0]].defe;
+			else victim[4] -= spell[4] / Create.gameobjects[victim[0]].defe;
+			
 			//if targets hp is < 1
-			if((victim[4] -= Create.gameobjects[spell[0]].dmg / Create.gameobjects[victim[0]].defe) < 1)
+			if(victim[4] < 1)
 			{
 				
 				//get bugs
@@ -213,12 +234,15 @@ public class Coll {
 				Create.hero2.ep += Create.gameobjects[victim[0]].ep;
 				
 				//if boss dies clear room
-				if(victim[0] == 5)
+				if(victim[0] == 7)
 				{
 					for(int j = 4 ; j < Main.obj_list.size() ;){
-						if(Main.obj_list.get(j)[0] == 4) Main.obj_list.remove(j);
-						if(j < Main.obj_list.size()) Main.obj_list.get(j)[1] = j;
-						
+						if(Main.obj_list.get(j)[0] == 4)
+						{
+							Main.obj_list.remove(j);
+							if(j < Main.obj_list.size()) Main.obj_list.get(j)[1] = j;
+						}
+						else j++;
 					}
 				}
 				
@@ -227,16 +251,79 @@ public class Coll {
 				for(int j = 4 ; j < Main.obj_list.size() ; j++)			//update index
 				{
 					Main.obj_list.get(j)[1] = j;
+					if(Main.obj_list.get(j)[0] == 8) Create.shop = j;
+					else if(Main.obj_list.get(j)[0] == 9) Create.npc = j;
+				}
+			}
+			
+			else
+			{
+				Main.obj_list.remove(spell[1]);
+				for(int j = 4 ; j < Main.obj_list.size() ; j++)			//update index
+				{
+					Main.obj_list.get(j)[1] = j;
+					if(Main.obj_list.get(j)[0] == 8) Create.shop = j;
+					else if(Main.obj_list.get(j)[0] == 9) Create.npc = j;
 				}
 			}
 		}
-		
 		else
 		{
 			Main.obj_list.remove(spell[1]);
 			for(int j = 4 ; j < Main.obj_list.size() ; j++)			//update index
 			{
 				Main.obj_list.get(j)[1] = j;
+				if(Main.obj_list.get(j)[0] == 8) Create.shop = j;
+				else if(Main.obj_list.get(j)[0] == 9) Create.npc = j;
+			}
+		}
+	}
+
+	//called upon a blobs collision, damages the target and destroyes it if hp <= 0
+	public static void fireball_hit(int[] spell , int[] victim){
+		if(victim[0] == 6)
+		{
+			
+			//if targets hp is < 1
+			if((victim[4] -= spell[4] / Create.gameobjects[victim[0]].defe) < 1)
+			{
+				
+				//get bugs
+				Create.hero1.setBugs(Create.hero1.getBugs() +Create.gameobjects[victim[0]].bugs);
+				
+				//get ep
+				Create.hero1.ep += Create.gameobjects[victim[0]].ep;
+				Create.hero2.ep += Create.gameobjects[victim[0]].ep;
+				
+				Main.obj_list.remove(spell[1]);
+				Main.obj_list.remove(victim[1]);
+				for(int j = 4 ; j < Main.obj_list.size() ; j++)			//update index
+				{
+					Main.obj_list.get(j)[1] = j;
+					if(Main.obj_list.get(j)[0] == 8) Create.shop = j;
+					else if(Main.obj_list.get(j)[0] == 9) Create.npc = j;
+				}
+			}
+			
+			else
+			{
+				Main.obj_list.remove(spell[1]);
+				for(int j = 4 ; j < Main.obj_list.size() ; j++)			//update index
+				{
+					Main.obj_list.get(j)[1] = j;
+					if(Main.obj_list.get(j)[0] == 8) Create.shop = j;
+					else if(Main.obj_list.get(j)[0] == 9) Create.npc = j;
+				}
+			}
+		}
+		else
+		{
+			Main.obj_list.remove(spell[1]);
+			for(int j = 4 ; j < Main.obj_list.size() ; j++)			//update index
+			{
+				Main.obj_list.get(j)[1] = j;
+				if(Main.obj_list.get(j)[0] == 8) Create.shop = j;
+				else if(Main.obj_list.get(j)[0] == 9) Create.npc = j;
 			}
 		}
 	}
