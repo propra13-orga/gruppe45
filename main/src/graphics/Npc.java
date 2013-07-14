@@ -89,35 +89,35 @@ public class Npc extends JFrame
 							"Um zu laufen benutze die Pfeiltasten, wie du den Shop &ouml;ffnest hast du ja schon <p> herausgefunden (mit S). <p> <p> "+
 							"H&uuml;te Dich vor den F&uuml;chsen, sie sind sehr hungrig und auf der Suche nach einem leckerem Gaumenschmau&szlig;.<p><p>" +
 							"Wenn du mir eine Schnecke mitbringst werde ich dir daf&uuml;r etwas ganz besonderes schenken. <p><p>" +
-							
 							"Zu passender Gelegenheit werde ich Dich aufsuchen. Bis dahin w&uuml;nsche ich Dir viel Gl&uuml;ck!</FONT></html>";
 							//For this first Quest you need to bring a snail to the Mole which is found in one of the next rooms(if you can´t find it in the second put annother one in the third, so you don´t need to restart the game)
-							//As a reward the Mole will give you the Fireball technique.
+							
 					text1_3 ="<html> <FONT COLOR=#FAFAD2> : Dankesch&ouml;n! <p>" +
 							"Ich weiß zwar nicht was das genau ist, und wof&uuml;r man sie braucht . . . aber ich wollte schon immer eine haben. <p>"+
-							"Nimm diesen Zauber als Zeichen meines Dankes.<p>"+
-							"Ich &uuml;berreiche Dir hiermit den magischen Feuerball. Diesen Zauber kannst Du durch die Leertaste auf Deine Gegner anwenden."+
-							"Du ben&ouml;tigst Mana um den Zauber anwenden zu k&ouml;nnen.<p><p>" +
-							"Sammle Mana Items in der Umgebung, wenn Du genug K&auml;fer hast kannst Du auch gern im Shop mit mir tauschen.</FONT></html>";
+							"Nimm diesen Zauber als Zeichen meines Dankes.<p></FONT></html>";
 							
 					text2_1 ="<html> <FONT COLOR=#FAFAD2> Wie ich sehe konntest Du den F&uuml;chsen entkommen. Doch sei weiterhin wachsam.<p> <p>" +
 							"Wenn Du Erfahrung sammeln willst kannst Du mit <p> ihnen  k&auml;mpfen. Dr&uuml;cke die Leertaste f&uuml;r einen Angriff. " +
 							"Jeder besiegte Fuchs bringt Dir Erfahrungspunkte, doch denke daran dass Du nicht unsterblich bist. <p><p>" +
 							"Sammle herumliegende Items auf um neue Energie zu tanken und Deinen HP Wert wieder zu erh&ouml;hen. " +
 							"Du kannst diesen Wert jederzeit &uuml;ber die Statusleiste im linken unteren Rand erkennen.</FONT></html>";
-							//Put a Poisontree over the exit, so that you can only pass when the Quest is fulfilled and you have spoken to Mole
-							//For this Quest you need to kill all foxes. 
-							//As a reward the Mole will destroy or change the Poisontree at the end of the Level.
+							
 					text2_3 ="<html> <FONT COLOR=#FAFAD2> Vielen Dank! Jetzt f&uuml;hle ich mich sicherer. <p> <p>" +
-							 "Lass mich dir zum Dank helfen! </FONT></html>";			 		
+							 "Lass mich dir zum Dank helfen!"+
+							"Ich &uuml;berreiche Dir hiermit den magischen Feuerball. Diesen Zauber kannst Du durch die Leertaste auf Deine Gegner anwenden."+
+							"Du ben&ouml;tigst Mana um den Zauber anwenden zu k&ouml;nnen.<p><p>" +
+							"Sammle Mana Items in der Umgebung, wenn Du genug K&auml;fer hast kannst Du auch gern im Shop mit mir tauschen.</FONT></html>";
+					
 					text3_1 ="<html> <FONT COLOR=#FAFAD2> Du machst tolle Fortschritte <p><p>" +
 							"Gratulation! <p><p>" +
 							"Ich brauche aber noch einmal deine Hilfe. Das Große Weiße Kaninchen hat mein Buch gestohlen. <p>" +
 							"Solltest du es finden bring es mir bitte zur&uuml;ck.<p><p>"+
 							"Aber sei vorsichtig, es ist sehr stark. </FONT></html>";
+					
 					text3_3 ="<html> <FONT COLOR=#FAFAD2> Ich kann dir gar nicht genug danken!! <p><p>"+
 							 "Ich hatte es fast ausgelesen, als es mir entwendet wurde. " +
 							 "Nun kann ich es endlich zu Ende lesen.</FONT></html>";
+					
 					textElse = "<html> <FONT COLOR=#FAFAD2> Leider kann ich Dir gerade nicht helfen</FONT></html>";
 				
 					ok2Button = new JButton("weiter");
@@ -131,11 +131,19 @@ public class Npc extends JFrame
 										text = text1_story;
 										ok2Button.setVisible(true);
 									}
-									else text = text1_3;
+									else
+									{
+										text = text1_3;
+										Main.obj_list.add(new int[] {10,Main.obj_list.size(),250,250,0,7});
+									}
 									break;
 						
 						case 2:		if(Main.room == 1) text = text2_1;
-									else text = text2_3;
+									else
+									{
+										text = text2_3;
+										Main.obj_list.add(new int[] {10,Main.obj_list.size(),500,250,0,6});
+									}
 									break;
 						
 						case 3:		if(Main.room == 1) text = text3_1;
@@ -157,6 +165,7 @@ public class Npc extends JFrame
 					okButton.addActionListener(new java.awt.event.ActionListener() {
 						public void actionPerformed(java.awt.event.ActionEvent evt) {		
 							main.Main.ingame = true;			//continue game
+							if(Main.level == 3 && Main.room == 3) System.exit(0);
 							dispose();							//close only ShopFrame
 						}
 			

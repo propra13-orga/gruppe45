@@ -1,6 +1,7 @@
 package gameobjects;
 
 import local.Create;
+import main.Main;
 
 
 public class Inventory {
@@ -15,8 +16,15 @@ public class Inventory {
 		switch(item[5]){
 		
 			//snail
-			case 0:	Create.hero1.snail = true;
-					Create.hero2.snail = true;
+			case 0:	for(int i = 4 ; i < Main.obj_list.size() ;i++)
+					{
+							if(Main.obj_list.get(i)[0] == 13)
+							{
+								Main.obj_list.remove(i);
+								i--;
+							}
+							Main.obj_list.get(i)[1] = i;
+					}
 			
 			//mp-pot
 			case 4:	this.inventory[0] = add(1,this.inventory[0]);

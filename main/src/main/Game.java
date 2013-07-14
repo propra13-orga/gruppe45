@@ -62,15 +62,13 @@ public class Game extends Thread{
 				}
 			}
 			
-			if((Main.room += 1) > 3)
+			Main.room += 1;
+			MasterFrame.set = true;
+			if(Main.room > 3)
 			{
 				Main.room = 1;
-				MasterFrame.set = true;
-				if((Main.level += 1) > 3)
-				{
-					System.exit(0);
-				}
-				if(Main.level == 2) Create.hero1.attack = true;
+				Main.level += 1;
+				
 			}
 		}
 	}
