@@ -1,13 +1,23 @@
 package main;
+
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 //import javax.swing.JPanel;
@@ -20,20 +30,44 @@ import javax.swing.border.LineBorder;
 
 import local.Create;
 import local.Fs;
+import local.Pics;
+import movement.Move;
 
 
 public class LevelEditor extends JFrame {
 	
+	private class board_object {
+		Image img;
+		int max=1;
+		int min=1;
+		int x=0;
+		int y=0;
+		int w=0;
+		int h=0;
+		boolean border;
+		JLabel boj;
+		
+		board_object(Image img, int max, int min, int x, int y) {
+			this.img = img;
+			this.max=max;
+			this.min=min;
+			this.x = x;
+			this.y = y;
+			border=false;
+		}
+
+	}
+
 	//create Gui Elements
 	JLayeredPane lpane;
 	JTextArea screen;
 	JLabel actual_figure;
 	JLabel debug_lbl;
 	JLabel bg, frm_lvl, frm_room, frm_selected_lvl, frm_selected_room, frm_selection_lvl, frm_selection_room ;
-	JLabel [] figure = new JLabel[50];
 	JLabel [] frm_lvl_list = new JLabel[3];
 	JLabel [] frm_room_list = new JLabel[3];
 	JButton btn_lvl_up, btn_room_up, btn_lvl_down, btn_room_down, btn_room_del, btn_lvl_del, btn_room_show;
+	JButton btn_obj_up, btn_obj_down, btn_obj_left, btn_obj_right;
 	JButton [] btn_gameobjects = new JButton[20];
 	int [] gameobjects_max = new int[20];
 	JButton [] btn_menu = new JButton[20];
@@ -43,6 +77,9 @@ public class LevelEditor extends JFrame {
 	boolean[][] rooms = new boolean[20][20];
 	ArrayList<Image> bg_image = new ArrayList<Image>();
 	ArrayList<String> room = new ArrayList<String>();
+	ArrayList<JLabel> figure = new ArrayList<JLabel>();
+	board_object act_object;
+	
 	
 	int x =30;
 	int y =620;
@@ -51,21 +88,30 @@ public class LevelEditor extends JFrame {
 	int step=0;
 	int ed_win_x_size=800;
 	int ed_win_y_size=700;
+	int ed_x_start=50;
+	int ed_y_start=150;
+	
 	int ed_x_size=ed_win_x_size-(2*x);
-	int ed_y_size=ed_win_x_size-300;
+	int ed_y_size=ed_win_y_size-200;
 	int selected_lvl=2, selected_room=2, act_lvl=2, act_room=2, max_lvl, max_room;
 	boolean debug=true;
 	
 	int max_x_blocks = Main.board_width/local.Create.block_groesse;
 	int max_y_blocks = Main.board_height/local.Create.block_groesse;
 	
-	int blockgroesse_x = ed_x_size/max_x_blocks;
-	int blockgroesse_y = ed_y_size/max_y_blocks;
+	int blockgroesse_x = ed_x_size/ max_x_blocks-1;
+	int blockgroesse_y =ed_y_size / max_y_blocks-1;
 	
+	float faktor_x= (float)Main.board_width/ed_x_size;
+	float faktor_y= (float)Main.board_height/ed_y_size;
+
+	private ArrayList <board_object> editor_objects = new ArrayList<board_object>();
 	
 	public LevelEditor(){
 		
-		setTitle("Du wolltest ein Fenster");
+		System.out.println(Main.board_width);
+		System.out.println(ed_x_size);
+		setTitle("Level-Editor");
 		setSize(ed_win_x_size, ed_win_y_size);							//Window Size
 		setResizable(false);						//Window frame not resizable
 		setAlwaysOnTop(true);
@@ -75,33 +121,60 @@ public class LevelEditor extends JFrame {
  		get_level_rooms();
  		//editor display field
  		
- 		bg = new JLabel(get_bg_image());
+ 		bg = new JLabel(get_index_next_bg_image());
  		bg.setBounds(x, 150, ed_x_size, ed_y_size);
  		bg.setBorder(LineBorder.createBlackLineBorder());
  		bg.setBackground(Color.black);
  		bg.setForeground(Color.black);
  		
  		
- 		y = 10;
+ 		y=10;
  		w=20;
  		h=20;
  		x=80;
  		
  		// Scroll Buttons
- 		btn_lvl_up= new JButton("up");
- 		btn_room_up= new JButton("up");
+ 		btn_lvl_up= new JButton("A");
+ 		btn_room_up= new JButton("A");
  		btn_lvl_up.setBounds(x, y, w, h);
+ 		btn_lvl_up.setToolTipText("Level-Liste scrollen");
  		btn_align_center(btn_lvl_up);
  		btn_room_up.setBounds(x+170, y, w, h);
+ 		btn_room_up.setToolTipText("Raum-Liste scrollen");
  		btn_align_center(btn_room_up);
  		
  		y+=100;
  		btn_lvl_down= new JButton("V");
  		btn_room_down= new JButton("V");
  		btn_lvl_down.setBounds(x, y, w, h);
+ 		btn_lvl_down.setToolTipText("Level-Liste scrollen");
  		btn_align_center(btn_lvl_down);
  		btn_room_down.setBounds(x+170, y, w, h);
+ 		btn_room_down.setToolTipText("Raum-Liste scrollen");
  		btn_align_center(btn_room_down);
+ 		
+ 		// Figur bewegen
+ 		x=380;
+ 		y=15;
+ 		w=20;
+ 		h=20;
+ 		btn_obj_up= new JButton("A");
+ 		btn_obj_down= new JButton("V");
+ 		btn_obj_left= new JButton("<");
+ 		btn_obj_right= new JButton(">");
+ 		btn_obj_up.setBounds(x, y, w, h);
+ 		btn_obj_up.setToolTipText("Figur nach oben bewegen");
+ 		btn_align_center(btn_obj_up);
+ 		btn_obj_down.setBounds(x, y+50, w, h);
+ 		btn_obj_down.setToolTipText("Figur nach unten bewegen");
+ 		btn_align_center(btn_obj_down);		
+ 		btn_obj_left.setBounds(x-25, y+25, w, h);
+ 		btn_obj_left.setToolTipText("Figur nach links bewegen");
+ 		btn_align_center(btn_obj_left);	
+ 		btn_obj_right.setBounds(x+25, y+25, w, h);
+ 		btn_obj_right.setToolTipText("Figur nach rechts bewegen");
+ 		btn_align_center(btn_obj_right);			
+ 		
  		
  		// Delete Buttons
  		x=25;
@@ -111,8 +184,10 @@ public class LevelEditor extends JFrame {
  		btn_lvl_del= new JButton("X");
  		btn_room_del= new JButton("X");
  		btn_lvl_del.setBounds(x, y, w, h);
+ 		btn_lvl_del.setToolTipText("Level löschen");
  		btn_align_center(btn_lvl_del);
  		btn_room_del.setBounds(x+170, y, w, h);
+ 		btn_room_del.setToolTipText("Raum löschen");
  		btn_align_center(btn_room_del);
  		
  		// create Level button
@@ -123,11 +198,12 @@ public class LevelEditor extends JFrame {
  		// show Level in Editor button
  		btn_room_show= new JButton(">");
  		btn_room_show.setBounds(x+170, y, w, h);
+ 		btn_room_show.setToolTipText("Raum im Editor anzeigen");
  		btn_align_center(btn_room_show);
  		
  		
  		y=30;
- 		x=400;
+ 		x=450;
  		w=50;
  		h=70;
  		step=w+5;
@@ -221,29 +297,35 @@ public class LevelEditor extends JFrame {
 		if  (debug) {
 			lpane.add(debug_lbl);		
 		}
-		lpane.add(btn_lvl_up);
-		lpane.add(btn_room_up);
-		lpane.add(btn_lvl_down);
-		lpane.add(btn_room_down);
-		lpane.add(btn_room_del);
-		lpane.add(btn_lvl_del);
-		lpane.add(btn_room_show);
-		lpane.add(bg);
-		lpane.add(frm_room);
-		lpane.add(frm_lvl);
+		lpane.add(btn_lvl_up,20);
+		lpane.add(btn_room_up,21);
+		lpane.add(btn_lvl_down,22);
+		lpane.add(btn_room_down,23);
+		lpane.add(btn_room_del,2);
+		lpane.add(btn_lvl_del,2);
+		lpane.add(btn_room_show,2);
+		lpane.add(bg,-200);
+		lpane.add(frm_room,15);
+		lpane.add(frm_lvl,16);
 		for (JLabel lvl_list: frm_lvl_list){
-			lpane.add(lvl_list);
+			lpane.add(lvl_list,17);
 		}
 		for (JLabel room_list: frm_room_list){
-			lpane.add(room_list);
-		}		
+			lpane.add(room_list,18);
+		}
 		
 		for (int i=0; i<z;i++) {
 			lpane.add(btn_gameobjects[i],10);
 		}
-		lpane.add(frm_selection_lvl);
-		lpane.add(frm_selection_room);
+		lpane.add(frm_selection_lvl,19);
+		lpane.add(frm_selection_room,20);
+		lpane.add(btn_obj_up,21);
+		lpane.add(btn_obj_down,22);
+		lpane.add(btn_obj_left,23);
+		lpane.add(btn_obj_right,24);
+		
 		this.setVisible(true);
+		editor_show_room();
 		
 		// debug Ausgabe
 		//
@@ -256,9 +338,8 @@ public class LevelEditor extends JFrame {
 	    		if (img_index>=bg_image.size()) {
 	    			img_index=0;
 	    		}
-	    		bg.setIcon(get_bg_image());
-	    		btn_gameobjects[0].setText(String.valueOf(img_index+1));
-	    		
+	    		bg.setIcon(get_index_next_bg_image());
+	    		btn_gameobjects[0].setText(String.valueOf(img_index+1));  		
 	    	}
 	    });
 		
@@ -292,9 +373,6 @@ public class LevelEditor extends JFrame {
 	    		selected_room--;
 	    		if (selected_room<1) { selected_room=1;}
 	    		write_label_txt("Raum ", frm_room_list, selected_room);
-	    		if(debug) {
-	    			//debug_lbl.setText(String.valueOf(selected_room));
-	    		}
 	    	}
 	    });
 		
@@ -310,7 +388,149 @@ public class LevelEditor extends JFrame {
 	    	}
 	    });
 		
-		// show room
+		// show room	
+		btn_room_show.addActionListener(new ActionListener(){
+	    	public void actionPerformed(ActionEvent e){
+	    		editor_show_room();
+	    	}
+	    });
+		
+		// move right	
+		btn_obj_right.addActionListener(new ActionListener(){
+	    	public void actionPerformed(ActionEvent e){
+	    		if (act_object!=null) {
+	    			act_object.x+=1;
+		    		act_object.boj.setLocation(ed_x_start+act_object.x*blockgroesse_x, ed_y_start+act_object.y*blockgroesse_y);
+	    		}
+	    	}
+	    });
+		btn_obj_left.addActionListener(new ActionListener(){
+	    	public void actionPerformed(ActionEvent e){
+	    		if (act_object!=null) {
+	    			act_object.x-=1;
+		    		act_object.boj.setLocation(ed_x_start+act_object.x*blockgroesse_x, ed_y_start+act_object.y*blockgroesse_y);
+	    		}
+	    	}
+	    });
+		btn_obj_down.addActionListener(new ActionListener(){
+	    	public void actionPerformed(ActionEvent e){
+	    		if (act_object!=null) {
+	    			act_object.y+=1;
+		    		act_object.boj.setLocation(ed_x_start+act_object.x*blockgroesse_x, ed_y_start+act_object.y*blockgroesse_y);
+	    		}
+	    	}
+	    });
+		btn_obj_up.addActionListener(new ActionListener(){
+	    	public void actionPerformed(ActionEvent e){
+	    		if (act_object!=null) {
+	    			act_object.y-=1;
+		    		act_object.boj.setLocation(ed_x_start+act_object.x*blockgroesse_x, ed_y_start+act_object.y*blockgroesse_y);
+	    		}
+	    	}
+	    });
+		
+	}
+	
+	// lese und positioniere Raum-Objekte auf dem Editor-Fenster
+	private void editor_show_room() {
+		int w,h;
+		Main.level = selected_lvl/2;
+		Main.room = selected_room/2;
+		bg.setIcon(get_lvl_bg_image());
+		for (JLabel jl: figure) {
+			jl.setVisible(false);
+			lpane.remove(jl);
+		}
+		figure.clear();
+		get_room_objects();
+		for (final board_object bo : editor_objects) {
+			w = (int) (bo.img.getWidth(null)/faktor_x);
+			h = (int) (bo.img.getHeight(null)/faktor_y);
+			ImageIcon bgi= new ImageIcon(bo.img.getScaledInstance(w,h,Image.SCALE_DEFAULT));
+			bo.boj = new JLabel(bgi);
+			bo.boj.setBounds(ed_x_start+blockgroesse_x*bo.x, ed_y_start+blockgroesse_y*bo.y, w, h);
+			lpane.add(bo.boj,5);
+			figure.add(bo.boj);
+			bo.boj.addMouseListener(new MouseAdapter() {
+				  public void mousePressed(MouseEvent e) {
+					  for(JLabel jl:figure){
+						  jl.setBorder(BorderFactory.createEmptyBorder());
+					  }
+					bo.boj.setBorder(LineBorder.createBlackLineBorder());
+					act_object=bo;					
+				  }
+				});
+			act_object=null;
+		}
+	}
+	
+	
+	// schreibe raum-Objekte aus Datei in editor_objects
+	private void get_room_objects() {
+		String dat_name;
+		int zeile=0;
+		int zeilenlaenge =0;
+		boolean feld=false;
+		editor_objects.clear();
+		String zeileninhalt ="";
+		dat_name = Main.level+"_"+Main.room;
+		FileReader fr;
+		try {
+			fr = new FileReader(Fs.data_pfad+dat_name+".txt");
+			BufferedReader br = new BufferedReader(fr);
+			do { // reading levelfile line by line
+				zeileninhalt = br.readLine(); 
+				if (zeileninhalt != null) { // empty line
+			        zeilenlaenge=zeileninhalt.length();
+			        if (zeileninhalt.charAt(0)=='#') { // reading chars of line
+			          feld=true;
+			        }
+			        if (feld) { // depending on char create objects on board
+			          for(int spalte=0; spalte<zeilenlaenge;spalte++){
+			            switch(zeileninhalt.charAt(spalte)) { 				
+			          case 'w':
+			        	  editor_objects.add(new board_object(Pics.tree,99,0,spalte, zeile));
+		                break;
+		              case 'k':
+		            	  editor_objects.add(new board_object(Pics.fox_l,99,0,spalte, zeile));
+		                break;
+		              case 't':
+		            	  editor_objects.add(new board_object(Pics.poisonous_tree,99,0,spalte, zeile));
+		                break;
+		              case '1':
+		            	  editor_objects.add(new board_object(Pics.bunny_l,1,1,spalte, zeile));
+		                break;
+		              case '2':
+		            	  editor_objects.add(new board_object(Pics.hedgehog_l,1,1, spalte, zeile));
+		                break;
+		              case 'b':
+		            	  editor_objects.add(new board_object(Pics.boss_l,1,0, spalte, zeile));
+			            break;
+		              case 's':
+		            	  editor_objects.add(new board_object(Pics.shop_active,1,0, spalte, zeile));
+		                break;
+		              case 'c':
+		            	  editor_objects.add(new board_object(Pics.sign,1,0,spalte, zeile));
+		                break;
+		              case 'z':
+		            	  editor_objects.add(new board_object(Pics.goal,1,1,spalte, zeile));
+		                break;
+		              default:
+		              // nix
+		              }
+		          }
+		        zeile++; // next line
+		        } else {
+		        
+		        }
+			}
+	    } while (zeileninhalt != null); // empty line -> EOF (end of file)
+			br.close();
+		
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	private void write_label_txt(String s, JLabel [] label_list, int act_selection){
@@ -389,9 +609,19 @@ public class LevelEditor extends JFrame {
 		jb.setHorizontalAlignment(SwingConstants.CENTER);
 	}
 	
-	private ImageIcon get_bg_image(){
+	private ImageIcon get_index_next_bg_image(){
 		ImageIcon bg_icon;
 		bg_icon= new ImageIcon(bg_image.get(img_index).getScaledInstance(ed_x_size,ed_y_size,Image.SCALE_DEFAULT));
+		return bg_icon;			
+	}
+	
+	private ImageIcon get_lvl_bg_image(){
+		String path = local.Fs.img_pfad+local.Fs.os_slash;
+		String file = "bg_"+(selected_lvl/2)+"_"+(selected_room/2)+".png";
+		Image lvl_bg = Toolkit.getDefaultToolkit().getImage(path+file);
+		ImageIcon bg_icon;
+		System.out.println(file);
+		bg_icon= new ImageIcon(lvl_bg.getScaledInstance(ed_x_size,ed_y_size,Image.SCALE_DEFAULT));
 		return bg_icon;			
 	}
 	
@@ -434,5 +664,5 @@ public class LevelEditor extends JFrame {
 			if (l==1 && r>max_room) {max_room=r;}
 			if (l==1 && r>max_lvl) {max_lvl=r;}
 		}
-	}
+	}	
 }
