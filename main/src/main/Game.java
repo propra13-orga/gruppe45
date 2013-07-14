@@ -63,7 +63,7 @@ public class Game extends Thread{
 			}
 			
 			Main.room += 1;
-			MasterFrame.set = true;
+			MasterFrame.set = false;
 			if(Main.room > 3)
 			{
 				Main.room = 1;

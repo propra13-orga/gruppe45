@@ -88,14 +88,17 @@ public class Bunny extends Figure {
 		}
 	}
 
-	public void cast_Spell(int direction , int x , int y)
+	public void cast_Fireball(int direction , int x , int y)
 	{
 		if( (this.getMp() >= 10) && (this.spell))
 		{
 			this.mp -= 10;
 			Main.obj_list.add(this.getPosition_Spell(12,direction,x,y));
 		}
-		else if(this.attack)
+	}
+	public void cast_Blob(int direction , int x , int y)
+	{
+		if(this.attack)
 		{
 			Main.obj_list.add(this.getPosition_Spell(11,direction,x,y));
 		}
