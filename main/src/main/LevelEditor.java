@@ -414,7 +414,7 @@ public class LevelEditor extends JFrame {
 		// verlassen (sollte eigentlich zum Hauptmenue gehen)
 		btn_exit.addActionListener(new ActionListener(){
 	    	public void actionPerformed(ActionEvent e){
-	    		System.exit(0);
+	    		dispose(); 
 	    	}
 	    });
 		

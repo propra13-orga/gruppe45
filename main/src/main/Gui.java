@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 
+import local.Create;
 import main.Main;
 import multiplayer.Multiplayer;
 
@@ -198,15 +199,18 @@ public class Gui extends JFrame implements ActionListener{
 				    		}
 				 });
 
-/*--------------------------------------------------------------------------------------------------------*/					
 		//choose own Level  button event listener
 				chooseButton.addActionListener(new ActionListener(){
 				    	public void actionPerformed(ActionEvent e){
-				    		//insert code to start own level
-				    		
+				    		if (pane.getLayer(chooseButton)==10 ){	
+				    		     dispose();  
+				    		     Main.custom = true;
+				    		     Create.create_room();
+				    		     Main.ingame = true;
+				    		     Main.go = true;
 				    		}
+				    	}
 				 });		
-/*--------------------------------------------------------------------------------------------------------*/				
 		
 	}
 	
