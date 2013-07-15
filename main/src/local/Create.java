@@ -44,8 +44,11 @@ public class Create {
 	// reads level file and creates game objects
 	public static void create_room(){
 		String zeileninhalt =""; // line content of a level file
+		String custom = "";
 		int zeilenlaenge =0;
 		int zeile;
+		
+		if(Main.custom) custom = "c_";
 		
 		try
 		{
@@ -60,7 +63,7 @@ public class Create {
 			gameobjects[4].height = gameobjects[4].getPic(0).getHeight(null);
 			gameobjects[4].width = gameobjects[4].getPic(0).getWidth(null);
 			
-			BufferedReader br = new BufferedReader(new FileReader(Fs.data_pfad+String.valueOf(Main.level)+"_"+String.valueOf(Main.room)+".txt"));
+			BufferedReader br = new BufferedReader(new FileReader(Fs.data_pfad+custom+String.valueOf(Main.level)+"_"+String.valueOf(Main.room)+".txt"));
 			zeile=0;
 			
 			// reading levelfile line by line , empty line -> EOF (end of file)

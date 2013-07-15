@@ -27,7 +27,8 @@ public static boolean music = true;				//music on/off
 public static boolean go = false;
 public static boolean onOff = true;
 public static boolean npc = false;
-public static boolean reset=true;
+public static boolean reset = true;
+public static boolean custom = false;
 public static String player1_name = "Bunny";
 public static String player2_name = "Hedgehog";
 public static MasterFrame window;
