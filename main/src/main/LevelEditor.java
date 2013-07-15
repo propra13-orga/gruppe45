@@ -10,6 +10,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -18,6 +19,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -130,7 +132,7 @@ public class LevelEditor extends JFrame {
  		//get_level_rooms();
  		//editor display field
  		
- 		bg = new JLabel(get_index_next_bg_image());
+ 		bg = new JLabel(get_index_bg_image());
  		bg.setBounds(x, 150, ed_x_size, ed_y_size);
  		bg.setBorder(LineBorder.createBlackLineBorder());
  		bg.setBackground(Color.black);
@@ -297,7 +299,7 @@ public class LevelEditor extends JFrame {
 	    		if (img_index>=bg_image.size()) {
 	    			img_index=0;
 	    		}
-	    		bg.setIcon(get_index_next_bg_image());
+	    		bg.setIcon(get_index_bg_image());
 	    		btn_gameobjects[0].setText(String.valueOf(img_index+1));  		
 	    	}
 	    });
@@ -538,11 +540,6 @@ public class LevelEditor extends JFrame {
 		}
 	}
 	
-	private void set_max_room(int selected_lvl) {
-		max_room=3;
-		max_lvl=3;
-	}
-	
 	private void btn_align_center(JButton jb) {
 		jb.setBorder(LineBorder.createBlackLineBorder());
 		jb.setVerticalTextPosition(SwingConstants.CENTER);
@@ -550,7 +547,7 @@ public class LevelEditor extends JFrame {
 		jb.setHorizontalAlignment(SwingConstants.CENTER);
 	}
 	
-	private ImageIcon get_index_next_bg_image(){
+	private ImageIcon get_index_bg_image(){
 		ImageIcon bg_icon;
 		bg_icon= new ImageIcon(bg_image.get(img_index).getScaledInstance(ed_x_size,ed_y_size,Image.SCALE_DEFAULT));
 		return bg_icon;			
@@ -558,51 +555,34 @@ public class LevelEditor extends JFrame {
 	
 	private ImageIcon get_lvl_bg_image(){
 		String path = local.Fs.img_pfad+local.Fs.os_slash;
-		String file = "bg_"+(selected_lvl)+"_"+(selected_room)+".png";
-		Image lvl_bg = Toolkit.getDefaultToolkit().getImage(path+file);
-		ImageIcon bg_icon;
-		bg_icon= new ImageIcon(lvl_bg.getScaledInstance(ed_x_size,ed_y_size,Image.SCALE_DEFAULT));
+		String file = "c_bg_"+(selected_lvl)+"_"+(selected_room)+".png";
+		Image lvl_bg;
+		ImageIcon bg_icon=null;
+		try {
+			lvl_bg = ImageIO.read(new File(path+file));
+			bg_icon= new ImageIcon(lvl_bg.getScaledInstance(ed_x_size,ed_y_size,Image.SCALE_DEFAULT));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//Image lvl_bg = Toolkit.getDefaultToolkit().getImage(path+file);
 		return bg_icon;			
 	}
 	
 	private void get_bg_images(){
 		String path = local.Fs.img_pfad+local.Fs.os_slash;
 		File folder = new File(path);
+		
 		for(File file : folder.listFiles())  {
-		  if (file.isFile() && file.getName().startsWith("c_bg_1")) {
-		    bg_image.add(Toolkit.getDefaultToolkit().getImage(path+file.getName()));
-		  } 
-		}
-	}
-	
-	private void get_level_rooms () {
-		String path = local.Fs.data_pfad;
-		File folder = new File(path);
-		for(File file : folder.listFiles())  {
-		  if (file.isFile() && file.getName().matches("[1-9]_[1-9].txt")) {
-		    room.add(file.getName());
-		  } 
-		}
-		Collections.sort(room);
-		max_lvl=0;
-		max_room=0;
-		// Array = false
-		for (boolean[] w:rooms){
-			for (boolean z:w) {
-				z=false;
+		  if (file.isFile() && 
+				  (file.getName().startsWith("c_bg_1") || file.getName().startsWith("c_bg_2"))) {
+		    try {
+				bg_image.add(ImageIO.read(new File(path+file.getName())));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-		}
-		for (String room_file: room) {
-			String[] t,tt;
-			int l;
-			int r;
-			t = room_file.split("_");
-			l = Integer.parseInt(t[0]);
-			tt = t[1].split(".txt");
-			r = Integer.parseInt(tt[0]);
-			rooms[l][r] = true;
-			if (l==1 && r>max_room) {max_room=r;}
-			if (l==1 && r>max_lvl) {max_lvl=r;}
+		  } 
 		}
 	}
 	
@@ -624,7 +604,11 @@ public class LevelEditor extends JFrame {
 	
 	private void save_as(int lvl, int room) {
 		String file = "c_"+lvl+"_"+room+".txt";
+		String file_img = "c_bg_"+lvl+"_"+room+".png";
+		BufferedImage image = (BufferedImage) bg_image.get(img_index);
+		File outputfile = new File(local.Fs.img_pfad+file_img);
 		try {
+		    ImageIO.write(image, "png", outputfile);
 			PrintWriter out = new PrintWriter(local.Fs.data_pfad+file);
 			for (String rl: room_line) {
 				out.println(rl);

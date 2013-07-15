@@ -49,7 +49,6 @@ public class Create {
 		int zeile;
 		
 		if(Main.custom) custom = "c_";
-		System.out.println(Main.custom);
 		try
 		{
 			temp.clear();
@@ -62,8 +61,6 @@ public class Create {
 			
 			gameobjects[4].height = gameobjects[4].getPic(0).getHeight(null);
 			gameobjects[4].width = gameobjects[4].getPic(0).getWidth(null);
-			
-			System.out.println(Fs.data_pfad+custom+String.valueOf(Main.level)+"_"+String.valueOf(Main.room)+".txt");
 			
 			BufferedReader br = new BufferedReader(new FileReader(Fs.data_pfad+custom+String.valueOf(Main.level)+"_"+String.valueOf(Main.room)+".txt"));
 			zeile=0;
