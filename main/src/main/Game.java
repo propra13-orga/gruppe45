@@ -5,9 +5,17 @@ import collision.Coll;
 import local.Create;
 import movement.*;
 
+/**
+ * Gamelogic
+ * @author Andreas Roth
+ *
+ */
 public class Game extends Thread{
 
-//manages the game
+/**
+ * Manages opponents, npc's, goal's
+ * @author Andreas Roth
+ */
 	public void run(){
 		Create.init();
 		

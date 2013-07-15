@@ -3,9 +3,19 @@ package collision;
 import local.Create;
 import main.Main;
 
+/**
+ * Contains all collision methods
+ * @author Andreas Roth
+ *
+ */
 public class Coll {
 
-	//returns false if player hits goal, good for while-loop
+	/**
+	 * Tests collision between players and goal;
+	 * good for while-loop.
+	 * @return <b>false</b> if player hits goal , <b>true</b> else
+	 * @author Andreas Roth
+	 */
 	public static boolean goal(){
 		if (   (Main.obj_list.get(2)[2] < Main.obj_list.get(1)[2] + Create.gameobjects[Main.obj_list.get(1)[0]].width)
 			&& (Main.obj_list.get(2)[2] + Create.gameobjects[Main.obj_list.get(2)[0]].width > Main.obj_list.get(1)[2])
@@ -27,7 +37,10 @@ public class Coll {
 		return true;
 	}
 
-	//changes value of Main.npc if player hits npc
+	/**
+	 * Changes value of Main.npc if player hits npc.
+	 * @author Andreas Roth
+	 */
 	public static void npc(){
 		if(local.Create.npc > 0){
 			int i = local.Create.npc;
@@ -53,7 +66,10 @@ public class Coll {
 		}
 	}
 
-	//sets Main.shop = true if player in range
+	/**
+	 * Sets Main.shop = true if player in range
+	 * @author Andreas Roth
+	 */
 	public static void shop(){
 		if(local.Create.shop > 0){
 			int i = local.Create.shop;
@@ -79,7 +95,10 @@ public class Coll {
 		}
 	}
 
-	//invokes poisoning
+	/**
+	 * Invokes poisoning
+	 * @author Andreas Roth
+	 */
 	public static void poison(){
 		for(int i = 4 ; i < Main.obj_list.size() ; i++)
 		{
@@ -106,7 +125,14 @@ public class Coll {
 		}
 	}
 
-	//returns true if no collision, else invokes event
+	/**
+	 * Tests if a figure collides with anything
+	 * @param tester figure that tests
+	 * @param x pixels moved on x-axis
+	 * @param y pixels moved on y-axis
+	 * @return <b>false</b> if collision, <b>true</b> else
+	 * @author Andreas Roth
+	 */
 	public static boolean coll(int[] tester , int x , int y){
 		for(int i = 2 ; i < Main.obj_list.size() ; i++)
 		{

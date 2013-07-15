@@ -26,7 +26,7 @@ public class Gui extends JFrame implements ActionListener{
 	JLabel foxLabel, treeLabel1,treeLabel2, treeLabel3, backLabel, titleLabel, bunnyLabel, hedgeLabel, shopLabel,
 			messageLabel, messageLabelIn, player1Label, player2Label, playerMod, name1Auf, name2Auf;
 	
-	JButton go, exit, person, option, backButton, editorButton, multyButton ,player1Icon, player2Icon ;
+	JButton go, exit, person, option, backButton, editorButton, multyButton ,player1Icon, player2Icon, chooseButton ;
 	JLayeredPane pane;
 	JTextField name1,name2;
 	
@@ -71,6 +71,7 @@ public class Gui extends JFrame implements ActionListener{
 		pane.add(playerMod, new Integer(0));
 		pane.add(name1Auf, new Integer(0));
 		pane.add(name2Auf, new Integer(0));
+		pane.add(chooseButton, new Integer(10));
 	
 		//pane.setVisible(true);
 		
@@ -106,6 +107,7 @@ public class Gui extends JFrame implements ActionListener{
 	     		pane.setLayer(playerMod,515);
 	     		pane.setLayer(name1Auf, 516);
 	     		pane.setLayer(name2Auf, 516);
+	     		pane.setLayer(chooseButton, 0);
 	     	
 	     		}
 	    });
@@ -122,6 +124,7 @@ public class Gui extends JFrame implements ActionListener{
 		   		pane.setLayer(backButton, 515);
 		   		pane.setLayer(editorButton, 0);
 		   		pane.setLayer(multyButton , 0);
+		   		pane.setLayer(chooseButton, 0);
 		   	}
 		});
 		
@@ -145,7 +148,9 @@ public class Gui extends JFrame implements ActionListener{
 	     		pane.setLayer(name2, 0);
 	     		pane.setLayer(playerMod, 0);
 	     		pane.setLayer(name1Auf, 0);
-	     		pane.setLayer(name2Auf, 0);	  
+	     		pane.setLayer(name2Auf, 0);	 
+	     		pane.setLayer(chooseButton, 10);
+	     	
 	     		
 	     		//puts input name into variable, needs to be connected to Hero
 	     		String name1S = name1.getText();
@@ -192,6 +197,17 @@ public class Gui extends JFrame implements ActionListener{
 				    			LevelEditor editor = new LevelEditor();}
 				    		}
 				 });
+
+/*--------------------------------------------------------------------------------------------------------*/					
+		//choose own Level  button event listener
+				chooseButton.addActionListener(new ActionListener(){
+				    	public void actionPerformed(ActionEvent e){
+				    		if(Main.custom) Main.custom = false;
+				    		else Main.custom = true;
+				    		local.Create.create_room();
+				    		}
+				 });		
+/*--------------------------------------------------------------------------------------------------------*/				
 		
 	}
 	
@@ -246,10 +262,17 @@ public class Gui extends JFrame implements ActionListener{
 	 		editorButton.setOpaque(true);
 	 		editorButton.setBackground(Color.black);
 	 		editorButton.setForeground(Color.white);
+	 		
+	 		//choose Button
+	 		chooseButton = new JButton("Eigenes Level");
+	 		chooseButton.setBounds(width-320, height-240,200,30);
+	 		chooseButton.setOpaque(true);
+	 		chooseButton.setBackground(Color.black);
+	 		chooseButton.setForeground(Color.white);
 
 	 		//exit button
 	 		exit = new JButton("Beenden");
-	 		exit.setBounds(width-320,height-240,200,30);
+	 		exit.setBounds(width-320,height-200,200,30);
 	 		exit.setForeground(Color.white );
 	 		exit.setBackground(Color.black);
 			 		
@@ -331,9 +354,14 @@ public class Gui extends JFrame implements ActionListener{
 	 		playerMod = new JLabel ("Single Player Modus aktiviert");
 	 		playerMod.setBounds(400,560,220,30);
 	 		
-	 		//text description
+	 		
+	 		
+	 		
 
+
+	 		
 	 	}
 	
 	 }
+ 
 }
