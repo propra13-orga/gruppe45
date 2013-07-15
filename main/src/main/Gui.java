@@ -128,7 +128,7 @@ public class Gui extends JFrame implements ActionListener{
 		   	}
 		});
 		
-		//Zurück button event listener
+		//ZurÃ¼ck button event listener
 		backButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				pane.setLayer(messageLabel , 0);
@@ -202,9 +202,8 @@ public class Gui extends JFrame implements ActionListener{
 		//choose own Level  button event listener
 				chooseButton.addActionListener(new ActionListener(){
 				    	public void actionPerformed(ActionEvent e){
-				    		if(Main.custom) Main.custom = false;
-				    		else Main.custom = true;
-				    		local.Create.create_room();
+				    		//insert code to start own level
+				    		
 				    		}
 				 });		
 /*--------------------------------------------------------------------------------------------------------*/				
@@ -264,7 +263,7 @@ public class Gui extends JFrame implements ActionListener{
 	 		editorButton.setForeground(Color.white);
 	 		
 	 		//choose Button
-	 		chooseButton = new JButton("Eigenes Level");
+	 		chooseButton = new JButton("eigenes Level");
 	 		chooseButton.setBounds(width-320, height-240,200,30);
 	 		chooseButton.setOpaque(true);
 	 		chooseButton.setBackground(Color.black);
@@ -276,7 +275,7 @@ public class Gui extends JFrame implements ActionListener{
 	 		exit.setForeground(Color.white );
 	 		exit.setBackground(Color.black);
 			 		
-	 		backButton = new JButton("Zurück");
+	 		backButton = new JButton("ZurÃ¼ck");
 	 		backButton.setBounds(400,600,200,30);
 	 		backButton.setOpaque(true);
 	 		backButton.setBackground(Color.black);
