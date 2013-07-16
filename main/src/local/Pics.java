@@ -5,12 +5,12 @@ import java.io.IOException;
 import java.awt.*;
 import javax.imageio.ImageIO;
 
-public class Pics{		public static Image	abyss, attention, back, bg_1_1, bg_2_1, blob, book, boss_l, boss_r, bug, 
-							bunny_l, bunny_l_motion, bunny_r, bunny_r_motion, bush, carrot, cave, 
-							fireball, fireball_d, fireball_l, fireball_r, fireball_u, flower, fox_l, fox_r, goal, 
+public class Pics{		public static Image	abyss, attention, back, bang, bam, bg_1_1, bg_2_1, blob, book, boom, boss_l, boss_r, bug, 
+							bunny_l, bunny_l_motion, bunny_r, bunny_r_motion, bush, carrot, carrot_tree, cave, crash, 
+							fireball, fireball_d, fireball_l, fireball_r, fireball_u, flower, fox_l, fox_r, gameOver, goal, 
 							healthbar_green, healthbar_yellow, healthbar_red, hedgehog_l, hedgehog_r, hero2, hp, hole, 
-							icon1, icon2, life, lives_img, matrix, mole, mp, 
-							peace, poisonous_tree, rock, sign, snail, shop_active, shop_inactive, tree;
+							icon1, icon2, kaboom, life, lives_img, matrix, mole, mp, 
+							peace, peng, poison, poisonous_tree, pow, rock, sign, snail, shop_active, shop_inactive, tree, won1, won2;
 	
 	public static void loadPics(){
 	
@@ -48,7 +48,7 @@ public class Pics{		public static Image	abyss, attention, back, bg_1_1, bg_2_1, 
 		shop_active = ImageIO.read(new File (local.Fs.img_pfad+"shop_active.png"));
 		shop_inactive = ImageIO.read(new File (local.Fs.img_pfad+"shop_inactive.png"));
 		mole = ImageIO.read(new File (local.Fs.img_pfad+"shop_active.png"));
-		carrot = ImageIO.read(new File (local.Fs.img_pfad+"carrot_tree.png"));
+		carrot_tree = ImageIO.read(new File (local.Fs.img_pfad+"carrot_tree.png"));
 		cave = ImageIO.read(new File (local.Fs.img_pfad+"cave.jpg"));		
 		tree = ImageIO.read(new File (local.Fs.img_pfad+"wall_1.png"));
 		bush = ImageIO.read(new File (local.Fs.img_pfad+"wall_2.png"));
@@ -65,6 +65,18 @@ public class Pics{		public static Image	abyss, attention, back, bg_1_1, bg_2_1, 
 		bg_2_1  = ImageIO.read(new File (local.Fs.img_pfad+"bg_2_1.png"));
 		abyss  = ImageIO.read(new File (local.Fs.img_pfad+"rabbit_abyss.jpg"));
 		matrix = ImageIO.read(new File (local.Fs.img_pfad+"matrix.jpg"));
+		poison = ImageIO.read(new File (local.Fs.img_pfad+"poison.png"));
+		won1 = ImageIO.read(new File (local.Fs.img_pfad+"won1.png"));
+		won2 = ImageIO.read(new File (local.Fs.img_pfad+"win2.png"));
+		pow = ImageIO.read(new File (local.Fs.img_pfad+"pow.png"));
+		peng = ImageIO.read(new File (local.Fs.img_pfad+"peng.png"));
+		kaboom = ImageIO.read(new File (local.Fs.img_pfad+"kaboom.png"));
+		crash = ImageIO.read(new File (local.Fs.img_pfad+"crash.png"));
+		boom = ImageIO.read(new File (local.Fs.img_pfad+"boom.png"));
+		bang = ImageIO.read(new File (local.Fs.img_pfad+"bang.png"));
+		bam = ImageIO.read(new File (local.Fs.img_pfad+"bam.png"));
+		gameOver = ImageIO.read(new File (local.Fs.img_pfad+"gameOver.png"));
+		carrot = ImageIO.read(new File (local.Fs.img_pfad+"carrot.png"));
 	}
 		
 	catch(IOException e)

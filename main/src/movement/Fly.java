@@ -3,8 +3,16 @@ package movement;
 import local.Create;
 import main.Main;
 
+/**
+ * Observes and controls movement of all spells
+ * @author Andreas Roth
+ *
+ */
 public class Fly {
 
+	/**
+	 * Moves all spells in their directions, removes them if they leave the board
+	 */
 	public static void fly(){
 	
 		int STEP = 20;

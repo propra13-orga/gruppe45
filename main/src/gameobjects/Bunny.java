@@ -3,10 +3,14 @@ package gameobjects;
 import java.awt.Image;
 import main.Main;
 
-// hero class
+
+/**
+ * Hero class
+ * @author Andreas Roth
+ *
+ */
 public class Bunny extends Figure {
 	public Image lives_img = local.Pics.lives_img;
-//	public Image lives_img=Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"lives_bunny.png");
 
 	public int lives = 2;
 	public int mp = 100;
@@ -35,6 +39,9 @@ public class Bunny extends Figure {
 		return this.dmg * this.level;
 	}
 
+	/**
+	 * Parameterless constructor
+	 */
 	public Bunny () {
 		super();
 		this.level = 1;
@@ -45,21 +52,37 @@ public class Bunny extends Figure {
 		this.width = local.Pics.bunny_l.getWidth(null);
 	}
 
+	/**
+	 * Getter for figures bug value
+	 * @return <b>int</b> bug
+	 */
 	public int getBugs()
 	{
 		return this.bugs;
 	}
 
+	/**
+	 * Setter for figures bug value
+	 * @param bugs - added value
+	 */
 	public void setBugs(int bugs)
 	{
 		this.bugs = bugs;
 	}
 
+	/**
+	 * Getter for figures mp value
+	 * @return <b>int</b> mp
+	 */
 	public int getMp()
 	{
 		return this.mp;
 	}
 
+	/**
+	 * Setter for figures mp value
+	 * @param mp - added value
+	 */
 	public void setMp(int mp)
 	{
 		this.mp += mp;
@@ -69,11 +92,18 @@ public class Bunny extends Figure {
 		return this.hp;
 	}
 
+	/**
+	 * Setter for figures hp value
+	 * @param health - added value
+	 */
 	public void setHp(int health){
 		Main.obj_list.get(2)[4] += health;
 		if(Main.obj_list.get(2)[4] > 50 + this.level * 50) Main.obj_list.get(2)[4] = 50 + this.level * 50;
 	}
 
+	/**
+	 * Uses hp pot
+	 */
 	public void use_hp_pot()
 	{
 		if(this.bag.getHp_pot()){
@@ -81,6 +111,9 @@ public class Bunny extends Figure {
 		}
 	}
 
+	/**
+	 * Uses mp pot
+	 */
 	public void use_mp_pot()
 	{
 		if(this.bag.getMp_pot()){
@@ -88,6 +121,12 @@ public class Bunny extends Figure {
 		}
 	}
 
+	/**
+	 * Adds a fireball to Main.obj_list
+	 * @param direction - casters direction value
+	 * @param x - new fireballs position on x-axis
+	 * @param y - new fireballs position on y-axis
+	 */
 	public void cast_Fireball(int direction , int x , int y)
 	{
 		if( (this.getMp() >= 10) && (this.spell))
@@ -96,7 +135,13 @@ public class Bunny extends Figure {
 			Main.obj_list.add(this.getPosition_Spell(12,direction,x,y));
 		}
 	}
-	
+
+	/**
+	 * Adds blob to Main.obj_list
+	 * @param direction - casters direction value
+	 * @param x - new blobs position on x-axis
+	 * @param y - new blobs position on y-axis
+	 */
 	public void cast_Blob(int direction , int x , int y)
 	{
 		if(this.attack)
@@ -105,8 +150,15 @@ public class Bunny extends Figure {
 		}
 		
 	}
-	
 
+	/**
+	 * Calculates values of new spell
+	 * @param type - type of spell created
+	 * @param direction - direction in which spell is casted
+	 * @param x - casters position on x-axis
+	 * @param y - casters position on y-axis
+	 * @return spell that is to be added to Main.obj_list
+	 */
 	int[] getPosition_Spell(int type , int direction , int x , int y){
 		
 		int[] pos = new int[6];

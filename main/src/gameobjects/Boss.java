@@ -4,7 +4,11 @@ import java.awt.Image;
 
 import main.Main;
 
-//Boss class
+/**
+ * Boss class
+ * @author Andreas Roth
+ *
+ */
 public class Boss extends Fox{
 
 	@Override public Image getPic(int direction){
@@ -16,6 +20,9 @@ public class Boss extends Fox{
 		return 1000 * Main.level;
 	}
 
+	/**
+	 * Parameterless constructor
+	 */
 	public Boss(){
 		super();
 		this.destroyable = true;

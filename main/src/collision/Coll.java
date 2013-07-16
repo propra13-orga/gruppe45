@@ -14,7 +14,6 @@ public class Coll {
 	 * Tests collision between players and goal;
 	 * good for while-loop.
 	 * @return <b>false</b> if player hits goal , <b>true</b> else
-	 * @author Andreas Roth
 	 */
 	public static boolean goal(){
 		if (   (Main.obj_list.get(2)[2] < Main.obj_list.get(1)[2] + Create.gameobjects[Main.obj_list.get(1)[0]].width)
@@ -39,7 +38,6 @@ public class Coll {
 
 	/**
 	 * Changes value of Main.npc if player hits npc.
-	 * @author Andreas Roth
 	 */
 	public static void npc(){
 		if(local.Create.npc > 0){
@@ -68,7 +66,6 @@ public class Coll {
 
 	/**
 	 * Sets Main.shop = true if player in range
-	 * @author Andreas Roth
 	 */
 	public static void shop(){
 		if(local.Create.shop > 0){
@@ -96,8 +93,7 @@ public class Coll {
 	}
 
 	/**
-	 * Invokes poisoning
-	 * @author Andreas Roth
+	 * Damages player if he's too close to poisonous trees
 	 */
 	public static void poison(){
 		for(int i = 4 ; i < Main.obj_list.size() ; i++)
@@ -126,12 +122,11 @@ public class Coll {
 	}
 
 	/**
-	 * Tests if a figure collides with anything
-	 * @param tester figure that tests
+	 * Tests if one figure collides with another
+	 * @param tester testing figure
 	 * @param x pixels moved on x-axis
 	 * @param y pixels moved on y-axis
 	 * @return <b>false</b> if collision, <b>true</b> else
-	 * @author Andreas Roth
 	 */
 	public static boolean coll(int[] tester , int x , int y){
 		for(int i = 2 ; i < Main.obj_list.size() ; i++)
@@ -217,7 +212,11 @@ public class Coll {
 		return true;
 	}
 
-	//deals dmg to players
+	/**
+	 * Deals dmg to a figure, called by Coll.coll
+	 * @param dealer figure dealing dmg
+	 * @param reciever figure recieving dmg
+	 */
 	static void deal_dmg(int[] dealer , int[] reciever){
 		reciever[4] -= (Create.gameobjects[dealer[0]].dmg / Create.gameobjects[reciever[0]].defe);
 		if(reciever[4] < 1)
@@ -246,7 +245,11 @@ public class Coll {
 		}
 	}
 
-	//called upon a blobs collision, damages the target and destroyes it if hp <= 0
+	/**
+	 * Called upon a blobs collision, if it hits an enemy it deals dmg and if neccessary removes it.
+	 * @param spell blob
+	 * @param victim figure hit by the blob
+	 */
 	public static void blob_hit(int[] spell , int[] victim){
 		if(victim[0] == 6 || victim[0] == 7)
 		{
@@ -324,7 +327,11 @@ public class Coll {
 		}
 	}
 
-	//called upon a blobs collision, damages the target and destroyes it if hp <= 0
+	/**
+	 * Called upon a fireballs collision, if it hits a fox it deals dmg and if neccessary removes the fox.
+	 * @param spell fireball
+	 * @param victim figure hit by the fireball
+	 */
 	public static void fireball_hit(int[] spell , int[] victim){
 		if(victim[0] == 6)
 		{

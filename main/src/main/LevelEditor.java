@@ -657,7 +657,7 @@ public class LevelEditor extends JFrame {
 		            	  editor_objects.add(new board_object(Pics.sign,1,0,spalte, zeile,"c"));
 		                break;
 		              case 'm':
-		            	  editor_objects.add(new board_object(Pics.carrot,1,0,spalte, zeile,"m"));
+		            	  editor_objects.add(new board_object(Pics.carrot_tree,1,0,spalte, zeile,"m"));
 		                break;
 		              case 'z':
 		            	  editor_objects.add(new board_object(Pics.goal,1,1,spalte, zeile, "z"));

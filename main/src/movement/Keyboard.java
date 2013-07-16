@@ -9,13 +9,19 @@ import graphics.ShopFrame;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+/**
+ * Catches all KeyEvents, users main interface while playing
+ * @author Andreas Roth
+ */
 public class Keyboard implements KeyListener {
 
 	int key;
 	int[] bunny = Main.obj_list.get(2);
 	int[] hedgehog = Main.obj_list.get(3);
 	
-
+	/**
+	 * Reacts if key is pressed
+	 */
 	public void keyPressed (KeyEvent e){
 		key = e.getKeyCode();
 		
@@ -125,6 +131,9 @@ public class Keyboard implements KeyListener {
 		}
 	}
 	
+	/**
+	 * Reacts if key is released
+	 */
 	public void keyReleased(KeyEvent e){
 		key = e.getKeyCode();
 		
@@ -165,7 +174,10 @@ public class Keyboard implements KeyListener {
 			}
 		}
 	}
-
+	
+	/**
+	 * Reacts if key is typed
+	 */
 	public void keyTyped(KeyEvent e) {
 	}
 

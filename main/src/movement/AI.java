@@ -4,39 +4,27 @@ import local.Create;
 import main.Main;
 import collision.*;
 
+/**
+ * Observes and controls movement of all enemies
+ * @author Andreas Roth
+ */
 public class AI {
 
 	static int STEP = 5;
 
-	//uses move on all opponents
+	/**
+	 * Invokes random movement for all foxes and bosses
+	 */
 	public static void move_all_opp(){
 		for(int i = 4 ; i < Main.obj_list.size() ; i++){
-			if(Main.obj_list.get(i)[0] == 6 || Main.obj_list.get(i)[0] == 7) move(Main.obj_list.get(i));
+			if(Main.obj_list.get(i)[0] == 6 || Main.obj_list.get(i)[0] == 7) rand_move(Main.obj_list.get(i));
 		}
 	}
 
-	//moves an opponent
-	public static void move(int[] figure){
-		
-//		int closest_player = Range.range(figure);					//index(obj_list) of closest player
-//		
-//		if(closest_player == 0)										//no players in range
-//		{
-			rand_move(figure);
-//		}
-//		
-//		if(closest_player == 1)								//player 1 is closest in range
-//		{							
-//			intel_move(figure , Main.obj_list.get(2));
-//		}
-//		
-//		if(closest_player == 2)								//player 2 is closest in range
-//		{
-//			intel_move(figure , Main.obj_list.get(3));
-//		}
-	}
-
-	//random movement
+	/**
+	 * Moves an enemy in one direction until it collides with anything, then randomly chooses another
+	 * @param figure enemy moved
+	 */
 	static void rand_move(int[] figure){
 		if(rand_check(figure))
 		{
@@ -62,7 +50,11 @@ public class AI {
 		}
 	}
 
-	//checkes if movment in "direction" is possible, if not, returns true
+	/**
+	 * Tests if an enemy can move in its direction or if it collides with anything
+	 * @param figure testing enemy
+	 * @return <b>false</b> if movement is possible, <b>true</b> else
+	 */
 	static boolean rand_check(int[] figure){
 
 		switch(figure[5]){
@@ -108,10 +100,4 @@ public class AI {
 
 		return true;
 		}
-
-	//intelligent movement towards player
-	static void intel_move(int[] figure , int[] subject){
-		
-	}
-
 }

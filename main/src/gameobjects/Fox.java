@@ -4,7 +4,11 @@ import java.awt.Image;
 
 import main.Main;
 
-// fox class
+/**
+ * Standard enemy
+ * @author Andreas Roth
+ *
+ */
 public class Fox extends Figure {
 
 	@Override public Image getPic(int direction){
@@ -20,7 +24,10 @@ public class Fox extends Figure {
 		return this.dmg * Main.level;
 	}
 
-	public Fox () {
+	/**
+	 * Parameterless constructor
+	 */
+	public Fox() {
 		super();
 		this.dmg = 100;
 		this.ep = 1;

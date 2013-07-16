@@ -24,9 +24,9 @@ public class Multiplayer extends JFrame {
 	private JLayeredPane pane2;
 	
 	protected Gui menu;
-	protected JLabel hostLabel, ipLabel, connectLabel, chatInputLabel, readyLabel,optLabel,live1Label,live2Label; 
+	protected JLabel hostLabel, ipLabel, connectLabel, chatInputLabel, readyLabel,optLabel,live1Label,live2Label, hp2Label, hp1Label;
 	protected JButton verbindenButton, sendenButton, hostButton, multiGoButton, exitButton;
-	protected JComboBox mapBox,live1Box,live2Box;
+	protected JComboBox mapBox,live1Box,live2Box, hp1Box, hp2Box;
 	protected String hostName, ipV4, connectIP; 
 	protected JTextField chatField, ip1, ip2, ip3, ip4;
 	protected JTextArea chatArea;
@@ -37,6 +37,7 @@ public class Multiplayer extends JFrame {
 	protected MultiGame gameClient, gameServer;
 	protected String[] maps = {"Bitte Karte auswählen","Bunny Paradies","Im Abyss","Todesstachel","Matrix"};
 	protected String[] lives = {"1 Leben","2 Leben","3 Leben","4 Leben","5 Leben"};
+	protected String[] hps = {"50","100","150","200","250","300","350","400","450","500"};
 	public static int map = 0;
 	protected int instanz = 0;
 
@@ -82,10 +83,16 @@ public class Multiplayer extends JFrame {
 		pane2.add(live2Box,10);
 		pane2.add(live1Label,10);
 		pane2.add(live2Label,10);
+		pane2.add(hp1Label,10);
+		pane2.add(hp2Label,10);
+		pane2.add(hp1Box,10);
+		pane2.add(hp2Box,10);
 
 		
 		//start chat server to listen to port
 		server = new ChatServer(Multiplayer.this);
+		
+		
 		
 
 		
@@ -204,6 +211,8 @@ public class Multiplayer extends JFrame {
 					   						gameServer.sendMessage(server.client,Integer.toString(live2Box.getSelectedIndex()+1), "live2");			//sends client method that game is going to start
 					   						MultMasterFrame.lives1= live1Box.getSelectedIndex()+1;
 					   						MultMasterFrame.lives2= live2Box.getSelectedIndex()+1;
+					   						MultMasterFrame.hp1 = (hp1Box.getSelectedIndex()+1)*50;
+					   						MultMasterFrame.hp2 = (hp2Box.getSelectedIndex()+1)*50;
 					   						Multiplayer.this.dispose();									//closes multiplayer gui
 					   						menu.dispose();												//closes game gui
 					   						main.Main.window.dispose();
@@ -323,9 +332,11 @@ public class Multiplayer extends JFrame {
 
 			mapBox = new JComboBox(maps);
 			mapBox.setBounds(700, 91, 190, 30);
-			mapBox.setSelectedItem("Bitte Karte auswählen");
+			mapBox.setSelectedIndex(1);
+			//mapBox.setSelectedItem("Bitte Karte auswählen");
 			mapBox.setEditable(false);
 			mapBox.setEnabled(false);
+
 			
 			live1Label = new JLabel("Leben Spieler1:");
 			live1Label.setBounds(700, 141, 190, 20);
@@ -343,10 +354,26 @@ public class Multiplayer extends JFrame {
 			live2Box.setEnabled(false);
 			live2Box.setSelectedIndex(2);
 			
+			hp1Label = new JLabel("HP Punkte Spieler1:");
+			hp1Label.setBounds(700, 261, 190, 20);
+			hp1Box	= new JComboBox(hps);
+			hp1Box.setBounds(700, 281, 190,30);
+			hp1Box.setEditable(false);
+			hp1Box.setEnabled(false);
+			hp1Box.setSelectedIndex(2);
+			
+			hp2Label = new JLabel("HP Punkte Spieler2:");
+			hp2Label.setBounds(700, 311, 190, 20);
+			hp2Box	= new JComboBox(hps);
+			hp2Box.setBounds(700, 331, 190,30);
+			hp2Box.setEditable(false);
+			hp2Box.setEnabled(false);
+			hp2Box.setSelectedIndex(2);
+			
 			//player ready label
 			readyLabel = new JLabel("Spieler 2 bereit");
 			readyLabel.setForeground(Color.RED);
-			readyLabel.setBounds(700, 300, 150, 30);
+			readyLabel.setBounds(700, 500, 150, 30);
 			readyLabel.setVisible(false);
 			
 						

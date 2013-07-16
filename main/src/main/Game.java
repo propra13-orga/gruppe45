@@ -14,7 +14,6 @@ public class Game extends Thread{
 
 /**
  * Manages opponents, npc's, goal's
- * @author Andreas Roth
  */
 	public void run(){
 		Create.init();

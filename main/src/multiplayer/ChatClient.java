@@ -124,6 +124,14 @@ public class ChatClient extends Thread{
 						 MultMasterFrame.lives2=Integer.parseInt(value);
 					 }
 					 
+					 if (tag.equals("hp1")){
+						 MultMasterFrame.hp1=Integer.parseInt(value);
+					 }
+					 
+					 if (tag.equals("hp2")){
+						 MultMasterFrame.hp2=Integer.parseInt(value);
+					 }
+					 
 					 if (tag.equals("start")){
 						 gui.dispose();			//closes multiplayer gui
 						 gui.menu.dispose();	//closes game gui
@@ -134,13 +142,64 @@ public class ChatClient extends Thread{
 					 if (tag.equals("yPos")){
 						 MultMasterFrame.posA_Y = Integer.valueOf(value);
 					 	}
-					 
-					 if (tag.equals("weap")){
-						 Weapon weapon = new Weapon(50,Integer.valueOf(value),1);
-						 MultMasterFrame.weapons.add(weapon);
-					 }
-					
+					 if (tag.equals("weap"))
+					 {
+						 //System.out.println("value empfangen: "+value);
+						 String[] values = value.split(Pattern.quote("|"));
 						 
+						 /*asks if fireball is of player 2*/
+						 if ((values[4].equals("2")))//reuse array space 
+						 {
+							 MultMasterFrame.weapons.get(Integer.valueOf(values[2])).direction = 2;
+							 if (values[3].equals("false"))
+									 {
+								 		MultMasterFrame.weapons.get(Integer.valueOf(values[2])).used = false;
+									 }
+							
+						 }else
+						 {
+							 MultMasterFrame.weapons.get(Integer.valueOf(values[2])).direction = 2; 
+						 }
+				
+						 MultMasterFrame.weapons.get(Integer.valueOf(values[2])).posX = Integer.valueOf(values[0]);
+						 MultMasterFrame.weapons.get(Integer.valueOf(values[2])).posY = Integer.valueOf(values[1]);
+					 }
+					 
+						if (tag.equals("hit"))
+						{
+							MultMasterFrame.hit = true;
+						}
+						
+						if (tag.equals("poison"))
+						{
+							String[] values = value.split(Pattern.quote("|"));
+							MultMasterFrame.poisonX = Integer.valueOf(values[0]);
+							MultMasterFrame.poisonY = Integer.valueOf(values[1]);
+							MultMasterFrame.poisonSet = true;
+							
+						}
+						if (tag.equals("poisonGone"))
+						{
+							MultMasterFrame.poisonSet = false;
+						}
+						
+						if (tag.equals("lost1"))
+						{
+							MultMasterFrame.lost1 = true;
+						}
+						
+						if (tag.equals("lost2"))
+						{
+							MultMasterFrame.lost2 = true;
+						}
+						
+						if (tag.equals("carrot"))
+						{
+							MultMasterFrame.carrot = true;
+						}
+						
+										
+						
 /**---------------------------------------------------------------------------------------------------------------------------*/						 
 					 
 				 }

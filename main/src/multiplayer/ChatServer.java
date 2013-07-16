@@ -69,6 +69,8 @@ public class ChatServer extends Thread {
 		gui.mapBox.setEnabled(true);
 		gui.live1Box.setEnabled(true);
 		gui.live2Box.setEnabled(true);
+		gui.hp1Box.setEnabled(true);
+		gui.hp2Box.setEnabled(true);
 		//remove 1st slash from IP
 		char[] stringArray = clientIPraw.toCharArray();
 		clientIP="";
@@ -108,10 +110,16 @@ public class ChatServer extends Thread {
 						 if (tag.equals("yPos")){
 							 MultMasterFrame.posB_Y = Integer.valueOf(value);
 						 	}
-						 
+			
 						 if (tag.equals("weap")){
-							 Weapon weapon = new Weapon(1190,Integer.valueOf(value),2);
-							 MultMasterFrame.weapons.add(weapon);
+
+							 String[] values = value.split(Pattern.quote("|"));
+							 MultMasterFrame.weapons.get(Integer.valueOf(values[2])).posX = Integer.valueOf(values[0]);
+							 MultMasterFrame.weapons.get(Integer.valueOf(values[2])).posY = Integer.valueOf(values[1]);
+							 MultMasterFrame.weapons.get(Integer.valueOf(values[2])).direction = 2;
+							 MultMasterFrame.weapons.get(Integer.valueOf(values[2])).used = true;
+						//	 System.out.println("Empfangenes value: "+value);
+							 
 						 }
 						 
 /**---------------------------------------------------------------------------------------------------------------------------*/						 

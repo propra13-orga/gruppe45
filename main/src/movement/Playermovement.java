@@ -3,8 +3,16 @@ package movement;
 import local.Create;
 import main.Main;
 
+/**
+ * Moves players
+ * @author Andreas Roth
+ *
+ */
 public class Playermovement extends Thread{
 
+	/**
+	 * Moves players
+	 */
 	public void run(){
 		
 		int STEP = 10;

@@ -2,6 +2,11 @@ package gameobjects;
 
 import java.awt.Image;
 
+/**
+ * Secondary spell
+ * @author Andreas Roth
+ *
+ */
 public class Fireball extends Blob {
 
 	@Override public Image getPic(int direction){
@@ -13,6 +18,9 @@ public class Fireball extends Blob {
 		}
 	}
 	
+	/**
+	 * Parameterless constructor
+	 */
 	public Fireball() {
 		super();
 	}
