@@ -20,7 +20,9 @@ import main.*;
 public class Board extends Figure{
 
 	@Override public Image getPic(int direction){
-		return Toolkit.getDefaultToolkit().getImage(Fs.img_pfad + "bg_" + String.valueOf(Main.level) + "_" + String.valueOf(Main.room) + ".png");
+		String custom="";
+		if (Main.custom) custom="c_";
+		return Toolkit.getDefaultToolkit().getImage(Fs.img_pfad + custom + "bg_" + String.valueOf(Main.level) + "_" + String.valueOf(Main.room) + ".png");
 	}
 
 	public Board(){
