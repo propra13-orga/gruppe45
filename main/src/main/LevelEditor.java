@@ -37,9 +37,21 @@ import local.Fs;
 import local.Pics;
 import movement.Move;
 
+/**
+ * Edit your own levels
+ * @author Martin Knonsalla
+ *
+ */
 
 public class LevelEditor extends JFrame {
 	
+	/**
+	 * stores needed information for an object in
+	 * the editor window
+	 * 
+	 * @author Martin Knonsalla
+	 *
+	 */
 	private class board_object {
 		Image img;
 		int max=1;
@@ -53,6 +65,15 @@ public class LevelEditor extends JFrame {
 		boolean border;
 		JLabel boj;
 		
+		/**
+		 * 
+		 * @param img - image of the object
+		 * @param max - max # of this object in a room
+		 * @param min - min # of this object in a room 
+		 * @param x - blockposition x of the object in a room
+		 * @param y - blockposition y of the object in a room
+		 * @param chr - char for representing object in the room file (e.g. 1 for Player1)
+		 */
 		board_object(Image img, int max, int min, int x, int y, String chr) {
 			this.img = img;
 			this.max=max;
@@ -65,6 +86,9 @@ public class LevelEditor extends JFrame {
 			border=false;
 		}
 
+		/**
+		 * sets width and height in blocks 
+		 */
 		public void set_wh(){
 			this.w = img.getWidth(null)/50;
 			this.h = img.getHeight(null)/50;
@@ -117,7 +141,9 @@ public class LevelEditor extends JFrame {
 	float faktor_y= (float)Main.board_height/ed_y_size;
 
 	private ArrayList <board_object> editor_objects = new ArrayList<board_object>();
-	
+	/**
+	 * Level Editor with GUI definition and Mouse/ActionListeners
+	 */
 	public LevelEditor(){
 		
 		max_x_blocks -=2;
@@ -175,7 +201,7 @@ public class LevelEditor extends JFrame {
 	    	public void actionPerformed(ActionEvent e){
 	    		selected_lvl = sel_lvl.getSelectedIndex()+1;
 	    		selected_room = sel_room.getSelectedIndex()+1;
-	    		hide_del_button(act_object);
+	    		hide_del_button();
 	    		act_object=null;
 	    		editor_show_room(selected_lvl,selected_room);
 	    	}
@@ -184,7 +210,7 @@ public class LevelEditor extends JFrame {
 	    	public void actionPerformed(ActionEvent e){
 	    		selected_lvl = sel_lvl.getSelectedIndex()+1;
 	    		selected_room = sel_room.getSelectedIndex()+1;
-	    		hide_del_button(act_object);
+	    		hide_del_button();
 	    		act_object=null;
 	    		editor_show_room(selected_lvl,selected_room);
 	    	}
@@ -394,7 +420,7 @@ public class LevelEditor extends JFrame {
 		btn_del_obj.addActionListener(new ActionListener(){
 	    	public void actionPerformed(ActionEvent e){
 	    		if (act_object!=null) {
-	    			hide_del_button(act_object);
+	    			hide_del_button();
 	    			act_object.boj.setVisible(false);
 	    			figure.remove(act_object.boj);
 	    			editor_objects.remove(act_object);
@@ -422,6 +448,10 @@ public class LevelEditor extends JFrame {
 		
 	}
 	
+	/**
+	 * show delete button for the selected object
+	 * @param act_object - specifies to which object the del button applies
+	 */
 	private void show_del_button(board_object act_object) {
 		if (act_object.chr != "1" && act_object.chr != "2" && act_object.chr != "z") {
 			btn_del_obj.setLocation(ed_x_start+act_object.x*blockgroesse_x, ed_y_start+act_object.y*blockgroesse_y);
@@ -430,13 +460,22 @@ public class LevelEditor extends JFrame {
 			btn_del_obj.setVisible(false);
 		}
 	}
-	
-	private void hide_del_button(board_object act_object) {
+	/**
+	 * hide delete button, when no actual object
+	 */
+	private void hide_del_button() {
 		btn_del_obj.setLocation(0, 0);
 		btn_del_obj.setVisible(false);
 	}
 	
 	// lese Datei und positioniere Raum-Objekte auf dem Editor-Fenster
+	/**
+	 * updates position, images (read from the file) and ActionListeners
+	 * (when a different lvl or room was selected)
+	 * @param lvl - lvl to show
+	 * @param room - room to show
+	 */
+	
 	private void editor_show_room(int lvl, int room) {
 		int w,h;
 		bg.setIcon(get_lvl_bg_image());
@@ -470,6 +509,12 @@ public class LevelEditor extends JFrame {
 	
 	
 	// schreibe Raum-Objekte aus Datei in editor_objects
+	/**
+	 * reads room from file to ArrayList editor_objects (by line)
+	 * 
+	 * @param lvl - lvl to read
+	 * @param room - room to read
+	 */
 	private void get_room_objects(int lvl, int room) {
 		String dat_name;
 		int zeile=0;
@@ -540,6 +585,11 @@ public class LevelEditor extends JFrame {
 		}
 	}
 	
+	/**
+	 * sets border, text position and alignment for a JButton
+	 * 
+	 * @param jb - a JButton
+	 */
 	private void btn_align_center(JButton jb) {
 		jb.setBorder(LineBorder.createBlackLineBorder());
 		jb.setVerticalTextPosition(SwingConstants.CENTER);
@@ -547,11 +597,21 @@ public class LevelEditor extends JFrame {
 		jb.setHorizontalAlignment(SwingConstants.CENTER);
 	}
 	
+	/**
+	 *  returns ImageIcon with the actual bg_image depending on image_index
+	 * @return ImageIcon
+	 */
+	 
 	private ImageIcon get_index_bg_image(){
 		ImageIcon bg_icon;
 		bg_icon= new ImageIcon(bg_image.get(img_index).getScaledInstance(ed_x_size,ed_y_size,Image.SCALE_DEFAULT));
 		return bg_icon;			
 	}
+	
+	/**
+	 * reads bg_image from disk (depending on selected_room, selected_lvl)
+	 * @return ImageIcon
+	 */
 	
 	private ImageIcon get_lvl_bg_image(){
 		String path = local.Fs.img_pfad+local.Fs.os_slash;
@@ -569,6 +629,9 @@ public class LevelEditor extends JFrame {
 		return bg_icon;			
 	}
 	
+	/**
+	 * reads all bgg_images from disk to ArrayList bg_image
+	 */
 	private void get_bg_images(){
 		String path = local.Fs.img_pfad+local.Fs.os_slash;
 		File folder = new File(path);
@@ -586,6 +649,10 @@ public class LevelEditor extends JFrame {
 		}
 	}
 	
+	/**
+	 * creates String ArrayList with the game objects from the editor window 
+	 * @return ArrayList editor_line
+	 */
 	private ArrayList<String> get_room_from_editor() {
 		ArrayList<String> editor_line = new ArrayList<String>();
 		String e ="_";
@@ -602,6 +669,12 @@ public class LevelEditor extends JFrame {
 		return editor_line;
 	}
 	
+	/**
+	 * saves room file and bg image
+	 * 
+	 * @param lvl - lvl for the file names
+	 * @param room - room for the file names
+	 */
 	private void save_as(int lvl, int room) {
 		String file = "c_"+lvl+"_"+room+".txt";
 		String file_img = "c_bg_"+lvl+"_"+room+".png";

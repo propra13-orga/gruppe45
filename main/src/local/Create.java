@@ -9,8 +9,15 @@ import java.util.ArrayList;
 
 import main.Main;
 
+/**
+ * Creates vars to local paths (Fs.img_pfad , Fs.data_pfad)
+ * Depending on OS sets the right slashes (in a folder path) 
+ * @author Martin Knonsalla
+ *
+ */
+
 public class Create {
-	
+		
 	public static int block_groesse=50;
 	
 	public static Bunny hero1;
@@ -42,6 +49,12 @@ public class Create {
 	}
 	
 	// reads level file and creates game objects
+	
+	/**
+	 * Reading room from file depending on Main.lvl and Main.room
+	 * Switches between own created lvls (file prefix c_) and 'usual' game  
+	 */
+	
 	public static void create_room(){
 		String zeileninhalt =""; // line content of a level file
 		String custom = "";
@@ -170,6 +183,10 @@ public class Create {
 	}
 
 	//restores Main.obj_list if player dies
+
+	/**
+	 * restores obj_list like in the room file
+	 */
 	public static void restore(){
 		Main.obj_list = temp;
 	}

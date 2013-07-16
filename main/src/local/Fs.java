@@ -1,10 +1,9 @@
 package local;
 
-/*
- *  offers static information like fs.pfad (working dir), fs.os (operating system)
- *  fs.img_pfad (path to image files) and fs.data_pfad (path to level_files)
- *  
- *  called from main.java when start button pressed in GUI
+/**
+ * Creates vars to local paths (Fs.img_pfad , Fs.data_pfad)
+ * Depending on OS sets the right slashes (in a folder path) 
+ * @author Martin Knonsalla
  *
  */
 
