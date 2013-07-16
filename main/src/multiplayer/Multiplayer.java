@@ -257,8 +257,12 @@ public class Multiplayer extends JFrame {
 	//remove 1st slash from IP
 	char[] stringArray = ipV4.toCharArray();
 	String tmp="";
-	for(int i=0; i< (stringArray.length-1); i++){
+	if(stringArray.toString().equals("null")) tmp = "null";
+	else
+	{
+		for(int i=0; i< (stringArray.length-1); i++){
 		tmp += stringArray[i+1];
+	}
 	}
 	ipV4 = tmp;	
 		

@@ -279,7 +279,7 @@ public class Gui extends JFrame implements ActionListener{
 	 		exit.setForeground(Color.white );
 	 		exit.setBackground(Color.black);
 			 		
-	 		backButton = new JButton("ZurÃ¼ck");
+	 		backButton = new JButton("<html>Zur&uuml;ck</html>");
 	 		backButton.setBounds(400,600,200,30);
 	 		backButton.setOpaque(true);
 	 		backButton.setBackground(Color.black);
