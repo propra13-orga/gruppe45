@@ -4,7 +4,11 @@ import java.awt.Image;
 
 import main.Main;
 
-// hero class
+/**
+ * Secondary hero
+ * @author Andreas Roth
+ *
+ */
 public class Hedgehog extends Bunny {
 	public Image lives_img = local.Pics.lives_img;
 //	public Image lives_img=Toolkit.getDefaultToolkit().getImage(Fs.img_pfad+"lives_bunny.png");
@@ -19,6 +23,9 @@ public class Hedgehog extends Bunny {
 			 else return local.Pics.hedgehog_l;
 	}
 
+	/**
+	 * Parameterless constructor
+	 */
 	public Hedgehog () {
 		super();
 		this.level = 1;

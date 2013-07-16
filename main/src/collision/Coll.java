@@ -123,9 +123,9 @@ public class Coll {
 
 	/**
 	 * Tests if one figure collides with another
-	 * @param tester testing figure
-	 * @param x pixels moved on x-axis
-	 * @param y pixels moved on y-axis
+	 * @param tester - testing figure
+	 * @param x - pixels moved on x-axis
+	 * @param y - pixels moved on y-axis
 	 * @return <b>false</b> if collision, <b>true</b> else
 	 */
 	public static boolean coll(int[] tester , int x , int y){
@@ -214,8 +214,8 @@ public class Coll {
 
 	/**
 	 * Deals dmg to a figure, called by Coll.coll
-	 * @param dealer figure dealing dmg
-	 * @param reciever figure recieving dmg
+	 * @param dealer - figure dealing dmg
+	 * @param reciever - figure recieving dmg
 	 */
 	static void deal_dmg(int[] dealer , int[] reciever){
 		reciever[4] -= (Create.gameobjects[dealer[0]].dmg / Create.gameobjects[reciever[0]].defe);
@@ -247,8 +247,8 @@ public class Coll {
 
 	/**
 	 * Called upon a blobs collision, if it hits an enemy it deals dmg and if neccessary removes it.
-	 * @param spell blob
-	 * @param victim figure hit by the blob
+	 * @param spell - blob
+	 * @param victim - figure hit by the blob
 	 */
 	public static void blob_hit(int[] spell , int[] victim){
 		if(victim[0] == 6 || victim[0] == 7)
@@ -329,8 +329,8 @@ public class Coll {
 
 	/**
 	 * Called upon a fireballs collision, if it hits a fox it deals dmg and if neccessary removes the fox.
-	 * @param spell fireball
-	 * @param victim figure hit by the fireball
+	 * @param spell - fireball
+	 * @param victim - figure hit by the fireball
 	 */
 	public static void fireball_hit(int[] spell , int[] victim){
 		if(victim[0] == 6)

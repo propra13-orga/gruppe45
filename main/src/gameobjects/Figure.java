@@ -5,6 +5,7 @@ import java.awt.Image;
 /**
  * Superclass of all gameobjects
  * @author Andreas Roth
+ * @author Rebecca Simon
  */
 public class Figure {
 	

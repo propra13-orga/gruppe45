@@ -210,7 +210,7 @@ public class Gui extends JFrame implements ActionListener{
 				    		     Main.go = true;
 				    		}
 				    	}
-				 });		
+				 });
 		
 	}
 	
@@ -267,7 +267,7 @@ public class Gui extends JFrame implements ActionListener{
 	 		editorButton.setForeground(Color.white);
 	 		
 	 		//choose Button
-	 		chooseButton = new JButton("eigenes Level");
+	 		chooseButton = new JButton("Eigenes Spiel starten");
 	 		chooseButton.setBounds(width-320, height-240,200,30);
 	 		chooseButton.setOpaque(true);
 	 		chooseButton.setBackground(Color.black);

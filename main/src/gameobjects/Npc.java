@@ -8,6 +8,9 @@ public class Npc extends Figure{
 		return local.Pics.sign;
 	}
 
+	/**
+	 * Parameterless constructor
+	 */
 	public Npc(){
 		super();
 		this.height = local.Pics.sign.getHeight(null);

@@ -8,6 +8,9 @@ public class Inventory {
 	
 	public int[] inventory = {0,0};
 	
+	/**
+	 * Parameterless constructor
+	 */
 	public Inventory() {
 		
 	}

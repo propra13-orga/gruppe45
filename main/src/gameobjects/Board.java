@@ -9,6 +9,8 @@ import main.*;
 /**
  * Only used to hold the background image
  * @author Andreas Roth
+ * @author Martin Knonsalla
+ * @author Rebecca Simon
  *
  */
 public class Board extends Figure{

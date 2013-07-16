@@ -10,6 +10,9 @@ public class Shop  extends Figure{
 		else return local.Pics.shop_inactive;
 	}
 	
+	/**
+	 * Parameterless constructor
+	 */
 	public Shop () {
 		super();
 		this.height = local.Pics.shop_active.getHeight(null);

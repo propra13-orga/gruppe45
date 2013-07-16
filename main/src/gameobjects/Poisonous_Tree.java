@@ -9,6 +9,9 @@ public class Poisonous_Tree extends Figure {
 		return local.Pics.poisonous_tree;
 	}
 
+	/**
+	 * Parameterless constructor
+	 */
 	public Poisonous_Tree () {
 		super();
 		this.dmg = 2;

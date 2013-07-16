@@ -15,7 +15,12 @@ import main.Main;
 
 import java.awt.*;
 
-
+/**
+ * Npc frame
+ * @author Jessica Bachmann
+ * @author Rebacca Simon
+ *
+ */
 public class Npc extends JFrame 
 	{
 		private int height = Main.board_height;

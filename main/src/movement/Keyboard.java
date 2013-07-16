@@ -12,6 +12,8 @@ import java.awt.event.KeyListener;
 /**
  * Catches all KeyEvents, users main interface while playing
  * @author Andreas Roth
+ * @author Jessica Bachmann
+ * @author Rebecca Simon
  */
 public class Keyboard implements KeyListener {
 

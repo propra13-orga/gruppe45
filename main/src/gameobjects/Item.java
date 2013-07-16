@@ -36,6 +36,9 @@ public class Item extends Figure{
 		}
 	}
 	
+	/**
+	 * Parameterless constructor
+	 */
 	public Item() {
 		super();
 		this.height = local.Pics.mp.getHeight(null);

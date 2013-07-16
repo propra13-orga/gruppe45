@@ -3,7 +3,12 @@ package gameobjects;
 import java.awt.Image;
 import main.Main;
 
-// wall class
+/**
+ * Wall class
+ * @author Andreas Roth
+ * @author Martin Knonsalla
+ *
+ */
 public class Wall extends Figure {
 
 	@Override public Image getPic( int direction){
@@ -14,6 +19,9 @@ public class Wall extends Figure {
 		}
 	}
 	
+	/**
+	 * Parameterless constructor
+	 */
 	public Wall () {
 		super();	//change tree to variable according to level
 	}
