@@ -2,7 +2,12 @@ package gameobjects;
 
 import java.awt.Image;
 
-// todesbaum class
+/**
+ * Static enemy, damage over time
+ * @author Andreas Roth
+ * @author Martin Knonsalla
+ *
+ */
 public class Poisonous_Tree extends Figure {
 
 	@Override public Image getPic(int direction){

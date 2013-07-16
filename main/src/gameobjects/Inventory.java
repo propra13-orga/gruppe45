@@ -3,7 +3,12 @@ package gameobjects;
 import local.Create;
 import main.Main;
 
-
+/**
+ * Inventory carried by heroes
+ * @author Andreas Roth
+ * @author Martin Knonsalla
+ *
+ */
 public class Inventory {
 	
 	public int[] inventory = {0,0};
@@ -15,6 +20,10 @@ public class Inventory {
 		
 	}
 	
+	/**
+	 * Includes an item to heroes inventory
+	 * @param item - added item
+	 */
 	public void add(int[] item) {
 		switch(item[5]){
 		
@@ -63,6 +72,12 @@ public class Inventory {
 		}
 	}
 	
+	/**
+	 * Includes an item to heroes inventory
+	 * @param anzahl - amount included
+	 * @param pos - current amount
+	 * @return new amount
+	 */
 	public int add (int anzahl, int pos){
 		return pos += anzahl;
 	}

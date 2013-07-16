@@ -7,6 +7,7 @@ import main.Main;
 /**
  * Standard enemy
  * @author Andreas Roth
+ * @author Martin Knonsalla
  *
  */
 public class Fox extends Figure {

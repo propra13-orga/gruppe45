@@ -2,6 +2,11 @@ package gameobjects;
 
 import java.awt.Image;
 
+/**
+ * Item class
+ * @author Andreas Roth
+ *
+ */
 public class Item extends Figure{
 
 	public int info;

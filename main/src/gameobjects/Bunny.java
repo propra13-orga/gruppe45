@@ -7,6 +7,7 @@ import main.Main;
 /**
  * Hero class
  * @author Andreas Roth
+ * @author Martin Knonsalla
  *
  */
 public class Bunny extends Figure {

@@ -2,7 +2,12 @@ package gameobjects;
 
 import java.awt.Image;
 
-
+/**
+ * Shop class
+ * @author Andreas Roth
+ * @author Martin Knonsalla
+ *
+ */
 public class Shop  extends Figure{
 	
 	@Override public Image getPic(int direction){
