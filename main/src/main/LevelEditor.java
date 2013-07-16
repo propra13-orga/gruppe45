@@ -453,7 +453,7 @@ public class LevelEditor extends JFrame {
 	 * @param act_object - specifies to which object the del button applies
 	 */
 	private void show_del_button(board_object act_object) {
-		if (act_object.chr != "1" && act_object.chr != "2" && act_object.chr != "z") {
+		if (act_object.chr != "1" && act_object.chr != "2" && act_object.chr != "z" && act_object.chr != "6" && act_object.chr != "7") {
 			btn_del_obj.setLocation(ed_x_start+act_object.x*blockgroesse_x, ed_y_start+act_object.y*blockgroesse_y);
 			btn_del_obj.setVisible(true);
 		} else {
@@ -566,6 +566,12 @@ public class LevelEditor extends JFrame {
 		                break;
 		              case 'z':
 		            	  editor_objects.add(new board_object(Pics.goal,1,1,spalte, zeile, "z"));
+		                break;
+		              case '6':
+		            	  editor_objects.add(new board_object(Pics.blob,1,1,spalte, zeile, "6"));
+		                break;
+		              case '7':
+		            	  editor_objects.add(new board_object(Pics.fireball,1,1,spalte, zeile, "7"));
 		                break;
 		              default:
 		              // nix
