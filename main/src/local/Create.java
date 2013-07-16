@@ -49,7 +49,6 @@ public class Create {
 		int zeile;
 		
 		if(Main.custom) custom = "c_";
-		
 		try
 		{
 			temp.clear();
