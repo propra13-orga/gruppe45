@@ -12,6 +12,7 @@ import main.Main;
 /**
  * Creates vars to local paths (Fs.img_pfad , Fs.data_pfad)
  * Depending on OS sets the right slashes (in a folder path) 
+ * @author Andreas Roth
  * @author Martin Knonsalla
  *
  */
