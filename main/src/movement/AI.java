@@ -23,7 +23,7 @@ public class AI {
 
 	/**
 	 * Moves an enemy in one direction until it collides with anything, then randomly chooses another
-	 * @param figure enemy moved
+	 * @param figure - enemy moved
 	 */
 	static void rand_move(int[] figure){
 		if(rand_check(figure))
@@ -52,7 +52,7 @@ public class AI {
 
 	/**
 	 * Tests if an enemy can move in its direction or if it collides with anything
-	 * @param figure testing enemy
+	 * @param figure - testing enemy
 	 * @return <b>false</b> if movement is possible, <b>true</b> else
 	 */
 	static boolean rand_check(int[] figure){

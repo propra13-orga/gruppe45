@@ -1,5 +1,12 @@
 package multiplayer;
 
+/**
+ * decreases or increases hp and lives of player
+ * @author JessicaBa
+ *
+ */
+
+
 public class Damage 
 {
 	public static boolean done = false;
@@ -9,6 +16,14 @@ public class Damage
 		
 	}
 	
+	/**
+	 * decreases hp points
+	 * @param value - amount of points
+	 * @param player
+	 * @param typ
+	 */
+	  
+	 
 	public void suffer(int value, int player, String typ)
 	{
 		

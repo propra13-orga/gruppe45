@@ -32,6 +32,12 @@ public class Npc extends JFrame
 		JLayeredPane pane;
 		JButton okButton, ok2Button;
 		private String text, text1_story, text1_1, text1_3, text2_1, text2_3, text3_1, text3_3, textElse;
+	
+		/**
+		 * Creates a window and shows text, written in HTML, if you talk to the NPC (shield); the text in every Level is different
+		 * a second button is given to the first window in Level 1_1 to brows to a second page
+		 * 
+		 */
 		
 		public Npc()
 			{	
@@ -59,6 +65,13 @@ public class Npc extends JFrame
 			
 			}
 		
+		/**
+		 * 
+		 * Creates Panel and sets background, writes the text in the windows
+		 *
+		 */
+		
+		
 		public class NpcPanel1 extends JPanel
 		{
 			public NpcPanel1()
@@ -69,12 +82,15 @@ public class Npc extends JFrame
 				background.setOpaque(true);
 				background.setBackground(Color.black);
 				
-				//Label mole
+				/*
+				 * Label mole
+				 */
 				moleLabel = new JLabel(new ImageIcon(local.Pics.mole));
 				moleLabel.setBounds(280, 250, 110, 150);
 
-					
-					//text content for different level
+					/*
+					 * text content for different level
+					 */
 					
 					
 				text1_story= "<html> <FONT COLOR=#FAFAD2>"+ 
@@ -93,8 +109,10 @@ public class Npc extends JFrame
 						"H&uuml;te Dich vor den F&uuml;chsen, sie sind sehr hungrig und auf der Suche nach einem leckerem Gaumenschmau&szlig;.<p><p>" +
 						"Wenn du mir eine Schnecke mitbringst werde ich dir daf&uuml;r etwas ganz besonderes schenken. <p><p>" +
 						"Zu passender Gelegenheit werde ich Dich aufsuchen. Bis dahin w&uuml;nsche ich Dir viel Gl&uuml;ck!</FONT></html>";
-						//For this first Quest you need to bring a snail to the Mole which is found in one of the next rooms(if you can´t find it in the second put annother one in the third, so you don´t need to restart the game)
-						//As a reward the Mole will give you the Fireball technique.
+						/*
+						 *For this first Quest you need to bring a snail to the Mole which is found in one of the next rooms(if you can´t find it in the second put annother one in the third, so you don´t need to restart the game)
+						 *As a reward the Mole will give you the Fireball technique.
+						 */
 				text1_3 ="<html> <FONT COLOR=#FAFAD2>Dankesch&ouml;n! <p>"+ 
 						"Ich wei&szlig; zwar nicht was das genau ist, und wof&uuml;r man sie braucht . . . aber ich wollte schon immer eine haben. <p>"+
 						"Nimm diesen Zauber als Zeichen meines Dankes.<p>"+
@@ -107,9 +125,11 @@ public class Npc extends JFrame
 						"Jeder besiegte Fuchs bringt Dir Erfahrungspunkte, doch denke daran dass Du nicht unsterblich bist. <p><p>" +
 						"Sammle herumliegende Items auf um neue Energie zu tanken und Deinen HP Wert wieder zu erh&ouml;hen. " +
 						"Du kannst diesen Wert jederzeit &uuml;ber die Statusleiste im linken unteren Rand erkennen.</FONT></html>";
-						//Put a Poisontree over the exit, so that you can only pass when the Quest is fulfilled and you have spoken to Mole
-						//For this Quest you need to kill all foxes. 
-						//As a reward the Mole will destroy or change the Poisontree at the end of the Level.
+					   /*
+					    * Put a Poisontree over the exit, so that you can only pass when the Quest is fulfilled and you have spoken to Mole
+						*For this Quest you need to kill all foxes. 
+						*As a reward the Mole will destroy or change the Poisontree at the end of the Level.
+						*/
 				text2_3 ="<html> <FONT COLOR=#FAFAD2> Vielen Dank! Jetzt f&uuml;hle ich mich sicherer. <p> <p>" +
 						 "Lass mich dir zum Dank helfen! </FONT></html>";			 		
 				text3_1 ="<html> <FONT COLOR=#FAFAD2> Du machst tolle Fortschritte <p><p>" +
@@ -123,6 +143,10 @@ public class Npc extends JFrame
 				textElse = "<html> <FONT COLOR=#FAFAD2> Leider kann ich Dir gerade nicht helfen</FONT></html>";
 				
 				text = textElse;
+				
+				/*
+				 * second Button to turn over the window in Level 1_1
+				 */
 				
 					ok2Button = new JButton("weiter");
 					ok2Button.setBounds(50, 350, 100, 30);
@@ -167,13 +191,15 @@ public class Npc extends JFrame
 						public void actionPerformed(java.awt.event.ActionEvent evt) {		
 							main.Main.ingame = true;			//continue game
 							if(text.equals(text3_3)) System.exit(0);
-							dispose();							//close only ShopFrame
+							dispose();							//only close ShopFrame
 						}
 			
 			
 					});
 					
-
+					/*
+					 * set second Button invisible after using it
+					 */
 					
 					ok2Button.addActionListener(new java.awt.event.ActionListener() {
 						public void actionPerformed(java.awt.event.ActionEvent evt) {		//push the button
@@ -189,7 +215,9 @@ public class Npc extends JFrame
 			}
 		
 		
-		
+		/**
+		 * Throws exception, if the given image is not found
+		 */
 		public void loadIcon(){
 			
 			try

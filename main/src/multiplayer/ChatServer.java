@@ -11,7 +11,11 @@ import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
 
-
+/**
+ * Creates server to connect to client
+ * @author JessicaBa
+ *
+ */
 
 
 public class ChatServer extends Thread {
@@ -27,6 +31,10 @@ public class ChatServer extends Thread {
 	protected Socket client;
 	protected boolean clientReady = false;
 	
+	/**
+	 * creates socket
+	 * @param gui - multiplayer gui
+	 */
 	public ChatServer(Multiplayer gui)
 	{
 		this.gui = gui;
@@ -43,6 +51,9 @@ public class ChatServer extends Thread {
 	
 	}
 	
+	/**
+	 * Thread for incomming clients
+	 */
 	public void run(){
 		while (go){
 			Socket client = null;
@@ -80,6 +91,11 @@ public class ChatServer extends Thread {
 	//	this.clientIP = clientIPraw;
 	}
 	
+	/**
+	 * receives incomming requests and messanges from client
+	 * @param client - client socket
+	 * @param gui - multiplayer gui
+	 */
 	public void readMessage(Socket client, Multiplayer gui) 
 		{
 		in = null;
@@ -140,6 +156,10 @@ public class ChatServer extends Thread {
 							}
 		}	
 	//opens new socket to client
+	/**
+	 * sends messanges to client
+	 * @param gui - multiplayer gui
+	 */
 	public void sendMessage(Multiplayer gui){
 		
 		if (isConnected == false)
@@ -165,6 +185,9 @@ public class ChatServer extends Thread {
 		//System.out.println("Server ist closed? : "+ client.isClosed());
 	}
 	
+	/*
+	 * connects to client to send messanges
+	 */
 	public void connectToClient()
 	{
 		try{	

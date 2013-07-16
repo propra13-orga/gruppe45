@@ -6,7 +6,11 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.regex.Pattern;
-
+/**
+ * Creates chat client to connect to server
+ * @author JessicaBa
+ *
+ */
 
 public class ChatClient extends Thread{
 	
@@ -18,7 +22,11 @@ public class ChatClient extends Thread{
 	protected Boolean go=true;
 	protected BufferedReader in;
 	protected int instanz = 0;
-		
+	
+	/**
+	 * creates chat client
+	 * @param gui - multiplayer gui
+	 */
 	public ChatClient(Multiplayer gui){
 		
 
@@ -53,7 +61,10 @@ public class ChatClient extends Thread{
 		System.out.println("Client kann keine Verbindung aufbauen");}
 		}
 		
-	
+	/**
+	 * sends messages to server
+	 * @param gui - multiplayer gui
+	 */
 	public void sendMessage(Multiplayer gui){
 		try
 	    {

@@ -2,7 +2,11 @@ package gameobjects;
 
 import java.awt.Image;
 
-// destination class (exit of a level)
+/**
+ * A rooms exit
+ * @author Andreas Roth
+ * @author Martin Knonsalla
+ */
 public class Goal extends Figure {
 
 	@Override public Image getPic(int direction){
@@ -15,6 +19,9 @@ public class Goal extends Figure {
 		else return local.Pics.goal;
 	}
 
+	/**
+	 * Parameterless constructor
+	 */
 	public Goal () {
 		super();
 		this.height = local.Pics.goal.getHeight(null);

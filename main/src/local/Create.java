@@ -145,11 +145,11 @@ public class Create {
 											break;
 							
 								//blob
-								case '6':	temp.add(new int[]{11,temp.size(),spalte*block_groesse, zeile*block_groesse,0,6});
+								case '6':	temp.add(new int[]{10,temp.size(),spalte*block_groesse, zeile*block_groesse,0,6});
 											break;
 							
 								//fireball
-								case '7':	temp.add(new int[]{12,temp.size(),spalte*block_groesse, zeile*block_groesse,0,7});
+								case '7':	temp.add(new int[]{10,temp.size(),spalte*block_groesse, zeile*block_groesse,0,7});
 											break;
 							
 								//flower

@@ -82,6 +82,10 @@ public class Inventory {
 		return pos += anzahl;
 	}
 
+	/**
+	 * Checks if mp pot is available
+	 * @return <b>true</b> if pot is available, <b>false</b> else
+	 */
 	public boolean getMp_pot(){
 		if(this.inventory[0] > 0){
 			this.inventory[0] -= 1;
@@ -90,6 +94,10 @@ public class Inventory {
 		else return false;
 	}
 	
+	/**
+	 * Checks if hp pot is available
+	 * @return <b>true</b> if pot is available, <b>false</b> else
+	 */
 	public boolean getHp_pot(){
 		if(this.inventory[1] > 0){
 			this.inventory[1] -=1;

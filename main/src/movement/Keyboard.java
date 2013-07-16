@@ -23,6 +23,7 @@ public class Keyboard implements KeyListener {
 	
 	/**
 	 * Reacts if key is pressed
+	 * @param e - pressed key
 	 */
 	public void keyPressed (KeyEvent e){
 		key = e.getKeyCode();
@@ -135,6 +136,7 @@ public class Keyboard implements KeyListener {
 	
 	/**
 	 * Reacts if key is released
+	 * @param e - released key
 	 */
 	public void keyReleased(KeyEvent e){
 		key = e.getKeyCode();
@@ -179,6 +181,7 @@ public class Keyboard implements KeyListener {
 	
 	/**
 	 * Reacts if key is typed
+	 * @param e - typed key
 	 */
 	public void keyTyped(KeyEvent e) {
 	}
